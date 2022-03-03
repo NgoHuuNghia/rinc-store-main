@@ -1,0 +1,161 @@
+@use '../_fonts' as *
+@use '../_varibles' as *
+@use './_common-mixins' as *
+@use '../../../../node_modules/breakpoint-slicer' as bs
+
+@mixin terminalLogo
+    width: 2.5rem
+    height: auto
+    align-self: center
+    border-radius: 25px
+
+@mixin headLink
+    @include flex($justify: flex-start ,$gap: .5em)
+    >img
+        @include terminalLogo
+    >p
+        font-size: 1.2em
+        white-space: nowrap
+
+@mixin AdminSearch($fc: $fc-default,$fc-svg: $fc-default, $bgc: $bgc-admin-white, $bl: $bgc-admin-line-dark, $flex-short: 1)
+    @include flex($justify: flex-start, $align: stretch)
+    >input
+        font-size: .9em
+        padding: .5em
+        background: $bgc
+        border: 1px solid $bl
+        color: $fc
+        flex: $flex-short
+        min-width: 6em
+    >button
+        padding: .5em
+        border: none
+        background: $bgc-subtle
+        >svg
+            color: $fc-svg
+
+@mixin sidebar-body($trsX: unset, $direction: left)
+    position: fixed
+    top: 0
+    bottom: 0
+    #{$direction}: 0
+    transform: $trsX
+    z-index: -10
+    opacity: 0
+    background-color: $bgc-admin-terminal
+    overflow-y: auto
+    transition: $trs-basic
+    min-height: 100%
+    &.sidebar-open
+        transform: translateX(0)
+        z-index: 15
+        opacity: 1
+@mixin sidebar-link($bgc: none, $bgc-hover: $bgc-admin-terminal-soft, $justify-content: space-between)
+    @include flex($justify: $justify-content, $align: center, $gap: .5em)
+    padding: .75em
+    margin-bottom: .5em
+    border-radius: 5px
+    cursor: pointer
+    text-transform: capitalize
+    transition: $trs-instant
+    background-color: $bgc
+    &:hover
+        background-color: $bgc-hover
+    >span
+        @include flex($gap: .5em)
+    >svg
+        transition: $trs-instant
+@mixin sidebar-button($bgc: $bgc-subtle, $fc: $fc-default, $bgc-hover: $bgc-subsidiary-hilight, $fc-hover: $fc-hilight-subsidiary)
+    background-color: $bgc
+    border-radius: 50%
+    border: none
+    box-shadow: $bs-sm
+    transition: $trs-instant
+    width: 3em
+    height: 3em
+    cursor: pointer
+    >svg
+        font-size: 1.5em
+        color: $fc
+    &:hover
+        background-color: $bgc-hover
+        >svg
+            color: $fc-hover
+@mixin filterSkeleton
+    @include flex($direction: column, $align: stretch)
+    &.col-2
+        @include bs.from(xl)
+            grid-column: span 2
+        
+    svg
+        font-size: 1.6em
+    >label
+        @include sidebar-link($bgc: $bgc-admin-terminal-dark, $justify-content: space-between, $bgc-hover: none)
+        border-radius: 5px 5px 0 0
+        cursor: default
+        margin-bottom: 0
+@mixin filterOptionButton
+    @include flex($direction: column, $justify: flex-start, $align: stretch)
+    background-color: $bgc-admin-terminal-soft
+    >button
+        text-align: start
+        border: none
+        background: none
+        padding: .5em .75em
+        margin-bottom: .25em
+        color: $fc-default
+        font-size: 1em
+        position: relative
+        cursor: pointer
+        &.current
+            &::after
+                position: absolute
+                content: ''
+                top: 0
+                bottom: 0
+                left: 1.5px
+                height: 100%
+                border: 1.5px solid $bgc-admin-current
+        &:hover:not(.current)
+            &::after
+                position: absolute
+                content: ''
+                top: 0
+                bottom: 0
+                left: 1.5px
+                height: 100%
+                border: 1.5px solid $fc-admin-edit
+@mixin filterSelectionButton($bgc: $bgc-admin-current, $brightness: 150%)
+    border: none
+    padding: .25em
+    margin: .25em
+    border-radius: 5px
+    background-color: $bgc
+    transition: $trs-instant
+    cursor: pointer
+    &:hover
+        filter: brightness($brightness)
+@mixin filterSelection
+    >.applied
+        padding: .5em .75em
+        background-color: $bgc-admin-terminal-soft
+        >p
+            font-weight: bold
+            font-size: .9em
+            margin-bottom: .5em
+        >div >button
+            @include filterSelectionButton
+    >.selector
+        padding: .5em .75em
+        background-color: $bgc-admin-terminal-softer
+        @include flex($direction: column, $align: flex-start)
+        >.search
+            @include AdminSearch($fc: $fc-admin)
+            align-self: flex-end
+            margin-bottom: .5em
+            >input
+                padding: .5em
+            >button >svg
+                font-size: 1.2em
+        >.option >button
+            @include filterSelectionButton($bgc: $fc-admin-edit, $brightness: 50%)

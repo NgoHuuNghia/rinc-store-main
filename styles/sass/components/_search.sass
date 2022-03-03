@@ -1,0 +1,79 @@
+@use '../abstracts' as *
+@use '../abstracts/mixins/_search-mixins' as *
+@use '../abstracts/mixins/_home-mixins' as *
+@use "../../../node_modules/breakpoint-slicer" as bs
+
+section.search-container
+    @include flex($align: flex-start, $gap: 1em)
+    @include bs.from(xl)
+        @include desktop-container
+
+    >.primary-search
+        flex: 6
+        @include flex($direction: column)
+        >.main-search
+            @include flex($direction: column, $gap: 1em)
+            margin: 0 1em
+            max-width: 30em
+            @include bs.from(xl)
+                max-width: unset
+                margin: 0
+            >.basic-filter-search
+                align-self: flex-start
+                @include flex($gap: .5em)
+                flex-wrap: nowrap
+                >button:nth-child(2)
+                    display: none
+                    @include bs.from(s)
+                        display: unset
+                >button
+                    @include flex($display: inline-flex, $gap: .2em)
+                    padding: .75em .5em
+                    background-color: #313438
+                    color: $fc-default
+                    border: none
+                    border-radius: .7em
+                    transition: $trs-instant
+                    >span
+                        color: $fc-important
+                        font-weight: bold
+                    >svg
+                        transform: translateY(0.1em)
+                    &:hover
+                        background-color: $bgc-hilight
+                        color: $fc-hilight
+                        >span
+                            color: $fc-subsidiary-hilight
+            >.heading-search
+                @include flex()
+                >p
+                    font-size: 1.6em
+                    color: $fc-tag
+            >.scrollable-search
+                @include flex($direction: column, $align: stretch)
+                align-self: stretch
+                @include bs.from(xl)
+                    @include flex($direction: row, $align: flex-start, $gap: 1em)
+                >div
+                    @include flexible-card //! This belong on _home-mixins
+                    >div
+                        box-shadow: $bs-card-lg
+    
+    >.secondary-filter
+        display: none
+        flex: 1
+        width: 100%
+        @include bs.from(xl)
+            @include flex($direction: column, $align: flex-start, $gap: 1em)
+        >div
+            @include flex($direction: column, $align: flex-start, $gap: 1em)
+            >h4
+                font-size: 1.1em
+                text-transform: uppercase
+                white-space: nowrap
+            >label
+                font-size: .9em
+                color: $fc-important
+                @include custom-checkbox
+                >span:hover
+                    color: $fc-subsidiary-hilight

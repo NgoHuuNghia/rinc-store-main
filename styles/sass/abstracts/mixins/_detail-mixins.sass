@@ -1,0 +1,155 @@
+@use '../_fonts' as *
+@use '../_varibles' as *
+@use './_common-mixins' as *
+@use '../../../../node_modules/breakpoint-slicer' as bs
+
+@mixin label-md
+    font-size: 1.2em
+    color: $fc-tag
+    margin-bottom: .5em
+    text-transform: uppercase
+    display: block
+    
+@mixin recommended
+    >section.recommended
+        @include flex($direction: column, $gap: 1.5em)
+        >div
+            @include flex($direction: column, $align: stretch, $gap: 1em)
+            >div:nth-child(1)
+                @include flex($justify: space-between)
+                >h5
+                    @include label-md
+                    margin: 0
+                >a
+                    white-space: nowrap
+                    font-size: .85em
+                    padding: .3em .6em
+                    background-color: $bgc-subsidiary-subtle
+                    color: $fc-default
+                    &:hover
+                        background-color: $bgc-subsidiary
+            >div:nth-child(2)
+                @include grid($columns: repeat(2, 1fr), $gap: .5em)
+                @include bs.from(m)
+                    @include grid($columns: repeat(3, 1fr), $gap: .5em)
+                >a
+                    @include flex($direction: column,$align: flex-start, $gap: .5em)
+                    @include gradient($first-percent: 75%, $second-percent: 100%)
+                    box-shadow: $bs-card-lg
+                    >div:first-child
+                        >div
+                            max-height: 175px
+                            width: auto
+                            overflow: hidden
+                            margin-bottom: .25em
+                            >img
+                                object-fit: fill
+                                height: auto
+                                max-width: 100%
+                                display: block
+                                box-shadow: $bs-card-img
+                        >h4
+                            color: $fc-tag
+                            display: block
+                            padding-left: .5em
+                            
+                    >div:last-child
+                        @include flex($justify: flex-start, $gap: .5em)
+                        background: $bgc-important
+                        padding-right: .2em
+                        align-self: flex-end
+                        >p:nth-child(1)
+                            background-color: $bgc-discounted
+                            color: $fc-discounted
+                            font-size: 1.1em
+                            padding: .2em
+                        >p:nth-child(2)
+                            padding-right: .5em
+                    &:nth-child(3)
+                        display: none
+                        @include bs.from(m)
+                            @include flex($direction: column,$align: flex-start, $gap: .25em)
+
+@mixin breadcrumbs
+    >div.breadcrumbs
+        position: relative
+        letter-spacing: .15em
+        margin: 1em 0
+        @include flex($justify: center)
+        flex-wrap: wrap
+        @include bs.to(s)
+            gap: .25em
+        @include bs.from(xl)
+            justify-content: flex-start
+        *
+            color: $fc-tag
+        >div
+            @include flex($gap: .1em)
+            white-space: nowrap
+            >a, >p
+                transition: .2s
+                text-transform: uppercase
+                font-size: .7em
+            >p
+                pointer-events: none
+            >a
+                &:hover, &:hover>span
+                    color: $fc-important
+            >span
+                font-size: 1.2em
+                pointer-events: none
+            &:last-child > p
+                @include active-breadcrumb
+        >svg
+            font-size: .8em
+            margin: 0 .1em
+        @include bs.from(xl)
+            width: 950px
+            margin: 1.5em auto
+
+@mixin head
+    >div.head
+        @include flex($justify: center, $gap: 1em)
+        @include bs.from(xl)
+            @include flex($justify: flex-start, $gap: 1em)
+        >div.head-release
+            padding: .1em .4em
+            border-radius: 6px
+            background-color: $bgc-hilight
+            color: $fc-hilight
+            letter-spacing: .1em
+            font-size: .9em
+        >div.consoles
+            @include console-icons
+
+@mixin trailer
+    >*
+        display: block
+    >a.trailer-main
+        margin-top: 1em
+        margin-bottom: .5em
+        @include bs.from(xl)
+            margin-top: 0
+        >img
+            border-radius: 3px
+            width: 100%
+            display: block
+            box-shadow: $bs-card-lg
+    >div.trailer-slider
+        @include grid( $columns: repeat(4, 1fr), $gap: .5em)
+        @include bs.from(xl)
+            @include grid($columns: 1fr 1fr, $gap: .5em)
+        >a
+            display: block
+            img
+                border-radius: 3px
+                height: auto
+                width: 100%
+                display: block 
+                box-shadow: $bs-card-img
+    >div:not(.trailer-slider)
+        font-size: 1.2em
+        @include flex($justify: center, $align: center, $gap: .5em)
+        >svg
+            color: red
+            margin-top: .1em

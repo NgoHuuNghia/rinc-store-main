@@ -1,0 +1,470 @@
+@use '../abstracts' as *
+@use "../../../node_modules/breakpoint-slicer" as bs
+@use '../abstracts/mixins/_detail-mixins' as *
+
+@mixin label-sm
+    color: $fc-tag
+    display: block
+@mixin label-md
+    font-size: 1.2em
+    color: $fc-tag
+    margin-bottom: .5em
+    text-transform: uppercase
+    display: block
+// special colors
+$bgc-chart-exeptional: linear-gradient(180deg,#b4ec51,#429321)
+$fc-chart-exeptional: #429321
+$bgc-chart-recommended: linear-gradient(1800deg, #4354b9, #649bff)
+$fc-chart-recommended: #4354b9
+$bgc-chart-meh: linear-gradient(180deg,#fad961,#f76b1c)
+$fc-chart-meh: #f76b1c
+$bgc-chart-skip: linear-gradient(180deg,#ff5764,#f11a2a)
+$fc-chart-skip: #f11a2a
+$bgc-demo: linear-gradient( 60deg, rgba(117, 176, 34, 0.7) 5%,rgba(88, 138, 27, 0.6) 95%)
+
+//? Detail
+div.detail-container
+    div.detail-background
+        position: absolute
+        left: 0
+        width: 100%
+        height: 75vh
+        background-size: cover
+        background-repeat: no-repeat
+        opacity: .2
+        z-index: -100
+        &.top
+            top: 0
+            background-position: center top
+        &.bottom
+            bottom: 0
+            background-position: center bottom
+
+    @include breadcrumbs
+
+    div.detail
+        position: relative
+        margin: 0 .5em
+        position: relative
+        overflow: hidden
+        transition: $trs-basic
+        @include flex($direction: column, $align: stretch, $gap: 1em)
+        @include bs.from(m)
+            width: 575px
+            margin: 0 auto
+        @include bs.from(xl)
+            flex-direction: row
+            gap: 2em
+            @include desktop-container
+
+        >.read-more
+            position: absolute
+            bottom: -1em
+            left: 1em
+            z-index: 10
+            color: $fc-important
+            cursor: pointer
+            padding: 1em
+            &:hover
+                color: $fc-subsidiary-hilight !important
+
+        >div.detail-primary
+            @include flex($direction: column,$align: stretch, $gap: 1em)
+            margin-bottom: 1em
+            @include bs.from(xl)
+                margin-bottom: 2em
+                @include flex($direction: column, $justify: unset, $align: stretch, $gap: 1.5em)
+                width: 60%
+                .read-more
+                    display: unset
+                    
+            >section.trailer-mobile
+                @include bs.from(xl)
+                    display: none
+                @include trailer
+                @include head
+
+            >section.glance
+                @include flex( $direction: column ,$align: flex-start, $gap: 1em)
+                align-items: stretch
+                color: $fc-important
+                >div.head
+                    display: none
+                @include bs.from(xl)
+                    @include head
+                >h1
+                    letter-spacing: .05em
+                    font-size: 2.5em
+                    @include bs.from(xl)
+                        font-size: 4em
+                >div.glance-info
+                    @include grid($columns: 1fr 1fr 1fr, $gap: .2em)
+                    >p:not(p:last-child)
+                        grid-column: span 1
+                        color: $fc-important
+                    >a
+                        grid-column: span 2
+                        color: $fc-meta
+                        transition: .2s
+                        &:hover
+                            color: $fc-subsidiary-hilight
+                    >p:last-child
+                        grid-column: span 2
+                        color: $fc-important
+                >div.tag-container
+                    >p
+                        @include label-md
+                    >div
+                        @include flex($justify: flex-start, $align: stretch)
+                        gap: .5em
+                        overflow: hidden
+                        >a
+                            padding: .5em 1.25em
+                            border-radius: .5em
+                            font-size: .9em
+                            background-color: $bgc-subsidiary
+                            color: $fc-default
+                            transition: .2s
+                            white-space: nowrap
+                            &:hover
+                                background-color: $bgc-hilight-soft
+                                color: $fc-hilight  
+                >div.ratings-container
+                    @include flex($direction: column, $align: normal,$gap: 1em)
+                    >p
+                        @include label-md
+                        margin: 0
+                        width: 100%
+                    >div.ratings
+                        @include flex($justify: center, $align: center)
+                        >div:nth-child(1)
+                            flex-grow: 2
+                            @include grid( $columns: 1fr 1fr )
+                            row-gap: .25em
+                            text-align: center
+                            >div:nth-child(1)
+                                grid-column: 1/ span 2
+                                @include flex($justify: center, $align: center, $gap: .3em)
+                                @include rating-icon-title
+                            >div:nth-child(2)
+                                grid-column: 1/ span 2
+                            a
+                                color: $fc-unimportant
+                                text-transform: uppercase
+                                font-size: 1.1em
+                                text-decoration: underline
+                                &:hover
+                                    color: $fc-default
+                            >p
+                                font-size: 1.2em
+                                @include bs.from(xl)
+                                    display: none
+                        >div:nth-child(2)
+                            display: none
+                            @include bs.from(xl)
+                                @include grid($columns: 1fr 1fr 1fr)
+                                flex-grow: 1
+                                border-left: 1px solid $fc-unimportant
+                                border-right: 1px solid $fc-unimportant
+                            >p
+                                grid-column: span 1
+                                font-size: 1.6em
+                                text-align: right
+                                padding-right: .25em
+                            >a
+                                grid-column: span 2
+                                color: $fc-unimportant
+                                text-transform: uppercase
+                                text-decoration: underline
+                                font-size: 1.4em
+                                &:hover
+                                    color: $fc-default
+                        >div:nth-child(3)
+                            flex-grow: 2
+                            @include flex( $direction: column )
+                            gap: .4em
+                            >h4
+                                font-size: 1.2em
+                                @include flex($gap: .4em)
+                                >svg
+                                    color: $fc-subsidiary-hilight
+                            >p
+                                @include metascore($size: 1.4em)
+                >div.glance-about
+                    @include flex( $direction: column, $align: flex-start, $gap: .3em)
+                    >h4
+                        @include label-md
+                    >p
+                        line-height: 1.3em
+                    >h3
+                        @include label-sm
+                >div.glance-general
+                    @include grid($columns: 1fr 1fr, $gap: 1em)
+                    >div
+                        >p:first-child
+                            @include label-sm
+                            font-size: 1.1em
+                            padding-bottom: .5em
+                        >p:last-child
+                            display: block
+                    >.linkables
+                        >div
+                            line-height: 1.5em
+                            word-spacing: .15em
+                            >span
+                                transition: $trs-basic
+                                padding-bottom: .1px
+                                border-bottom: 2px solid $fc-tag
+                                cursor: pointer
+                                &:hover
+                                    color: $fc-unimportant
+                                    border-bottom: 2px solid $fc-unimportant
+                            >strong
+                                cursor: default
+                    >.glance-tags
+                        grid-column: span 2
+
+                >div.glance-system
+                    @include flex($direction: column, $align: stretch, $gap: .75em)
+                    >h2
+                        @include label-md
+                    >div
+                        >strong
+                            @include label-sm
+                            margin-bottom: .5em
+                        >div
+                            >p
+                                font-size: .9em
+
+        >div.detail-secondary
+            @include flex($direction: column, $align: stretch)
+            @include bs.from(xl)
+                @include flex($direction: column, $justify: unset, $align: stretch)
+                width: 40%
+
+            >div.height-container
+                @include flex($align: stretch, $direction: column ,$gap: 1em)
+                @include bs.from(xl)
+                    gap: 1.5em
+                >section.trailer-desktop
+                    display: none
+                    @include bs.from(xl)
+                        display: unset
+                    @include trailer
+
+                >div.interaction
+                    @include flex($direction: column, $align: stretch, $gap: 1.5em)
+                    >div.stores-container
+                        >p
+                            @include label-md
+                        >div
+                            overflow-x: auto
+                            @include flex($justify: none, $align: none, $gap: 1.5%)
+                            flex-wrap: nowrap
+                            scrollbar-width: none !important
+                            >a
+                                min-width: 32%
+                                @include flex($justify: center, $align: center, $gap: .5em)
+                                padding: .5em 0
+                                background-color: $bgc-subsidiary
+                                border-radius: 0.5em
+                                color: $fc-default
+                                cursor: pointer
+                                transition: .2s
+                                &:hover
+                                    background-color: $bgc-hilight-soft
+                                    color: $fc-hilight
+                                >h4
+                                    text-transform: capitalize
+                                    font-size: .9em
+                                >svg
+                                    font-size: 1.5em
+                            // a new method of repsonsive sass
+                            @include bs.from(xl)
+                                &
+                                    @include grid( $columns: 1fr 1fr, $gap: 1em )
+                                    >a 
+                                        min-width: none
+                                        padding: .4em 0
+
+                    >div.chart-container
+                        @include flex( $direction: column,$align: stretch, $gap: .5em)
+                        >p
+                            @include label-sm
+                            align-self: flex-start
+                        >div.chart
+                            margin: .25em 0 1em 0
+                            width: 100%
+                            height: 3em
+                            >div
+                                height: 100%
+                                width: 25%
+                                display: inline-block
+                                overflow: hidden
+                                position: relative
+                                transition: all 0.2s linear
+                                cursor: pointer
+                                >img
+                                    height: auto
+                                    width: 3.5em
+                                    position: absolute
+                                    bottom: -.75em
+                                    left: -1em
+                            .active
+                                box-shadow: $bs-card-light
+                            >.exceptional
+                                background-image: $bgc-chart-exeptional
+                                >img
+                                    bottom: -.5em
+                                    left: -.5em
+                            >.recommended
+                                background-image: $bgc-chart-recommended
+                            >.meh
+                                background-image: $bgc-chart-meh
+                            >.skip
+                                background-image: $bgc-chart-skip
+                            >div:first-child
+                                border-radius: .5em 0 0 .5em
+                            >div:last-child
+                                border-radius: 0 .5em .5em 0
+                        >div.chart-label
+                            @include grid( $columns: 1fr 1fr )
+                            >div
+                                @include flex( $justify: flex-start)
+                                padding: .5em .75em
+                                gap: .5em
+                                border-radius: 10px
+                                border: 3px solid transparent
+                                transition: all 0.2s linear
+                                cursor: pointer
+                                >*
+                                    display: inline
+                                    font-size: .9em
+                                >p
+                                    color: $fc-unimportant
+                                    text-transform: capitalize
+                            .active // !link with it's chart
+                                border: 3px solid $bgc-hilight-soft
+                                >p
+                                    color: $fc-important
+                            >.exceptional
+                                >svg
+                                    color: $fc-chart-exeptional
+                            >.recommended
+                                >svg
+                                    color: $fc-chart-recommended
+                            >.meh
+                                >svg
+                                    color: $fc-chart-meh
+                            >.skip
+                                >svg
+                                    color: $fc-chart-skip
+
+                    >section.action
+                        @include flex( $direction: column, $align: stretch, $gap: 1em)
+                        >div.action-action
+                            @include flex( $direction: row, $justify: center)
+                            >a
+                                padding: .5em .75em .5em .5em
+                                background-color: $bgc-subsidiary-subtle
+                                @include flex
+                                transition: .2s
+                                >svg
+                                    margin: auto
+                                    font-size: 1.5em
+                                    color: $fc-default
+                                &:hover
+                                    background-color: $bgc-hilight-soft
+                                &:hover > svg
+                                    color: $fc-hilight
+                        >div.action-play
+                            @include flex( $direction: column, $gap: 1em, $align: stretch)
+                            >div
+                                @include flex( $direction: column )
+                                @include gradient($deg-gradient: 60deg, $first-gradient: $bgc-subsidiary-subtle ,$first-percent: 5%, $second-gradient: $bgc-subsidiary-subtle-soft, $second-percent: 95% )
+                                padding: 1.25em
+                                box-shadow: $bs-card-md
+                                >div:nth-child(1)
+                                    @include flex($justify: space-between)
+                                    width: 100%
+                                    margin-bottom: .75em
+                                    >h5
+                                        font-size: 1em
+                                >div:nth-child(2)
+                                    @include flex
+                                    background-color: $bgc-important
+                                    align-self: flex-end
+                                    overflow: hidden
+                                    border-radius: 4px
+                                    >*
+                                        display: inline-block
+                                    >p
+                                        padding: 0 .5em
+                                    >a
+                                        padding: .5em
+                                        background-color: $bgc-discounted
+                                        color: $fc-discounted
+                                        border: 4px solid $bgc-important
+                                        transition: .2s
+                                        &:hover
+                                            background-color: $bgc-hilight-soft
+                                            color: $fc-hilight
+                            >div.play-demo
+                                background: $bgc-demo
+                                >div:nth-child(2)
+                                    display: none
+                        >div.action-dlc
+                            @include flex($direction: column, $align: stretch, $gap: .5em)
+                            >div:nth-child(1)
+                                @include flex
+                                >p
+                                    @include label-md
+                                    margin: 0
+                                >a
+                                    font-size: .9em
+                                    color: $fc-default
+                                    padding: .5em .75em
+                                    border: 1px $bgc-subtle solid
+                                    &:hover
+                                        border: 1px $bgc-hilight solid
+                            >div:nth-child(2)
+                                @include flex($direction: column, $gap: .2em, $align: stretch)
+                                >a
+                                    @include gradient($deg-gradient: 60deg, $first-gradient: $bgc-subsidiary-subtle ,$first-percent: 5%, $second-gradient: $bgc-subsidiary-subtle-soft, $second-percent: 95% )
+                                    @include flex($justify: space-between)
+                                    padding: .75em
+                                    >*
+                                        display: inline-block
+                                        font-size: .85em
+                                    >h6
+                                        color: $fc-tag
+                                    >p
+                                        color: $fc-default
+                            >div:nth-child(3)
+                                @include flex($justify: flex-end, $gap: .5em)
+                                >p
+                                    font-size: 1.1em
+                                    color: $fc-tag
+                                >a
+                                    @include flex
+                                    padding: .3em
+                                    background-color: $bgc-subsidiary-subtle
+                                    color: $fc-default
+                                    &:hover
+                                        background-color: $bgc-subsidiary
+                                    >p
+                                        font-size: .9em
+                                    >svg
+                                        font-size: 1.2em
+
+    >div.recommendations
+        margin: 1em .5em
+        position: relative
+        @include bs.from(m)
+            width: 575px
+            margin: 1.5em auto
+        @include bs.from(xl)
+            flex-direction: row
+            width: 950px
+            gap: 2em
+        @include recommended

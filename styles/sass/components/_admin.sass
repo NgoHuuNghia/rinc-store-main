@@ -1,0 +1,239 @@
+@use '../abstracts' as *
+@use "../../../node_modules/breakpoint-slicer" as bs
+@use '../abstracts/mixins/_admin-mixins' as *
+
+//? admin
+section.admin-container
+    @include flex($align: stretch, $justify: flex-start)
+    background: $bgc-admin
+    position: relative
+    >nav.terminal
+        @include sidebar-body($trsX: translateX(-100%))
+        @include bs.from(xl)
+            @include flex($direction: column, $align: stretch, $justify: flex-start)
+            position: static
+            transform: translateX(0)
+            min-width: 12em
+            z-index: 0
+            opacity: 1
+        >*
+            padding: .75em
+        >.head
+            @include flex($gap: 2em)
+            background-color: $bgc-admin-terminal-dark
+            border-bottom: 1.5px solid $bgc-subsidiary
+            >a
+                @include headLink
+            >button 
+                background: none
+                border: none
+                color: $fc-admin-white
+                @include bs.from(xl)
+                    display: none
+                >svg
+                    width: 2rem
+                    min-width: 2rem
+                    transform: rotate(180deg)
+                    transition: $trs-instant
+                    cursor: pointer
+                    &:hover
+                        color: $fc-subsidiary-hilight
+        >.admin
+            background-color: $bgc-admin-terminal-dark
+            border-bottom: 1.5px solid $bgc-subsidiary
+            >a
+                @include headLink
+        >.search
+            @include AdminSearch($fc-svg: $fc-admin-white, $bgc: $bgc-admin-terminal-soft, $bl: $fc-admin-white-soft)
+        >.dashboard
+            @include flex($direction: column, $align: stretch, $gap: 1.2em)
+            font-size: .9em
+            >ul >li
+                transition: $trs-basic
+                overflow: hidden
+                &.current
+                    >a, >a:hover
+                        background-color: $bgc-admin-current
+                        color: $fc-admin-white
+                        >svg
+                            transform: rotate(-90deg)
+                    >ul 
+                        opacity: 1
+                        height: unset
+                        >li.current >a
+                            background-color: $bgc-admin-gray
+                            color: $fc-admin
+                svg
+                    font-size: 1.6em
+                >a
+                    @include sidebar-link
+                >ul 
+                    opacity: 0
+                    height: 0
+                    transition: $trs-basic
+                    >li >a
+                        @include sidebar-link($bgc-hover: $bgc-admin-terminal-soft, $justify-content: flex-start)
+                        padding: .5em .75em
+                        margin: 0 2em .5em 0
+            >p.label
+                text-transform: uppercase
+                background-color: $bgc-admin-terminal-dark
+                align-self: flex-start
+                padding: .5em
+                margin-left: .5em
+                border-radius: 5px
+                font-weight: bolder
+
+    >div.controls
+        @include flex($direction: column, $justify: flex-start, $align: stretch)
+        flex: 1
+        color: $fc-admin
+        min-height: 100vh
+        >div:not(:first-child)
+            margin: 1em
+        >.head
+            background-color: $bgc-admin-white
+            border-bottom: 1px solid $bgc-admin-line
+            padding: 1em
+            @include flex($justify: flex-start, $align: center, $gap: 1em)
+            >button
+                @include sidebar-button
+                @include bs.from(xl)
+                    display: none
+                >svg
+                    width: 1.4rem
+                    min-width: 1.4rem
+                    transform: translateY(.05em)
+            >.breadcrumbs
+                @include flex($gap: .2em)
+                font-size: 1.1em
+                text-transform: capitalize
+                color: #90989e
+                white-space: nowrap
+                >div:not(:first-child) >a
+                    color: inherit
+                >div:first-child >a
+                    color: $bgc-admin-current !important
+                >span
+                    cursor: default
+            >.links
+                @include flex
+                margin-left: auto
+                >a
+                    @include flex
+                    padding: .15em .25em
+                    background-color: $bgc-admin-gray
+                    color: $bgc-subtle
+                    font-size: 2em
+                    transition: $trs-instant
+                    &:hover
+                        background-color: $bgc-subsidiary-hilight
+        >.title
+            @include flex
+            >h2
+                font-size: 1.7em
+                font-weight: 400
+            >button
+                @include sidebar-button
+                >svg
+                    transform: translateY(.15em)
+
+        >.list-container
+            @include flex($direction: column, $align: stretch)
+            border: 2px solid $bgc-admin-line-gray
+            background-color: $bgc-admin-white
+            width: 95vw
+            margin: 1em auto !important
+            @include bs.from(xl)
+                width: unset
+                margin: 1em !important
+            >.search
+                @include AdminSearch($fc: $fc-admin, $bgc: $bgc-admin-white, $bl: $bgc-admin-line-dark, $flex-short: none)
+                padding: 1em
+            >ul.table
+                @include grid($columns: minmax(min-content, 1fr) minmax(min-content, 2fr) repeat(5, minmax(min-content, .5fr)))
+                overflow-x: auto
+                white-space: nowrap
+                >li
+                    @include flex()
+                    padding: .5em 1em
+                    border-top: 2px solid $bgc-admin-line-gray
+                    >svg
+                        font-size: 1.5em
+                .table-head
+                    padding: .75em 1em
+                    font-weight: 500
+                    text-transform: capitalize
+                    color: $fc-admin
+                .edit, .delete
+                    justify-content: center
+                    transition: $trs-instant
+                    cursor: pointer
+                .edit:hover
+                    color: $fc-admin-edit
+                .delete:hover
+                    color: $fc-admin-delete
+            >.pagination
+                border-top: 2px solid $bgc-admin-line-gray
+                padding: 1em
+                >ul
+                    @include flex($align: stretch, $justify: center)
+                    >li
+                        @include flex()
+                        padding: .5em
+                        border: 1px solid $bgc-admin-line-dark
+                        border-left: none
+                        transition: $trs-instant
+                        cursor: pointer
+                    li:not(.current):hover
+                        background-color: $bgc-subsidiary-hilight
+                        color: $fc-hilight-subsidiary
+                    >li:first-child
+                        border-left: 1px solid $bgc-admin-line-dark
+                    >li.current
+                        background-color: $bgc-admin-current
+                        color: $fc-admin-white
+
+    >div.filter-controls
+        @include sidebar-body($trsX: translateX(100%), $direction: right)
+        max-width: 20em
+        @include bs.from(xl)
+            max-width: 25em
+        >*
+            padding: .75em
+        >.head
+            background-color: $bgc-admin-terminal-dark
+            border-bottom: 1.5px solid $bgc-subsidiary
+            font-size: 1.2em
+            >p 
+                @include flex($gap: 2em)
+                >button
+                    @include sidebar-button($bgc: $bgc-admin-gray, $fc: $fc-admin)
+                    >svg
+                        transform: rotate(180deg)
+        >form
+            @include grid($columns: 1fr, $gap: 1em)
+            @include bs.from(xl)
+                @include grid($columns: 1fr 1fr, $gap: 1em)
+            >div.option
+                @include filterSkeleton
+                >div
+                    @include filterOptionButton
+            >div.selection
+                @include filterSkeleton
+                >div
+                    @include filterSelection
+
+    >div.sidebar-overlay
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+        z-index: -10
+        opacity: 0
+        background-color: $bgc-overlay
+        transition: $trs-basic
+        &.sidebar-open
+            opacity: 1
+            z-index: 10

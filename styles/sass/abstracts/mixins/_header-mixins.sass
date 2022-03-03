@@ -1,0 +1,31 @@
+@use '../_fonts' as *
+@use '../_varibles' as *
+@use './_common-mixins' as *
+@use '../../../../node_modules/breakpoint-slicer' as bs
+    
+@mixin submenu
+    >.submenu
+        &.display-none
+            display: none
+        transition: $trs-basic
+        position: absolute
+        transform: translateX(-50%)
+        text-transform: uppercase
+        font-size: .9em
+        width: 10em
+        background-color: $bgc-subsidiary-subtle
+        box-shadow: $bs-card-lg
+        opacity: 0
+        z-index: -1
+        &.open
+            opacity: 1
+            z-index: 5
+        >ul
+            >li
+                >a
+                    padding: .8em .5em
+                    width: 100%
+                    display: block
+                    &:hover
+                        background-color: $bgc-subsidiary-hilight
+                        color: $fc-important

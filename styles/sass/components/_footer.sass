@@ -1,0 +1,88 @@
+@use '../abstracts' as *
+@use "../../../node_modules/breakpoint-slicer" as bs
+    
+footer
+    &.display-none
+        display: none !important
+    position: relative
+    z-index: 0
+    padding: 1em .5em 1em .5em
+    @include bs.from(xl)
+        padding: 1em 0 0 0
+    >div
+        @include grid($columns: repeat(6, 1fr), $gap: 1em)
+        font-size: .9em
+        @include bs.from(xl)
+            @include desktop-container
+            margin: 0 auto .75em auto
+        >div:nth-child(1)
+            grid-column: span 3
+            @include flex($justify: center)
+            @include bs.from(xl)
+                grid-area: 1 / 1 / span 3 / span 1
+                order: 1
+            >img
+                width: 4em
+        >div:nth-child(2)
+            grid-column: span 3
+            @include flex($justify: center)
+            @include bs.from(xl)
+                grid-area: 1 / 6 / span 3 / span 1
+                order: 3
+            >img
+                width: 6em
+        >p
+            grid-column: span 6
+            padding: 0 10%
+            @include bs.from(xl)
+                grid-column: span 4
+                order: 2
+        >ul
+            grid-column: span 3
+            >li
+                padding: .5em 0
+                border-bottom: 1px solid $fc-default
+                width: 11em
+                display: inline-block
+                border-bottom: 1px solid white
+                transition: $trs-basic
+                &:hover
+                    background-color: $bgc-hilight
+                >a
+                    padding-left: .3em
+                    color: $fc-default
+                &:hover > a
+                    color: $fc-hilight
+
+        >ul:nth-child(4)
+            @include flex( $direction: column, $align: flex-end)
+            @include bs.from(xl)
+                grid-column: span 4
+                order: 4
+                @include flex($direction: row, $justify: center, $align: center)
+                >li
+                    width: unset
+                    flex-grow: 1
+                    border-bottom: none
+                    border-right: 1px solid $fc-default
+                    padding: .5em .5em
+                >li:last-child
+                    border: none
+
+        >ul:nth-child(5)
+            @include flex( $direction: column, $align: flex-start )
+            @include bs.from(xl)
+                grid-column: span 4
+                order: 5
+                @include flex($direction: row, $justify: center, $align: center)
+                >li
+                    width: unset
+                    flex-grow: 1
+                    border-bottom: none
+                    border-right: 1px solid $fc-default
+                    padding: .5em .5em
+                    text-align: left
+                >li:last-child
+                    border: none
+            >li
+                text-align: right

@@ -1,0 +1,258 @@
+@use '../_fonts' as *
+@use '../_varibles' as *
+@use './_common-mixins' as *
+@use '../../../../node_modules/breakpoint-slicer' as bs
+
+// home
+@mixin home-content-title
+    @include flex
+    margin-bottom: .5em
+    >h5
+        font-size: 1.1em
+        text-transform: uppercase
+    >a
+        color: $fc-unimportant
+        @include flex
+        transition: .3s
+        &:hover 
+            color: $fc-default
+
+// card
+@mixin card-title
+    font-size: 1.1em
+    text-transform: capitalize
+    display: block
+@mixin card-img
+    height: auto
+    max-width: 100%
+    display: block
+    box-shadow: $bs-card-img
+    object-fit: cover
+@mixin card-text
+    font-size: .85em
+    font-weight: 400
+    display: block
+@mixin card-price
+    &.price-container
+        @include flex($align: stretch)
+        background-color: $bgc-important
+        font-size: .8em
+        >div.discount-percent
+            display: inline-block
+            padding: 0.2em .4em
+            background-color: $bgc-discounted
+            color: $fc-discounted
+        >div.price
+            @include flex($direction: row, $gap: .5em)
+            display: inline-flex
+            font-size: .85em
+            padding: 0 .5em 0 .5em
+            span
+                font-size: .95em
+                text-decoration: line-through
+                color: $fc-unimportant
+    &.price-2col
+        >div.discount-percent
+            @include flex($justify: center)
+            font-size: 1.2em
+        >div.price
+            @include flex($direction: column, $gap: .1em)
+            padding: .3em .5em
+
+@mixin expander
+    @include flex($justify: center)
+    padding: .5em 0
+    >p
+        position: relative
+        font-size: .9em
+        cursor: pointer
+        transition: $trs-instant
+        &::after
+            content: ''
+            position: absolute
+            bottom: -.1em
+            left: 0
+            width: 100%
+            height: .05em
+            background-color: $bgc-hilight-soft
+        &:hover
+            color: $fc-subsidiary-hilight
+            &::after
+                background-color: $fc-subsidiary-hilight
+
+@mixin border-line
+    position: relative
+    &::after
+        content: ''
+        position: absolute
+        width: 100%
+        left: 0
+        bottom: -5px
+        border-bottom: 1px solid $bgc-subsidiary-hilight
+
+// slider
+@mixin arrows
+    >button.previous, button.next
+        display: none
+        border: none
+        @include bs.from(xl)
+            @include flex($justify: center)
+            position: absolute
+            top: 38%
+            width: 7%
+            height: 7em
+            border-radius: 4px
+        >svg
+            font-size: 4em
+            color: $fc-default
+    >button.previous
+        left: -7%
+        @include gradient(background, 270deg, transparent, 40%, $bgc-subtle, 100%)
+        &:hover
+            @include gradient(background, 270deg, transparent, 15%, $bgc-hilight-subtle, 100%)
+    >button.next
+        right: -7%
+        @include gradient(background, 90deg, transparent, 40%, $bgc-subtle, 100%)
+        &:hover
+            @include gradient(background, 90deg, transparent, 15%, $bgc-hilight-subtle, 100%)
+
+@mixin flexible-card
+    >a, >div
+        transition: $trs-basic
+        box-shadow: $bs-card-lg
+        width: 100%
+        overflow: hidden
+        @include gradient
+        @include flex($direction: column, $justify: space-between, $align: stretch)
+        @include bs.from(xl)
+            flex-direction: row
+        >img
+            flex: 2
+            @include card-img
+            @include bs.from(xl)
+                width: 620px
+                height: 350px
+        >div
+            flex: 1
+            @include grid($columns: 1fr 1fr, $gap: .5em, $place-content: space-evenly)
+            padding: .5em
+            @include bs.from(xl)
+                padding: 0
+            >h4, >a
+                @include card-title
+                grid-column: span 2
+                font-size: 1.4em
+            >img
+                display: none
+                @include bs.from(xl)
+                    grid-column: span 1
+                    height: 91px
+                    width: 100%
+                    display: inline-block
+            >*:not(img)
+                margin-left: .5em
+
+            >div.home-copoment-extra
+                display: none
+                @include bs.from(xl)
+                    @include flex($direction: column,$justify: none, $align: flex-start, $gap: .3em)
+                    grid-column: span 2
+                    >div:first-child
+                        font-size: 1.05em
+                    >div:last-child
+                        font-size: .8em
+                        padding: .2em .6em
+                        background-color: $bgc-subsidiary
+            >div.home-copomnent-main
+                @include flex($justify: space-between)
+                grid-column: span 2
+                margin: 0 .5em
+                >div.price-container
+                    @include card-price
+                >div:last-child
+                    @include flex($gap: .2em)
+
+    &.mobile-results-search
+        @include flex($direction: column, $gap: 1em)
+        @include bs.from(xl)
+            display: none
+    &.desktop-results-search
+        flex: 1
+        display: none
+        @include bs.from(xl)
+            @include flex($direction: column, $gap: 1em)
+            
+    &.mobile-results-search, &.desktop-results-search
+        >a, >div
+            border-radius: .6em
+            @include bs.from(xl)
+                flex-direction: column
+            >a
+                >img
+                    @include card-img
+                    width: 30em //? determine the width of scrollable search
+            >div.basic
+                @include flex($direction: column, $justify: space-between, $align: stretch, $gap: .75em)
+                padding: .5em .5em
+                >* 
+                    margin: 0 !important
+                >div.search-copomnent-main
+                    @include flex($direction: column, $align: flex-start, $gap: 1em)
+                    overflow-y: hidden
+                    >div.price-container
+                        @include flex()
+                        @include card-price
+                    >div.rating
+                        align-self: stretch
+                        display: none
+                        @include bs.from(xl)
+                            @include flex($justify: center, $align: center, $gap: .3em)
+                            @include rating-icon-title
+                        >h4
+                            font-size: 1.1em
+                    >div.subsidiary-rating
+                        align-self: stretch
+                        @include flex()
+                        >.consoles
+                            @include console-icons
+                        >div.rating
+                            @include flex($justify: center, $align: center, $gap: .3em)
+                            @include rating-icon-title
+                            @include bs.from(xl)
+                                display: none
+                        >p
+                            @include metascore($size: 1em)
+                    >div:not(div:first-child)
+                        @include border-line
+                    @include bs.from(xl)
+                        >div.price
+                            position: unset
+                            border: none
+                >div.search-copomnent-expander
+                    @include expander
+                    @include bs.from(xl)
+                        display: none
+            >ul.expanded
+                padding: .5em .5em 1em .5em
+                font-size: .9em
+                @include flex($direction: column, $gap: 1.25em, $align: stretch)
+                >li
+                    @include flex
+                    @include border-line
+                    >p:first-child
+                        color: $fc-tag
+                    // >p:last-child
+                >li:last-child
+                    &::after
+                        content: none
+                    @include expander
+                    >p
+                        padding: 1em 1em
+                        border-radius: .6em
+                        color: $fc-important
+                        background-color: $bgc-subsidiary
+                        &:hover
+                            color: $fc-hilight-subsidiary
+                            background-color: $bgc-hilight
+                        &::after
+                            content: none

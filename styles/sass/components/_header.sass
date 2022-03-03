@@ -1,0 +1,166 @@
+@use '../abstracts' as *
+@use '../abstracts/mixins/_header-mixins' as *
+@use "../../../node_modules/breakpoint-slicer" as bs
+    
+//? Header
+body 
+    #main-container
+        position: relative
+        &.overlay
+            height: 100vh
+            overflow: hidden
+        header 
+            &.display-none
+                display: none !important
+            transition: $trs-basic
+            position: relative
+            background-color: $bgc-default
+            padding: .5em 0
+            &::after
+                opacity: 0
+                content: ''
+                position: absolute
+                z-index: -1
+                transition: $trs-basic
+                top: 70px
+                left: 0
+                width: 100vw
+                height: 100vh
+                background: $bgc-overlay
+            &.overlay
+                &::after
+                    opacity: 1
+                    z-index: 1
+            &.dropdown-active
+                height: 80vh
+            &.transparent
+                background: none
+            nav
+                position: relative
+                @include grid( $columns: repeat(8, 1fr), $gap: .5em)
+                align-items: center
+                @include bs.from(xl)
+                    @include desktop-container
+                    @include grid( $columns: repeat(16, 1fr), $gap: .5em)
+
+                >div:nth-child(1)
+                    @include flex($justify: center)
+                    grid-column: span 1
+                    padding-left: 1em
+                    @include bs.from(xl)
+                        grid-column: span 1
+                        @include flex($justify: flex-start)
+                        padding: 0
+                    >a
+                        >img
+                            width: 3.5em
+
+                >form
+                    @include flex($gap: .2em)
+                    align-self: center
+                    grid-column: span 6
+                    background-color: $bgc-subtle
+                    border-radius: 1em
+                    transition: 0.3s
+                    overflow: hidden
+                    position: relative
+                    @include bs.from(xl)
+                        grid-column: span 8
+                    ::placeholder
+                        text-transform: capitalize
+                    &:hover
+                        background-color: $bgc-hilight
+                    >svg
+                        flex: 1
+                        cursor: pointer
+                        transition: $trs-instant
+                    >svg:first-child
+                        padding: .25em 0
+                        color: $fc-default
+                        font-size: 2.3em
+                        &:hover
+                            color: $fc-subsidiary !important
+                    >svg:last-child
+                        opacity: 0
+                        color: $fc-subsidiary-hilight
+                        font-size: 1.5em
+                        z-index: -5
+                        &:hover
+                            opacity: 1 !important
+                    >input
+                        flex: 11
+                        background: none
+                        border: none
+                        color: $fc-default
+                        font-size: 1.15em
+                    &:hover > input,&:hover > svg:first-child
+                        color: $bgc-important
+
+                >div:nth-child(3)
+                    @include flex($justify: center, $align: stretch, $gap: .5em)
+                    align-self: stretch
+                    grid-column: span 1
+                    padding-right: 1em
+                    @include bs.from(xl)
+                        grid-column: span 7
+                        gap: 1em
+                        padding-right: 0
+                    @include animated-nav-bar
+                    #bars
+                        order: 2
+                        align-self: center
+                        @include bs.from(xl)
+                            display: none
+                    >ul 
+                        display: none
+                        order: 1
+                        @include bs.from(xl)
+                            @include flex($align: stretch, $gap: .8em)
+                        >li
+                            display: inline-block
+                            @include flex($align: stretch)
+                            >a
+                                color: $fc-default
+                                text-transform: uppercase
+                                font-size: 1.1em
+                                font-weight: 700
+                                @include flex($align: center)
+                                &:hover
+                                    color: $fc-important
+                    >img
+                        align-self: center
+                        height: 2.5em
+                        border-radius: 25px
+                        order: 1
+                
+                >div:nth-child(4)
+                    position: absolute
+                    top: 62px
+                    right: 0
+                    transition: $trs-basic
+                    grid-column: span 8
+                    height: 0
+                    overflow: hidden
+                    >ul
+                        @include flex($direction: column)
+                        >li
+                            &:nth-child(1n+2)
+                                border-top: 1px solid $fc-important
+                            width: 60vw
+                            background: $bgc-default
+                            >a
+                                text-align: center
+                                display: block
+                                padding: .75em 0
+                                width: 100%
+                                height: 100%
+                                font-size: 1.3em
+                            &:hover
+                                background-color: $bgc-hilight
+                                >a
+                                    color: $bgc-important
+                    @include bs.from(xl)
+                        &
+                            height: 0!important
+
+        @include submenu
