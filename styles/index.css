@@ -3897,6 +3897,9 @@ section.admin-container > nav.terminal > .search > button {
   border: none;
   background: #313438;
 }
+section.admin-container > nav.terminal > .search > button:hover {
+  cursor: pointer;
+}
 section.admin-container > nav.terminal > .search > button > svg {
   color: #eef0f1;
 }
@@ -4010,7 +4013,7 @@ section.admin-container > div.controls {
   color: #10161b;
   min-height: 100vh;
 }
-section.admin-container > div.controls > div:not(:first-child) {
+section.admin-container > div.controls > *:not(:first-child) {
   margin: 1em;
 }
 section.admin-container > div.controls > .head {
@@ -4064,11 +4067,20 @@ section.admin-container > div.controls > .head > .breadcrumbs {
   color: #90989e;
   white-space: nowrap;
 }
-section.admin-container > div.controls > .head > .breadcrumbs > div:not(:first-child) > a {
+section.admin-container > div.controls > .head > .breadcrumbs a {
+  cursor: pointer;
+}
+section.admin-container > div.controls > .head > .breadcrumbs > div:not(:last-child) > a {
   color: inherit;
 }
-section.admin-container > div.controls > .head > .breadcrumbs > div:first-child > a {
+section.admin-container > div.controls > .head > .breadcrumbs > div:not(:last-child) > a:hover {
+  filter: brightness(50%);
+}
+section.admin-container > div.controls > .head > .breadcrumbs > div:last-child > a {
   color: #007bff !important;
+}
+section.admin-container > div.controls > .head > .breadcrumbs > div:last-child > a:hover {
+  filter: brightness(150%);
 }
 section.admin-container > div.controls > .head > .breadcrumbs > span {
   cursor: default;
@@ -4107,7 +4119,15 @@ section.admin-container > div.controls > .title > h2 {
   font-size: 1.7em;
   font-weight: 400;
 }
-section.admin-container > div.controls > .title > button {
+section.admin-container > div.controls > .title > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+  margin-right: 1em;
+}
+section.admin-container > div.controls > .title button {
   background-color: #313438;
   border-radius: 50%;
   border: none;
@@ -4117,17 +4137,17 @@ section.admin-container > div.controls > .title > button {
   height: 3em;
   cursor: pointer;
 }
-section.admin-container > div.controls > .title > button > svg {
+section.admin-container > div.controls > .title button > svg {
   font-size: 1.5em;
   color: #c6d4df;
 }
-section.admin-container > div.controls > .title > button:hover {
+section.admin-container > div.controls > .title button:hover {
   background-color: #ff0040;
 }
-section.admin-container > div.controls > .title > button:hover > svg {
+section.admin-container > div.controls > .title button:hover > svg {
   color: #10161b;
 }
-section.admin-container > div.controls > .title > button > svg {
+section.admin-container > div.controls > .title button > svg#filter-icon {
   transform: translateY(0.15em);
 }
 section.admin-container > div.controls > .list-container {
@@ -4139,13 +4159,59 @@ section.admin-container > div.controls > .list-container {
   border: 2px solid rgba(0, 0, 0, 0.125);
   background-color: #ffffff;
   width: 95vw;
-  margin: 1em auto !important;
+  margin: 1em;
+}
+@media (min-width: 600px) {
+  section.admin-container > div.controls > .list-container {
+    margin: 1em auto;
+  }
 }
 @media (min-width: 1000px) {
   section.admin-container > div.controls > .list-container {
     width: unset;
-    margin: 1em !important;
+    margin: 1em;
   }
+}
+section.admin-container > div.controls > .list-container > form {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 0;
+  padding: 1em;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.125);
+}
+section.admin-container > div.controls > .list-container > form > input {
+  font-size: 0.9em;
+  padding: 0.5em;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  color: #10161b;
+  flex: none;
+  min-width: 6em;
+}
+section.admin-container > div.controls > .list-container > form > button {
+  padding: 0.5em;
+  border: none;
+  background: #313438;
+}
+section.admin-container > div.controls > .list-container > form > button:hover {
+  cursor: pointer;
+}
+section.admin-container > div.controls > .list-container > form > button > svg {
+  color: #c6d4df;
+}
+section.admin-container > div.controls > .list-container > form > button {
+  background: #007bff;
+  transition: all 0.1s linear;
+  text-transform: uppercase;
+  color: #eef0f1;
+}
+section.admin-container > div.controls > .list-container > form > button:disabled {
+  background: #313438;
+  filter: brightness(50%);
+  color: black;
+  cursor: default;
 }
 section.admin-container > div.controls > .list-container > .search {
   display: flex;
@@ -4168,6 +4234,9 @@ section.admin-container > div.controls > .list-container > .search > button {
   padding: 0.5em;
   border: none;
   background: #313438;
+}
+section.admin-container > div.controls > .list-container > .search > button:hover {
+  cursor: pointer;
 }
 section.admin-container > div.controls > .list-container > .search > button > svg {
   color: #c6d4df;
@@ -4194,12 +4263,6 @@ section.admin-container > div.controls > .list-container > ul.table > li {
 section.admin-container > div.controls > .list-container > ul.table > li > svg {
   font-size: 1.5em;
 }
-section.admin-container > div.controls > .list-container > ul.table .table-head {
-  padding: 0.75em 1em;
-  font-weight: 500;
-  text-transform: capitalize;
-  color: #10161b;
-}
 section.admin-container > div.controls > .list-container > ul.table .edit, section.admin-container > div.controls > .list-container > ul.table .delete {
   justify-content: center;
   transition: all 0.1s linear;
@@ -4210,6 +4273,16 @@ section.admin-container > div.controls > .list-container > ul.table .edit:hover 
 }
 section.admin-container > div.controls > .list-container > ul.table .delete:hover {
   color: #c70000;
+}
+section.admin-container > div.controls > .list-container > ul.table .table-head {
+  padding: 0.75em 1em;
+  font-weight: 500;
+  text-transform: capitalize;
+  color: #10161b;
+  cursor: unset;
+}
+section.admin-container > div.controls > .list-container > ul.table .table-head.edit, section.admin-container > div.controls > .list-container > ul.table .table-head.delete {
+  color: unset !important;
 }
 section.admin-container > div.controls > .list-container > .pagination {
   border-top: 2px solid rgba(0, 0, 0, 0.125);
@@ -4244,6 +4317,77 @@ section.admin-container > div.controls > .list-container > .pagination > ul > li
 section.admin-container > div.controls > .list-container > .pagination > ul > li.current {
   background-color: #007bff;
   color: #eef0f1;
+}
+section.admin-container > div.controls > div.game-edit {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 0;
+}
+@media (min-width: 800px) {
+  section.admin-container > div.controls > div.game-edit {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+section.admin-container > div.controls > div.game-edit > * {
+  padding: 1em;
+}
+section.admin-container > div.controls > div.game-edit > form {
+  flex: 1;
+  display: grid;
+  grid-template-rows: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  place-items: unset;
+  place-content: unset;
+}
+section.admin-container > div.controls > div.game-edit > form > .text {
+  font-size: 0.9em;
+  padding: 0.5em;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  color: #10161b;
+  min-width: 6em;
+  grid-column: span 2;
+}
+section.admin-container > div.controls > div.game-edit > form > .custom-button {
+  background: #ebecec;
+  border: none;
+  padding: 0.5em;
+  transition: all 0.1s linear;
+  cursor: pointer;
+}
+section.admin-container > div.controls > div.game-edit > form > .submit {
+  background: #04F404;
+  border: none;
+  border-radius: 0;
+}
+section.admin-container > div.controls > div.game-edit > div.image-preview {
+  flex: 1;
+}
+section.admin-container > div.controls > div.game-edit > div.image-preview > div > strong {
+  width: 100%;
+  display: block;
+  padding: 0.5em;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+section.admin-container > div.controls > div.game-edit > div.image-preview > div > div {
+  padding: 0.5em;
+  background: #3f474e;
+}
+section.admin-container > div.controls > div.game-edit > div.image-preview > div.secondary > strong {
+  grid-column: span 2;
+}
+section.admin-container > div.controls > div.game-edit > div.image-preview > div.secondary > div {
+  display: grid;
+  grid-template-rows: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5em;
+  place-items: unset;
+  place-content: unset;
 }
 section.admin-container > div.filter-controls {
   position: fixed;
@@ -4504,6 +4648,9 @@ section.admin-container > div.filter-controls > form > div.selection > div > .se
   padding: 0.5em;
   border: none;
   background: #313438;
+}
+section.admin-container > div.filter-controls > form > div.selection > div > .selector > .search > button:hover {
+  cursor: pointer;
 }
 section.admin-container > div.filter-controls > form > div.selection > div > .selector > .search > button > svg {
   color: #c6d4df;

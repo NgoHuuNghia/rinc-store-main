@@ -1,15 +1,11 @@
 import React from 'react'
 import { FaSearch } from 'react-icons/fa'
-// import { MdKeyboardArrowLeft, MdWidgets } from 'react-icons/md'
-// import { AiFillDashboard, AiFillLayout, AiFillPieChart, AiOutlineRightSquare } from'react-icons/ai'
-// import { FaTree } from 'react-icons/fa'
 import Link from 'next/link'
 
 //todo import { useGlobalContext } from '../../context'
 //todo onClick={() => ToTop()}
-//todo import logo from '@public/logo/rinc-white-v2.png'
-import { AdminArrow } from '../../public/svg/index'
-import AdminTerminalLink from '@components/admin/terminalLink'
+import { AdminArrow } from 'public/svg/index'
+import AdminTerminalLink from '@components/admin/AdminTerminalLink'
 import { useSidebar } from '@lib/adminContext'
 
 //todo depend on the url to make a state for dashboard child links

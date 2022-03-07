@@ -1,15 +1,13 @@
-import React  from 'react'
-
 import AdminTerminal from '@components/admin/AdminTerminal'
 import AdminHeader from '@components/admin/AdminHeader'
 import AdminFilter from '@components/admin/AdminFilter'
 import AdminOverlay from '@components/admin/AdminOverlay'
-import AdminDashboard from './AdminDashboard'
+import AdminGameList from './AdminGameList'
 import { SidebarProvider } from '@lib/adminContext'
 
 const Admin = () => {
     return (
-        <AdminDashboard/>
+        <AdminGameList/>
     )
 }
 

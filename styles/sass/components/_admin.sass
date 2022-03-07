@@ -7,6 +7,7 @@ section.admin-container
     @include flex($align: stretch, $justify: flex-start)
     background: $bgc-admin
     position: relative
+
     >nav.terminal
         @include sidebar-body($trsX: translateX(-100%))
         @include bs.from(xl)
@@ -44,7 +45,7 @@ section.admin-container
             >a
                 @include headLink
         >.search
-            @include AdminSearch($fc-svg: $fc-admin-white, $bgc: $bgc-admin-terminal-soft, $bl: $fc-admin-white-soft)
+            @include adminSearch($fc-svg: $fc-admin-white, $bgc: $bgc-admin-terminal-soft, $bl: $fc-admin-white-soft)
         >.dashboard
             @include flex($direction: column, $align: stretch, $gap: 1.2em)
             font-size: .9em
@@ -89,8 +90,9 @@ section.admin-container
         flex: 1
         color: $fc-admin
         min-height: 100vh
-        >div:not(:first-child)
+        >*:not(:first-child)
             margin: 1em
+            
         >.head
             background-color: $bgc-admin-white
             border-bottom: 1px solid $bgc-admin-line
@@ -110,10 +112,16 @@ section.admin-container
                 text-transform: capitalize
                 color: #90989e
                 white-space: nowrap
-                >div:not(:first-child) >a
+                a
+                    cursor: pointer
+                >div:not(:last-child) >a
                     color: inherit
-                >div:first-child >a
+                    &:hover
+                        filter: brightness(50%)
+                >div:last-child >a
                     color: $bgc-admin-current !important
+                    &:hover
+                        filter: brightness(150%)
                 >span
                     cursor: default
             >.links
@@ -127,28 +135,46 @@ section.admin-container
                     font-size: 2em
                     transition: $trs-instant
                     &:hover
-                        background-color: $bgc-subsidiary-hilight
+                        background-color: $bgc-subsidiary-hilight                    
         >.title
             @include flex
             >h2
                 font-size: 1.7em
                 font-weight: 400
-            >button
+            >div
+                @include flex($gap: 1em)
+                margin-right: 1em
+            button
                 @include sidebar-button
-                >svg
+                >svg#filter-icon
                     transform: translateY(.15em)
-
         >.list-container
             @include flex($direction: column, $align: stretch)
             border: 2px solid $bgc-admin-line-gray
             background-color: $bgc-admin-white
             width: 95vw
-            margin: 1em auto !important
+            margin: 1em 
+            @include bs.from(m)
+                margin: 1em auto
             @include bs.from(xl)
                 width: unset
-                margin: 1em !important
+                margin: 1em 
+            >form
+                @include adminSearch($fc: $fc-admin, $bgc: $bgc-admin-white, $bl: $bgc-admin-line-dark, $flex-short: none)
+                padding: 1em
+                border-bottom: 2px solid $bgc-admin-line-gray
+                >button
+                    background: $bgc-admin-current
+                    transition: $trs-instant
+                    text-transform: uppercase
+                    color: $fc-admin-white
+                >button:disabled
+                    background: $bgc-subtle
+                    filter: brightness(50%)
+                    color: black
+                    cursor: default
             >.search
-                @include AdminSearch($fc: $fc-admin, $bgc: $bgc-admin-white, $bl: $bgc-admin-line-dark, $flex-short: none)
+                @include adminSearch($fc: $fc-admin, $bgc: $bgc-admin-white, $bl: $bgc-admin-line-dark, $flex-short: none)
                 padding: 1em
             >ul.table
                 @include grid($columns: minmax(min-content, 1fr) minmax(min-content, 2fr) repeat(5, minmax(min-content, .5fr)))
@@ -160,11 +186,6 @@ section.admin-container
                     border-top: 2px solid $bgc-admin-line-gray
                     >svg
                         font-size: 1.5em
-                .table-head
-                    padding: .75em 1em
-                    font-weight: 500
-                    text-transform: capitalize
-                    color: $fc-admin
                 .edit, .delete
                     justify-content: center
                     transition: $trs-instant
@@ -173,6 +194,14 @@ section.admin-container
                     color: $fc-admin-edit
                 .delete:hover
                     color: $fc-admin-delete
+                .table-head
+                    padding: .75em 1em
+                    font-weight: 500
+                    text-transform: capitalize
+                    color: $fc-admin
+                    cursor: unset
+                    &.edit, &.delete
+                        color: unset !important
             >.pagination
                 border-top: 2px solid $bgc-admin-line-gray
                 padding: 1em
@@ -193,6 +222,50 @@ section.admin-container
                     >li.current
                         background-color: $bgc-admin-current
                         color: $fc-admin-white
+
+        >div.game-edit
+            background: $bgc-admin-white
+            @include flex($justify: flex-start, $align: stretch, $direction: column)
+            @include bs.from(l)
+                flex-direction: row
+                align-items: flex-start
+            >*
+                padding: 1em
+            >form
+                flex: 1
+                @include grid($columns: 1fr 1fr, $gap: 1em)
+                >.text
+                    @include inputText
+                    grid-column: span 2
+                >.custom-button
+                    background: $bgc-admin-gray
+                    border: none
+                    padding: .5em
+                    transition: $trs-instant
+                    cursor: pointer
+                >.submit
+                    background: $fc-admin-edit
+                    // filter: brightness(50%)
+                    border: none
+                    border-radius: 0
+                    &:disabled
+                        
+            >div.image-preview
+                flex: 1
+                >div 
+                    >strong
+                        width: 100%
+                        display: block
+                        padding: .5em
+                        border: 1px solid $bgc-admin-line-dark
+                    >div
+                        padding: .5em
+                        background: $bgc-admin-terminal-soft
+                >div.secondary
+                    >strong
+                        grid-column: span 2
+                    >div
+                        @include grid($columns: 1fr 1fr, $gap: .5em)
 
     >div.filter-controls
         @include sidebar-body($trsX: translateX(100%), $direction: right)

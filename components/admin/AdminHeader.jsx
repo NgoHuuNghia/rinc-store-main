@@ -1,5 +1,6 @@
 import React from 'react'
 import {FaBars} from 'react-icons/fa'
+import { useRouter } from 'next/router'
 
 import { AdminArrow } from 'public/svg'
 import { MdWidgets } from 'react-icons/md'
@@ -7,6 +8,10 @@ import {AiFillDashboard, AiFillLayout} from 'react-icons/ai'
 import { useSidebar } from '@lib/adminContext'
 
 const AdminHeader = () => {
+    const router = useRouter()
+    const { slug } = router.query
+
+    console.log(slug)
     const { setSidebar } = useSidebar()
 
     return (
@@ -14,12 +19,16 @@ const AdminHeader = () => {
             <button onClick={() => setSidebar('terminal')}><AdminArrow /></button>
             <div className='breadcrumbs'>
                 <div>
-                    <a href="/admin">current parent</a>
+                    <a onClick={() => router.push('/admin')}>Admin</a>
                 </div>
-                <span>/</span>
-                <div>
-                    <a href="/admin">Current</a>
-                </div>
+                {slug && (
+                    <>
+                        <span>/</span>
+                        <div>
+                            <a >{slug}</a>
+                        </div>
+                    </>
+                )}
             </div>
             <div className='links'>
                 <a href="/"><MdWidgets /></a>

@@ -17,7 +17,15 @@
         font-size: 1.2em
         white-space: nowrap
 
-@mixin AdminSearch($fc: $fc-default,$fc-svg: $fc-default, $bgc: $bgc-admin-white, $bl: $bgc-admin-line-dark, $flex-short: 1)
+@mixin inputText
+    font-size: .9em
+    padding: .5em
+    background: $bgc-admin-white
+    border: 1px solid $bgc-admin-line-dark
+    color: $fc-admin
+    min-width: 6em
+
+@mixin adminSearch($fc: $fc-default,$fc-svg: $fc-default, $bgc: $bgc-admin-white, $bl: $bgc-admin-line-dark, $flex-short: 1)
     @include flex($justify: flex-start, $align: stretch)
     >input
         font-size: .9em
@@ -31,6 +39,8 @@
         padding: .5em
         border: none
         background: $bgc-subtle
+        &:hover
+            cursor: pointer
         >svg
             color: $fc-svg
 
@@ -150,7 +160,7 @@
         background-color: $bgc-admin-terminal-softer
         @include flex($direction: column, $align: flex-start)
         >.search
-            @include AdminSearch($fc: $fc-admin)
+            @include adminSearch($fc: $fc-admin)
             align-self: flex-end
             margin-bottom: .5em
             >input
