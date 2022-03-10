@@ -232,23 +232,61 @@ section.admin-container
             >*
                 padding: 1em
             >form
-                flex: 1
-                @include grid($columns: 1fr 1fr, $gap: 1em)
-                >.text
-                    @include inputText
+                flex: 0
+                @include grid($columns: 1fr 1fr, $gap: 1.5em)
+                >.col-1
+                    grid-column: span 1
+                >.col-2
                     grid-column: span 2
-                >.custom-button
-                    background: $bgc-admin-gray
+                input[type=file]
+                    display: none
+                >div
+                    position: relative
+                    @include flex($align: center, $gap: .75em)
+                    >label
+                        font-weight: bold
+                        white-space: nowrap
+                    >input
+                        flex: 1
+                        @include inputText
+                    >.selection
+                        flex: 1
+                        color: $fc-admin
+                        >div
+                            @include inputText
+                            border-radius: 0
+                            padding: .2em .5em
+                            >div
+                                padding: 0
+                    >strong.danger
+                        position: absolute
+                        bottom: -1.5em
+                        right: 0
+                        font-size: .8em
+                        color: $fc-admin-delete
+                >.images-uploader
+                    @include flex($justify: center, $gap: .5em)
+                    >.loader
+                        @include Loader($color: $bgc-admin-current,$match-color: $bgc-admin-white)
+                    >strong
+                        font-size: 1.2em
+                .custom-button
+                    background: $bgc-admin-terminal-softer
                     border: none
+                    border-radius: 0
                     padding: .5em
                     transition: $trs-instant
                     cursor: pointer
-                >.submit
-                    background: $fc-admin-edit
-                    // filter: brightness(50%)
-                    border: none
-                    border-radius: 0
+                    font-weight: 600
+                    width: 100%
+                    text-align: center
+                    &:hover
+                        filter: brightness(150%)
                     &:disabled
+                        filter: brightness(50%)
+                .submit
+                    background: $fc-admin-edit
+                    filter: brightness(90%)
                         
             >div.image-preview
                 flex: 1

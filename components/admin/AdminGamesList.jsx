@@ -2,9 +2,9 @@ import React from 'react'
 import {deleteDoc, doc} from 'firebase/firestore'
 import {RiEditBoxFill, RiDeleteBack2Fill} from 'react-icons/ri'
 import toast from 'react-hot-toast'
+import Link from 'next/link'
 
 import { firestore, gameDataToJSON } from '@lib/firebase'
-import { useRouter } from 'next/router'
 
 const AdminGamesList = ({game}) => {
     const data = gameDataToJSON(game)
@@ -18,7 +18,7 @@ const AdminGamesList = ({game}) => {
             <li>{releasedAt.toISOString()}</li>
             <li>{ratings}</li>
             <li>{reviewsCount}</li>
-            <EditGameButton slug={slug}/>
+            <Link passHref href={`/admin/${slug}`}><li className='edit'><RiEditBoxFill /></li></Link>
             <DeleteGameButton slug={slug}/>
         </>
     )
@@ -37,13 +37,4 @@ function DeleteGameButton({ slug }) {
     };
 
     return <li className='delete' onClick={deletePost}><RiDeleteBack2Fill /></li>
-}
-function EditGameButton({ slug }) {
-    const router = useRouter();
-
-    const moveToEdit = () => {
-        router.push(`/admin/${slug}`);
-    }
-
-    return <li className='edit' onClick={moveToEdit}><RiEditBoxFill /></li>
 }

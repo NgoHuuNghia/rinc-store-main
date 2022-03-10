@@ -4336,34 +4336,114 @@ section.admin-container > div.controls > div.game-edit > * {
   padding: 1em;
 }
 section.admin-container > div.controls > div.game-edit > form {
-  flex: 1;
+  flex: 0;
   display: grid;
   grid-template-rows: none;
   grid-template-columns: 1fr 1fr;
-  gap: 1em;
+  gap: 1.5em;
   place-items: unset;
   place-content: unset;
 }
-section.admin-container > div.controls > div.game-edit > form > .text {
+section.admin-container > div.controls > div.game-edit > form > .col-1 {
+  grid-column: span 1;
+}
+section.admin-container > div.controls > div.game-edit > form > .col-2 {
+  grid-column: span 2;
+}
+section.admin-container > div.controls > div.game-edit > form input[type=file] {
+  display: none;
+}
+section.admin-container > div.controls > div.game-edit > form > div {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75em;
+}
+section.admin-container > div.controls > div.game-edit > form > div > label {
+  font-weight: bold;
+  white-space: nowrap;
+}
+section.admin-container > div.controls > div.game-edit > form > div > input {
+  flex: 1;
   font-size: 0.9em;
   padding: 0.5em;
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.3);
   color: #10161b;
   min-width: 6em;
-  grid-column: span 2;
 }
-section.admin-container > div.controls > div.game-edit > form > .custom-button {
-  background: #ebecec;
+section.admin-container > div.controls > div.game-edit > form > div > .selection {
+  flex: 1;
+  color: #10161b;
+}
+section.admin-container > div.controls > div.game-edit > form > div > .selection > div {
+  font-size: 0.9em;
+  padding: 0.5em;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  color: #10161b;
+  min-width: 6em;
+  border-radius: 0;
+  padding: 0.2em 0.5em;
+}
+section.admin-container > div.controls > div.game-edit > form > div > .selection > div > div {
+  padding: 0;
+}
+section.admin-container > div.controls > div.game-edit > form > div > strong.danger {
+  position: absolute;
+  bottom: -1.5em;
+  right: 0;
+  font-size: 0.8em;
+  color: #c70000;
+}
+section.admin-container > div.controls > div.game-edit > form > .images-uploader {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+section.admin-container > div.controls > div.game-edit > form > .images-uploader > .loader.loader {
+  border: 10px solid #ffffff;
+  border-top: 10px solid #007bff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+section.admin-container > div.controls > div.game-edit > form > .images-uploader > strong {
+  font-size: 1.2em;
+}
+section.admin-container > div.controls > div.game-edit > form .custom-button {
+  background: #56616a;
   border: none;
+  border-radius: 0;
   padding: 0.5em;
   transition: all 0.1s linear;
   cursor: pointer;
+  font-weight: 600;
+  width: 100%;
+  text-align: center;
 }
-section.admin-container > div.controls > div.game-edit > form > .submit {
+section.admin-container > div.controls > div.game-edit > form .custom-button:hover {
+  filter: brightness(150%);
+}
+section.admin-container > div.controls > div.game-edit > form .custom-button:disabled {
+  filter: brightness(50%);
+}
+section.admin-container > div.controls > div.game-edit > form .submit {
   background: #04F404;
-  border: none;
-  border-radius: 0;
+  filter: brightness(90%);
 }
 section.admin-container > div.controls > div.game-edit > div.image-preview {
   flex: 1;

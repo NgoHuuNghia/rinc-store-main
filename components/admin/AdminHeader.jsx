@@ -10,8 +10,7 @@ import { useSidebar } from '@lib/adminContext'
 const AdminHeader = () => {
     const router = useRouter()
     const { slug } = router.query
-
-    console.log(slug)
+    
     const { setSidebar } = useSidebar()
 
     return (
