@@ -2,8 +2,6 @@ import React from 'react'
 import { FaSearch } from 'react-icons/fa'
 import Link from 'next/link'
 
-//todo import { useGlobalContext } from '../../context'
-//todo onClick={() => ToTop()}
 import { AdminArrow } from 'public/svg/index'
 import AdminTerminalLink from '@components/admin/AdminTerminalLink'
 import { useSidebar } from '@lib/adminContext'
@@ -11,7 +9,6 @@ import { useSidebar } from '@lib/adminContext'
 //todo depend on the url to make a state for dashboard child links
 
 const AdminTerminal = () => {
-    // const { ToTop } = useGlobalContext()
     const {sidebar, setSidebar} = useSidebar()
 
     return (

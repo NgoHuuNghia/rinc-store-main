@@ -280,6 +280,8 @@ section.admin-container
                     font-weight: 600
                     width: 100%
                     text-align: center
+                    height: 3em
+                    @include flex($justify: center)
                     &:hover
                         filter: brightness(150%)
                     &:disabled
@@ -290,7 +292,7 @@ section.admin-container
                         
             >div.image-preview
                 flex: 1
-                >div 
+                >div
                     >strong
                         width: 100%
                         display: block
@@ -299,6 +301,8 @@ section.admin-container
                     >div
                         padding: .5em
                         background: $bgc-admin-terminal-soft
+                        color: $fc-admin-white
+                        text-align: center
                 >div.secondary
                     >strong
                         grid-column: span 2
@@ -336,15 +340,4 @@ section.admin-container
                     @include filterSelection
 
     >div.sidebar-overlay
-        position: absolute
-        top: 0
-        right: 0
-        bottom: 0
-        left: 0
-        z-index: -10
-        opacity: 0
-        background-color: $bgc-overlay
-        transition: $trs-basic
-        &.sidebar-open
-            opacity: 1
-            z-index: 10
+        @include overlay

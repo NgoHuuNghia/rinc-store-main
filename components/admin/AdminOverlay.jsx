@@ -5,7 +5,7 @@ const AdminOverlay = () => {
     const {sidebar, setSidebar} = useSidebar()
 
     return (
-        <div onClick={() => setSidebar('')} className={`sidebar-overlay ${(sidebar.length > 0 ? 'sidebar-open' : '')}`}></div>
+        <div onClick={() => setSidebar('')} className={`sidebar-overlay ${(sidebar.length > 0 ? 'display' : '')}`}></div>
     )
 }
 

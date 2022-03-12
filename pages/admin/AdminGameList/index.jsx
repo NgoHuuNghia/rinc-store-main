@@ -80,6 +80,8 @@ function CreateNewGame() {
             reviewsCount: 1,
             releasedAt: serverTimestamp(),
             updatedAt: serverTimestamp(),
+            mainImageUrl: '',
+            secondaryImageUrls: [],
         };
 
         await setDoc(ref, data);

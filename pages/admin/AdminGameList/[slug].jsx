@@ -1,4 +1,5 @@
 import {useRouter} from 'next/router'
+import { SidebarProvider } from '@lib/adminContext';
 
 const AdminGameEdit = () => {
     return (

@@ -143,14 +143,28 @@
 
 @mixin Loader($color: $bgc-subsidiary, $match-color: $bgc-default)
     &.loader
-        border: 10px solid $match-color
-        border-top: 10px solid $color
+        border: .5em solid $match-color
+        border-top: .5em solid $color
         border-radius: 50%
-        width: 50px
-        height: 50px
+        width: 3em
+        height: 3em
         animation: spin 2s linear infinite
     @keyframes spin 
         0% 
             transform: rotate(0deg)
         100% 
             transform: rotate(360deg)
+
+@mixin overlay()
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    z-index: -10
+    opacity: 0
+    background-color: $bgc-overlay
+    transition: $trs-basic
+    &.display
+        opacity: 1
+        z-index: 10

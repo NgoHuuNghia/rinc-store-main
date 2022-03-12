@@ -13,6 +13,7 @@ import AdminHeader from '@components/admin/AdminHeader'
 import AdminFilter from '@components/admin/AdminFilter'
 import AdminOverlay from '@components/admin/AdminOverlay'
 import UploadMainImage from '@components/admin/UploadMainImage'
+import SecondaryImages from '@components/admin/SecondaryImages'
 import { SidebarProvider } from '@lib/adminContext'
 import { firestore } from '@lib/firebase'
 
@@ -44,7 +45,7 @@ function GameManager(){
                     </div>
                     <div className='game-edit'>
                         <GameManagerForm gameRef={gameRef} defaultValues={games}/>
-                        <PreviewImages />
+                        <PreviewImages slug={slug} mainUrl={games.mainImageUrl} secondaryUrls={games.secondaryImageUrls}/>
                     </div>
                 </>
             )}
@@ -102,11 +103,11 @@ function GameManagerForm({gameRef, defaultValues}){
                 />
             </div>
 
-            <UploadMainImage />
+            <UploadMainImage gameRef={gameRef} slug={defaultValues.slug}/>
 
-            <div className='col-1'>
+            <div className='col-1 images-uploader'>
                 <label className='custom-button'>
-                    📸 Secondary images
+                    <span>📸 Secondary images</span>
                     <input type="file" accept="image/x-png,image/gif,image/jpeg"/>
                     {/* onChange={uploadFile} */}
                 </label>
@@ -136,37 +137,18 @@ function GameManagerForm({gameRef, defaultValues}){
     )
 }
 
-function PreviewImages(){
+function PreviewImages({slug, mainUrl}){
     return (
         <div className='image-preview'>
             <div>
                 <strong>Main image</strong>
                 <div>
-                    <Image src="https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg" alt="test" 
-                        width={850} height={500} layout='responsive'/>
+                    {mainUrl 
+                        ? <Image src={mainUrl} alt="test" width={850} height={500} layout='responsive'/>
+                        : <p>No image yet ⭕</p>}
                 </div>
             </div>
-            <div className='secondary'>
-                <strong>Secondary images</strong>
-                <div>
-                    <div>
-                        <Image src="https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg" alt="test" 
-                            width={850} height={500} layout='responsive'/>
-                    </div>
-                    <div>
-                        <Image src="https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg" alt="test" 
-                            width={850} height={500} layout='responsive'/>
-                    </div>
-                    <div>
-                        <Image src="https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg" alt="test" 
-                            width={850} height={500} layout='responsive'/>
-                    </div>
-                    <div>
-                        <Image src="https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg" alt="test" 
-                            width={850} height={500} layout='responsive'/>
-                    </div>
-                </div>
-            </div>
+            <SecondaryImages slug={slug}/>
         </div>
     )
 }

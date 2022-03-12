@@ -26,5 +26,10 @@ html
     text-decoration: none
     //!white-space: nowrap // Stoping white space wraping. If you have paragraph then   set it to wrap as normal
     outline: none
-#root
+
+//? main-body
+.main-body
     position: relative
+    min-height: 100vh
+    >.overlay
+        @include overlay
