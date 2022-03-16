@@ -1,22 +1,30 @@
 import React from 'react'
 import Link from 'next/link'
+import {FaChevronRight} from 'react-icons/fa'
 // import { useGlobalContext } from '../../context'
 
 import { toTop } from '@lib/commonFunctions'
+import FeaturedSimItem from './FeaturedSimItem'
 
 // const FeaturedSim = ({name, id, background_image}) => {
-const FeaturedSim = () => {
+const FeaturedSim = ({gamesDesc}) => {
+
     return (
-        //$ <Link to={`/Detail/${id}`} onClick={() => ToTop()} className='speical-card-btn'>
-        <Link passHref href={`/`} onClick={() => toTop()} className='speical-card-btn'>
-            <a>
-                {/*//$ <img src={background_image} alt={name} /> */}
-                <img src={`https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg`} />
-                <div>
-                    <p>220.000d</p>
-                </div>
-            </a>
-        </Link>
+        <section className='special-card-container'>
+            <div>
+                <h5>Popular Sim Game</h5>
+                <a href="/">more <FaChevronRight /></a>
+            </div>
+            <div className='special-card-slider'> {/* map here 6 times */}
+                {/* map like i mean 6 here? */}
+                {/*//$ {featuredListSim.slice(3).map((item) => {
+                    //$ return <FeaturedSim key={item.id} {...item}/>
+                })} */}
+                {gamesDesc.slice(0,5).map((game) => {
+                    return <FeaturedSimItem key={game.slug} {...game}/>
+                })}
+            </div>
+        </section>
     )
 }
 

@@ -232,8 +232,8 @@ section.admin-container
             >*
                 padding: 1em
             >form
-                flex: 0
-                @include grid($columns: 1fr 1fr, $gap: 1.5em)
+                flex: 1
+                @include grid($columns: 50% 50%, $gap: 1.5em)
                 >.col-1
                     grid-column: span 1
                 >.col-2
@@ -270,6 +270,13 @@ section.admin-container
                         @include Loader($color: $bgc-admin-current,$match-color: $bgc-admin-white)
                     >strong
                         font-size: 1.2em
+                >.published
+                    justify-content: center
+                    >fieldset
+                        border: none
+                        >input
+                            cursor: pointer
+                            transform: scale(1.5)
                 .custom-button
                     background: $bgc-admin-terminal-softer
                     border: none
@@ -293,6 +300,8 @@ section.admin-container
             >div.image-preview
                 flex: 1
                 >div
+                    max-width: 400px
+                    margin: 0 auto
                     >strong
                         width: 100%
                         display: block

@@ -1,15 +1,15 @@
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
-//$ import ConsoleIcons from '../../Components/ConsoleIcons'
-//$ import { useGlobalContext } from '../../context'
-
-//! temp
+// import React, {useState, useEffect} from 'react'
 import { useSliderControl } from '@lib/hooks'
-import FeaturedSliderItem from './FeaturedSliderItem'
-import { useRef, useEffect } from 'react'
+import Link from 'next/link'
+import { useEffect, useRef } from 'react'
+//$ import parse from 'html-react-parser'
 
-//$ const FeaturedSlider = ({id, name, background_image, short_screenshots, index, parent_platforms}) => {
-const FeaturedSlider = ({gamesDesc}) => {
-    const [sliderIndex, setSliderIndex] = useSliderControl(gamesDesc.length, 5000)
+import {FaChevronRight, FaChevronLeft} from 'react-icons/fa'
+import FeaturedRecommendedItem from './FeaturedRecommendedItem'
+
+// const FeaturedRecommended = ({id, background_image, index}) => {
+const FeaturedRecommended = ({gamesDesc}) => {
+    const [sliderIndex, setSliderIndex] = useSliderControl(gamesDesc.length, 8000)
 
     const slider = useRef(null)
     const height = null
@@ -17,9 +17,10 @@ const FeaturedSlider = ({gamesDesc}) => {
     useEffect(() => slider.current.style.height = `${height}px`, [])
 
     return (
-        <section className='main-card-container'>
+        <section className="movie-card-container">
             <div>
-                <h5>Featured &#38; Recommended</h5>
+                <h5>Community recommended</h5>
+                <a href="/">more <FaChevronRight /></a>
             </div>
             <button className='previous' onClick={() => setSliderIndex(sliderIndex - 1)}>
                 <FaChevronLeft />
@@ -27,11 +28,11 @@ const FeaturedSlider = ({gamesDesc}) => {
             <button className="next" onClick={() => setSliderIndex(sliderIndex + 1)}>
                 <FaChevronRight />
             </button>
-            <div className='slider' ref={slider}>
+            <div className='slider' ref={slider}> 
                 {gamesDesc.map((game, index, gamesDesc) => {
-                    return <FeaturedSliderItem
-                        key={game.slug}
+                    return <FeaturedRecommendedItem 
                         getHeight={getHeight}
+                        key={game.slug}
                         {...game} 
                         index={index} 
                         length={gamesDesc.length}
@@ -43,4 +44,4 @@ const FeaturedSlider = ({gamesDesc}) => {
     )
 }
 
-export default FeaturedSlider
+export default FeaturedRecommended

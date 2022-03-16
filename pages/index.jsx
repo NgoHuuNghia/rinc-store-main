@@ -1,14 +1,36 @@
 import Featured from '@components/home/Featured'
 import FeaturedSlider from '@components/home/FeaturedSlider'
-import FeaturedRecomended from '@components/home/FeaturedRecomended'
+import FeaturedRecommended from '@components/home/FeaturedRecommended'
 import FeaturedSim from '@components/home/FeaturedSim'
 import Tabs from '@components/home/Tabs'
 import TabViewer from '@components/home/TabViewer'
 
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import { collection, getDocs, limit, orderBy, query, where } from 'firebase/firestore'
+import { firestore, postToJSON } from '@lib/firebase'
 //todo import { useGlobalContext } from '../context'
 
-const Home = () => {
+//? HARD limit on the post
+const LIMIT = 5
+
+export async function getServerSideProps(){
+    // allow us to just ref any sub groups no mater how nested
+    const ref = collection(firestore, 'games');
+    const gamesDescQuery = query(
+        ref,
+        where('published', '==', true),
+        orderBy('releasedAt', 'desc'),
+        limit(LIMIT),
+    )
+    //$ SSR need the firebase's timestamp to be serialized as json to be return as prop object along with the rest of the data
+    const gamesDesc = (await getDocs(gamesDescQuery)).docs.map(postToJSON);
+
+    return {
+        props: { gamesDesc }, // will be passed to the page component as props
+    };
+}
+
+const Home = ({gamesDesc}) => {
     //todo const { 
     //todo     featuredList, 
     //todo     featuredListRecent, 
@@ -37,74 +59,24 @@ const Home = () => {
             <div className='hero'>
                 {/* bg_mobile_english or bg_english to switch */}
                 <a href="/" className='hero-bg-mobile'>
-                    <video loop="yes" muted="yes" autoPlay="yes" playsInline="" poster="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/page_bg_mobile_english.jpg?t=1631553001">
+                    <video loop="yes" muted={true} autoPlay="yes" playsInline="" poster="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/page_bg_mobile_english.jpg?t=1631553001">
                         <source src="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/webm_page_bg_mobile_english.webm?t=1631553001" type="video/webm" />
                         <source src="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/mp4_page_bg_mobile_english.mp4?t=1631553001" type="video/mp4" />
                     </video>
                 </a>
                 <a href="/"className='hero-bg'>
-                    <video loop="yes" muted="yes" autoPlay="yes" playsInline="" poster="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/page_bg_english.jpg?t=1631553001">
+                    <video loop="yes" muted={true} autoPlay="yes" playsInline="" poster="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/page_bg_english.jpg?t=1631553001">
                         <source src="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/webm_page_bg_english.webm?t=1631553001" type="video/webm" />
                         <source src="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/mp4_page_bg_english.mp4?t=1631553001" type="video/mp4" />
-                    </video> 
+                    </video>
                 </a>            
             </div>
             <div className='main-section'>
-                <section className='main-card-container'>
-                    <div>
-                        <h5>Featured &#38; Recommended</h5>
-                    </div>
-                    {/*//$ <button className='previous' onClick={() => toggleIndex('decrease', sliderMain)}> */}
-                    <button className='previous'>
-                        <FaChevronLeft />
-                    </button>
-                    {/*//$ <button className="next" onClick={() => toggleIndex('increase', sliderMain)}> */}
-                    <button className="next">
-                        <FaChevronRight />
-                    </button>
-                    <div className='slider'>
-                        {/* map here 4 times */}
-                        {/*//$ {featuredListRecent.map((item, index) => {
-                            //$ return <FeaturedSlider key={item.id} index={index} {...item} />
-                        })} */}
-                        <FeaturedSlider/>
-                    </div>
-                </section>  
+                <FeaturedSlider gamesDesc={gamesDesc}/>
 
-                <section className='secondary-card-container'>
-                    <div>
-                        <h5>Special offer</h5>
-                        <a href="/"><p>More</p> <FaChevronRight /></a>
-                    </div>
-                    <div className='slider'>
-                        {/* map here  8 times */}
-                        {/*//$ {featuredList.slice(3).map((item) => {
-                            //$ return <Featured key={item.id} {...item} />
-                        })} */}
-                        <Featured />
-                    </div>
-                </section>
+                <Featured gamesDesc={gamesDesc}/>
 
-                <section className="movie-card-container">
-                    <div>
-                        <h5>Community recommended</h5>
-                        <a href="/">more <FaChevronRight /></a>
-                    </div>
-                    {/*//$ <button className='previous' onClick={() => toggleIndex('decrease', sliderRecomended)}> */}
-                    <button className='previous'>
-                        <FaChevronLeft />
-                    </button>
-                    {/*//$ <button className="next" onClick={() => toggleIndex('increase', sliderRecomended)}> */}
-                    <button className="next">
-                        <FaChevronRight />
-                    </button>
-                    <div className='slider'> 
-                        {/*//$ {featuredListRecommended.map((item, index) => {
-                            //$ return <FeaturedRecomended key={item.id} index={index} {...item}/>
-                        })} */}
-                        <FeaturedRecomended/>
-                    </div>
-                </section>
+                <FeaturedRecommended gamesDesc={gamesDesc}/>
 
                 <section className='page-browse'>
                     <div>
@@ -118,19 +90,7 @@ const Home = () => {
                     </div>
                 </section>
 
-                <section className='special-card-container'>
-                    <div>
-                        <h5>Popular Sim Game</h5>
-                        <a href="/">more <FaChevronRight /></a>
-                    </div>
-                    <div className='special-card-slider'> {/* map here 6 times */}
-                        {/* map like i mean 6 here? */}
-                        {/*//$ {featuredListSim.slice(3).map((item) => {
-                            //$ return <FeaturedSim key={item.id} {...item}/>
-                        })} */}
-                        <FeaturedSim/>
-                    </div>
-                </section>
+                <FeaturedSim gamesDesc={gamesDesc}/>
             </div>
             <div className='subsidiary-section'>
                 <div className='subsidiary-container'>
@@ -208,4 +168,30 @@ const Home = () => {
     )
 }
 
-export default Home
+
+    function undefined({}) {
+      return (<>{
+    /*//$ <button className='previous' onClick={() => toggleIndex('decrease', sliderMain)}> */
+  }
+                    <button className='previous'>
+                        <FaChevronLeft />
+                    </button>
+                    {
+    /*//$ <button className="next" onClick={() => toggleIndex('increase', sliderMain)}> */
+  }
+                    <button className="next">
+                        <FaChevronRight />
+                    </button>
+                    <div className='slider'>
+                        {
+      /* map here 4 times */
+    }
+                        {
+      /*//$ {featuredListRecent.map((item, index) => {
+         //$ return <FeaturedSlider key={item.id} index={index} {...item} />
+      })} */
+    }
+                        <FeaturedSlider />
+                    </div></>);
+    }
+  export default Home

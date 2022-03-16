@@ -27,7 +27,7 @@
     max-width: 100%
     display: block
     box-shadow: $bs-card-img
-    object-fit: cover
+    position: relative
 @mixin card-text
     font-size: .85em
     font-weight: 400
@@ -92,26 +92,32 @@
 
 // slider
 @mixin arrows
+    $arrow-width-mobile: 10%
+    $arrow-width-desktop: 7%
     >button.previous, button.next
-        display: none
         border: none
+        @include flex($justify: center)
+        position: absolute
+        top: 38%
+        height: 7em
+        border-radius: 4px
+        width: $arrow-width-mobile
         @include bs.from(xl)
-            @include flex($justify: center)
-            position: absolute
-            top: 38%
-            width: 7%
-            height: 7em
-            border-radius: 4px
+            width: $arrow-width-desktop
         >svg
             font-size: 4em
             color: $fc-default
     >button.previous
-        left: -7%
+        left: -$arrow-width-mobile
+        @include bs.from(xl)
+            left: -$arrow-width-desktop
         @include gradient(background, 270deg, transparent, 40%, $bgc-subtle, 100%)
         &:hover
             @include gradient(background, 270deg, transparent, 15%, $bgc-hilight-subtle, 100%)
     >button.next
-        right: -7%
+        right: -$arrow-width-mobile
+        @include bs.from(xl)
+            right: -$arrow-width-desktop
         @include gradient(background, 90deg, transparent, 40%, $bgc-subtle, 100%)
         &:hover
             @include gradient(background, 90deg, transparent, 15%, $bgc-hilight-subtle, 100%)
@@ -126,37 +132,35 @@
         @include flex($direction: column, $justify: space-between, $align: stretch)
         @include bs.from(xl)
             flex-direction: row
-        >img
+        >div.main-image-container
             flex: 2
+            object-position: none
+            position: relative
             @include card-img
             @include bs.from(xl)
                 width: 620px
                 height: 350px
-        >div
+        >div:not(.main-image-container)
             flex: 1
-            @include grid($columns: 1fr 1fr, $gap: .5em, $place-content: space-evenly)
+            @include grid($columns: 1fr, $gap: .5em, $place-content: space-evenly)
             padding: .5em
             @include bs.from(xl)
                 padding: 0
             >h4, >a
                 @include card-title
-                grid-column: span 2
                 font-size: 1.4em
-            >img
+            >div.secondary-image-container
                 display: none
                 @include bs.from(xl)
-                    grid-column: span 1
-                    height: 91px
+                    @include grid($columns: 50% 50%, $gap: .5em)
                     width: 100%
-                    display: inline-block
-            >*:not(img)
+            >*:not(.secondary-image-container)
                 margin-left: .5em
 
             >div.home-copoment-extra
                 display: none
                 @include bs.from(xl)
                     @include flex($direction: column,$justify: none, $align: flex-start, $gap: .3em)
-                    grid-column: span 2
                     >div:first-child
                         font-size: 1.05em
                     >div:last-child
@@ -165,7 +169,6 @@
                         background-color: $bgc-subsidiary
             >div.home-copomnent-main
                 @include flex($justify: space-between)
-                grid-column: span 2
                 margin: 0 .5em
                 >div.price-container
                     @include card-price

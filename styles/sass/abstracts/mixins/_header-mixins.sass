@@ -4,6 +4,7 @@
 @use '../../../../node_modules/breakpoint-slicer' as bs
 
 @mixin sublinks
+    visibility: hidden
     position: absolute
     top: 80%
     left: -.5em
@@ -12,6 +13,7 @@
     background-color: $bgc-subsidiary
     transition: $trs-instant
     &.display
+        visibility: visible
         opacity: 1
         z-index: 10
     >ul
@@ -20,5 +22,7 @@
         >li >a
             @include flex($gap: 1em)
             padding: .8em .5em
+            cursor: pointer
+            white-space: nowrap
             &:hover
                 background: $bgc-subsidiary-hilight

@@ -288,6 +288,7 @@ header nav > div.sublinks > ul > li > a:hover {
   color: white;
 }
 header nav > div.sublinks > ul > li > .mobile-submenu {
+  visibility: hidden;
   position: absolute;
   top: 80%;
   left: -0.5em;
@@ -297,6 +298,7 @@ header nav > div.sublinks > ul > li > .mobile-submenu {
   transition: all 0.1s linear;
 }
 header nav > div.sublinks > ul > li > .mobile-submenu.display {
+  visibility: visible;
   opacity: 1;
   z-index: 10;
 }
@@ -316,15 +318,68 @@ header nav > div.sublinks > ul > li > .mobile-submenu > ul > li > a {
   align-items: center;
   gap: 1em;
   padding: 0.8em 0.5em;
+  cursor: pointer;
+  white-space: nowrap;
 }
 header nav > div.sublinks > ul > li > .mobile-submenu > ul > li > a:hover {
   background: #ff0040;
 }
-header nav > div.sublinks > img {
-  align-self: center;
+header nav > div.sublinks > div.user-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+  align-self: stretch;
+  order: 1;
+  position: relative;
+}
+header nav > div.sublinks > div.user-container > img {
   height: 2.5em;
   border-radius: 25px;
-  order: 1;
+  cursor: pointer;
+}
+header nav > div.sublinks > div.user-container > img:hover {
+  filter: brightness(90%);
+}
+header nav > div.sublinks > div.user-container > div.user-sublinks {
+  visibility: hidden;
+  position: absolute;
+  top: 80%;
+  left: -0.5em;
+  z-index: -10;
+  opacity: 0;
+  background-color: #8b0023;
+  transition: all 0.1s linear;
+  top: 100%;
+  left: -300%;
+}
+header nav > div.sublinks > div.user-container > div.user-sublinks.display {
+  visibility: visible;
+  opacity: 1;
+  z-index: 10;
+}
+header nav > div.sublinks > div.user-container > div.user-sublinks > ul {
+  display: grid;
+  grid-template-rows: none;
+  grid-template-columns: 1fr;
+  gap: 0;
+  place-items: unset;
+  place-content: unset;
+  text-transform: capitalize;
+}
+header nav > div.sublinks > div.user-container > div.user-sublinks > ul > li > a {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+  padding: 0.8em 0.5em;
+  cursor: pointer;
+  white-space: nowrap;
+}
+header nav > div.sublinks > div.user-container > div.user-sublinks > ul > li > a:hover {
+  background: #ff0040;
 }
 
 .hero {
@@ -367,12 +422,12 @@ header nav > div.sublinks > img {
     margin: 0 auto;
   }
   .main-section > * {
-    width: 100%;
+    width: 100% !important;
   }
 }
 .main-section > .main-card-container {
   position: relative;
-  max-width: calc(600px + 1em);
+  width: calc(600px + 1rem);
 }
 @media (min-width: 1000px) {
   .main-section > .main-card-container {
@@ -405,21 +460,21 @@ header nav > div.sublinks > img {
   color: #c6d4df;
 }
 .main-section > .main-card-container > button.previous, .main-section > .main-card-container button.next {
-  display: none;
   border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  position: absolute;
+  top: 38%;
+  height: 7em;
+  border-radius: 4px;
+  width: 10%;
 }
 @media (min-width: 1000px) {
   .main-section > .main-card-container > button.previous, .main-section > .main-card-container button.next {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
-    position: absolute;
-    top: 38%;
     width: 7%;
-    height: 7em;
-    border-radius: 4px;
   }
 }
 .main-section > .main-card-container > button.previous > svg, .main-section > .main-card-container button.next > svg {
@@ -427,18 +482,28 @@ header nav > div.sublinks > img {
   color: #c6d4df;
 }
 .main-section > .main-card-container > button.previous {
-  left: -7%;
+  left: -10%;
   background: transparent;
   background: linear-gradient(270deg, transparent 40%, #313438 100%);
+}
+@media (min-width: 1000px) {
+  .main-section > .main-card-container > button.previous {
+    left: -7%;
+  }
 }
 .main-section > .main-card-container > button.previous:hover {
   background: transparent;
   background: linear-gradient(270deg, transparent 15%, #565b61 100%);
 }
 .main-section > .main-card-container > button.next {
-  right: -7%;
+  right: -10%;
   background: transparent;
   background: linear-gradient(90deg, transparent 40%, #313438 100%);
+}
+@media (min-width: 1000px) {
+  .main-section > .main-card-container > button.next {
+    right: -7%;
+  }
 }
 .main-section > .main-card-container > button.next:hover {
   background: transparent;
@@ -467,87 +532,89 @@ header nav > div.sublinks > img {
     flex-direction: row;
   }
 }
-.main-section > .main-card-container > div.slider > a > img, .main-section > .main-card-container > div.slider > div > img {
+.main-section > .main-card-container > div.slider > a > div.main-image-container, .main-section > .main-card-container > div.slider > div > div.main-image-container {
   flex: 2;
+  object-position: none;
+  position: relative;
   height: auto;
   max-width: 100%;
   display: block;
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-  object-fit: cover;
+  position: relative;
 }
 @media (min-width: 1000px) {
-  .main-section > .main-card-container > div.slider > a > img, .main-section > .main-card-container > div.slider > div > img {
+  .main-section > .main-card-container > div.slider > a > div.main-image-container, .main-section > .main-card-container > div.slider > div > div.main-image-container {
     width: 620px;
     height: 350px;
   }
 }
-.main-section > .main-card-container > div.slider > a > div, .main-section > .main-card-container > div.slider > div > div {
+.main-section > .main-card-container > div.slider > a > div:not(.main-image-container), .main-section > .main-card-container > div.slider > div > div:not(.main-image-container) {
   flex: 1;
   display: grid;
   grid-template-rows: none;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 0.5em;
   place-items: unset;
   place-content: space-evenly;
   padding: 0.5em;
 }
 @media (min-width: 1000px) {
-  .main-section > .main-card-container > div.slider > a > div, .main-section > .main-card-container > div.slider > div > div {
+  .main-section > .main-card-container > div.slider > a > div:not(.main-image-container), .main-section > .main-card-container > div.slider > div > div:not(.main-image-container) {
     padding: 0;
   }
 }
-.main-section > .main-card-container > div.slider > a > div > h4, .main-section > .main-card-container > div.slider > a > div > a, .main-section > .main-card-container > div.slider > div > div > h4, .main-section > .main-card-container > div.slider > div > div > a {
+.main-section > .main-card-container > div.slider > a > div:not(.main-image-container) > h4, .main-section > .main-card-container > div.slider > a > div:not(.main-image-container) > a, .main-section > .main-card-container > div.slider > div > div:not(.main-image-container) > h4, .main-section > .main-card-container > div.slider > div > div:not(.main-image-container) > a {
   font-size: 1.1em;
   text-transform: capitalize;
   display: block;
-  grid-column: span 2;
   font-size: 1.4em;
 }
-.main-section > .main-card-container > div.slider > a > div > img, .main-section > .main-card-container > div.slider > div > div > img {
+.main-section > .main-card-container > div.slider > a > div:not(.main-image-container) > div.secondary-image-container, .main-section > .main-card-container > div.slider > div > div:not(.main-image-container) > div.secondary-image-container {
   display: none;
 }
 @media (min-width: 1000px) {
-  .main-section > .main-card-container > div.slider > a > div > img, .main-section > .main-card-container > div.slider > div > div > img {
-    grid-column: span 1;
-    height: 91px;
+  .main-section > .main-card-container > div.slider > a > div:not(.main-image-container) > div.secondary-image-container, .main-section > .main-card-container > div.slider > div > div:not(.main-image-container) > div.secondary-image-container {
+    display: grid;
+    grid-template-rows: none;
+    grid-template-columns: 50% 50%;
+    gap: 0.5em;
+    place-items: unset;
+    place-content: unset;
     width: 100%;
-    display: inline-block;
   }
 }
-.main-section > .main-card-container > div.slider > a > div > *:not(img), .main-section > .main-card-container > div.slider > div > div > *:not(img) {
+.main-section > .main-card-container > div.slider > a > div:not(.main-image-container) > *:not(.secondary-image-container), .main-section > .main-card-container > div.slider > div > div:not(.main-image-container) > *:not(.secondary-image-container) {
   margin-left: 0.5em;
 }
-.main-section > .main-card-container > div.slider > a > div > div.home-copoment-extra, .main-section > .main-card-container > div.slider > div > div > div.home-copoment-extra {
+.main-section > .main-card-container > div.slider > a > div:not(.main-image-container) > div.home-copoment-extra, .main-section > .main-card-container > div.slider > div > div:not(.main-image-container) > div.home-copoment-extra {
   display: none;
 }
 @media (min-width: 1000px) {
-  .main-section > .main-card-container > div.slider > a > div > div.home-copoment-extra, .main-section > .main-card-container > div.slider > div > div > div.home-copoment-extra {
+  .main-section > .main-card-container > div.slider > a > div:not(.main-image-container) > div.home-copoment-extra, .main-section > .main-card-container > div.slider > div > div:not(.main-image-container) > div.home-copoment-extra {
     display: flex;
     flex-direction: column;
     justify-content: none;
     align-items: flex-start;
     gap: 0.3em;
-    grid-column: span 2;
   }
-  .main-section > .main-card-container > div.slider > a > div > div.home-copoment-extra > div:first-child, .main-section > .main-card-container > div.slider > div > div > div.home-copoment-extra > div:first-child {
+  .main-section > .main-card-container > div.slider > a > div:not(.main-image-container) > div.home-copoment-extra > div:first-child, .main-section > .main-card-container > div.slider > div > div:not(.main-image-container) > div.home-copoment-extra > div:first-child {
     font-size: 1.05em;
   }
-  .main-section > .main-card-container > div.slider > a > div > div.home-copoment-extra > div:last-child, .main-section > .main-card-container > div.slider > div > div > div.home-copoment-extra > div:last-child {
+  .main-section > .main-card-container > div.slider > a > div:not(.main-image-container) > div.home-copoment-extra > div:last-child, .main-section > .main-card-container > div.slider > div > div:not(.main-image-container) > div.home-copoment-extra > div:last-child {
     font-size: 0.8em;
     padding: 0.2em 0.6em;
     background-color: #8b0023;
   }
 }
-.main-section > .main-card-container > div.slider > a > div > div.home-copomnent-main, .main-section > .main-card-container > div.slider > div > div > div.home-copomnent-main {
+.main-section > .main-card-container > div.slider > a > div:not(.main-image-container) > div.home-copomnent-main, .main-section > .main-card-container > div.slider > div > div:not(.main-image-container) > div.home-copomnent-main {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 0;
-  grid-column: span 2;
   margin: 0 0.5em;
 }
-.main-section > .main-card-container > div.slider > a > div > div.home-copomnent-main > div.price-container.price-container, .main-section > .main-card-container > div.slider > div > div > div.home-copomnent-main > div.price-container.price-container {
+.main-section > .main-card-container > div.slider > a > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-container, .main-section > .main-card-container > div.slider > div > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -556,13 +623,13 @@ header nav > div.sublinks > img {
   background-color: black;
   font-size: 0.8em;
 }
-.main-section > .main-card-container > div.slider > a > div > div.home-copomnent-main > div.price-container.price-container > div.discount-percent, .main-section > .main-card-container > div.slider > div > div > div.home-copomnent-main > div.price-container.price-container > div.discount-percent {
+.main-section > .main-card-container > div.slider > a > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-container > div.discount-percent, .main-section > .main-card-container > div.slider > div > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-container > div.discount-percent {
   display: inline-block;
   padding: 0.2em 0.4em;
   background-color: #4c6b22;
   color: #a4d007;
 }
-.main-section > .main-card-container > div.slider > a > div > div.home-copomnent-main > div.price-container.price-container > div.price, .main-section > .main-card-container > div.slider > div > div > div.home-copomnent-main > div.price-container.price-container > div.price {
+.main-section > .main-card-container > div.slider > a > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-container > div.price, .main-section > .main-card-container > div.slider > div > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-container > div.price {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -572,12 +639,12 @@ header nav > div.sublinks > img {
   font-size: 0.85em;
   padding: 0 0.5em 0 0.5em;
 }
-.main-section > .main-card-container > div.slider > a > div > div.home-copomnent-main > div.price-container.price-container > div.price span, .main-section > .main-card-container > div.slider > div > div > div.home-copomnent-main > div.price-container.price-container > div.price span {
+.main-section > .main-card-container > div.slider > a > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-container > div.price span, .main-section > .main-card-container > div.slider > div > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-container > div.price span {
   font-size: 0.95em;
   text-decoration: line-through;
   color: #4c565d;
 }
-.main-section > .main-card-container > div.slider > a > div > div.home-copomnent-main > div.price-container.price-2col > div.discount-percent, .main-section > .main-card-container > div.slider > div > div > div.home-copomnent-main > div.price-container.price-2col > div.discount-percent {
+.main-section > .main-card-container > div.slider > a > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-2col > div.discount-percent, .main-section > .main-card-container > div.slider > div > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-2col > div.discount-percent {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -585,7 +652,7 @@ header nav > div.sublinks > img {
   gap: 0;
   font-size: 1.2em;
 }
-.main-section > .main-card-container > div.slider > a > div > div.home-copomnent-main > div.price-container.price-2col > div.price, .main-section > .main-card-container > div.slider > div > div > div.home-copomnent-main > div.price-container.price-2col > div.price {
+.main-section > .main-card-container > div.slider > a > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-2col > div.price, .main-section > .main-card-container > div.slider > div > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-2col > div.price {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -593,7 +660,7 @@ header nav > div.sublinks > img {
   gap: 0.1em;
   padding: 0.3em 0.5em;
 }
-.main-section > .main-card-container > div.slider > a > div > div.home-copomnent-main > div:last-child, .main-section > .main-card-container > div.slider > div > div > div.home-copomnent-main > div:last-child {
+.main-section > .main-card-container > div.slider > a > div:not(.main-image-container) > div.home-copomnent-main > div:last-child, .main-section > .main-card-container > div.slider > div > div:not(.main-image-container) > div.home-copomnent-main > div:last-child {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -638,7 +705,7 @@ header nav > div.sublinks > img {
   max-width: 100%;
   display: block;
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-  object-fit: cover;
+  position: relative;
   width: 30em;
 }
 .main-section > .main-card-container > div.slider.mobile-results-search > a > div.basic, .main-section > .main-card-container > div.slider.mobile-results-search > div > div.basic, .main-section > .main-card-container > div.slider.desktop-results-search > a > div.basic, .main-section > .main-card-container > div.slider.desktop-results-search > div > div.basic {
@@ -916,6 +983,7 @@ header nav > div.sublinks > img {
   content: none;
 }
 .main-section > .main-card-container > div.slider > a {
+  transition: all 0.3s linear;
   position: absolute;
   top: 0;
   left: 0;
@@ -934,6 +1002,9 @@ header nav > div.sublinks > img {
   opacity: 0;
   pointer-events: none;
   transform: translateX(-100%);
+}
+.main-section > .secondary-card-container {
+  width: calc(600px + 1rem);
 }
 .main-section > .secondary-card-container > div:first-child {
   display: flex;
@@ -967,10 +1038,12 @@ header nav > div.sublinks > img {
   place-items: unset;
   place-content: unset;
   grid-template-areas: "a b" "c b";
+  grid-template-columns: 49% 49%;
 }
-@media (min-width: 800px) {
+@media (min-width: 1000px) {
   .main-section > .secondary-card-container > div.slider {
     grid-template-areas: "a b d" "c b e";
+    grid-template-columns: 33% 32% 33%;
   }
 }
 .main-section > .secondary-card-container > div.slider > div {
@@ -980,26 +1053,22 @@ header nav > div.sublinks > img {
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 0;
+  gap: 0.5em;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.main-section > .secondary-card-container > div.slider > div > a {
+.main-section > .secondary-card-container > div.slider > div > a.image-container {
+  flex: 1;
   display: block;
+  width: 100%;
   min-height: 67%;
-}
-.main-section > .secondary-card-container > div.slider > div > a > img {
-  height: auto;
-  max-width: 100%;
-  display: block;
-  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-  object-fit: cover;
-  height: 100%;
-  object-fit: cover;
+  overflow: hidden;
+  position: relative;
 }
 .main-section > .secondary-card-container > div.slider > div > h5 {
+  flex: 0;
   font-size: 0.8em;
   text-align: right;
-  padding: 0.5em 0.5em 0.25em 0;
+  padding: 0 0.5em;
 }
 @media (min-width: 600px) {
   .main-section > .secondary-card-container > div.slider > div > h5 {
@@ -1007,6 +1076,7 @@ header nav > div.sublinks > img {
   }
 }
 .main-section > .secondary-card-container > div.slider > div > div {
+  flex: 0;
   padding: 0 0.5em 0.75em 0;
 }
 .main-section > .secondary-card-container > div.slider > div > div div.price-container {
@@ -1062,7 +1132,10 @@ header nav > div.sublinks > img {
   grid-area: b;
 }
 .main-section > .secondary-card-container > div.slider > div:nth-child(2) > a {
-  min-height: 84%;
+  min-height: 86%;
+}
+.main-section > .secondary-card-container > div.slider > div:nth-child(2) > a > span {
+  min-height: 100% !important;
 }
 .main-section > .secondary-card-container > div.slider > div:nth-child(3) {
   grid-area: c;
@@ -1071,7 +1144,7 @@ header nav > div.sublinks > img {
   grid-area: d;
   display: none;
 }
-@media (min-width: 800px) {
+@media (min-width: 1000px) {
   .main-section > .secondary-card-container > div.slider > div:nth-child(4) {
     display: inline-flex;
   }
@@ -1080,18 +1153,19 @@ header nav > div.sublinks > img {
   grid-area: e;
   display: none;
 }
-@media (min-width: 800px) {
+@media (min-width: 1000px) {
   .main-section > .secondary-card-container > div.slider > div:nth-child(5) {
     display: inline-flex;
   }
 }
 .main-section > .movie-card-container {
   position: relative;
-  max-width: calc(600px + 1em);
+  width: calc(600px + 1rem);
 }
 @media (min-width: 1000px) {
   .main-section > .movie-card-container {
     height: 380px;
+    width: unset;
     max-width: 100%;
   }
 }
@@ -1120,21 +1194,21 @@ header nav > div.sublinks > img {
   color: #c6d4df;
 }
 .main-section > .movie-card-container > button.previous, .main-section > .movie-card-container button.next {
-  display: none;
   border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  position: absolute;
+  top: 38%;
+  height: 7em;
+  border-radius: 4px;
+  width: 10%;
 }
 @media (min-width: 1000px) {
   .main-section > .movie-card-container > button.previous, .main-section > .movie-card-container button.next {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
-    position: absolute;
-    top: 38%;
     width: 7%;
-    height: 7em;
-    border-radius: 4px;
   }
 }
 .main-section > .movie-card-container > button.previous > svg, .main-section > .movie-card-container button.next > svg {
@@ -1142,18 +1216,28 @@ header nav > div.sublinks > img {
   color: #c6d4df;
 }
 .main-section > .movie-card-container > button.previous {
-  left: -7%;
+  left: -10%;
   background: transparent;
   background: linear-gradient(270deg, transparent 40%, #313438 100%);
+}
+@media (min-width: 1000px) {
+  .main-section > .movie-card-container > button.previous {
+    left: -7%;
+  }
 }
 .main-section > .movie-card-container > button.previous:hover {
   background: transparent;
   background: linear-gradient(270deg, transparent 15%, #565b61 100%);
 }
 .main-section > .movie-card-container > button.next {
-  right: -7%;
+  right: -10%;
   background: transparent;
   background: linear-gradient(90deg, transparent 40%, #313438 100%);
+}
+@media (min-width: 1000px) {
+  .main-section > .movie-card-container > button.next {
+    right: -7%;
+  }
 }
 .main-section > .movie-card-container > button.next:hover {
   background: transparent;
@@ -1176,10 +1260,11 @@ header nav > div.sublinks > img {
   justify-content: space-between;
   align-items: stretch;
   gap: 0;
+  width: 100%;
 }
 @media (min-width: 800px) {
   .main-section > .movie-card-container > div.slider > a {
-    max-width: 70vw;
+    max-width: 100%;
   }
 }
 @media (min-width: 1000px) {
@@ -1191,21 +1276,24 @@ header nav > div.sublinks > img {
     flex-direction: row;
   }
 }
-.main-section > .movie-card-container > div.slider > a > img {
+.main-section > .movie-card-container > div.slider > a > div.image-container {
+  flex: 2;
+  object-position: none;
+  position: relative;
   height: auto;
   max-width: 100%;
   display: block;
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-  object-fit: cover;
-  z-index: 1;
+  position: relative;
 }
 @media (min-width: 1000px) {
-  .main-section > .movie-card-container > div.slider > a > img {
+  .main-section > .movie-card-container > div.slider > a > div.image-container {
     width: 620px;
     height: 350px;
   }
 }
-.main-section > .movie-card-container > div.slider > a > div {
+.main-section > .movie-card-container > div.slider > a > div.top-review {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1214,11 +1302,11 @@ header nav > div.sublinks > img {
   padding: 1.25em;
 }
 @media (min-width: 1000px) {
-  .main-section > .movie-card-container > div.slider > a > div {
+  .main-section > .movie-card-container > div.slider > a > div.top-review {
     padding: 1.75em;
   }
 }
-.main-section > .movie-card-container > div.slider > a > div > div:first-child {
+.main-section > .movie-card-container > div.slider > a > div.top-review > div:first-child {
   position: relative;
   flex: 1;
   overflow: hidden;
@@ -1226,13 +1314,13 @@ header nav > div.sublinks > img {
   flex-basis: 6em;
 }
 @media (min-width: 800px) {
-  .main-section > .movie-card-container > div.slider > a > div > div:first-child {
+  .main-section > .movie-card-container > div.slider > a > div.top-review > div:first-child {
     height: unset;
     mask-image: rgba(0, 0, 0, 0);
     mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, #151515 30%);
   }
 }
-.main-section > .movie-card-container > div.slider > a > div > div:first-child > p {
+.main-section > .movie-card-container > div.slider > a > div.top-review > div:first-child > p {
   font-size: 0.85em;
   font-weight: 400;
   display: block;
@@ -1240,31 +1328,31 @@ header nav > div.sublinks > img {
   color: white;
 }
 @media (min-width: 1000px) {
-  .main-section > .movie-card-container > div.slider > a > div > div:first-child > p {
+  .main-section > .movie-card-container > div.slider > a > div.top-review > div:first-child > p {
     font-size: 1.1em;
   }
 }
-.main-section > .movie-card-container > div.slider > a > div > div:last-child {
+.main-section > .movie-card-container > div.slider > a > div.top-review > div:last-child {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   gap: 0;
 }
-.main-section > .movie-card-container > div.slider > a > div > div:last-child > img {
+.main-section > .movie-card-container > div.slider > a > div.top-review > div:last-child > img {
   height: 42px;
   width: 42px;
 }
-.main-section > .movie-card-container > div.slider > a > div > div:last-child > div {
+.main-section > .movie-card-container > div.slider > a > div.top-review > div:last-child > div {
   margin-left: 0.75em;
 }
-.main-section > .movie-card-container > div.slider > a > div > div:last-child > div * {
+.main-section > .movie-card-container > div.slider > a > div.top-review > div:last-child > div * {
   display: block;
 }
-.main-section > .movie-card-container > div.slider > a > div > div:last-child > div > h6 {
+.main-section > .movie-card-container > div.slider > a > div.top-review > div:last-child > div > h6 {
   font-size: 0.85em;
 }
-.main-section > .movie-card-container > div.slider > a > div > div:last-child > div > p {
+.main-section > .movie-card-container > div.slider > a > div.top-review > div:last-child > div > p {
   margin-top: 0.25em;
   font-size: 0.6em;
   font-weight: 300;
@@ -1375,34 +1463,47 @@ header nav > div.sublinks > img {
   gap: 0.5em;
 }
 .main-section > .special-card-container > div.special-card-slider > a {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
   background: #8b0023;
   background: linear-gradient(90deg, #8b0023 20%, #151515 100%);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: all 0.1s linear;
 }
-.main-section > .special-card-container > div.special-card-slider > a > img {
+.main-section > .special-card-container > div.special-card-slider > a:hover {
+  box-shadow: white 0 1px 10px;
+}
+.main-section > .special-card-container > div.special-card-slider > a > div.image-container {
+  display: inline-flex;
+  flex: 2;
+  height: auto;
+  width: 12em;
   height: auto;
   max-width: 100%;
   display: block;
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-  object-fit: cover;
-  height: 100px;
-  width: 200px;
+  position: relative;
 }
-.main-section > .special-card-container > div.special-card-slider > a > div {
+.main-section > .special-card-container > div.special-card-slider > a > div.price {
+  flex: 1;
   padding: 0.5em;
+  align-self: flex-end;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
   gap: 0;
 }
-.main-section > .special-card-container > div.special-card-slider > a > div > p {
+.main-section > .special-card-container > div.special-card-slider > a > div.price > p {
   padding: 0.1em 0.35em;
   background-color: black;
   color: white;
   font-weight: 700;
 }
-.main-section > .special-card-container > div.special-card-slider > a > div > p.price-container {
+.main-section > .special-card-container > div.special-card-slider > a > div.price > p.price-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -1411,13 +1512,13 @@ header nav > div.sublinks > img {
   background-color: black;
   font-size: 0.8em;
 }
-.main-section > .special-card-container > div.special-card-slider > a > div > p.price-container > div.discount-percent {
+.main-section > .special-card-container > div.special-card-slider > a > div.price > p.price-container > div.discount-percent {
   display: inline-block;
   padding: 0.2em 0.4em;
   background-color: #4c6b22;
   color: #a4d007;
 }
-.main-section > .special-card-container > div.special-card-slider > a > div > p.price-container > div.price {
+.main-section > .special-card-container > div.special-card-slider > a > div.price > p.price-container > div.price {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -1427,12 +1528,12 @@ header nav > div.sublinks > img {
   font-size: 0.85em;
   padding: 0 0.5em 0 0.5em;
 }
-.main-section > .special-card-container > div.special-card-slider > a > div > p.price-container > div.price span {
+.main-section > .special-card-container > div.special-card-slider > a > div.price > p.price-container > div.price span {
   font-size: 0.95em;
   text-decoration: line-through;
   color: #4c565d;
 }
-.main-section > .special-card-container > div.special-card-slider > a > div > p.price-2col > div.discount-percent {
+.main-section > .special-card-container > div.special-card-slider > a > div.price > p.price-2col > div.discount-percent {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -1440,7 +1541,7 @@ header nav > div.sublinks > img {
   gap: 0;
   font-size: 1.2em;
 }
-.main-section > .special-card-container > div.special-card-slider > a > div > p.price-2col > div.price {
+.main-section > .special-card-container > div.special-card-slider > a > div.price > p.price-2col > div.price {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1453,7 +1554,11 @@ header nav > div.sublinks > img {
 }
 @media (min-width: 800px) {
   .main-section > .special-card-container > div.special-card-slider > a:nth-child(3) {
-    display: unset;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
   }
 }
 .main-section > .special-card-container > div.special-card-slider > a:nth-child(4) {
@@ -1461,7 +1566,11 @@ header nav > div.sublinks > img {
 }
 @media (min-width: 1000px) {
   .main-section > .special-card-container > div.special-card-slider > a:nth-child(4) {
-    display: unset;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
   }
 }
 
@@ -1603,7 +1712,7 @@ div.subsidiary-section div.subsidiary-container > section.tab-container > div.ta
   max-width: 100%;
   display: block;
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-  object-fit: cover;
+  position: relative;
   box-shadow: unset;
   height: auto;
   width: 180px;
@@ -3188,87 +3297,89 @@ section.search-container > .primary-search > .main-search > .scrollable-search >
     flex-direction: row;
   }
 }
-section.search-container > .primary-search > .main-search > .scrollable-search > div > a > img, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > img {
+section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div.main-image-container, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div.main-image-container {
   flex: 2;
+  object-position: none;
+  position: relative;
   height: auto;
   max-width: 100%;
   display: block;
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-  object-fit: cover;
+  position: relative;
 }
 @media (min-width: 1000px) {
-  section.search-container > .primary-search > .main-search > .scrollable-search > div > a > img, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > img {
+  section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div.main-image-container, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div.main-image-container {
     width: 620px;
     height: 350px;
   }
 }
-section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div {
+section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div:not(.main-image-container), section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div:not(.main-image-container) {
   flex: 1;
   display: grid;
   grid-template-rows: none;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 0.5em;
   place-items: unset;
   place-content: space-evenly;
   padding: 0.5em;
 }
 @media (min-width: 1000px) {
-  section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div {
+  section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div:not(.main-image-container), section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div:not(.main-image-container) {
     padding: 0;
   }
 }
-section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div > h4, section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div > a, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div > h4, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div > a {
+section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div:not(.main-image-container) > h4, section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div:not(.main-image-container) > a, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div:not(.main-image-container) > h4, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div:not(.main-image-container) > a {
   font-size: 1.1em;
   text-transform: capitalize;
   display: block;
-  grid-column: span 2;
   font-size: 1.4em;
 }
-section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div > img, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div > img {
+section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div:not(.main-image-container) > div.secondary-image-container, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div:not(.main-image-container) > div.secondary-image-container {
   display: none;
 }
 @media (min-width: 1000px) {
-  section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div > img, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div > img {
-    grid-column: span 1;
-    height: 91px;
+  section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div:not(.main-image-container) > div.secondary-image-container, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div:not(.main-image-container) > div.secondary-image-container {
+    display: grid;
+    grid-template-rows: none;
+    grid-template-columns: 50% 50%;
+    gap: 0.5em;
+    place-items: unset;
+    place-content: unset;
     width: 100%;
-    display: inline-block;
   }
 }
-section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div > *:not(img), section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div > *:not(img) {
+section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div:not(.main-image-container) > *:not(.secondary-image-container), section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div:not(.main-image-container) > *:not(.secondary-image-container) {
   margin-left: 0.5em;
 }
-section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div > div.home-copoment-extra, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div > div.home-copoment-extra {
+section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div:not(.main-image-container) > div.home-copoment-extra, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div:not(.main-image-container) > div.home-copoment-extra {
   display: none;
 }
 @media (min-width: 1000px) {
-  section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div > div.home-copoment-extra, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div > div.home-copoment-extra {
+  section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div:not(.main-image-container) > div.home-copoment-extra, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div:not(.main-image-container) > div.home-copoment-extra {
     display: flex;
     flex-direction: column;
     justify-content: none;
     align-items: flex-start;
     gap: 0.3em;
-    grid-column: span 2;
   }
-  section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div > div.home-copoment-extra > div:first-child, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div > div.home-copoment-extra > div:first-child {
+  section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div:not(.main-image-container) > div.home-copoment-extra > div:first-child, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div:not(.main-image-container) > div.home-copoment-extra > div:first-child {
     font-size: 1.05em;
   }
-  section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div > div.home-copoment-extra > div:last-child, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div > div.home-copoment-extra > div:last-child {
+  section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div:not(.main-image-container) > div.home-copoment-extra > div:last-child, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div:not(.main-image-container) > div.home-copoment-extra > div:last-child {
     font-size: 0.8em;
     padding: 0.2em 0.6em;
     background-color: #8b0023;
   }
 }
-section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div > div.home-copomnent-main, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div > div.home-copomnent-main {
+section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div:not(.main-image-container) > div.home-copomnent-main, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div:not(.main-image-container) > div.home-copomnent-main {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 0;
-  grid-column: span 2;
   margin: 0 0.5em;
 }
-section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div > div.home-copomnent-main > div.price-container.price-container, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div > div.home-copomnent-main > div.price-container.price-container {
+section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-container, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -3277,13 +3388,13 @@ section.search-container > .primary-search > .main-search > .scrollable-search >
   background-color: black;
   font-size: 0.8em;
 }
-section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div > div.home-copomnent-main > div.price-container.price-container > div.discount-percent, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div > div.home-copomnent-main > div.price-container.price-container > div.discount-percent {
+section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-container > div.discount-percent, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-container > div.discount-percent {
   display: inline-block;
   padding: 0.2em 0.4em;
   background-color: #4c6b22;
   color: #a4d007;
 }
-section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div > div.home-copomnent-main > div.price-container.price-container > div.price, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div > div.home-copomnent-main > div.price-container.price-container > div.price {
+section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-container > div.price, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-container > div.price {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -3293,12 +3404,12 @@ section.search-container > .primary-search > .main-search > .scrollable-search >
   font-size: 0.85em;
   padding: 0 0.5em 0 0.5em;
 }
-section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div > div.home-copomnent-main > div.price-container.price-container > div.price span, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div > div.home-copomnent-main > div.price-container.price-container > div.price span {
+section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-container > div.price span, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-container > div.price span {
   font-size: 0.95em;
   text-decoration: line-through;
   color: #4c565d;
 }
-section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div > div.home-copomnent-main > div.price-container.price-2col > div.discount-percent, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div > div.home-copomnent-main > div.price-container.price-2col > div.discount-percent {
+section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-2col > div.discount-percent, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-2col > div.discount-percent {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -3306,7 +3417,7 @@ section.search-container > .primary-search > .main-search > .scrollable-search >
   gap: 0;
   font-size: 1.2em;
 }
-section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div > div.home-copomnent-main > div.price-container.price-2col > div.price, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div > div.home-copomnent-main > div.price-container.price-2col > div.price {
+section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-2col > div.price, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div:not(.main-image-container) > div.home-copomnent-main > div.price-container.price-2col > div.price {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -3314,7 +3425,7 @@ section.search-container > .primary-search > .main-search > .scrollable-search >
   gap: 0.1em;
   padding: 0.3em 0.5em;
 }
-section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div > div.home-copomnent-main > div:last-child, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div > div.home-copomnent-main > div:last-child {
+section.search-container > .primary-search > .main-search > .scrollable-search > div > a > div:not(.main-image-container) > div.home-copomnent-main > div:last-child, section.search-container > .primary-search > .main-search > .scrollable-search > div > div > div:not(.main-image-container) > div.home-copomnent-main > div:last-child {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -3359,7 +3470,7 @@ section.search-container > .primary-search > .main-search > .scrollable-search >
   max-width: 100%;
   display: block;
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-  object-fit: cover;
+  position: relative;
   width: 30em;
 }
 section.search-container > .primary-search > .main-search > .scrollable-search > div.mobile-results-search > a > div.basic, section.search-container > .primary-search > .main-search > .scrollable-search > div.mobile-results-search > div > div.basic, section.search-container > .primary-search > .main-search > .scrollable-search > div.desktop-results-search > a > div.basic, section.search-container > .primary-search > .main-search > .scrollable-search > div.desktop-results-search > div > div.basic {
@@ -4291,10 +4402,10 @@ section.admin-container > div.controls > div.game-edit > * {
   padding: 1em;
 }
 section.admin-container > div.controls > div.game-edit > form {
-  flex: 0;
+  flex: 1;
   display: grid;
   grid-template-rows: none;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 50% 50%;
   gap: 1.5em;
   place-items: unset;
   place-content: unset;
@@ -4379,6 +4490,16 @@ section.admin-container > div.controls > div.game-edit > form > .images-uploader
 section.admin-container > div.controls > div.game-edit > form > .images-uploader > strong {
   font-size: 1.2em;
 }
+section.admin-container > div.controls > div.game-edit > form > .published {
+  justify-content: center;
+}
+section.admin-container > div.controls > div.game-edit > form > .published > fieldset {
+  border: none;
+}
+section.admin-container > div.controls > div.game-edit > form > .published > fieldset > input {
+  cursor: pointer;
+  transform: scale(1.5);
+}
 section.admin-container > div.controls > div.game-edit > form .custom-button {
   background: #56616a;
   border: none;
@@ -4408,6 +4529,10 @@ section.admin-container > div.controls > div.game-edit > form .submit {
 }
 section.admin-container > div.controls > div.game-edit > div.image-preview {
   flex: 1;
+}
+section.admin-container > div.controls > div.game-edit > div.image-preview > div {
+  max-width: 400px;
+  margin: 0 auto;
 }
 section.admin-container > div.controls > div.game-edit > div.image-preview > div > strong {
   width: 100%;

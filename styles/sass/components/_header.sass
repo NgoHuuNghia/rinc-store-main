@@ -108,8 +108,18 @@ header
                             color: $fc-important
                     >.mobile-submenu
                         @include sublinks
-            >img
-                align-self: center
-                height: 2.5em
-                border-radius: 25px
+            >div.user-container
+                @include flex()
+                align-self: stretch
                 order: 1
+                position: relative
+                >img
+                    height: 2.5em
+                    border-radius: 25px
+                    cursor: pointer
+                    &:hover
+                        filter: brightness(90%)
+                >div.user-sublinks
+                    @include sublinks
+                    top: 100%
+                    left: -300%

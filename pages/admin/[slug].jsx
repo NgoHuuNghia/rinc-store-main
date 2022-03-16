@@ -16,6 +16,8 @@ import UploadMainImage from '@components/admin/UploadMainImage'
 import SecondaryImages from '@components/admin/SecondaryImages'
 import { SidebarProvider } from '@lib/adminContext'
 import { firestore } from '@lib/firebase'
+import GameMainImage from '@components/admin/GameMainImage'
+import UploadSecondaryImages from '@components/admin/UploadSecondaryImages'
 
 function AdminGameEdit() {
     return (
@@ -45,7 +47,7 @@ function GameManager(){
                     </div>
                     <div className='game-edit'>
                         <GameManagerForm gameRef={gameRef} defaultValues={games}/>
-                        <PreviewImages slug={slug} mainUrl={games.mainImageUrl} secondaryUrls={games.secondaryImageUrls}/>
+                        <PreviewImages slug={slug} mainUrl={games.mainImageUrl} secondaryImageUrls={games.secondaryImageUrls}/>
                     </div>
                 </>
             )}
@@ -57,14 +59,16 @@ function GameManagerForm({gameRef, defaultValues}){
     const { register, handleSubmit, formState, reset, control } = useForm({ defaultValues, mode: 'onChange' });//? mode act like state
     const { isValid, isDirty, errors } = formState
 
-    const updateGame = async ({ title, esrbRating }) => {
+    const updateGame = async ({ title, esrbRating, published }) => {
+
         await updateDoc(gameRef, {//? firestore function to update
-            title,
+            title: title.charAt(0).toUpperCase() + title.slice(1).toLowerCase(), //? capitalized 1st letter
             esrbRating,
+            published,
             updatedAt: serverTimestamp(),
         })
     
-        reset({ title, esrbRating });//? reset the form
+        reset({ title, esrbRating, published });//? reset the form
     
         toast.success('Game updated successfully!');
     };
@@ -85,7 +89,7 @@ function GameManagerForm({gameRef, defaultValues}){
                 {errors.title && <strong className="danger">{errors.title.message}</strong>}{/* if there error in content then show it */}
             </div>
             
-            <div className='col-2'>
+            <div className='col-1'>
                 <label htmlFor='esrbRating'>Esrb: </label>
                 <Controller
                     name="esrbRating"
@@ -102,16 +106,21 @@ function GameManagerForm({gameRef, defaultValues}){
                         ]}/>}
                 />
             </div>
+            {/* <fieldset>
+                <input className={styles.checkbox} name="published" type="checkbox" {...register('published')} />
+                <label>Published</label>
+            </fieldset> */}
+            <div className='published col-1'>
+                <label htmlFor="title">Published </label>
+                <fieldset>
+                    <input name="published" type="checkbox" {...register('published')} />
+                </fieldset>
+                {errors.title && <strong className="danger">{errors.title.message}</strong>}{/* if there error in content then show it */}
+            </div>
 
             <UploadMainImage gameRef={gameRef} slug={defaultValues.slug}/>
 
-            <div className='col-1 images-uploader'>
-                <label className='custom-button'>
-                    <span>📸 Secondary images</span>
-                    <input type="file" accept="image/x-png,image/gif,image/jpeg"/>
-                    {/* onChange={uploadFile} */}
-                </label>
-            </div>
+            <UploadSecondaryImages gameRef={gameRef} slug={defaultValues.slug}/>
 
             <div className='text col-1'>
                 <label htmlFor="metacritic">Metacritic: </label>
@@ -137,18 +146,14 @@ function GameManagerForm({gameRef, defaultValues}){
     )
 }
 
-function PreviewImages({slug, mainUrl}){
+function PreviewImages({slug, mainUrl, secondaryImageUrls}){
     return (
         <div className='image-preview'>
             <div>
                 <strong>Main image</strong>
-                <div>
-                    {mainUrl 
-                        ? <Image src={mainUrl} alt="test" width={850} height={500} layout='responsive'/>
-                        : <p>No image yet ⭕</p>}
-                </div>
+                <GameMainImage mainUrl={mainUrl} slug={slug}/>
             </div>
-            <SecondaryImages slug={slug}/>
+            <SecondaryImages secondaryImageUrls={secondaryImageUrls} slug={slug}/>
         </div>
     )
 }

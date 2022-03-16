@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { updateDoc } from 'firebase/firestore';
+import { updateDoc, arrayUnion } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import { storage, STATE_CHANGED } from '@lib/firebase';
+import { firestore, storage, STATE_CHANGED } from '@lib/firebase';
 
 import Loader from '@components/Loader'
 
-function UploadMainImage({gameRef, slug}) {
+function UploadSecondaryImages({gameRef, slug}) {
     const [uploading, setUploading] = useState(false);//? fire being actively upload
     const [progress, setProgress] = useState(0);//? percentage of the file uploads till finish
 
@@ -13,10 +13,11 @@ function UploadMainImage({gameRef, slug}) {
     const uploadFile = async (e) => {
         // Get the file
         const file = Array.from(e.target.files)[0];
+        const extension = file.type.split('/')[1]; //? grab the file extension like png from the file type
 
         // Makes reference to the storage bucket location
         //$ const fileRef = ref(storage, `uploads/${auth.currentUser.uid}/${Date.now()}.${extension}`);//? with a unique date so it can't be overwritten
-        const fileRef = ref(storage, `uploads/images/games/${slug}/main-image/main-${slug}`);//? with a unique date so it can't be overwritten
+        const fileRef = ref(storage, `uploads/images/games/${slug}/secondary-images/${Date.now()}.${extension}`);//? with a unique date so it can't be overwritten
 
         setUploading(true);
 
@@ -36,7 +37,7 @@ function UploadMainImage({gameRef, slug}) {
             .then(() => getDownloadURL(fileRef))//? then allow us to get the download url only when it 100% finish to avoid errors
             .then( async(url) => {
                 await updateDoc(gameRef, {//? firestore function to update
-                    mainImageUrl: url,
+                    secondaryImageUrls: arrayUnion(url),
                 })
                 setUploading(false);
             });
@@ -47,7 +48,7 @@ function UploadMainImage({gameRef, slug}) {
             {!uploading 
                 ? (
                     <label className='custom-button'>
-                        <span>📸 Main image</span>
+                        <span>📸 Secondary images</span>
                         <input type="file" onChange={uploadFile} accept="image/x-png,image/gif,image/jpeg" />
                     </label> )
                 : (
@@ -63,4 +64,4 @@ function UploadMainImage({gameRef, slug}) {
 }
 
 
-export default UploadMainImage
+export default UploadSecondaryImages

@@ -26,10 +26,10 @@
     @include bs.from(xl)
         @include desktop-container
         >*
-            width: 100%
+            width: 100% !important
     >.main-card-container
         position: relative
-        max-width: calc(600px + 1em)
+        width: calc(600px + 1rem)
         @include bs.from(xl)
             height: 380px
             max-width: 100%
@@ -37,11 +37,13 @@
             @include home-content-title            
         @include arrows
         >div.slider
+            // height: 456.667px
             box-shadow: $bs-card-lg
             overflow: hidden
             position: relative
             @include flexible-card
             >a
+                transition: $trs-basic
                 position: absolute
                 top: 0
                 left: 0
@@ -59,31 +61,36 @@
                 transform: translateX(-100%)
 
     >.secondary-card-container
+        width: calc(600px + 1rem)
         >div:first-child //image container
             @include home-content-title                     
         >div.slider
             @include grid($gap: .75em)
             grid-template-areas: "a b" "c b"
-            @include bs.from(l)
+            grid-template-columns: 49% 49%
+            @include bs.from(xl)
                 grid-template-areas: "a b d" "c b e"
+                grid-template-columns: 33% 32% 33%
             >div
                 @include gradient
-                @include flex($direction: column, $justify: space-between, $align: flex-end)
+                @include flex($direction: column, $justify: space-between, $align: flex-end, $gap: .5em)
                 box-shadow: $bs-card-md
-                >a
+                >a.image-container
+                    flex: 1
                     display: block
+                    width: 100%
                     min-height: 67%
-                    >img
-                        @include card-img
-                        height: 100%
-                        object-fit: cover
+                    overflow: hidden
+                    position: relative
                 >h5 
+                    flex: 0
                     font-size: .8em
                     text-align: right
-                    padding: .5em .5em .25em 0
+                    padding: 0 .5em
                     @include bs.from(m)
                         font-size: 1em
                 >div
+                    flex: 0
                     padding: 0 .5em .75em 0        
                     div
                         @include card-price
@@ -92,25 +99,28 @@
             >div:nth-child(2)
                 grid-area: b
                 >a
-                    min-height: 84%
+                    min-height: 86%
+                    >span //! bad hack but don't know how to fix the next/image
+                        min-height: 100% !important
             >div:nth-child(3)
                 grid-area: c
             >div:nth-child(4)
                 grid-area: d
                 display: none
-                @include bs.from(l)
+                @include bs.from(xl)
                     display: inline-flex
             >div:nth-child(5)
                 grid-area: e
                 display: none
-                @include bs.from(l)
+                @include bs.from(xl)
                     display: inline-flex
 
     >.movie-card-container
         position: relative
-        max-width: calc(600px + 1em)
+        width: calc(600px + 1rem)
         @include bs.from(xl)
             height: 380px
+            width: unset
             max-width: 100%
         >div:first-child
             @include home-content-title
@@ -126,21 +136,24 @@
                 transition: $trs-basic
                 @include gradient($deg-gradient: 0deg)
                 @include flex($direction: column, $align: stretch)
+                width: 100%
                 @include bs.from(l)
-                    max-width: 70vw
+                    max-width: 100%
                 @include bs.from(xl)
                     @include gradient()
                     height: 350px
                     max-width: unset
                     flex-direction: row
-                >img
+                >div.image-container
+                    flex: 2
+                    object-position: none
+                    position: relative
                     @include card-img
                     @include bs.from(xl)
                         width: 620px
                         height: 350px
-                    z-index: 1
-                //! CONTINUE TO MAKE THE DESC OVERLFOWTHING
-                >div
+                >div.top-review
+                    flex: 1
                     @include flex($direction: column, $justify: space-between, $align: flex-start, $gap: 2em)
                     padding: 1.25em
                     @include bs.from(xl)
@@ -216,14 +229,22 @@
         >div.special-card-slider
             @include flex($gap: .5em)
             >a
+                @include flex($direction: column)
                 @include gradient($deg-gradient: 90deg, $first-gradient: $bgc-subsidiary, $first-percent: 20%, $second-gradient: $bgc-default )
                 box-shadow: $bs-card-md
-                >img
+                transition: $trs-instant
+                &:hover
+                    box-shadow: $bs-card-light
+                >div.image-container
+                    display: inline-flex
+                    flex: 2
+                    height: auto
+                    width: 12em
                     @include card-img     
-                    height: 100px
-                    width: 200px
-                >div
+                >div.price
+                    flex: 1
                     padding: 0.5em
+                    align-self: flex-end
                     @include flex($justify: flex-end)  
                     >p
                         @include card-price
@@ -234,11 +255,11 @@
                 &:nth-child(3)
                     display: none
                     @include bs.from(l)
-                        display: unset
+                        @include flex($direction: column)
                 &:nth-child(4)
                     display: none
                     @include bs.from(xl)
-                        display: unset
+                        @include flex($direction: column)
 
 //? subsidiary
 div.subsidiary-section

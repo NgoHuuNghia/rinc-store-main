@@ -7,14 +7,15 @@ import kebabCase from 'lodash.kebabcase'
 import toast from 'react-hot-toast'
 
 import AdminGamesList from '@components/admin/AdminGamesList'
-import { firestore } from '@lib/firebase';
+import { auth, firestore, googleAuthProvider } from '@lib/firebase';
 import { useSidebar } from '@lib/adminContext'
+import { signInWithPopup, signOut } from 'firebase/auth';
 // import Loader from '@components/Loader'
 // import PostFeed from '@components/PostFeed';
 // import Metatags from '@components/Metatags';
 
 const AdminDashboard = () => {
-    const { sidebar, setSidebar } = useSidebar()
+    const { setSidebar } = useSidebar()
 
     return (
         <>
@@ -67,7 +68,7 @@ function CreateNewGame() {
 
         //$ Give all fields a default value here to avoid bugs
         const data = {
-            title,
+            title: title.charAt(0).toUpperCase() + title.slice(1).toLowerCase(),
             slug,
             metacritic: 69,
             esrbRating: 'teen',
@@ -82,6 +83,7 @@ function CreateNewGame() {
             updatedAt: serverTimestamp(),
             mainImageUrl: '',
             secondaryImageUrls: [],
+            published: false,
         };
 
         await setDoc(ref, data);

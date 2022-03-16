@@ -17,16 +17,20 @@ function Sublink({mainUrl, page, links}) {
             </Link>
             <div className={`mobile-submenu ${submenu && 'display'}`}>
                 <ul>
-                    {links.map(sublink => <li>
-                        <Link 
-                            passHref href={sublink.url} 
-                            onClick={() => toTop()}>
-                                <a>
-                                    <p>{sublink.label}</p> 
-                                    {sublink.icon}
-                                </a>
-                        </Link>
-                    </li>)}
+                    {links.map((sublink) => {
+                        return (
+                            <li key={sublink.label}>
+                                <Link 
+                                    passHref href={sublink.url} 
+                                    onClick={() => toTop()}>
+                                        <a>
+                                            <p>{sublink.label}</p> 
+                                            {sublink.icon}
+                                        </a>
+                                </Link>
+                            </li>
+                        ) 
+                    })}
                 </ul>
             </div>
         </li>

@@ -7,15 +7,14 @@ import Link from 'next/link'
 import { firestore, gameDataToJSON } from '@lib/firebase'
 
 const AdminGamesList = ({game}) => {
-    const data = gameDataToJSON(game)
-    const { title, slug, ratings, reviewsCount } = data
-    const releasedAt = typeof data?.releasedAt === 'number' ? new Date(data.releasedAt) : data.releasedAt.toDate()
+    const { title, slug, ratings, reviewsCount, releasedAt } = game
 
     return (
         <>
             <li>{title}</li>
             <li>{slug}</li>
-            <li>{releasedAt.toISOString()}</li>
+            {/* <li>{releasedAt.toISOString()}</li> */}
+            <li>{releasedAt.toDate().toLocaleString()}</li>
             <li>{ratings}</li>
             <li>{reviewsCount}</li>
             <Link passHref href={`/admin/${slug}`}><li className='edit'><RiEditBoxFill /></li></Link>

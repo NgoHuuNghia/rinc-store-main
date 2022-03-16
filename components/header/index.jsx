@@ -6,11 +6,11 @@ import sublinks from '@public/publicData/sublinks'
 import { toTop } from '@lib/commonFunctions'
 import { useGlobalContext } from '@lib/globalContext'
 import Sublink from '@components/header/Sublink'
+import User from './User'
 
 //asss
 const Header = () => {
     const { overlay, setOverlay } = useGlobalContext()
-    console.log(overlay)
 
     // const router = useRouter()
     // console.log(router)
@@ -114,7 +114,7 @@ const Header = () => {
                             )
                         })}
                     </ul>
-                    <img src="https://media.rawg.io/media/resize/80/-/avatars/654/6549f85d93a1b4653d6030fe6bd407bf.jpg" alt="avatar" />
+                    <User />
                 </div>
             </nav>
         </header>
