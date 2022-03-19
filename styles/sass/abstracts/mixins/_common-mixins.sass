@@ -52,7 +52,21 @@
     >input[type="radio"]
         border-radius: 50%
         &::before
-            border-radius: 50% 
+            border-radius: 50%
+        
+@mixin button()
+    @include flex($justify: center)
+    box-shadow: $bs-card-md
+    height: 3em
+    border-radius: 5px
+    border: solid 1px black
+    background-color: $bgc-subsidiary
+    color: $fc-default
+    transition: .3s
+    cursor: pointer
+    &:hover
+        background-color: $bgc-hilight
+        color: $fc-hilight
 
 @mixin animated-nav-bar
     #bars

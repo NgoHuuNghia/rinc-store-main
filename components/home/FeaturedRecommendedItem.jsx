@@ -1,5 +1,4 @@
-import { toTop } from "@lib/commonFunctions";
-import { useSliderControlClass } from "@lib/hooks";
+import { toTop, sliderControlClass } from "@lib/commonFunctions";
 import Link from "next/link";
 import parse from 'html-react-parser'
 import Image from "next/image";
@@ -9,7 +8,7 @@ const FeaturedRecommendedItem = ({
     mainImageUrl, title, slug, secondaryImageUrls, description,
     index, sliderIndex, length, getHeight
 }) => {
-    const position = useSliderControlClass(index, sliderIndex, length)
+    const position = sliderControlClass(index, sliderIndex, length)
 
     const slide = useRef(null)
     {index === 0 && useEffect(() => getHeight(slide.current.getBoundingClientRect().height), [])}

@@ -208,20 +208,10 @@
         >div:nth-child(2)
             @include grid($columns: repeat(4, 1fr), $gap: .5em)
             >a
-                @include flex($justify: center)
-                box-shadow: $bs-card-md
+                @include button
                 grid-column: span 2
-                height: 3em
-                border-radius: 5px
-                border: solid 1px black
-                background-color: $bgc-subsidiary
-                color: $fc-default
-                transition: .3s
                 @include bs.from(l)
                     grid-column: span 1
-                &:hover
-                    background-color: $bgc-hilight
-                    color: $fc-hilight
     
     >.special-card-container
         >div:nth-child(1)

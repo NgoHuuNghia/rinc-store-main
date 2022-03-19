@@ -352,7 +352,7 @@ header nav > div.sublinks > div.user-container > div.user-sublinks {
   background-color: #8b0023;
   transition: all 0.1s linear;
   top: 100%;
-  left: -300%;
+  left: -100%;
 }
 header nav > div.sublinks > div.user-container > div.user-sublinks.display {
   visibility: visible;
@@ -1414,22 +1414,23 @@ header nav > div.sublinks > div.user-container > div.user-sublinks > ul > li > a
   align-items: center;
   gap: 0;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  grid-column: span 2;
   height: 3em;
   border-radius: 5px;
   border: solid 1px black;
   background-color: #8b0023;
   color: #c6d4df;
   transition: 0.3s;
+  cursor: pointer;
+  grid-column: span 2;
+}
+.main-section > .page-browse > div:nth-child(2) > a:hover {
+  background-color: #f2ecff;
+  color: #302c3a;
 }
 @media (min-width: 800px) {
   .main-section > .page-browse > div:nth-child(2) > a {
     grid-column: span 1;
   }
-}
-.main-section > .page-browse > div:nth-child(2) > a:hover {
-  background-color: #f2ecff;
-  color: #302c3a;
 }
 .main-section > .special-card-container > div:nth-child(1) {
   display: flex;
@@ -4855,6 +4856,139 @@ section.admin-container > div.sidebar-overlay {
 section.admin-container > div.sidebar-overlay.display {
   opacity: 1;
   z-index: 10;
+}
+
+section.enter-container {
+  width: 100%;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+section.enter-container > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+@media (min-width: 800px) {
+  section.enter-container > div {
+    flex-direction: row;
+    gap: 10rem;
+  }
+}
+section.enter-container > div > div.user-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 1em;
+  min-width: 18rem;
+}
+@media (min-width: 800px) {
+  section.enter-container > div > div.user-form {
+    min-width: 20rem;
+  }
+}
+section.enter-container > div > div.user-form > h2 {
+  font-size: 3rem;
+  font-weight: 100;
+}
+section.enter-container > div > div.user-form > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+}
+section.enter-container > div > div.user-form > form > input {
+  padding: 0.6em;
+  font-size: 1em;
+  width: 100%;
+}
+section.enter-container > div > div.user-form > form > button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  height: 3em;
+  border-radius: 5px;
+  border: solid 1px black;
+  background-color: #8b0023;
+  color: #c6d4df;
+  transition: 0.3s;
+  cursor: pointer;
+  align-self: stretch;
+}
+section.enter-container > div > div.user-form > form > button:hover {
+  background-color: #f2ecff;
+  color: #302c3a;
+}
+section.enter-container > div > div.user-form > a {
+  font-size: 0.8em;
+  text-decoration: underline;
+  cursor: pointer;
+  align-self: flex-start;
+}
+section.enter-container > div > div.user-form > a:hover {
+  filter: brightness(70%);
+}
+section.enter-container > div > div.social-sign-up {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.4rem;
+}
+@media (min-width: 800px) {
+  section.enter-container > div > div.social-sign-up::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    bottom: 0;
+    left: -30%;
+    width: 1px;
+    background: #9b0027;
+  }
+}
+section.enter-container > div > div.social-sign-up > p {
+  font-size: 1.5rem;
+}
+section.enter-container > div > div.social-sign-up > button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  height: 3em;
+  border-radius: 5px;
+  border: solid 1px black;
+  background-color: #8b0023;
+  color: #c6d4df;
+  transition: 0.3s;
+  cursor: pointer;
+  text-align: left;
+  width: 18rem;
+}
+section.enter-container > div > div.social-sign-up > button:hover {
+  background-color: #f2ecff;
+  color: #302c3a;
+}
+section.enter-container > div > div.social-sign-up > button > span {
+  align-self: center;
+  margin-left: 4em;
+}
+section.enter-container > div > div.social-sign-up > button > svg {
+  font-size: 1.6em;
+  margin-left: auto;
+  margin-right: 1em;
 }
 
 /*# sourceMappingURL=index.css.map */

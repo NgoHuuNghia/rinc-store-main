@@ -1,0 +1,82 @@
+@use '../abstracts' as *
+@use "../../../node_modules/breakpoint-slicer" as bs
+
+// section.user-form-container
+//     height: 50vh
+//     width: 100%
+//     @include flex($justify: center, $gap: 1em)
+//     >button
+//         height: 5em
+//         padding: 1em
+//         @include flex()
+//     >div.username-form
+//         background: $bgc-subtle
+//         padding: 1em
+//         @include flex($direction: column ,$gap: 1em, $align: flex-start)
+//         .success
+//             font-weight: bold
+//             color: $fc-meta
+//         .danger
+//             font-weight: bold
+//             color: $fc-admin-delete
+
+section.enter-container
+    width: 100%
+    min-height: 70vh
+    @include flex($justify: center)
+    >div
+        @include flex($direction: column, $align: center, $gap: 2rem)
+        @include bs.from(l)
+            flex-direction: row
+            gap: 10rem
+        >div.user-form
+            @include flex($direction: column, $align: stretch, $gap: 1em)
+            min-width: 18rem
+            @include bs.from(l)
+                min-width: 20rem
+            >h2
+                font-size: 3rem
+                font-weight: 100
+            >form
+                @include flex($direction: column, $gap: 1em)
+                >input
+                    padding: .6em
+                    font-size: 1em
+                    width: 100%
+                >button
+                    @include button
+                    align-self: stretch
+            >a
+                font-size: .8em
+                text-decoration: underline
+                cursor: pointer
+                align-self: flex-start
+                &:hover
+                    filter: brightness(70%)
+
+        >div.social-sign-up
+            position: relative
+            @include flex($direction: column, $gap: .4rem)
+            @include bs.from(l)
+                &::after
+                    position: absolute
+                    content: ''
+                    top: 0
+                    bottom: 0
+                    left: -30%
+                    width: 1px
+                    background: $fc-subsidiary
+
+            >p
+                font-size: 1.5rem
+            >button
+                @include button
+                text-align: left
+                width: 18rem
+                >span
+                    align-self: center
+                    margin-left: 4em
+                >svg
+                    font-size: 1.6em
+                    margin-left: auto
+                    margin-right: 1em

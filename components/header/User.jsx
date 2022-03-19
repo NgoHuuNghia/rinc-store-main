@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 
 const User = () => {
     const { user, username } = useContext(UserContext)
+    const router = useRouter()
     const [submenu, setSubmenu] = useState(false)
 
     return (
@@ -18,49 +19,24 @@ const User = () => {
             <div className={`user-sublinks ${submenu && 'display'}`}>
                 <ul>
                     <li>
-                        <a><p>{user?.displayName || `not login`}</p></a>
+                        <a style={{fontWeight: "bold"}}><p>{user?.displayName || `not login`}</p></a>
                     </li>
-                    <SignInButton />
-                    <SignOutButton />
+                    {!user && (
+                        <li onClick={() => router.push('/enter')}>
+                            <a><p>Sign in</p><FcGoogle /></a>
+                        </li>
+                    )}
+                    {/*//! temp until make admin role */}
+                    {!user && (
+                        <li onClick={() => router.push('/admin')}>
+                            <a><p>Admin</p></a>
+                        </li>
+                    )}
+                    {user && <SignOutButton />}
                 </ul>
             </div>
         </div>
     );
-}
-
-function SignInButton() {
-    const router = useRouter()
-    const { username } = useContext(UserContext)
-
-    const signInWithGoogle = async () => {
-        try {
-            await signInWithPopup(auth, googleAuthProvider)
-
-            //! link if username is not created yet
-            
-            if(username != null){
-                toast.success('Log in successful!, welcome back 👋')
-            }
-            if(!username == null){
-                toast.success('Sign up successful!, now choose a username')
-                router.push(`/admin`);
-            }
-        } catch (error) {
-            console.error(error);
-            alert(error.message);
-        }
-    }
-
-    return (
-        <>
-            <li onClick={signInWithGoogle}>
-                <a><p>google</p><FcGoogle /></a>
-            </li>
-            {/* <button onClick={() => signInAnonymously(auth)}>
-                Sign in Anonymously
-            </button> */}
-        </>
-    )
 }
 
 function SignOutButton() {

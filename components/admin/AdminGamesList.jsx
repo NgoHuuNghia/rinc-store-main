@@ -4,7 +4,8 @@ import {RiEditBoxFill, RiDeleteBack2Fill} from 'react-icons/ri'
 import toast from 'react-hot-toast'
 import Link from 'next/link'
 
-import { firestore, gameDataToJSON } from '@lib/firebase'
+import { firestore } from '@lib/firebase'
+import { gameDateToJsonLocal } from '@lib/commonFunctions'
 
 const AdminGamesList = ({game}) => {
     const { title, slug, ratings, reviewsCount, releasedAt } = game
@@ -13,8 +14,7 @@ const AdminGamesList = ({game}) => {
         <>
             <li>{title}</li>
             <li>{slug}</li>
-            {/* <li>{releasedAt.toISOString()}</li> */}
-            <li>{releasedAt.toDate().toLocaleString()}</li>
+            <li>{releasedAt}</li>
             <li>{ratings}</li>
             <li>{reviewsCount}</li>
             <Link passHref href={`/admin/${slug}`}><li className='edit'><RiEditBoxFill /></li></Link>

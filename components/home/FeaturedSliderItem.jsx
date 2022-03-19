@@ -2,16 +2,15 @@ import { useRef, useEffect } from "react"
 import Link from "next/link"
 import {FaPlaystation} from 'react-icons/fa'
 
-import { toTop } from "@lib/commonFunctions"
+import { toTop, sliderControlClass } from "@lib/commonFunctions"
 import Image from "next/image"
 import { Timestamp } from "firebase/firestore"
-import { useSliderControlClass } from "@lib/hooks"
 
 const FeaturedSliderItem = ({
     mainImageUrl, title, slug, secondaryImageUrls,
     index, sliderIndex, length, getHeight,
 }) => {
-    const position = useSliderControlClass(index, sliderIndex, length)
+    const position = sliderControlClass(index, sliderIndex, length)
 
     const slide = useRef(null)
     {index === 0 && useEffect(() => getHeight(slide.current.getBoundingClientRect().height), [])}

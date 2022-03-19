@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { query, doc, setDoc, orderBy, limit, collection, serverTimestamp } from 'firebase/firestore';
 import {FaFilter, FaSearch, FaChevronLeft, FaChevronRight} from 'react-icons/fa'
-import { useCollectionData } from 'react-firebase-hooks/firestore'
+import { useCollection, useCollectionData } from 'react-firebase-hooks/firestore'
 import { useRouter } from 'next/router'
 import kebabCase from 'lodash.kebabcase'
 import toast from 'react-hot-toast'
@@ -10,6 +10,7 @@ import AdminGamesList from '@components/admin/AdminGamesList'
 import { auth, firestore, googleAuthProvider } from '@lib/firebase';
 import { useSidebar } from '@lib/adminContext'
 import { signInWithPopup, signOut } from 'firebase/auth';
+import { gameDateToJsonLocal } from '@lib/commonFunctions';
 // import Loader from '@components/Loader'
 // import PostFeed from '@components/PostFeed';
 // import Metatags from '@components/Metatags';
@@ -112,8 +113,10 @@ function GameListTable() {
     const LIMIT = 15
 
     const ref = collection(firestore, 'games');
-    const postsQuery = query(ref, orderBy('releasedAt'), limit(LIMIT))
-    const [games, loading] = useCollectionData(postsQuery) //? make a loader here another time
+    const gamesQuery = query(ref, orderBy('releasedAt'), limit(LIMIT))
+    const [querySnapshot, loading] = useCollection(gamesQuery) //? make a loader here another time
+
+    const gamesData = querySnapshot?.docs.map((doc) => gameDateToJsonLocal(doc));
     
     return (
         <ul className='table'>
@@ -124,7 +127,7 @@ function GameListTable() {
             <li className='table-head'>reviews</li>
             <li className='table-head edit'>Edit</li>
             <li className='table-head delete'>Delete</li>
-            {games && (games.map(game => <AdminGamesList key={game.slug} game={game} />))}
+            {gamesData && (gamesData.map(game => <AdminGamesList key={game.slug} game={game} />))}
         </ul>
     )
 }
