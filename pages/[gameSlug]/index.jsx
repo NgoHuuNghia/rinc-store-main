@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import parse from 'html-react-parser'
 import {FaPlaystation, FaXbox} from 'react-icons/fa'
 
-import { gameDateToJsonLocal } from "@lib/commonFunctions";
+import { gameDateToJsonLocal } from "@lib/firebase";
 import { firestore } from "@lib/firebase";
-import { collection, doc, getDoc, getDocs, limit, query } from "firebase/firestore";
-import { useWindowDimensions } from '@lib/hooks'
+import { addDoc, collection, doc, getDoc, getDocs, limit, orderBy, query } from "firebase/firestore";
+import {useMediaQuery} from 'react-responsive'
 import MoreLikeGenres from '@components/Detail/MoreLikeGenres'
 import MoreLikeSeries from '@components/Detail/MoreLikeSeries'
 import DetailBackgrounds from '@components/Detail/DetailBackgrounds'
@@ -13,11 +13,16 @@ import ConsoleIcons from '@components/ConsoleIcons'
 import DetailAgeRating from '@components/Detail/DetailAgeRating'
 import DetailChartContainerBar from '@components/Detail/DetailChartContainerBar'
 
-import ReturnRatingIcon from '@components/ReturnRatingIcon'
+// import ReturnRatingIcon from '@components/ReturnRatingIcon'
 import storeIcons from '@public/icons/storeIcons'
 
 import {FaChevronRight, FaWindows, FaFlag, FaShareAlt, FaStopCircle} from 'react-icons/fa'
 import {AiOutlineStop} from 'react-icons/ai'
+import { useWindowSize } from '@lib/hooks';
+import Image from 'next/image';
+import { useCollection } from 'react-firebase-hooks/firestore';
+import { UserContext } from '@lib/globalContext';
+import { useRouter } from 'next/router';
 
 export async function getStaticProps({ params }) { //? params instead of query like ssr
     const { gameSlug } = params
@@ -62,63 +67,118 @@ export async function getStaticPaths() {
     };
 }
 
-// const index = ({game}) => {
-//     console.log(game)
+// const index = ({
+//     game: {title, mainImageUrl, secondaryImageUrls, releasedAt, updatedAt, metacritic}
+// }) => {
+//     //! test
+//     console.log(mainImageUrl)
+    
+//     const fromL = useMediaQuery({ minWidth: 800})
+//     const fromS = useMediaQuery({ minWidth: 400})
 
 //     return (
 //         <div>
-//             {game.title}
+//             {fromS && "ass"}
+//             {fromL && title}
 //         </div>
 //     );
 // }
 
 // export default index;
 
-const GameDetail = ({
-    title, mainImageUrl, secondaryImageUrls, releasedAt, updatedAt, metacritic
-}) => {
+//$ source
 
-    const [ readMore, setReadMore ] = useState(false)
+const GameDetail = ({ game }) => {
+    const {title, mainImageUrl, secondaryImageUrls, releasedAt, updatedAt, metacritic, description, basePrice} = game
+    const { user } = useContext(UserContext)
+    const router = useRouter()
+    //!         const {
+    //!             name, description, metacritic, released, updated, background_image, background_image_additional, ratings,
+    //!             platforms, parent_platforms, stores, developers, genres, tags, publishers, esrb_rating
+    //!         } = detail
+    // const {windowWidth} = useWindowSize()
+    // const fromXl = useMediaQuery({ minWidth: 1000})
+    // const detailContainer = useRef(null)
     
-//!         const {
-//!             name, description, metacritic, released, updated, background_image, background_image_additional, ratings,
-//!             platforms, parent_platforms, stores, developers, genres, tags, publishers, esrb_rating
-//!         } = detail
-    const { windowWidth } = useWindowDimensions()
-        
-    let readMoreDecider = () => null
-    if(detailContainer.current !== null){ //! simplify this with useEffect like in searchesComponents.jxs when u had time
-        let primaryHeight = detailContainer.current.children[0].children[1].getBoundingClientRect().height
-        let secondaryHeight = detailContainer.current.children[1].children[0].getBoundingClientRect().height
-        let primaryMask = detailContainer.current.children[0]
-        let primaryReadMore = detailContainer.current.children[2]
-        
-        if(windowWidth < 1000) detailContainer.current.style.height = ``
-        if(windowWidth >= 1000){
-            if(!readMore) {
-                detailContainer.current.style.height = `${secondaryHeight}px`
-                primaryMask.style.maskImage = (primaryHeight > secondaryHeight) ? `linear-gradient(to top, rgba(0, 0, 0, 0) 0%, #151515 30%)`: 'none'
-                primaryReadMore.style.color = 'white'
-            }
-            if(readMore) {
-                detailContainer.current.style.height = (primaryHeight + 30) + 'px'
-                primaryReadMore.style.color = '#9b0027'
-                primaryMask.style.maskImage = `none`
-            }
-        }
+    // const [ readMore, setReadMore ] = useState(false)
+    // const [primaryHeight, setPrimaryHeight] = useState(0)
+    // const [secondaryHeight, setSecondaryHeight] = useState(0)
+    // //? let primaryHeight = 0
+    // //? let secondaryHeight = 0
+    // let primaryContainer = null
+    // let primaryMask = null
+    // let primaryReadMore = null
 
-        readMoreDecider = () => {
-            if(primaryHeight > secondaryHeight && windowWidth >= 1000){
-                if(!readMore) return 'Read more...'
-                else return 'Collapse...'
-            }
-            else primaryMask.style.maskImage = `none`
+    // useEffect(() => {
+    //     setPrimaryHeight(detailContainer.current.children[0].clientHeight)
+    //     setSecondaryHeight(detailContainer.current.children[1].clientHeight)
+    //     //? primaryHeight = detailContainer.current.children[0].clientHeight
+    //     //? secondaryHeight = detailContainer.current.children[1].clientHeight
+    //     primaryContainer = detailContainer.current.children[0]
+    //     primaryMask = detailContainer.current.children[0]
+    //     primaryReadMore = detailContainer.current.children[2]
+
+    //     detailContainer.current.style.height = (primaryHeight > secondaryHeight ? `${secondaryHeight}px` : '')
+    //     primaryContainer.style.height = (primaryHeight > secondaryHeight ? `${secondaryHeight}px` : '')
+    //     primaryMask.style.maskImage = (primaryHeight > secondaryHeight ? `linear-gradient(to top, rgba(0, 0, 0, 0) 0%, #151515 30%)` : 'none')
+    //     primaryReadMore.style.color = 'white'
+    // }, [])
+    // useEffect(() => {
+    //     primaryContainer = detailContainer.current.children[0]
+    //     primaryMask = detailContainer.current.children[0]
+    //     primaryReadMore = detailContainer.current.children[2]
+
+    //     if(!readMore) {
+    //         detailContainer.current.style.height = (primaryHeight > secondaryHeight ? `${secondaryHeight}px` : '')
+    //         primaryContainer.style.height = (primaryHeight > secondaryHeight ? `${secondaryHeight}px` : '')
+    //         primaryMask.style.maskImage = (primaryHeight > secondaryHeight ? `linear-gradient(to top, rgba(0, 0, 0, 0) 0%, #151515 30%)` : 'none')
+    //         primaryReadMore.style.color = 'white'
+    //     }
+    //     else {
+    //         detailContainer.current.style.height = ''
+    //         primaryContainer.style.height = ''
+    //         primaryReadMore.style.color = '#9b0027'
+    //         primaryMask.style.maskImage = `none`
+    //     }
+    // }, [readMore])
+    // useEffect(() => {
+    //     primaryContainer = detailContainer.current.children[0]
+    //     primaryMask = detailContainer.current.children[0]
+    //     primaryReadMore = detailContainer.current.children[2]
+
+    //     if(!fromXl) {
+    //         setReadMore(false)
+    //         detailContainer.current.style.height = ``
+    //         primaryContainer.style.height = ``
+    //         primaryMask.style.maskImage = 'none'
+    //     } else {
+    //         setReadMore(false)
+    //         detailContainer.current.style.height = (primaryHeight > secondaryHeight ? `${secondaryHeight}px` : '')
+    //         primaryContainer.style.height = (primaryHeight > secondaryHeight ? `${secondaryHeight}px` : '')
+    //         primaryMask.style.maskImage = (primaryHeight > secondaryHeight ? `linear-gradient(to top, rgba(0, 0, 0, 0) 0%, #151515 30%)` : 'none')
+    //         primaryReadMore.style.color = 'white'
+    //     }
+    // }, [windowWidth])
+    const addToCart = async(title, slug, basePrice, mainImageUrl) => {
+        const { user } = useContext(UserContext)
+    
+        const cartRef = collection(firestore, 'users', user.uid, 'shoppingCart');
+        const data = {
+            title: title,
+            slug: slug,
+            basePrice: basePrice,
+            mainImageUrl: mainImageUrl,
         }
+    
+        await addDoc(cartRef, data);
     }
 
     return (
         <div className='detail-container'>
-            <DetailBackgrounds mainImageUrl={mainImageUrl}/>
+            <DetailBackgrounds 
+                firstBackgroundUrl={secondaryImageUrls[0]}
+                secondBackgroundUrl={secondaryImageUrls[secondaryImageUrls.length - 1]}
+            />
             <div className='breadcrumbs'>
                 <div>
                     {/*//$ <a href='/'>{genres[0].name}</a>
@@ -141,30 +201,36 @@ const GameDetail = ({
                 </div>
             </div>
             {/*//$ <div className='detail' ref={detailContainer}> */}
-            <div className='detail' ref={detailContainer}>
+            <div className='detail'>
                 <div className='detail-primary'>
                     <section className='trailer-mobile'>
                         <div className='head'>
-                            <div className='head-release'>{released}</div>
+                            <div className='head-release'>{releasedAt}</div>
                             {/*//$ <ConsoleIcons parent_platforms={parent_platforms}/> */}
                             <div className='consoles'>
                                 <FaPlaystation />
                                 <FaXbox />
                             </div>
                         </div>
-                        <a href='/' className="trailer-main"><img src={mainImageUrl} alt="" /></a>
+                        <a className="trailer-main">
+                            <Image src={mainImageUrl ? mainImageUrl : '/nope-not-here.png'} width={800} height={400} quality='50' layout='responsive'/>
+                        </a>
                         <div className='trailer-slider'>{/* map here 8 times */}
                             {secondaryImageUrls
                                 .slice(0, 4)
                                 .map((item, index) => {
-                                    return <a href="/" key={index}><img src={item} alt={title} /></a>
+                                    return (
+                                        <a key={index}>
+                                            <Image src={item ? item : '/nope-not-here.png'} width={800} height={400} quality='1' layout='responsive'/>
+                                        </a>
+                                    )
                                 })
                             }
                         </div>
                     </section>
                     <section className='glance'> {/* ADD AGE RATING AND WEBSITE */}
                         <div className='head'>
-                            <div className='head-release'>{released}</div>
+                            <div className='head-release'>{releasedAt}</div>
                             {/*//$ <ConsoleIcons parent_platforms={parent_platforms}/> */}
                             <div className='consoles'>
                                 <FaPlaystation />
@@ -204,7 +270,10 @@ const GameDetail = ({
                                         {/*//$ <h4>{ratings[0].title}</h4>
                                         <ReturnRatingIcon title={ratings[0].title} chart={false}/> */}
                                         <h4>{`rating-title`}</h4>
-                                        <img src={`@public/icons/ratings/meh`} alt={title}/>
+                                        {/*//$ <div>
+                                            <Image src={item ? item : '/nope-not-here.png'} width={800} height={400} quality='1' layout='responsive'/>
+                                        </div> */}
+                                        <img src={`@public/icons/ratings/meh`} alt={`rating-title`}/>
                                     </div>
                                     {/*//$ <div><a href="/">{ratings[0].count} Ratings</a></div>*/}
                                     <div><a href="/">{`rating-count`} Ratings</a></div>{/* //!  link to rating part of page */}
@@ -228,7 +297,7 @@ const GameDetail = ({
                         </div>
                         <div className='glance-about'>
                             <h4>About</h4>
-                            {parse(description)}
+                            {parse(description || 'missing description')}
                         </div>
                         <div className="glance-general">
                             <div className="glance-age">
@@ -342,7 +411,7 @@ const GameDetail = ({
                                     <><a href='/' className="trailer-main"><img src={secondaryImageUrls[0]} alt="" /></a>
                                     <div className='trailer-slider'>{/* map here 8 times */}
                                         {secondaryImageUrls
-                                            .slice(1, 5)
+                                            .slice(0, 4)
                                             .map((image, index) => {
                                                 return <a href="/" key={index}><img src={image} alt={title} /></a>
                                             })
@@ -396,12 +465,19 @@ const GameDetail = ({
                                     </div>
                                     <div>
                                         <div>
-                                            <h5>Buy {title}</h5>
+                                            <h5>Buy {title ? title : "where the title..."}</h5>
                                             <FaWindows />
                                         </div>
                                         <div >
-                                            <p>800.000₫</p>
-                                            <a href="/">Add to cart</a>
+                                            <p>{basePrice ? "$" + basePrice : "no pricing yet..."}</p>
+                                            {/*//! also add case if game is already own or in cart */}
+                                            {user 
+                                                ? (
+                                                    <button onClick={addToCart()}>add to cart</button>
+                                                ) : (
+                                                    <button onClick={() => router.push(`/enter`)}>Log in to purchase</button>
+                                                )
+                                            }
                                         </div>
                                     </div>
                                     {/*//! <div>
@@ -462,16 +538,40 @@ const GameDetail = ({
                     </div>
                 </div>
 
-                <p className='read-more' onClick={() => setReadMore(!readMore)}>{readMoreDecider()}</p>
+                {/* <p className='read-more' onClick={() => setReadMore(!readMore)}>
+                    {fromXl
+                        ? !readMore
+                            ? 'Read more...'
+                            : 'Collapse...'
+                        : ''
+                    }
+                </p> */}
             </div>
-            <div className='recommendations'>
-                <section className="recommended">
-                    {/*//$ {gameSeries.length >= 1
-                        ? <MoreLikeSeries gameSeries={gameSeries}/>
-                        : null}
-                    <MoreLikeGenres genres={genres}/> */}
-                </section>
-            </div>
+            <Recommendation />
+        </div>
+    )
+}
+
+function Recommendation() {
+    //! temp get around with the recommendation
+    const LIMIT = 3
+    const ref = collection(firestore, 'games');
+    const gamesQuery = query(ref, orderBy('releasedAt'), limit(LIMIT))
+    const [querySnapshot, loading] = useCollection(gamesQuery) //? make a loader here another time
+
+    const gamesData = querySnapshot?.docs.map((doc) => gameDateToJsonLocal(doc));
+
+    return (
+        <div className='recommendations'>
+            <section className="recommended">
+                {/*//$ {gameSeries.length >= 1
+                    ? <MoreLikeSeries gameSeries={gameSeries}/>
+                    : null
+                }
+                <MoreLikeGenres genres={genres}/> */}
+                <MoreLikeSeries gamesData={gamesData}/>
+                <MoreLikeGenres gamesData={gamesData}/>
+            </section>
         </div>
     )
 }

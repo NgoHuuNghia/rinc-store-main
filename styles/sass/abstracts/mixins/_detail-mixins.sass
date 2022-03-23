@@ -36,18 +36,23 @@
                     @include flex($direction: column,$align: flex-start, $gap: .5em)
                     @include gradient($first-percent: 75%, $second-percent: 100%)
                     box-shadow: $bs-card-lg
+                    transition: $trs-instant
+                    &:hover
+                        box-shadow: $bs-card-light
                     >div:first-child
                         >div
-                            max-height: 175px
-                            width: auto
+                            height: auto
                             overflow: hidden
                             margin-bottom: .25em
-                            >img
-                                object-fit: fill
-                                height: auto
-                                max-width: 100%
-                                display: block
-                                box-shadow: $bs-card-img
+                            width: 40vw
+                            @include bs.from(m)
+                                width: 25vw
+                            // >img
+                            //     object-fit: fill
+                            //     height: auto
+                            //     max-width: 100%
+                            //     display: block
+                            //     box-shadow: $bs-card-img
                         >h4
                             color: $fc-tag
                             display: block
@@ -69,43 +74,6 @@
                         display: none
                         @include bs.from(m)
                             @include flex($direction: column,$align: flex-start, $gap: .25em)
-
-@mixin breadcrumbs
-    >div.breadcrumbs
-        position: relative
-        letter-spacing: .15em
-        margin: 1em 0
-        @include flex($justify: center)
-        flex-wrap: wrap
-        @include bs.to(s)
-            gap: .25em
-        @include bs.from(xl)
-            justify-content: flex-start
-        *
-            color: $fc-tag
-        >div
-            @include flex($gap: .1em)
-            white-space: nowrap
-            >a, >p
-                transition: .2s
-                text-transform: uppercase
-                font-size: .7em
-            >p
-                pointer-events: none
-            >a
-                &:hover, &:hover>span
-                    color: $fc-important
-            >span
-                font-size: 1.2em
-                pointer-events: none
-            &:last-child > p
-                @include active-breadcrumb
-        >svg
-            font-size: .8em
-            margin: 0 .1em
-        @include bs.from(xl)
-            width: 950px
-            margin: 1.5em auto
 
 @mixin head
     >div.head

@@ -113,12 +113,27 @@ header
                 align-self: stretch
                 order: 1
                 position: relative
-                >img
-                    height: 2.5em
-                    border-radius: 25px
-                    cursor: pointer
-                    &:hover
-                        filter: brightness(90%)
+                >div.avatar-container
+                    position: relative
+                    >img
+                        height: 2.5em
+                        border-radius: 25px
+                        cursor: pointer
+                        &:hover
+                            filter: brightness(90%)
+                    >div.cart-container
+                        position: absolute
+                        top: -5%
+                        right: -5%
+                        width: 18px
+                        height: 18px
+                        background: $bgc-discounted
+                        border-radius: 50%
+                        @include flex
+                        >svg
+                            transform: translateX(-1px)
+                            margin: auto
+                            font-size: .7rem
                 >div.user-sublinks
                     @include sublinks
                     top: 100%

@@ -19,9 +19,9 @@ function SecondaryImages({ secondaryImageUrls, slug}) {
         <div className='secondary'>
             <strong>Secondary images</strong>
             <div>
-                {secondaryImageUrls.slice(0,4).map((image) => {
+                {secondaryImageUrls.slice(0,4).map((image, index) => {
                     return (
-                        <div>
+                        <div key={index}>
                             <Image src={image} alt={slug}
                             width={850} height={500}/>
                         </div>

@@ -48,7 +48,7 @@ div.detail-container
         position: relative
         overflow: hidden
         transition: $trs-basic
-        @include flex($direction: column, $align: stretch, $gap: 1em)
+        @include flex($direction: column, $align: flex-start, $gap: 1em)
         @include bs.from(m)
             width: 575px
             margin: 0 auto
@@ -400,12 +400,14 @@ div.detail-container
                                         display: inline-block
                                     >p
                                         padding: 0 .5em
-                                    >a
-                                        padding: .5em
+                                    >button
+                                        padding: .6em
+                                        font-size: .9em
                                         background-color: $bgc-discounted
                                         color: $fc-discounted
                                         border: 4px solid $bgc-important
                                         transition: .2s
+                                        cursor: pointer
                                         &:hover
                                             background-color: $bgc-hilight-soft
                                             color: $fc-hilight

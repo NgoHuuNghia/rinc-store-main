@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { signInWithPopup, signOut } from 'firebase/auth';
-import {MdLogin, MdLogout} from 'react-icons/md'
+import {FaShoppingCart} from 'react-icons/fa'
+import {MdLogout} from 'react-icons/md'
 import {FcGoogle} from 'react-icons/fc'
 
 import { auth, googleAuthProvider } from '@lib/firebase';
@@ -15,24 +16,38 @@ const User = () => {
 
     return (
         <div className={`user-container`} onMouseOver={() => setSubmenu(true)} onMouseLeave={() => setSubmenu(false)}>
-            <img src={user?.photoURL || `icons/hacker.png`} alt="avatar" />
+            <div className='avatar-container'>
+                <img src={user?.photoURL || `icons/hacker.png`} alt="avatar" />
+                {user && (
+                    <div className='cart-container'>
+                        <FaShoppingCart />
+                    </div>
+                )}
+            </div>
             <div className={`user-sublinks ${submenu && 'display'}`}>
                 <ul>
                     <li>
                         <a style={{fontWeight: "bold"}}><p>{user?.displayName || `not login`}</p></a>
                     </li>
-                    {!user && (
+                    {!user 
+                        ? (
                         <li onClick={() => router.push('/enter')}>
                             <a><p>Sign in</p><FcGoogle /></a>
                         </li>
-                    )}
-                    {/*//! temp until make admin role */}
-                    {!user && (
-                        <li onClick={() => router.push('/admin')}>
-                            <a><p>Admin</p></a>
-                        </li>
-                    )}
-                    {user && <SignOutButton />}
+                        )
+                        : (
+                            <>
+                                <li onClick={() => router.push('/admin')}>
+                                    <a><p>Admin</p></a>
+                                </li>
+                                <SignOutButton />
+                                {/*//! cart checkout */}
+                                <li onClick={() => router.push(`/user/${username}/checkout`)}>
+                                    <a><p>{`Checkout: ${`9`} items`}</p></a>
+                                </li>
+                            </>
+                        )
+                    }
                 </ul>
             </div>
         </div>

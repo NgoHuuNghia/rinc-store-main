@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
 import { query, doc, setDoc, orderBy, limit, collection, serverTimestamp } from 'firebase/firestore';
 import {FaFilter, FaSearch, FaChevronLeft, FaChevronRight} from 'react-icons/fa'
-import { useCollection, useCollectionData } from 'react-firebase-hooks/firestore'
+import { useCollection } from 'react-firebase-hooks/firestore'
 import { useRouter } from 'next/router'
 import kebabCase from 'lodash.kebabcase'
 import toast from 'react-hot-toast'
 
 import AdminGamesList from '@components/admin/AdminGamesList'
-import { auth, firestore, googleAuthProvider } from '@lib/firebase';
+import { firestore } from '@lib/firebase';
 import { useSidebar } from '@lib/adminContext'
-import { signInWithPopup, signOut } from 'firebase/auth';
-import { gameDateToJsonLocal } from '@lib/commonFunctions';
+import { gameDateToJsonLocal } from '@lib/firebase';
 // import Loader from '@components/Loader'
 // import PostFeed from '@components/PostFeed';
 // import Metatags from '@components/Metatags';

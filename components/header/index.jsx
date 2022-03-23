@@ -7,10 +7,13 @@ import { toTop } from '@lib/commonFunctions'
 import { useGlobalContext } from '@lib/globalContext'
 import Sublink from '@components/header/Sublink'
 import User from './User'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 //asss
 const Header = () => {
     const { overlay, setOverlay } = useGlobalContext()
+    const router = useRouter()
 
     // const router = useRouter()
     // console.log(router)
@@ -71,12 +74,20 @@ const Header = () => {
     //todo     }
     //todo }
 
+    console.log(router.query)
+
     return (
         // <header className={`header ${detailHeader()}`}
-        <header className="header">
+        <header 
+            className={
+                `header ${router.query.hasOwnProperty('gameSlug') && 'transparent'}`
+            }
+        >
             <nav>
                 <div className='logo-container'>
-                    <a href='/' onClick={() => toTop()}><img src="/logo/rinc-white-v2.png" alt="" /></a>
+                    <Link passHref href={'/'}>
+                        <a onClick={() => toTop()}><img src="/logo/rinc-white-v2.png" alt="" /></a>
+                    </Link>
                 </div>
                 {/*//todo <form onSubmit={handleSubmit}> */}
                 <form>

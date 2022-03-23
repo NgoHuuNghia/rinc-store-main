@@ -1,0 +1,121 @@
+@use '../abstracts' as *
+@use '../abstracts/mixins/_checkout-mixins' as *
+@use "../../../node_modules/breakpoint-slicer" as bs
+
+div.checkout-container
+    @include flex($direction: column, $align: stretch)
+
+    @include breadcrumbs
+    
+    >div.cart-container
+        position: relative
+        margin: 0 .5rem
+        position: relative
+        overflow: hidden
+        transition: $trs-basic
+        min-height: 70vh
+        @include flex($direction: column, $justify: flex-start, $align: stretch, $gap: 1em)
+        @include bs.from(m)
+            margin: 0 2rem
+        @include bs.from(xl)
+            @include desktop-container
+            gap: 1em
+        >div.cart-item-container
+            padding: 1em
+            background: $bgc-subsidiary
+            box-shadow: $bs-card-lg
+            >a.cart-item
+                @include flex($justify: flex-start)
+                background-color: $bgc-subsidiary-subtle
+                margin-bottom: .5em
+                transition: $trs-basic
+                box-shadow: $bs-card-md
+                >img
+                    @include card-img
+                    box-shadow: unset
+                    height: auto
+                    width: 120px
+                >div
+                    @include flex
+                    flex-grow: 10
+                    padding: .3em .5em
+                    >div:nth-child(1)
+                        @include flex($direction: column, $align: flex-start, $gap: .3em)
+                        flex-wrap: wrap
+                        color: black
+                        width: 75%
+                        *
+                            display: inline-block
+                        >h4
+                            width: 100%
+                            color: $fc-default
+                        >i
+                            width: 100%
+                            color: $fc-subsidiary-unimportant
+                        >small
+                            white-space: nowrap
+                            overflow: hidden
+                            width: 100%
+                            font-size: .8em
+                            color: $fc-subsidiary-unimportant
+                    >div:nth-child(2)
+                        @include flex( $direction: column, $align: flex-end)
+                        width: 25%
+                        >div:nth-child(1)
+                            background-color: $bgc-discounted
+                            display: inline
+                            padding: .1em .3em
+                            color: $fc-discounted
+                        >div:nth-child(2)
+                            @include flex($direction: column, $align: flex-end )
+                            >p:nth-child(1)
+                                text-decoration: line-through
+                                color: $fc-subsidiary-unimportant
+                                font-size: .7em
+                            >p:nth-child(2)
+                                color: $fc-default
+                                font-size: .8em
+                // &.active
+                //     background-color: $bgc-subsidiary-hilight
+                //     h4
+                //         color: $fc-important !important
+                //     i, small
+                //         color: $fc-default !important
+                &:last-child
+                    margin: 0
+        
+        >div.cart-action-container
+            padding: 1em
+            box-shadow: $bs-card-md
+            @include gradient
+            @include flex($direction: column, $align: stretch, $gap: .5em)
+            @include bs.from(l)
+                @include flex($direction: row, $align: flex-start, $gap: 1em)
+            >div.cart-payment
+                order: 2
+                @include bs.from(l)
+                    order: 1
+                flex: 2
+                padding: 1em
+                box-shadow: $bs-card-md
+            >div.cart-calculator
+                order: 1
+                @include bs.from(l)
+                    order: 2
+                flex: 1
+                padding: 1em
+                >ul.table
+                    @include grid($columns: 50% 50%)
+                    overflow-x: auto
+                    white-space: nowrap
+                    >li
+                        @include flex()
+                        padding: .5em 1em
+                        border-top: .5px solid $bgc-hilight-soft
+                        &.title
+                            font-size: .9em
+                            font-weight: 200
+                        &.number
+                            font-weight: bold
+                        >svg
+                            font-size: 1.5em

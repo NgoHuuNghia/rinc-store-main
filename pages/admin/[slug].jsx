@@ -18,7 +18,6 @@ import { SidebarProvider } from '@lib/adminContext'
 import { firestore } from '@lib/firebase'
 import GameMainImage from '@components/admin/GameMainImage'
 import UploadSecondaryImages from '@components/admin/UploadSecondaryImages'
-
 function AdminGameEdit() {
     return (
         <GameManager />

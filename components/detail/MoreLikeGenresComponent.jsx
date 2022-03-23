@@ -1,22 +1,25 @@
-import React from 'react'
+import { toTop } from '@lib/commonFunctions'
+import Image from 'next/image'
 import Link from 'next/link'
-// import { useGlobalContext } from '../../context'
+import React from 'react'
 
-const MoreLikeGenresComponent = ({ name, id, background_image }) => {
-    const {ToTop} = useGlobalContext()
+const MoreLikeGenresComponent = ({ title, slug, mainImageUrl, basePrice }) => {
 
     return (
-        <Link passHref href={`/Detail/${id}`} onClick={() => ToTop()}>
-            <div>
+        <Link passHref href={`/${slug}`} onClick={() => toTop()}>
+            <a>
                 <div>
-                    <img src={background_image} alt={name} />
+                    <div>
+                        {/* <img src={background_image} alt={name} /> */}
+                        <Image src={mainImageUrl ? mainImageUrl : '/nope-not-here.png'} alt={title} width={800} height={450} quality='50' layout='responsive'/>
+                    </div>
+                    <h4>{title}</h4>
                 </div>
-                <h4>{name}</h4>
-            </div>
-            <div>
-                <p>-70%</p>
-                <p>149.500₫</p>
-            </div>
+                <div>
+                    <p>-70%</p>
+                    <p>{basePrice ? basePrice + `$` : "no pricing yet..."}</p>
+                </div>
+            </a>
         </Link>
     )
 }

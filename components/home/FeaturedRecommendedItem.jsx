@@ -14,7 +14,7 @@ const FeaturedRecommendedItem = ({
     {index === 0 && useEffect(() => getHeight(slide.current.getBoundingClientRect().height), [])}
 
     return (
-        <Link passHref href={`/`} onClick={() => toTop()}>
+        <Link passHref href={`/${slug}`} onClick={() => toTop()}>
             <a className={position} ref={slide}>
                 <div className="top-review">
                     <div>

@@ -7,7 +7,8 @@ import TabViewer from '@components/home/TabViewer'
 
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { collection, getDocs, limit, orderBy, query, where } from 'firebase/firestore'
-import { firestore, postToJSON } from '@lib/firebase'
+import { firestore } from '@lib/firebase'
+import { gameDateToJsonLocal } from '@lib/firebase'
 //todo import { useGlobalContext } from '../context'
 
 //? HARD limit on the post
@@ -23,7 +24,7 @@ export async function getServerSideProps(){
         limit(LIMIT),
     )
     //$ SSR need the firebase's timestamp to be serialized as json to be return as prop object along with the rest of the data
-    const gamesDesc = (await getDocs(gamesDescQuery)).docs.map(postToJSON);
+    const gamesDesc = (await getDocs(gamesDescQuery)).docs.map((doc) => gameDateToJsonLocal(doc));
 
     return {
         props: { gamesDesc }, // will be passed to the page component as props
@@ -168,30 +169,4 @@ const Home = ({gamesDesc}) => {
     )
 }
 
-
-    function undefined({}) {
-      return (<>{
-    /*//$ <button className='previous' onClick={() => toggleIndex('decrease', sliderMain)}> */
-  }
-                    <button className='previous'>
-                        <FaChevronLeft />
-                    </button>
-                    {
-    /*//$ <button className="next" onClick={() => toggleIndex('increase', sliderMain)}> */
-  }
-                    <button className="next">
-                        <FaChevronRight />
-                    </button>
-                    <div className='slider'>
-                        {
-      /* map here 4 times */
-    }
-                        {
-      /*//$ {featuredListRecent.map((item, index) => {
-         //$ return <FeaturedSlider key={item.id} index={index} {...item} />
-      })} */
-    }
-                        <FeaturedSlider />
-                    </div></>);
-    }
-  export default Home
+export default Home

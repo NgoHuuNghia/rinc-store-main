@@ -16,7 +16,7 @@ const FeaturedSliderItem = ({
     {index === 0 && useEffect(() => getHeight(slide.current.getBoundingClientRect().height), [])}
 
     return (
-        <Link passHref href={`/`}>
+        <Link passHref href={`/${slug}`}>
             <a onClick={() => toTop()} className={position} ref={slide}>
                 <div className="main-image-container">
                     <Image src={mainImageUrl} alt={slug} width={800} height={500} quality='75' layout='responsive' objectPosition='center' objectFit="cover"/>

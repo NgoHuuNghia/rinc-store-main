@@ -1,5 +1,6 @@
 @use '../_fonts' as *
 @use '../varibles' as *
+@use '../../../../node_modules/breakpoint-slicer' as bs
 
 //?mixins
 // common
@@ -67,6 +68,9 @@
     &:hover
         background-color: $bgc-hilight
         color: $fc-hilight
+    &:disabled
+        filter: brightness(50%)
+        pointer-events: none
 
 @mixin animated-nav-bar
     #bars
@@ -121,7 +125,43 @@
                 -moz-transform: rotate(-135deg)
                 -o-transform: rotate(-135deg)
                 transform: rotate(-135deg)
-
+                
+@mixin breadcrumbs
+    >div.breadcrumbs
+        position: relative
+        letter-spacing: .15em
+        margin: 1em 0
+        @include flex($justify: center)
+        flex-wrap: wrap
+        @include bs.to(s)
+            gap: .25em
+        @include bs.from(xl)
+            justify-content: flex-start
+        *
+            color: $fc-tag
+        >div
+            @include flex($gap: .1em)
+            white-space: nowrap
+            >a, >p
+                transition: .2s
+                text-transform: uppercase
+                font-size: .7em
+            >p
+                pointer-events: none
+            >a
+                &:hover, &:hover>span
+                    color: $fc-important
+            >span
+                font-size: 1.2em
+                pointer-events: none
+            &:last-child > p
+                @include active-breadcrumb
+        >svg
+            font-size: .8em
+            margin: 0 .1em
+        @include bs.from(xl)
+            width: 950px
+            margin: 1.5em auto
 @mixin active-breadcrumb
     color: #d90037
     font-weight: 500

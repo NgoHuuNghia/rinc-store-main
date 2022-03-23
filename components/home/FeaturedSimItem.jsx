@@ -5,7 +5,7 @@ import { toTop } from "@lib/commonFunctions";
 
 const FeaturedSimItem = ({mainImageUrl, slug}) => {
     return (
-        <Link passHref href={`/`} onClick={() => toTop()} className='speical-card-btn'>
+        <Link passHref href={`/${slug}`} onClick={() => toTop()} className='speical-card-btn'>
             <a>
                 <div className="image-container">
                     <Image src={mainImageUrl} alt={slug} width={300} height={300} quality="25" layout="responsive" objectPosition='center' objectFit="cover"/>
