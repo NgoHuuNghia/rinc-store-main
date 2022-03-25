@@ -2,19 +2,17 @@ import { PayPalButtons } from "@paypal/react-paypal-js";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 
-const PaypalCheckoutButton = ({products}) => {
+const PaypalCheckoutButton = ({cartData}) => {
     const [paidFor, setPaidFor] = useState(false)
     const [error, setError] = useState(null)
-
-    // const sumWithInitial = array1.reduce(
-    //     (previousValue, currentValue) => previousValue + currentValue, 0
-    // );
+    
 
     const handleApprove = (orderId) => {
         //todo fulfill the order here with the backend
 
         //todo if respond is success
         setPaidFor(true)
+        setError(null)
         //todo refresh user's account or subscription status
 
         //todo if the response is an error
@@ -23,10 +21,10 @@ const PaypalCheckoutButton = ({products}) => {
 
     useEffect(() => {
         //todo message email
-        toast.success("Thank you for your purchase, your code will be sent to your email")
+        {paidFor && toast.success("Thank you for your purchase, your code will be sent to your email")}
     }, [paidFor])
     useEffect(() => {
-        toast.error(error)
+        {error && toast.error(error)}
     }, [error])
 
     return <PayPalButtons 
@@ -56,7 +54,7 @@ const PaypalCheckoutButton = ({products}) => {
                     {
                         description: 'ass',
                         amount: {
-                            value: products.reduce(
+                            value: cartData.reduce(
                                 (sum, cur) => sum += cur.basePrice, 0
                             )
                         }

@@ -74,8 +74,6 @@ const Header = () => {
     //todo     }
     //todo }
 
-    console.log(router.query)
-
     return (
         // <header className={`header ${detailHeader()}`}
         <header 

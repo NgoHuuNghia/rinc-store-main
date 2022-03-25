@@ -23,6 +23,8 @@ import Image from 'next/image';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { UserContext } from '@lib/globalContext';
 import { useRouter } from 'next/router';
+import toast from 'react-hot-toast';
+import { icons } from 'react-icons';
 
 export async function getStaticProps({ params }) { //? params instead of query like ssr
     const { gameSlug } = params
@@ -89,9 +91,6 @@ export async function getStaticPaths() {
 //$ source
 
 const GameDetail = ({ game }) => {
-    const {title, mainImageUrl, secondaryImageUrls, releasedAt, updatedAt, metacritic, description, basePrice} = game
-    const { user } = useContext(UserContext)
-    const router = useRouter()
     //!         const {
     //!             name, description, metacritic, released, updated, background_image, background_image_additional, ratings,
     //!             platforms, parent_platforms, stores, developers, genres, tags, publishers, esrb_rating
@@ -159,9 +158,11 @@ const GameDetail = ({ game }) => {
     //         primaryReadMore.style.color = 'white'
     //     }
     // }, [windowWidth])
-    const addToCart = async(title, slug, basePrice, mainImageUrl) => {
-        const { user } = useContext(UserContext)
-    
+    const {title, slug, mainImageUrl, secondaryImageUrls, releasedAt, updatedAt, metacritic, description, basePrice} = game
+    const { user } = useContext(UserContext)
+    const router = useRouter()
+
+    const addToCart = async() => {
         const cartRef = collection(firestore, 'users', user.uid, 'shoppingCart');
         const data = {
             title: title,
@@ -171,6 +172,7 @@ const GameDetail = ({ game }) => {
         }
     
         await addDoc(cartRef, data);
+        toast("game added to cart", {icon: "👌"})
     }
 
     return (
@@ -473,7 +475,7 @@ const GameDetail = ({ game }) => {
                                             {/*//! also add case if game is already own or in cart */}
                                             {user 
                                                 ? (
-                                                    <button onClick={addToCart()}>add to cart</button>
+                                                    <button onClick={() => addToCart()}>add to cart</button>
                                                 ) : (
                                                     <button onClick={() => router.push(`/enter`)}>Log in to purchase</button>
                                                 )

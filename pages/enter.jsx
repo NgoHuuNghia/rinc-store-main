@@ -2,15 +2,22 @@ import {FcGoogle} from 'react-icons/fc'
 import {FaFacebook} from 'react-icons/fa'
 import {BiFace} from 'react-icons/bi'
 import {MdLogin, MdLogout} from 'react-icons/md'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '@lib/globalContext'
 import { createUserWithEmailAndPassword, signInAnonymously, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
 import { auth, createFirestoreUserWithUsername, firestore, googleAuthProvider } from '@lib/firebase'
 import toast from 'react-hot-toast'
 import { useForm } from 'react-hook-form'
+import { useRouter } from 'next/router'
 
 const enter = () => {
     const {user, username} = useContext(UserContext)
+    const router = useRouter()
+
+    useEffect(() => {
+        {username && router.push('/')}
+    }, [username])
+    
 
     return (
         <section className="enter-container">
@@ -22,7 +29,7 @@ const enter = () => {
     );
 }
 
-function EnterForm({user, username}) {
+function EnterForm({user, username, router}) {
     const [enter, setEnter] = useState(true)
 
     return (
@@ -50,7 +57,7 @@ function EnterForm({user, username}) {
                     <h2>
                         login
                     </h2>
-                    <LoginForm />
+                    <LoginForm router={router}/>
                     <a onClick={() => setEnter(true)}>Don't have an account? Sign up.</a>
                 </>
             }
@@ -128,9 +135,7 @@ function LoginForm() {
 
     const login = async({email, password}) => {
         try {
-            Promise.all(
-                await signInWithEmailAndPassword(auth, email, password),
-            )
+            await signInWithEmailAndPassword(auth, email, password)
             toast.success(`${email} Logged in, welcome`)
         } catch (error) {
             console.log(error)
@@ -161,12 +166,12 @@ function AuthButtons({user}) {
     const signInWithGoogle = async () => {
         try {
             await signInWithPopup(auth, googleAuthProvider)
-            toast("please enter your unique username to finish creating your account")
         } catch (error) {
             console.error(error);
             alert(error.message);
         }
     }
+    
 
     return (
         <div className="social-sign-up">
