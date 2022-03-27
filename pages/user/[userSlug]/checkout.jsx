@@ -1,25 +1,32 @@
 import PaypalCheckoutButton from "@components/paypal/PaypalCheckoutButton";
-import CheckoutCartItem from "@components/user/CheckoutCartItem";
-import { firestore } from "@lib/firebase";
-import { UserContext } from "@lib/globalContext";
-import { collection, query } from "firebase/firestore";
+import { collection, onSnapshot, query } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import {FaChevronRight, FaWindows} from 'react-icons/fa'
 
+import CheckoutCartItem from "@components/user/CheckoutCartItem";
+import { firestore } from "@lib/firebase";
+import { UserContext } from "@lib/globalContext";
+
 const checkout = () => {
     const router = useRouter()
+    const [shoppingCart, setShoppingCart] = useState([])
     const { user } = useContext(UserContext)
 
-    const ref = collection(firestore, 'users', user.uid, 'shoppingCart');
-    const cartQuery = query(ref)
-    const [querySnapshot, loading] = useCollection(cartQuery) //? make a loader here another time
-
-    const cartData = querySnapshot?.docs.map((doc) => (doc.data()));
+    useEffect(() => {
+        if(user){
+            const cartRef = collection(firestore, 'users', user.uid, 'shoppingCart')
+            onSnapshot(cartRef, querySnapshot => querySnapshot?.docs.map((doc) => {
+                if(!shoppingCart.some(cart => cart.slug === doc.data().slug)){
+                    setShoppingCart(shoppingCart => [...shoppingCart, doc.data()])
+                }
+            }))
+        }
+    }, [user])
 
     //! paypal testing
     // const products = [
@@ -50,21 +57,21 @@ const checkout = () => {
             </div>
             <div className="cart-container">
                 <div className="cart-item-container">
-                    {cartData?.map((cart) => {
+                    {shoppingCart?.map((cart) => {
                         return <CheckoutCartItem key={cart.slug} {...cart}/>
                     })}
                 </div>
                 <div className="cart-action-container">
                     <div className="cart-payment">
-                        <PaypalCheckoutButton cartData={cartData}/>
+                        {/* <PaypalCheckoutButton cartData={cartData}/> */}
                     </div>
                     <div className="cart-calculator">
                         <ul className="table">
                             <li className="title">Total: </li>
                             <li className="number">{
-                                cartData?.reduce(
-                                    (sum, cur) => sum += cur.basePrice, 0
-                                )
+                                //$ cartData?.reduce(
+                                //$     (sum, cur) => sum += cur.basePrice, 0
+                                //$ )
                             }</li>
                             {/* value: cartData.reduce(
                                 (sum, cur) => sum += cur.basePrice, 0

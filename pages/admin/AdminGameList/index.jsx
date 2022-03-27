@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { query, doc, setDoc, orderBy, limit, collection, serverTimestamp } from 'firebase/firestore';
+import { query, doc, setDoc, orderBy, limit, collection, serverTimestamp, getDocs } from 'firebase/firestore';
 import {FaFilter, FaSearch, FaChevronLeft, FaChevronRight} from 'react-icons/fa'
 import { useCollection } from 'react-firebase-hooks/firestore'
 import { useRouter } from 'next/router'
