@@ -11,11 +11,7 @@ yarn dev
 ```
 ## TODO
 - Fix the slider stuttering and height issue with mobile in [slider pages](components/home/FeaturedSliderItem.jsx)
-- Finish working on the [detail page](pages/[gameSlug]/index.jsx)
-  - Currently working on ISR for it
-- Use environment variable to keep api secret
 - maybe one day i will fix the useEffect in detail
-- work on a cart for user context
 - denies entries to [enter.jsx](pages/enter.jsx) if already have an account and username
 - Finish implementing the paypal's checkout thing
   - Maybe create a card thing myself with hoisted field rather than paypal's default

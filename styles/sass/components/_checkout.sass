@@ -24,6 +24,7 @@ div.checkout-container
             padding: 1em
             background: $bgc-subsidiary
             box-shadow: $bs-card-lg
+            cursor: pointer
             >a.cart-item
                 @include flex($justify: flex-start)
                 background-color: $bgc-subsidiary-subtle
@@ -36,11 +37,12 @@ div.checkout-container
                     height: auto
                     width: 120px
                 >div
-                    @include flex
+                    @include flex($align: stretch)
                     flex-grow: 10
                     padding: .3em .5em
                     >div:nth-child(1)
-                        @include flex($direction: column, $align: flex-start, $gap: .3em)
+                        flex: 1
+                        @include flex($direction: column, $align: stretch, $gap: .3em)
                         flex-wrap: wrap
                         color: black
                         width: 75%
@@ -59,22 +61,34 @@ div.checkout-container
                             font-size: .8em
                             color: $fc-subsidiary-unimportant
                     >div:nth-child(2)
-                        @include flex( $direction: column, $align: flex-end)
-                        width: 25%
-                        >div:nth-child(1)
-                            background-color: $bgc-discounted
-                            display: inline
-                            padding: .1em .3em
-                            color: $fc-discounted
-                        >div:nth-child(2)
-                            @include flex($direction: column, $align: flex-end )
-                            >p:nth-child(1)
-                                text-decoration: line-through
-                                color: $fc-subsidiary-unimportant
-                                font-size: .7em
-                            >p:nth-child(2)
-                                color: $fc-default
+                        flex: 0
+                        @include flex($direction: column, $align: stretch)
+                        >div.prices
+                            @include flex($align: stretch, $justify: center, $gap: .5em)
+                            >div:nth-child(1)
+                                background-color: $bgc-discounted
+                                display: inline
+                                padding: .1em .3em
+                                color: $fc-discounted
+                            >div:nth-child(2)
+                                @include flex($direction: column, $align: flex-end )
+                                >p:nth-child(1)
+                                    text-decoration: line-through
+                                    color: $fc-subsidiary-unimportant
+                                    font-size: .7em
+                                >p:nth-child(2)
+                                    color: $fc-default
+                                    font-size: .8em
+                        >div.remove
+                            text-align: right
+                            padding: .5em
+                            z-index: 100
+                            >p
+                                text-decoration: underline
                                 font-size: .8em
+                                color: $fc-subsidiary-unimportant
+                            &:hover >p
+                                color: $fc-unimportant
                 // &.active
                 //     background-color: $bgc-subsidiary-hilight
                 //     h4

@@ -11,38 +11,11 @@ import {FaChevronRight, FaWindows} from 'react-icons/fa'
 import CheckoutCartItem from "@components/user/CheckoutCartItem";
 import { firestore } from "@lib/firebase";
 import { UserContext } from "@lib/globalContext";
+import { confirmPasswordReset } from "firebase/auth";
 
 const checkout = () => {
     const router = useRouter()
-    const [shoppingCart, setShoppingCart] = useState([])
-    const { user } = useContext(UserContext)
-
-    useEffect(() => {
-        if(user){
-            const cartRef = collection(firestore, 'users', user.uid, 'shoppingCart')
-            onSnapshot(cartRef, querySnapshot => querySnapshot?.docs.map((doc) => {
-                if(!shoppingCart.some(cart => cart.slug === doc.data().slug)){
-                    setShoppingCart(shoppingCart => [...shoppingCart, doc.data()])
-                }
-            }))
-        }
-    }, [user])
-
-    //! paypal testing
-    // const products = [
-    //     {
-    //         slug: 'paypal-test-game',
-    //         title: 'Paypal Test Game',
-    //         basePrice: 20,
-    //         mainImageUrl: 'https://firebasestorage.googleapis.com/v0/b/rinc-store.appspot.com/o/uploads%2Fimages%2Fgames%2Fdarksouls%2Fmain-image%2Fmain-darksouls?alt=media&token=7a221bbb-69da-41eb-9b05-8988586ff520',
-    //     },
-    //     {
-    //         slug: 'paypal-test-game-2',
-    //         title: 'Paypal Test Game 2',
-    //         basePrice: 40,
-    //         mainImageUrl: 'https://firebasestorage.googleapis.com/v0/b/rinc-store.appspot.com/o/uploads%2Fimages%2Fgames%2Fdarksouls%2Fmain-image%2Fmain-darksouls?alt=media&token=7a221bbb-69da-41eb-9b05-8988586ff520',
-    //     },
-    // ]
+    const { shoppingCart } = useContext(UserContext)
 
     return (
         <div className="checkout-container">
@@ -58,7 +31,7 @@ const checkout = () => {
             <div className="cart-container">
                 <div className="cart-item-container">
                     {shoppingCart?.map((cart) => {
-                        return <CheckoutCartItem key={cart.slug} {...cart}/>
+                        return <CheckoutCartItem key={cart.id} {...cart.item} id={cart.id}/>
                     })}
                 </div>
                 <div className="cart-action-container">
@@ -70,7 +43,7 @@ const checkout = () => {
                             <li className="title">Total: </li>
                             <li className="number">{
                                 `$` +
-                                shoppingCart?.reduce((sum, cur) => sum += cur.basePrice, 0)
+                                shoppingCart?.reduce((sum, cur) => sum += cur.item.basePrice, 0)
                             }</li>
                             {/* value: cartData.reduce(
                                 (sum, cur) => sum += cur.basePrice, 0

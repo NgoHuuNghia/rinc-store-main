@@ -1,17 +1,24 @@
 import { toTop } from "@lib/commonFunctions";
+import { firestore } from "@lib/firebase";
+import { UserContext } from "@lib/globalContext";
+import { deleteDoc, doc } from "firebase/firestore";
 import Link from "next/link";
+import { useContext } from "react";
+import toast from "react-hot-toast";
 import { FaWindows } from "react-icons/fa";
 
-const CheckoutCartItem = ({title, mainImageUrl, basePrice}) => {
+const CheckoutCartItem = ({title, slug, mainImageUrl, basePrice, id}) => {
+    const { user } = useContext(UserContext)
+    const cartRef = doc(firestore, 'users', user.uid, 'shoppingCart', id )
+
     return (
-        <Link passHref
-            href={`/`}
-            onClick={() => toTop()}
-        >
-            <a className={`cart-item`}>
-                {/*//$ <img src={background_image} alt="" /> */}
+        <a className={`cart-item`}>
+            {/*//$ <img src={background_image} alt="" /> */}
+            <Link passHref href={`/${slug}`} onClick={() => toTop()}>
                 <img src={mainImageUrl} alt={title}/>
-                <div>
+            </Link>
+            <div>
+                <Link passHref href={`/${slug}`} onClick={() => toTop()}>
                     <div>
                         {/*//$ <h4>{name}</h4> */}
                         <h4>{title}</h4>
@@ -27,17 +34,35 @@ const CheckoutCartItem = ({title, mainImageUrl, basePrice}) => {
                             genres name
                         </small>
                     </div>
-                    <div>
-                        <div>-10%</div>
-                        <div>
-                            <p>{`$${basePrice}`}</p>
-                            <p>{`$${basePrice}`}</p>
+                </Link>
+                <div>
+                    <Link passHref href={`/${slug}`} onClick={() => toTop()}>
+                        <div className="prices">
+                            <div>-10%</div>
+                            <div>
+                                <p>{`$${basePrice}`}</p>
+                                <p>{`$${basePrice}`}</p>
+                            </div>
                         </div>
-                    </div>
+                    </Link>
+                    <DeleteGameButton cartRef={cartRef}/>
                 </div>
-            </a>
-        </Link>
+            </div>
+        </a>
     );
+}
+
+function DeleteGameButton({ cartRef }) {
+    const deleteCart = async () => {
+        await deleteDoc(cartRef);
+        toast('removed from cart', { icon: '🗑️' });
+    };
+
+    return (
+        <div onClick={deleteCart} className="remove">
+            <p>Remove</p>
+        </div>
+    )
 }
 
 export default CheckoutCartItem;

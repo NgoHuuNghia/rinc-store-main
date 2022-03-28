@@ -10,15 +10,18 @@ import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
 
 const User = () => {
-    const { user, username } = useContext(UserContext)
+    const { user, username, shoppingCart } = useContext(UserContext)
     const router = useRouter()
     const [submenu, setSubmenu] = useState(false)
 
     return (
         <div className={`user-container`} onMouseOver={() => setSubmenu(true)} onMouseLeave={() => setSubmenu(false)}>
             <div className='avatar-container'>
-                <img src={user?.photoURL || `icons/hacker.png`} alt="avatar" />
-                {user && (
+                <img
+                    src={user?.photoURL || `icons/hacker.png`} 
+                    alt="avatar" 
+                />
+                {user && shoppingCart.length >= 1 && (
                     <div className='cart-container'>
                         <FaShoppingCart />
                     </div>
@@ -42,9 +45,11 @@ const User = () => {
                                 </li>
                                 <SignOutButton />
                                 {/*//! cart checkout */}
-                                <li onClick={() => router.push(`/user/${username}/checkout`)}>
-                                    <a><p>{`Checkout: ${`9`} items`}</p></a>
-                                </li>
+                                {shoppingCart.length >= 1 && (
+                                    <li onClick={() => router.push(`/user/${username}/checkout`)}>
+                                        <a><p>{`Checkout: ${shoppingCart.length} items`}</p></a>
+                                    </li>
+                                )}
                             </>
                         )
                     }

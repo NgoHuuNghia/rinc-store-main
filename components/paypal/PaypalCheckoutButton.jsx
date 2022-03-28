@@ -17,17 +17,6 @@ const PaypalCheckoutButton = ({shoppingCart}) => {
         //todo if the response is an error
     }
 
-    console.log(shoppingCart.map((cartItem) => {
-        return {
-            name: cartItem.slug,
-            unit_amount: {
-                value: cartItem.basePrice
-            },
-            quantity: 1,
-            category: "DIGITAL_GOODS",
-        }
-    }))
-
     useEffect(() => {
         //todo message email
         {paidFor && toast.success("Thank you for your purchase, your code will be sent to your email")}
@@ -57,9 +46,6 @@ const PaypalCheckoutButton = ({shoppingCart}) => {
             }
         }}
         createOrder={(data, action) => {
-            //!
-            console.log('test!!: ', shoppingCart)
-
             return action.order.create({
                 application_context: {
                     shipping_preference: 'NO_SHIPPING'

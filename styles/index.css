@@ -351,7 +351,7 @@ header nav > div.sublinks > div.user-container > div.avatar-container > div.cart
   right: -5%;
   width: 18px;
   height: 18px;
-  background: #4c6b22;
+  background: #ff0040;
   border-radius: 50%;
   display: flex;
   flex-direction: row;
@@ -5129,6 +5129,7 @@ div.checkout-container > div.cart-container > div.cart-item-container {
   padding: 1em;
   background: #8b0023;
   box-shadow: black 0px 20px 30px -10px;
+  cursor: pointer;
 }
 div.checkout-container > div.cart-container > div.cart-item-container > a.cart-item {
   display: flex;
@@ -5155,16 +5156,17 @@ div.checkout-container > div.cart-container > div.cart-item-container > a.cart-i
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
   gap: 0;
   flex-grow: 10;
   padding: 0.3em 0.5em;
 }
 div.checkout-container > div.cart-container > div.cart-item-container > a.cart-item > div > div:nth-child(1) {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 0.3em;
   flex-wrap: wrap;
   color: black;
@@ -5189,34 +5191,54 @@ div.checkout-container > div.cart-container > div.cart-item-container > a.cart-i
   color: #6f6f6f;
 }
 div.checkout-container > div.cart-container > div.cart-item-container > a.cart-item > div > div:nth-child(2) {
+  flex: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: stretch;
   gap: 0;
-  width: 25%;
 }
-div.checkout-container > div.cart-container > div.cart-item-container > a.cart-item > div > div:nth-child(2) > div:nth-child(1) {
+div.checkout-container > div.cart-container > div.cart-item-container > a.cart-item > div > div:nth-child(2) > div.prices {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0.5em;
+}
+div.checkout-container > div.cart-container > div.cart-item-container > a.cart-item > div > div:nth-child(2) > div.prices > div:nth-child(1) {
   background-color: #4c6b22;
   display: inline;
   padding: 0.1em 0.3em;
   color: #a4d007;
 }
-div.checkout-container > div.cart-container > div.cart-item-container > a.cart-item > div > div:nth-child(2) > div:nth-child(2) {
+div.checkout-container > div.cart-container > div.cart-item-container > a.cart-item > div > div:nth-child(2) > div.prices > div:nth-child(2) {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
   gap: 0;
 }
-div.checkout-container > div.cart-container > div.cart-item-container > a.cart-item > div > div:nth-child(2) > div:nth-child(2) > p:nth-child(1) {
+div.checkout-container > div.cart-container > div.cart-item-container > a.cart-item > div > div:nth-child(2) > div.prices > div:nth-child(2) > p:nth-child(1) {
   text-decoration: line-through;
   color: #6f6f6f;
   font-size: 0.7em;
 }
-div.checkout-container > div.cart-container > div.cart-item-container > a.cart-item > div > div:nth-child(2) > div:nth-child(2) > p:nth-child(2) {
+div.checkout-container > div.cart-container > div.cart-item-container > a.cart-item > div > div:nth-child(2) > div.prices > div:nth-child(2) > p:nth-child(2) {
   color: #c6d4df;
   font-size: 0.8em;
+}
+div.checkout-container > div.cart-container > div.cart-item-container > a.cart-item > div > div:nth-child(2) > div.remove {
+  text-align: right;
+  padding: 0.5em;
+  z-index: 100;
+}
+div.checkout-container > div.cart-container > div.cart-item-container > a.cart-item > div > div:nth-child(2) > div.remove > p {
+  text-decoration: underline;
+  font-size: 0.8em;
+  color: #6f6f6f;
+}
+div.checkout-container > div.cart-container > div.cart-item-container > a.cart-item > div > div:nth-child(2) > div.remove:hover > p {
+  color: #4c565d;
 }
 div.checkout-container > div.cart-container > div.cart-item-container > a.cart-item:last-child {
   margin: 0;

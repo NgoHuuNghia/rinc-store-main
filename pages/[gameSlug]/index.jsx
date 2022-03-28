@@ -159,7 +159,7 @@ const GameDetail = ({ game }) => {
     //     }
     // }, [windowWidth])
     const {title, slug, mainImageUrl, secondaryImageUrls, releasedAt, updatedAt, metacritic, description, basePrice} = game
-    const { user } = useContext(UserContext)
+    const { user, username, shoppingCart } = useContext(UserContext)
     const router = useRouter()
 
     const addToCart = async() => {
@@ -475,8 +475,15 @@ const GameDetail = ({ game }) => {
                                             {/*//! also add case if game is already own or in cart */}
                                             {user 
                                                 ? (
-                                                    <button onClick={() => addToCart()}>add to cart</button>
-                                                ) : (
+                                                    !shoppingCart.some(cart => cart.item.slug === slug)
+                                                    ? (
+                                                        <button onClick={() => addToCart()}>Add to cart</button>
+                                                    )
+                                                    : (
+                                                        <button onClick={() => router.push(`/user/${username}/checkout`)}>Added to cart, checkout?</button>
+                                                    )
+                                                ) 
+                                                : (
                                                     <button onClick={() => router.push(`/enter`)}>Log in to purchase</button>
                                                 )
                                             }
