@@ -63,15 +63,14 @@ const checkout = () => {
                 </div>
                 <div className="cart-action-container">
                     <div className="cart-payment">
-                        {/* <PaypalCheckoutButton cartData={cartData}/> */}
+                        <PaypalCheckoutButton shoppingCart={shoppingCart}/>
                     </div>
                     <div className="cart-calculator">
                         <ul className="table">
                             <li className="title">Total: </li>
                             <li className="number">{
-                                //$ cartData?.reduce(
-                                //$     (sum, cur) => sum += cur.basePrice, 0
-                                //$ )
+                                `$` +
+                                shoppingCart?.reduce((sum, cur) => sum += cur.basePrice, 0)
                             }</li>
                             {/* value: cartData.reduce(
                                 (sum, cur) => sum += cur.basePrice, 0

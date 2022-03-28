@@ -2,10 +2,9 @@ import { PayPalButtons } from "@paypal/react-paypal-js";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 
-const PaypalCheckoutButton = ({cartData}) => {
+const PaypalCheckoutButton = ({shoppingCart}) => {
     const [paidFor, setPaidFor] = useState(false)
     const [error, setError] = useState(null)
-    
 
     const handleApprove = (orderId) => {
         //todo fulfill the order here with the backend
@@ -16,8 +15,18 @@ const PaypalCheckoutButton = ({cartData}) => {
         //todo refresh user's account or subscription status
 
         //todo if the response is an error
-
     }
+
+    console.log(shoppingCart.map((cartItem) => {
+        return {
+            name: cartItem.slug,
+            unit_amount: {
+                value: cartItem.basePrice
+            },
+            quantity: 1,
+            category: "DIGITAL_GOODS",
+        }
+    }))
 
     useEffect(() => {
         //todo message email
@@ -27,7 +36,9 @@ const PaypalCheckoutButton = ({cartData}) => {
         {error && toast.error(error)}
     }, [error])
 
-    return <PayPalButtons 
+    return <PayPalButtons
+        forceReRender={[shoppingCart]}
+        disabled={false}
         style={{
             color: "blue",
             shape: "pill",
@@ -46,18 +57,42 @@ const PaypalCheckoutButton = ({cartData}) => {
             }
         }}
         createOrder={(data, action) => {
+            //!
+            console.log('test!!: ', shoppingCart)
+
             return action.order.create({
                 application_context: {
                     shipping_preference: 'NO_SHIPPING'
                 },
                 purchase_units: [
                     {
+                        reference_id: 1,
                         description: 'ass',
                         amount: {
-                            value: cartData.reduce(
+                            currency_code: "USD",
+                            value: shoppingCart.reduce(
                                 (sum, cur) => sum += cur.basePrice, 0
-                            )
-                        }
+                            ),
+                            breakdown: {
+                                item_total: {
+                                    currency_code: "USD",
+                                    value: shoppingCart.reduce(
+                                        (sum, cur) => sum += cur.basePrice, 0
+                                    )
+                                }
+                            },
+                        },
+                        items: shoppingCart.map((cartItem) => {
+                            return {
+                                name: cartItem.slug,
+                                unit_amount: {
+                                    currency_code: "USD",
+                                    value: cartItem.basePrice
+                                },
+                                quantity: "1",
+                                category: "DIGITAL_GOODS",
+                            }
+                        })
                     }
                 ]
             })
