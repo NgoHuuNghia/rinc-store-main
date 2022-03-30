@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { AdminArrow } from 'public/svg/index'
 import AdminTerminalLink from '@components/admin/AdminTerminalLink'
 import { useSidebar } from '@lib/adminContext'
+import { terminalDashboardData, terminalMenuData } from './terminalMenuData'
 
 //todo depend on the url to make a state for dashboard child links
 
@@ -36,18 +37,17 @@ const AdminTerminal = () => {
             </div>
             <div className='dashboard'>
                 <ul>
-                    <AdminTerminalLink />
-                    <AdminTerminalLink />
-                    <AdminTerminalLink />
-                    <AdminTerminalLink />
+                    {/* <AdminTerminalLink /> */}
+                    {terminalDashboardData.map(terminalMenu => {
+                        return <AdminTerminalLink key={terminalMenu.menu} {...terminalMenu}/>
+                    })}
                 </ul>
                 <p className='label'>label</p>
                 <ul>
-                    <AdminTerminalLink />
-                    <AdminTerminalLink />
-                    <AdminTerminalLink />
-                    <AdminTerminalLink />
-                    <AdminTerminalLink />
+                    {/* <AdminTerminalLink /> */}
+                    {terminalMenuData.map(terminalMenu => {
+                        return <AdminTerminalLink key={terminalMenu.menu} {...terminalMenu}/>
+                    })}
                 </ul>
             </div>
         </nav>

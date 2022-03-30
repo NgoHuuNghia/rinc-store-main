@@ -38,7 +38,7 @@ function EnterForm({user, username, router}) {
                 ? <>
                     <h2>
                         {user 
-                            ? username ? 'You already got a username' : 'Choose a username to create an account'
+                            ? username ? 'username created' : 'Choose a username'
                             : 'Sign up'
                         }
                     </h2>

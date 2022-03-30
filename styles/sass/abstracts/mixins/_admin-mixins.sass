@@ -27,7 +27,7 @@
 
 @mixin adminSearch($fc: $fc-default,$fc-svg: $fc-default, $bgc: $bgc-admin-white, $bl: $bgc-admin-line-dark, $flex-short: 1)
     @include flex($justify: flex-start, $align: stretch)
-    >input
+    input[type=text], >input[type=password], input[type=email]
         font-size: .9em
         padding: .5em
         background: $bgc
@@ -35,10 +35,12 @@
         color: $fc
         flex: $flex-short
         min-width: 6em
-    >button
+    button
         padding: .5em
         border: none
         background: $bgc-subtle
+        transition: $trs-instant
+        text-transform: uppercase
         &:hover
             cursor: pointer
         >svg

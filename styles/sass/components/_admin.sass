@@ -17,6 +17,7 @@ section.admin-container
             min-width: 12em
             z-index: 0
             opacity: 1
+            flex: 0
         >*
             padding: .75em
         >.head
@@ -88,6 +89,7 @@ section.admin-container
     >div.controls
         @include flex($direction: column, $justify: flex-start, $align: stretch)
         flex: 1
+        width: 70%
         color: $fc-admin
         min-height: 100vh
         >*:not(:first-child)
@@ -163,16 +165,42 @@ section.admin-container
                 @include adminSearch($fc: $fc-admin, $bgc: $bgc-admin-white, $bl: $bgc-admin-line-dark, $flex-short: none)
                 padding: 1em
                 border-bottom: 2px solid $bgc-admin-line-gray
-                >button
+                button
                     background: $bgc-admin-current
-                    transition: $trs-instant
-                    text-transform: uppercase
                     color: $fc-admin-white
-                >button:disabled
+                button:disabled
                     background: $bgc-subtle
                     filter: brightness(50%)
                     color: black
                     cursor: default
+            >form.editor
+                @include grid($columns: 1fr, $gap: .5em)
+                @include bs.from(m)
+                    grid-template-columns: 1fr 1fr
+                @include bs.from(xxl)
+                    grid-template-columns: 1fr 1fr 1fr
+                label
+                    @include flex
+                    text-transform: capitalize
+                    font-weight: 500
+                    >input
+                        flex: 10
+                        &:disabled
+                            background: $bgc-disabled
+                    >p
+                        height: 100%
+                        padding: 0 .4em
+                        text-align: center
+                        border: none
+                        background: $bgc-subtle
+                        color: $fc-default
+                        text-transform: capitalize
+                        font-size: .9em
+                        font-weight: 500
+                        flex: 2
+                        margin: auto
+                        white-space: pre
+                        @include flex($justify: center)
             >.search
                 @include adminSearch($fc: $fc-admin, $bgc: $bgc-admin-white, $bl: $bgc-admin-line-dark, $flex-short: none)
                 padding: 1em

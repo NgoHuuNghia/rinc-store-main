@@ -6,21 +6,25 @@ import { useRouter } from 'next/router'
 import kebabCase from 'lodash.kebabcase'
 import toast from 'react-hot-toast'
 
-import AdminGamesList from '@components/admin/AdminGamesList'
+import AdminGamesListItem from '@components/admin/AdminGamesList'
 import { firestore } from '@lib/firebase';
-import { useSidebar } from '@lib/adminContext'
+import { useSidebar, SidebarProvider } from '@lib/adminContext'
 import { gameDateToJsonLocal } from '@lib/firebase';
+import AdminTerminal from '@components/admin/AdminTerminal';
+import AdminFilter from '@components/admin/AdminFilter';
+import AdminOverlay from '@components/admin/AdminOverlay';
+import AdminHeader from '@components/admin/AdminHeader';
 // import Loader from '@components/Loader'
 // import PostFeed from '@components/PostFeed';
 // import Metatags from '@components/Metatags';
 
-const AdminDashboard = () => {
+const AdminGameList = () => {
     const { setSidebar } = useSidebar()
 
     return (
         <>
             <div className='title'>
-                <h2>Dash title</h2>
+                <h2>{`Games list`}</h2>
                 <div>
                     <button onClick={() => setSidebar('filter')}><FaFilter id='filter-icon'/></button>
                 </div>
@@ -47,7 +51,7 @@ const AdminDashboard = () => {
         </>
     )
 }
-export default AdminDashboard
+export default AdminGameList
 
 function CreateNewGame() {
     const router = useRouter(); //? to change url with push later
@@ -97,6 +101,7 @@ function CreateNewGame() {
     return (
     <form onSubmit={createPost}>
         <input
+            type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Add game title"
@@ -126,7 +131,23 @@ function GameListTable() {
             <li className='table-head'>reviews</li>
             <li className='table-head edit'>Edit</li>
             <li className='table-head delete'>Delete</li>
-            {gamesData && (gamesData.map(game => <AdminGamesList key={game.slug} game={game} />))}
+            {gamesData && (gamesData.map(game => <AdminGamesListItem key={game.slug} game={game} />))}
         </ul>
+    )
+}
+
+AdminGameList.getLayout = function getLayout(page) {
+    return (
+        <SidebarProvider>
+            <section className='admin-container'>
+                <AdminTerminal/>
+                <div className='controls'>
+                    <AdminHeader/>
+                    {page}
+                </div>
+                <AdminFilter/>
+                <AdminOverlay/>
+            </section>
+        </SidebarProvider>
     )
 }

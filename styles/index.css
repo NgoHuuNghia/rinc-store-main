@@ -3901,6 +3901,7 @@ section.admin-container > nav.terminal.sidebar-open {
     min-width: 12em;
     z-index: 0;
     opacity: 1;
+    flex: 0;
   }
 }
 section.admin-container > nav.terminal > * {
@@ -3980,7 +3981,7 @@ section.admin-container > nav.terminal > .search {
   align-items: stretch;
   gap: 0;
 }
-section.admin-container > nav.terminal > .search > input {
+section.admin-container > nav.terminal > .search input[type=text], section.admin-container > nav.terminal > .search > input[type=password], section.admin-container > nav.terminal > .search input[type=email] {
   font-size: 0.9em;
   padding: 0.5em;
   background: #3f474e;
@@ -3989,15 +3990,17 @@ section.admin-container > nav.terminal > .search > input {
   flex: 1;
   min-width: 6em;
 }
-section.admin-container > nav.terminal > .search > button {
+section.admin-container > nav.terminal > .search button {
   padding: 0.5em;
   border: none;
   background: #313438;
+  transition: all 0.1s linear;
+  text-transform: uppercase;
 }
-section.admin-container > nav.terminal > .search > button:hover {
+section.admin-container > nav.terminal > .search button:hover {
   cursor: pointer;
 }
-section.admin-container > nav.terminal > .search > button > svg {
+section.admin-container > nav.terminal > .search button > svg {
   color: #eef0f1;
 }
 section.admin-container > nav.terminal > .dashboard {
@@ -4107,6 +4110,7 @@ section.admin-container > div.controls {
   align-items: stretch;
   gap: 0;
   flex: 1;
+  width: 70%;
   color: #10161b;
   min-height: 100vh;
 }
@@ -4278,7 +4282,7 @@ section.admin-container > div.controls > .list-container > form {
   padding: 1em;
   border-bottom: 2px solid rgba(0, 0, 0, 0.125);
 }
-section.admin-container > div.controls > .list-container > form > input {
+section.admin-container > div.controls > .list-container > form input[type=text], section.admin-container > div.controls > .list-container > form > input[type=password], section.admin-container > div.controls > .list-container > form input[type=email] {
   font-size: 0.9em;
   padding: 0.5em;
   background: #ffffff;
@@ -4287,28 +4291,80 @@ section.admin-container > div.controls > .list-container > form > input {
   flex: none;
   min-width: 6em;
 }
-section.admin-container > div.controls > .list-container > form > button {
+section.admin-container > div.controls > .list-container > form button {
   padding: 0.5em;
   border: none;
   background: #313438;
-}
-section.admin-container > div.controls > .list-container > form > button:hover {
-  cursor: pointer;
-}
-section.admin-container > div.controls > .list-container > form > button > svg {
-  color: #c6d4df;
-}
-section.admin-container > div.controls > .list-container > form > button {
-  background: #007bff;
   transition: all 0.1s linear;
   text-transform: uppercase;
+}
+section.admin-container > div.controls > .list-container > form button:hover {
+  cursor: pointer;
+}
+section.admin-container > div.controls > .list-container > form button > svg {
+  color: #c6d4df;
+}
+section.admin-container > div.controls > .list-container > form button {
+  background: #007bff;
   color: #eef0f1;
 }
-section.admin-container > div.controls > .list-container > form > button:disabled {
+section.admin-container > div.controls > .list-container > form button:disabled {
   background: #313438;
   filter: brightness(50%);
   color: black;
   cursor: default;
+}
+section.admin-container > div.controls > .list-container > form.editor {
+  display: grid;
+  grid-template-rows: none;
+  grid-template-columns: 1fr;
+  gap: 0.5em;
+  place-items: unset;
+  place-content: unset;
+}
+@media (min-width: 600px) {
+  section.admin-container > div.controls > .list-container > form.editor {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1200px) {
+  section.admin-container > div.controls > .list-container > form.editor {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+section.admin-container > div.controls > .list-container > form.editor label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+section.admin-container > div.controls > .list-container > form.editor label > input {
+  flex: 10;
+}
+section.admin-container > div.controls > .list-container > form.editor label > input:disabled {
+  background: #d3d3d3;
+}
+section.admin-container > div.controls > .list-container > form.editor label > p {
+  height: 100%;
+  padding: 0 0.4em;
+  text-align: center;
+  border: none;
+  background: #313438;
+  color: #c6d4df;
+  text-transform: capitalize;
+  font-size: 0.9em;
+  font-weight: 500;
+  flex: 2;
+  margin: auto;
+  white-space: pre;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
 }
 section.admin-container > div.controls > .list-container > .search {
   display: flex;
@@ -4318,7 +4374,7 @@ section.admin-container > div.controls > .list-container > .search {
   gap: 0;
   padding: 1em;
 }
-section.admin-container > div.controls > .list-container > .search > input {
+section.admin-container > div.controls > .list-container > .search input[type=text], section.admin-container > div.controls > .list-container > .search > input[type=password], section.admin-container > div.controls > .list-container > .search input[type=email] {
   font-size: 0.9em;
   padding: 0.5em;
   background: #ffffff;
@@ -4327,15 +4383,17 @@ section.admin-container > div.controls > .list-container > .search > input {
   flex: none;
   min-width: 6em;
 }
-section.admin-container > div.controls > .list-container > .search > button {
+section.admin-container > div.controls > .list-container > .search button {
   padding: 0.5em;
   border: none;
   background: #313438;
+  transition: all 0.1s linear;
+  text-transform: uppercase;
 }
-section.admin-container > div.controls > .list-container > .search > button:hover {
+section.admin-container > div.controls > .list-container > .search button:hover {
   cursor: pointer;
 }
-section.admin-container > div.controls > .list-container > .search > button > svg {
+section.admin-container > div.controls > .list-container > .search button > svg {
   color: #c6d4df;
 }
 section.admin-container > div.controls > .list-container > ul.table {
@@ -4834,7 +4892,7 @@ section.admin-container > div.filter-controls > form > div.selection > div > .se
   align-self: flex-end;
   margin-bottom: 0.5em;
 }
-section.admin-container > div.filter-controls > form > div.selection > div > .selector > .search > input {
+section.admin-container > div.filter-controls > form > div.selection > div > .selector > .search input[type=text], section.admin-container > div.filter-controls > form > div.selection > div > .selector > .search > input[type=password], section.admin-container > div.filter-controls > form > div.selection > div > .selector > .search input[type=email] {
   font-size: 0.9em;
   padding: 0.5em;
   background: #ffffff;
@@ -4843,15 +4901,17 @@ section.admin-container > div.filter-controls > form > div.selection > div > .se
   flex: 1;
   min-width: 6em;
 }
-section.admin-container > div.filter-controls > form > div.selection > div > .selector > .search > button {
+section.admin-container > div.filter-controls > form > div.selection > div > .selector > .search button {
   padding: 0.5em;
   border: none;
   background: #313438;
+  transition: all 0.1s linear;
+  text-transform: uppercase;
 }
-section.admin-container > div.filter-controls > form > div.selection > div > .selector > .search > button:hover {
+section.admin-container > div.filter-controls > form > div.selection > div > .selector > .search button:hover {
   cursor: pointer;
 }
-section.admin-container > div.filter-controls > form > div.selection > div > .selector > .search > button > svg {
+section.admin-container > div.filter-controls > form > div.selection > div > .selector > .search button > svg {
   color: #c6d4df;
 }
 section.admin-container > div.filter-controls > form > div.selection > div > .selector > .search > input {

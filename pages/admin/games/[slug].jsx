@@ -18,18 +18,12 @@ import { SidebarProvider } from '@lib/adminContext'
 import { firestore } from '@lib/firebase'
 import GameMainImage from '@components/admin/GameMainImage'
 import UploadSecondaryImages from '@components/admin/UploadSecondaryImages'
-function AdminGameEdit() {
-    return (
-        <GameManager />
-    );
-}
-
-export default AdminGameEdit
 
 function GameManager(){
     const router = useRouter();
     const { slug } = router.query;
 
+    //! no idea why refresh would throw a bug
     const gameRef = doc(firestore, 'games', slug)
     const [games] = useDocumentData(gameRef)//? will fetch the data once when the component is initialized
 
@@ -53,6 +47,7 @@ function GameManager(){
         </>
     )
 }
+export default GameManager
 
 function GameManagerForm({gameRef, defaultValues}){
     const { register, handleSubmit, formState, reset, control } = useForm({ defaultValues, mode: 'onChange' });//? mode act like state
@@ -157,7 +152,7 @@ function PreviewImages({slug, mainUrl, secondaryImageUrls}){
     )
 }
 
-AdminGameEdit.getLayout = function getLayout(page) {
+GameManager.getLayout = function getLayout(page) {
     return (
         <SidebarProvider>
             <section className='admin-container'>

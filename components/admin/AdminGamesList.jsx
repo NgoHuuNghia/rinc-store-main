@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { firestore } from '@lib/firebase'
 import { gameDateToJsonLocal } from '@lib/commonFunctions'
 
-const AdminGamesList = ({game}) => {
+const AdminGamesListItem = ({game}) => {
     const { title, slug, ratings, reviewsCount, releasedAt } = game
 
     return (
@@ -17,12 +17,12 @@ const AdminGamesList = ({game}) => {
             <li>{releasedAt}</li>
             <li>{ratings}</li>
             <li>{reviewsCount}</li>
-            <Link passHref href={`/admin/${slug}`}><li className='edit'><RiEditBoxFill /></li></Link>
+            <Link passHref href={`/admin/games/${slug}`}><li className='edit'><RiEditBoxFill /></li></Link>
             <DeleteGameButton slug={slug}/>
         </>
     )
 }
-export default AdminGamesList
+export default AdminGamesListItem
 
 function DeleteGameButton({ slug }) {
     const ref = doc(firestore, 'games', slug)
