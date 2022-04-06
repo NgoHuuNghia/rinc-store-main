@@ -113,7 +113,7 @@ function UsernameForm() {
         try {
             await createFirestoreUserWithUsername(auth.currentUser, username)
 
-            toast.success(`${auth.currentUser.email} account created, verification not implemented yet`)
+            toast.success(`${auth.currentUser?.email || "annoymous"} account created, verification not implemented yet`)
         } catch (error) {
             console.log(error)
             toast.error("something went wrong")

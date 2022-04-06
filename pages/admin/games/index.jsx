@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { query, doc, setDoc, orderBy, limit, collection, serverTimestamp, getDocs } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react'
+import { query, doc, setDoc, orderBy, limit, collection, serverTimestamp } from 'firebase/firestore';
 import {FaFilter, FaSearch, FaChevronLeft, FaChevronRight} from 'react-icons/fa'
 import { useCollection } from 'react-firebase-hooks/firestore'
 import { useRouter } from 'next/router'
@@ -7,16 +7,12 @@ import kebabCase from 'lodash.kebabcase'
 import toast from 'react-hot-toast'
 
 import AdminGamesListItem from '@components/admin/AdminGamesList'
-import { firestore } from '@lib/firebase';
+import { dateToJsonLocal, firestore } from '@lib/firebase';
 import { useSidebar, SidebarProvider } from '@lib/adminContext'
-import { gameDateToJsonLocal } from '@lib/firebase';
 import AdminTerminal from '@components/admin/AdminTerminal';
 import AdminFilter from '@components/admin/AdminFilter';
 import AdminOverlay from '@components/admin/AdminOverlay';
 import AdminHeader from '@components/admin/AdminHeader';
-// import Loader from '@components/Loader'
-// import PostFeed from '@components/PostFeed';
-// import Metatags from '@components/Metatags';
 
 const AdminGameList = () => {
     const { setSidebar } = useSidebar()
@@ -95,7 +91,7 @@ function CreateNewGame() {
         toast.success('Post created! directing to edit now.'); //? flavour text to tell that we succeed
 
         // Imperative navigation after doc is set
-        router.push(`/admin/${slug}`);
+        router.push(`/admin/games/${slug}`);
     };
 
     return (
@@ -120,12 +116,12 @@ function GameListTable() {
     const gamesQuery = query(ref, orderBy('releasedAt'), limit(LIMIT))
     const [querySnapshot, loading] = useCollection(gamesQuery) //? make a loader here another time
 
-    const gamesData = querySnapshot?.docs.map((doc) => gameDateToJsonLocal(doc));
+    const gamesData = querySnapshot?.docs.map((doc) => dateToJsonLocal(doc));
     
     return (
-        <ul className='table'>
-            <li className='table-head'>id</li>
+        <ul className='table col-6'>
             <li className='table-head'>slug</li>
+            <li className='table-head'>title</li>
             <li className='table-head'>released</li>
             <li className='table-head'>rating</li>
             <li className='table-head'>reviews</li>
@@ -137,17 +133,5 @@ function GameListTable() {
 }
 
 AdminGameList.getLayout = function getLayout(page) {
-    return (
-        <SidebarProvider>
-            <section className='admin-container'>
-                <AdminTerminal/>
-                <div className='controls'>
-                    <AdminHeader/>
-                    {page}
-                </div>
-                <AdminFilter/>
-                <AdminOverlay/>
-            </section>
-        </SidebarProvider>
-    )
+    return <SidebarProvider>{page}</SidebarProvider>
 }

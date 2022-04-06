@@ -32,11 +32,11 @@ function GameManager(){
             {games && (
                 <>
                     <div className='title'>
-                    <h2>Editing {slug}</h2>
-                    <div>
-                        <button><AiFillEye /></button>
-                        <button><AiFillDelete /></button>
-                    </div>
+                        <h2>Editing {slug}</h2>
+                        <div>
+                            <button><AiFillEye /></button>
+                            <button><AiFillDelete /></button>
+                        </div>
                     </div>
                     <div className='game-edit'>
                         <GameManagerForm gameRef={gameRef} defaultValues={games}/>
@@ -153,17 +153,5 @@ function PreviewImages({slug, mainUrl, secondaryImageUrls}){
 }
 
 GameManager.getLayout = function getLayout(page) {
-    return (
-        <SidebarProvider>
-            <section className='admin-container'>
-                <AdminTerminal/>
-                <div className='controls'>
-                    <AdminHeader/>
-                    {page}
-                </div>
-                <AdminFilter/>
-                <AdminOverlay/>
-            </section>
-        </SidebarProvider>
-    )
+    return <SidebarProvider>{page}</SidebarProvider>
 }

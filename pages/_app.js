@@ -9,16 +9,37 @@ import { AppProvider, UserContext } from '@lib/globalContext'
 import Overlay from '@components/Overlay'
 import { useUserData } from '@lib/hooks'
 import { PayPalScriptProvider } from '@paypal/react-paypal-js'
+import AuthCheck from '@components/AuthCheck'
+
+import { SidebarProvider } from '@lib/adminContext'
+import AdminTerminal from '@components/admin/AdminTerminal'
+import AdminHeader from '@components/admin/AdminHeader'
+import AdminFilter from '@components/admin/AdminFilter'
+import AdminOverlay from '@components/admin/AdminOverlay'
 
 function MyApp({ Component, pageProps }) {
-  const {user, username, shoppingCart} = useUserData()
+  const {user, role, username, shoppingCart} = useUserData()
 
   if(Component.getLayout){
     const getLayout = Component.getLayout || ((page) => page)
-    return getLayout(<>
-      <Component {...pageProps} />
-      <Toaster />
-    </>)
+    return getLayout(
+      <UserContext.Provider value={{user, username, role}}>
+        <AuthCheck>
+          <SidebarProvider>
+            <section className='admin-container'>
+                <AdminTerminal/>
+                <div className='controls'>
+                    <AdminHeader/>
+                    <Component {...pageProps}/>
+                </div>
+                <AdminFilter/>
+                <AdminOverlay/>
+            </section>
+          </SidebarProvider>
+          <Toaster />
+        </AuthCheck>
+      </UserContext.Provider>
+    )
   }
 
   return (
@@ -27,7 +48,7 @@ function MyApp({ Component, pageProps }) {
         <AppProvider>
           <div className='main-body'>
             <Header />
-            <Component {...pageProps} />
+            <Component {...pageProps}/>
             <Overlay />
             <Toaster />
             <Footer />

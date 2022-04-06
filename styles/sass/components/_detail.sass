@@ -44,17 +44,16 @@ div.detail-container
 
     div.detail
         position: relative
-        margin: 0 .5em
+        margin: 0 1em
         position: relative
-        overflow: hidden
+        // overflow: hidden
         transition: $trs-basic
-        @include flex($direction: column, $align: flex-start, $gap: 1em)
+        @include flex($direction: column, $align: stretch, $gap: 1em)
         @include bs.from(m)
             width: 575px
             margin: 0 auto
         @include bs.from(xl)
-            flex-direction: row
-            gap: 2em
+            @include grid($columns: 1fr 1fr, $gap: 2em)
             @include desktop-container
 
         >.read-more
@@ -74,7 +73,6 @@ div.detail-container
             @include bs.from(xl)
                 margin-bottom: 2em
                 @include flex($direction: column, $justify: unset, $align: stretch, $gap: 1.5em)
-                width: 60%
                 .read-more
                     display: unset
                     
@@ -240,7 +238,6 @@ div.detail-container
             @include flex($direction: column, $align: stretch)
             @include bs.from(xl)
                 @include flex($direction: column, $justify: unset, $align: stretch)
-                width: 40%
 
             >div.height-container
                 @include flex($align: stretch, $direction: column ,$gap: 1em)
@@ -458,15 +455,15 @@ div.detail-container
                                         font-size: .9em
                                     >svg
                                         font-size: 1.2em
-
-    >div.recommendations
-        margin: 1em .5em
-        position: relative
-        @include bs.from(m)
-            width: 575px
-            margin: 1.5em auto
-        @include bs.from(xl)
-            flex-direction: row
-            width: 950px
-            gap: 2em
-        @include recommended
+        >div.recommendations
+            @include recommended
+            position: relative
+            grid-column: span 2
+            // margin: 1em .5em
+            // @include bs.from(m)
+            //     width: 575px
+            //     margin: 1.5em auto
+            // @include bs.from(xl)
+            //     flex-direction: row
+            //     width: 950px
+            //     gap: 2em

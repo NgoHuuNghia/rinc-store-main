@@ -7,8 +7,7 @@ import TabViewer from '@components/home/TabViewer'
 
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { collection, getDocs, limit, orderBy, query, where } from 'firebase/firestore'
-import { firestore } from '@lib/firebase'
-import { gameDateToJsonLocal } from '@lib/firebase'
+import { dateToJsonLocal, firestore } from '@lib/firebase'
 //todo import { useGlobalContext } from '../context'
 
 //? HARD limit on the post
@@ -24,7 +23,7 @@ export async function getServerSideProps(){
         limit(LIMIT),
     )
     //$ SSR need the firebase's timestamp to be serialized as json to be return as prop object along with the rest of the data
-    const gamesDesc = (await getDocs(gamesDescQuery)).docs.map((doc) => gameDateToJsonLocal(doc));
+    const gamesDesc = (await getDocs(gamesDescQuery)).docs.map((doc) => dateToJsonLocal(doc));
 
     return {
         props: { gamesDesc }, // will be passed to the page component as props

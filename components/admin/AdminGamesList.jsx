@@ -12,8 +12,8 @@ const AdminGamesListItem = ({game}) => {
 
     return (
         <>
-            <li>{title}</li>
             <li>{slug}</li>
+            <li>{title}</li>
             <li>{releasedAt}</li>
             <li>{ratings}</li>
             <li>{reviewsCount}</li>

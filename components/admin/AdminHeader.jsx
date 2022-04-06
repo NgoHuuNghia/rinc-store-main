@@ -1,33 +1,33 @@
 import React from 'react'
-import {FaBars} from 'react-icons/fa'
 import { useRouter } from 'next/router'
 
 import { AdminArrow } from 'public/svg'
 import { MdWidgets } from 'react-icons/md'
 import {AiFillDashboard, AiFillLayout} from 'react-icons/ai'
 import { useSidebar } from '@lib/adminContext'
+import { getCrumbList } from '@lib/commonFunctions'
 
 const AdminHeader = () => {
     const router = useRouter()
-    const { slug } = router.query
-    
+    const crumbList = getCrumbList(router)
     const { setSidebar } = useSidebar()
 
     return (
         <div className='head'>
             <button onClick={() => setSidebar('terminal')}><AdminArrow /></button>
             <div className='breadcrumbs'>
-                <div>
-                    <a onClick={() => router.push('/admin')}>Admin</a>
-                </div>
-                {slug && (
-                    <>
-                        <span>/</span>
-                        <div>
-                            <a >{slug}</a>
-                        </div>
-                    </>
-                )}
+                {crumbList.map((crumb, index) => {
+                    return (
+                        <React.Fragment key={crumb.title}>
+                            <div>
+                                <a onClick={() => router.replace(crumb.href)}>
+                                    {crumb.title}
+                                </a>
+                            </div>
+                            {index < crumbList.length - 1 && <span>/</span>}
+                        </React.Fragment>
+                    )
+                })}
             </div>
             <div className='links'>
                 <a href="/"><MdWidgets /></a>

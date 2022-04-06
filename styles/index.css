@@ -2131,14 +2131,13 @@ div.detail-container > div.breadcrumbs > svg {
 }
 div.detail-container div.detail {
   position: relative;
-  margin: 0 0.5em;
+  margin: 0 1em;
   position: relative;
-  overflow: hidden;
   transition: all 0.3s linear;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 1em;
 }
 @media (min-width: 600px) {
@@ -2149,8 +2148,12 @@ div.detail-container div.detail {
 }
 @media (min-width: 1000px) {
   div.detail-container div.detail {
-    flex-direction: row;
+    display: grid;
+    grid-template-rows: none;
+    grid-template-columns: 1fr 1fr;
     gap: 2em;
+    place-items: unset;
+    place-content: unset;
     width: 1000px;
     margin: 0 auto;
   }
@@ -2183,7 +2186,6 @@ div.detail-container div.detail > div.detail-primary {
     justify-content: unset;
     align-items: stretch;
     gap: 1.5em;
-    width: 60%;
   }
   div.detail-container div.detail > div.detail-primary .read-more {
     display: unset;
@@ -2628,7 +2630,6 @@ div.detail-container div.detail > div.detail-secondary {
     justify-content: unset;
     align-items: stretch;
     gap: 0;
-    width: 40%;
   }
 }
 div.detail-container div.detail > div.detail-secondary > div.height-container {
@@ -3066,45 +3067,32 @@ div.detail-container div.detail > div.detail-secondary > div.height-container > 
 div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > section.action > div.action-dlc > div:nth-child(3) > a > svg {
   font-size: 1.2em;
 }
-div.detail-container > div.recommendations {
-  margin: 1em 0.5em;
+div.detail-container div.detail > div.recommendations {
   position: relative;
+  grid-column: span 2;
 }
-@media (min-width: 600px) {
-  div.detail-container > div.recommendations {
-    width: 575px;
-    margin: 1.5em auto;
-  }
-}
-@media (min-width: 1000px) {
-  div.detail-container > div.recommendations {
-    flex-direction: row;
-    width: 950px;
-    gap: 2em;
-  }
-}
-div.detail-container > div.recommendations > section.recommended {
+div.detail-container div.detail > div.recommendations > section.recommended {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
   gap: 1.5em;
 }
-div.detail-container > div.recommendations > section.recommended > div {
+div.detail-container div.detail > div.recommendations > section.recommended > div {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
   gap: 1em;
 }
-div.detail-container > div.recommendations > section.recommended > div > div:nth-child(1) {
+div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(1) {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 0;
 }
-div.detail-container > div.recommendations > section.recommended > div > div:nth-child(1) > h5 {
+div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(1) > h5 {
   font-size: 1.2em;
   color: #939393;
   margin-bottom: 0.5em;
@@ -3112,17 +3100,17 @@ div.detail-container > div.recommendations > section.recommended > div > div:nth
   display: block;
   margin: 0;
 }
-div.detail-container > div.recommendations > section.recommended > div > div:nth-child(1) > a {
+div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(1) > a {
   white-space: nowrap;
   font-size: 0.85em;
   padding: 0.3em 0.6em;
   background-color: #6f001c;
   color: #c6d4df;
 }
-div.detail-container > div.recommendations > section.recommended > div > div:nth-child(1) > a:hover {
+div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(1) > a:hover {
   background-color: #8b0023;
 }
-div.detail-container > div.recommendations > section.recommended > div > div:nth-child(2) {
+div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(2) {
   display: grid;
   grid-template-rows: none;
   grid-template-columns: repeat(2, 1fr);
@@ -3131,7 +3119,7 @@ div.detail-container > div.recommendations > section.recommended > div > div:nth
   place-content: unset;
 }
 @media (min-width: 600px) {
-  div.detail-container > div.recommendations > section.recommended > div > div:nth-child(2) {
+  div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(2) {
     display: grid;
     grid-template-rows: none;
     grid-template-columns: repeat(3, 1fr);
@@ -3140,7 +3128,7 @@ div.detail-container > div.recommendations > section.recommended > div > div:nth
     place-content: unset;
   }
 }
-div.detail-container > div.recommendations > section.recommended > div > div:nth-child(2) > a {
+div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(2) > a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -3151,26 +3139,23 @@ div.detail-container > div.recommendations > section.recommended > div > div:nth
   box-shadow: black 0px 20px 30px -10px;
   transition: all 0.1s linear;
 }
-div.detail-container > div.recommendations > section.recommended > div > div:nth-child(2) > a:hover {
+div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(2) > a:hover {
   box-shadow: white 0 1px 10px;
 }
-div.detail-container > div.recommendations > section.recommended > div > div:nth-child(2) > a > div:first-child > div {
+div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(2) > a > div:first-child {
+  width: 100%;
+}
+div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(2) > a > div:first-child > div {
   height: auto;
   overflow: hidden;
   margin-bottom: 0.25em;
-  width: 40vw;
 }
-@media (min-width: 600px) {
-  div.detail-container > div.recommendations > section.recommended > div > div:nth-child(2) > a > div:first-child > div {
-    width: 25vw;
-  }
-}
-div.detail-container > div.recommendations > section.recommended > div > div:nth-child(2) > a > div:first-child > h4 {
+div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(2) > a > div:first-child > h4 {
   color: #939393;
   display: block;
   padding-left: 0.5em;
 }
-div.detail-container > div.recommendations > section.recommended > div > div:nth-child(2) > a > div:last-child {
+div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(2) > a > div:last-child {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -3180,20 +3165,20 @@ div.detail-container > div.recommendations > section.recommended > div > div:nth
   padding-right: 0.2em;
   align-self: flex-end;
 }
-div.detail-container > div.recommendations > section.recommended > div > div:nth-child(2) > a > div:last-child > p:nth-child(1) {
+div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(2) > a > div:last-child > p:nth-child(1) {
   background-color: #4c6b22;
   color: #a4d007;
   font-size: 1.1em;
   padding: 0.2em;
 }
-div.detail-container > div.recommendations > section.recommended > div > div:nth-child(2) > a > div:last-child > p:nth-child(2) {
+div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(2) > a > div:last-child > p:nth-child(2) {
   padding-right: 0.5em;
 }
-div.detail-container > div.recommendations > section.recommended > div > div:nth-child(2) > a:nth-child(3) {
+div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(2) > a:nth-child(3) {
   display: none;
 }
 @media (min-width: 600px) {
-  div.detail-container > div.recommendations > section.recommended > div > div:nth-child(2) > a:nth-child(3) {
+  div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(2) > a:nth-child(3) {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -4171,20 +4156,20 @@ section.admin-container > div.controls > .head > .breadcrumbs {
 section.admin-container > div.controls > .head > .breadcrumbs a {
   cursor: pointer;
 }
-section.admin-container > div.controls > .head > .breadcrumbs > div:not(:last-child) > a {
-  color: inherit;
-}
-section.admin-container > div.controls > .head > .breadcrumbs > div:not(:last-child) > a:hover {
-  filter: brightness(50%);
-}
-section.admin-container > div.controls > .head > .breadcrumbs > div:last-child > a {
-  color: #007bff !important;
-}
-section.admin-container > div.controls > .head > .breadcrumbs > div:last-child > a:hover {
-  filter: brightness(150%);
-}
 section.admin-container > div.controls > .head > .breadcrumbs > span {
   cursor: default;
+}
+section.admin-container > div.controls > .head > .breadcrumbs > div:not(:last-of-type) > a {
+  color: inherit;
+}
+section.admin-container > div.controls > .head > .breadcrumbs > div:not(:last-of-type) > a:hover {
+  filter: brightness(50%);
+}
+section.admin-container > div.controls > .head > .breadcrumbs > div:last-of-type > a {
+  color: #007bff !important;
+}
+section.admin-container > div.controls > .head > .breadcrumbs > div:last-of-type > a:hover {
+  filter: brightness(150%);
 }
 section.admin-container > div.controls > .head > .links {
   display: flex;
@@ -4250,6 +4235,101 @@ section.admin-container > div.controls > .title button:hover > svg {
 }
 section.admin-container > div.controls > .title button > svg#filter-icon {
   transform: translateY(0.15em);
+}
+section.admin-container > div.controls > .dashboard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 1em;
+}
+section.admin-container > div.controls > .dashboard-container > .notification {
+  display: grid;
+  grid-template-rows: none;
+  grid-template-columns: 1fr;
+  gap: 1em;
+  place-items: unset;
+  place-content: unset;
+}
+section.admin-container > div.controls > .dashboard-container > .notification > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+section.admin-container > div.controls > .dashboard-container > .notification > div > div.head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+  padding: 0.8em;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.125);
+}
+section.admin-container > div.controls > .dashboard-container > .notification > div > div.head > p {
+  display: inline-flex;
+  font-size: 1.1em;
+  font-weight: 400;
+}
+section.admin-container > div.controls > .dashboard-container > .notification > div > div.head > div {
+  display: inline-flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+}
+section.admin-container > div.controls > .dashboard-container > .notification > div > div.head > div > p {
+  text-decoration: underline;
+  font-size: 0.9em;
+}
+section.admin-container > div.controls > .dashboard-container > .notification > div > div.collapse-container {
+  filter: brightness(90%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 0;
+}
+section.admin-container > div.controls > .dashboard-container > .notification > div > div.collapse-container > div {
+  padding: 0.4em 0.8em;
+}
+section.admin-container > div.controls > .dashboard-container > .notification div.Reports > div {
+  background: #007bff;
+}
+section.admin-container > div.controls > .dashboard-container > .notification div.Warnings > div {
+  background: #ffc107;
+}
+section.admin-container > div.controls > .dashboard-container > .notification div.Dangers > div {
+  background: #c70000;
+}
+section.admin-container > div.controls > .dashboard-container > .notification div.Success > div {
+  background: #6dc849;
+}
+section.admin-container > div.controls > .dashboard-container > .chart-container {
+  background-color: #ffffff;
+  border: 2px solid rgba(0, 0, 0, 0.125);
+  border-radius: 5px;
+}
+section.admin-container > div.controls > .dashboard-container > .chart-container > p {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5;
+  padding: 0.8em;
+  font-size: 1em;
+  font-weight: 400;
+  background: #c0bbca;
+}
+section.admin-container > div.controls > .dashboard-container > .chart-container > p > svg {
+  font-size: 1.2em;
+}
+section.admin-container > div.controls > .dashboard-container > .chart-container > div {
+  padding: 1em;
 }
 section.admin-container > div.controls > .list-container {
   display: flex;
@@ -4341,10 +4421,13 @@ section.admin-container > div.controls > .list-container > form.editor label {
   text-transform: capitalize;
   font-weight: 500;
 }
-section.admin-container > div.controls > .list-container > form.editor label > input {
+section.admin-container > div.controls > .list-container > form.editor label > input, section.admin-container > div.controls > .list-container > form.editor label > .selection {
   flex: 10;
 }
-section.admin-container > div.controls > .list-container > form.editor label > input:disabled {
+section.admin-container > div.controls > .list-container > form.editor label > input > div, section.admin-container > div.controls > .list-container > form.editor label > .selection > div {
+  border-radius: 0;
+}
+section.admin-container > div.controls > .list-container > form.editor label > input:disabled, section.admin-container > div.controls > .list-container > form.editor label > .selection:disabled {
   background: #d3d3d3;
 }
 section.admin-container > div.controls > .list-container > form.editor label > p {
@@ -4397,14 +4480,16 @@ section.admin-container > div.controls > .list-container > .search button > svg 
   color: #c6d4df;
 }
 section.admin-container > div.controls > .list-container > ul.table {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+section.admin-container > div.controls > .list-container > ul.table.col-6 {
   display: grid;
   grid-template-rows: none;
-  grid-template-columns: minmax(min-content, 1fr) minmax(min-content, 2fr) repeat(5, minmax(min-content, 0.5fr));
+  grid-template-columns: minmax(min-content, 1fr) minmax(min-content, 1fr) repeat(5, minmax(min-content, 0.5fr));
   gap: 0;
   place-items: unset;
   place-content: unset;
-  overflow-x: auto;
-  white-space: nowrap;
 }
 section.admin-container > div.controls > .list-container > ul.table > li {
   display: flex;
@@ -4946,6 +5031,27 @@ section.admin-container > div.sidebar-overlay {
 section.admin-container > div.sidebar-overlay.display {
   opacity: 1;
   z-index: 10;
+}
+
+div.fallBack {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+div.fallBack > a {
+  display: block;
+  border-radius: 5px;
+  padding: 1em;
+  transition: all 0.1s linear;
+  cursor: pointer;
+  background: #3f0010;
+}
+div.fallBack > a:hover {
+  background: #ff0040;
 }
 
 section.enter-container {

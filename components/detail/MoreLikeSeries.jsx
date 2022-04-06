@@ -6,7 +6,7 @@ const MoreLikeSeries = ({gamesData}) => {
         return (
             <div>
                 <div>
-                    <h5>More Like this</h5>{/*  output games of same gerne here i think */}
+                    <h5>From the same series</h5>{/*  output games of same gerne here i think */}
                     <a href="/">See all</a>
                 </div>
                 <div>

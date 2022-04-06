@@ -8,15 +8,15 @@ import { firestore } from '@lib/firebase'
 import { gameDateToJsonLocal } from '@lib/commonFunctions'
 
 const AdminUsersListItem = ({uid, data, getUser}) => {
-    const { displayName, username } = data
+    const { displayName, username, role, joinedAt } = data
 
     return (
         <>
             <li>{uid}</li>
             <li>{displayName}</li>
             <li>{username}</li>
-            <li>{``}</li>
-            <li>{``}</li>
+            <li>{joinedAt}</li>
+            <li>{role?.value || ''}</li>
             <li onClick={() => getUser(uid)} className='edit'><RiEditBoxFill /></li>
             <DeleteUserButton uid={uid}/>
         </>

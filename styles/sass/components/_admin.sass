@@ -116,16 +116,16 @@ section.admin-container
                 white-space: nowrap
                 a
                     cursor: pointer
-                >div:not(:last-child) >a
+                >span
+                    cursor: default
+                >div:not(:last-of-type) >a
                     color: inherit
                     &:hover
                         filter: brightness(50%)
-                >div:last-child >a
+                >div:last-of-type >a
                     color: $bgc-admin-current !important
                     &:hover
                         filter: brightness(150%)
-                >span
-                    cursor: default
             >.links
                 @include flex
                 margin-left: auto
@@ -150,9 +150,61 @@ section.admin-container
                 @include sidebar-button
                 >svg#filter-icon
                     transform: translateY(.15em)
+
+        >.dashboard-container
+            @include flex($direction: column, $align: stretch, $gap: 1em)
+            >.notification
+                @include grid($columns: 1fr, $gap: 1em)
+                >div
+                    @include flex($direction: column, $align: stretch)
+                    border-top-left-radius: 5px
+                    border-top-right-radius: 5px
+                    >div.head
+                        @include flex
+                        padding: .8em
+                        border-bottom: $brd-admin-gray
+                        >p
+                            display: inline-flex
+                            font-size: 1.1em
+                            font-weight: 400
+                        >div
+                            display: inline-flex
+                            @include flex
+                            >p
+                                text-decoration: underline
+                                font-size: .9em
+                    >div.collapse-container
+                        filter: brightness(90%)
+                        @include flex($direction: column, $align: stretch)
+                        >div
+                            padding: .4em .8em
+                            >p
+                div.Reports >div
+                    background: $bgc-admin-current
+                div.Warnings >div
+                    background: $fc-admin-warning
+                div.Dangers >div
+                    background: $fc-admin-delete
+                div.Success >div
+                    background: $fc-meta
+            >.chart-container
+                background-color: $bgc-admin-white
+                border: $brd-admin-gray
+                border-radius: 5px
+                >p
+                    @include flex($justify: flex-start, $gap: .5)
+                    padding: .8em
+                    font-size: 1em
+                    font-weight: 400
+                    background: $bgc-hilight-soft
+                    >svg
+                        font-size: 1.2em
+                >div
+                    padding: 1em
+        
         >.list-container
             @include flex($direction: column, $align: stretch)
-            border: 2px solid $bgc-admin-line-gray
+            border: $brd-admin-gray
             background-color: $bgc-admin-white
             width: 95vw
             margin: 1em 
@@ -164,7 +216,7 @@ section.admin-container
             >form
                 @include adminSearch($fc: $fc-admin, $bgc: $bgc-admin-white, $bl: $bgc-admin-line-dark, $flex-short: none)
                 padding: 1em
-                border-bottom: 2px solid $bgc-admin-line-gray
+                border-bottom: $brd-admin-gray
                 button
                     background: $bgc-admin-current
                     color: $fc-admin-white
@@ -183,8 +235,10 @@ section.admin-container
                     @include flex
                     text-transform: capitalize
                     font-weight: 500
-                    >input
+                    >input, >.selection
                         flex: 10
+                        >div
+                            border-radius: 0
                         &:disabled
                             background: $bgc-disabled
                     >p
@@ -205,13 +259,14 @@ section.admin-container
                 @include adminSearch($fc: $fc-admin, $bgc: $bgc-admin-white, $bl: $bgc-admin-line-dark, $flex-short: none)
                 padding: 1em
             >ul.table
-                @include grid($columns: minmax(min-content, 1fr) minmax(min-content, 2fr) repeat(5, minmax(min-content, .5fr)))
+                &.col-6
+                    @include grid($columns: minmax(min-content, 1fr) minmax(min-content, 1fr) repeat(5, minmax(min-content, .5fr)))
                 overflow-x: auto
                 white-space: nowrap
                 >li
                     @include flex()
                     padding: .5em 1em
-                    border-top: 2px solid $bgc-admin-line-gray
+                    border-top: $brd-admin-gray
                     >svg
                         font-size: 1.5em
                 .edit, .delete
@@ -231,7 +286,7 @@ section.admin-container
                     &.edit, &.delete
                         color: unset !important
             >.pagination
-                border-top: 2px solid $bgc-admin-line-gray
+                border-top: $brd-admin-gray
                 padding: 1em
                 >ul
                     @include flex($align: stretch, $justify: center)
@@ -378,3 +433,17 @@ section.admin-container
 
     >div.sidebar-overlay
         @include overlay
+
+div.fallBack
+    height: 100vh
+    width: 100vw
+    @include flex($justify: center)
+    >a
+        display: block
+        border-radius: 5px
+        padding: 1em
+        transition: $trs-instant
+        cursor: pointer
+        background: $bgc-subsidiary-subtle-soft
+        &:hover
+            background: $bgc-subsidiary-hilight

@@ -25,27 +25,12 @@ export const terminalMenuData = [
     ],
   },
   {
-    menu: 'Genres',
+    menu: 'Misc',
     menuIcon: <MdWidgets />,
     dropDown: [
-      { label: 'List', icon: <AiOutlineUnorderedList />, url: '/admin' },
-      { label: 'Add new', icon: <AiOutlineFileAdd />, url: '/admin' },
-    ],
-  },
-  {
-    menu: 'Platform',
-    menuIcon: <MdComputer />,
-    dropDown: [
-      { label: 'List', icon: <AiOutlineUnorderedList />, url: '/admin' },
-      { label: 'Add new', icon: <AiOutlineFileAdd />, url: '/admin' },
-    ],
-  },
-  {
-    menu: 'Stores',
-    menuIcon: <FaStore />,
-    dropDown: [
-      { label: 'List', icon: <AiOutlineUnorderedList />, url: '/admin' },
-      { label: 'Add new', icon: <AiOutlineFileAdd />, url: '/admin' },
+      { label: 'Genres', icon: <MdWidgets />, url: '/admin/misc/genres' },
+      { label: 'Platforms', icon: <MdComputer />, url: '/admin/misc/platforms' },
+      { label: 'Stores', icon: <FaStore />, url: '/admin/misc/stores' },
     ],
   },
   {

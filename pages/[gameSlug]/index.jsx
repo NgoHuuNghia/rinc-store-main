@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react'
 import parse from 'html-react-parser'
 import {FaPlaystation, FaXbox} from 'react-icons/fa'
 
-import { gameDateToJsonLocal } from "@lib/firebase";
+import { dateToJsonLocal } from "@lib/firebase";
 import { firestore } from "@lib/firebase";
 import { addDoc, collection, doc, getDoc, getDocs, limit, orderBy, query } from "firebase/firestore";
 import {useMediaQuery} from 'react-responsive'
@@ -30,7 +30,7 @@ export async function getStaticProps({ params }) { //? params instead of query l
     const { gameSlug } = params
 
     const gameRef = doc(firestore, 'games', gameSlug)
-    const game = gameDateToJsonLocal(await getDoc(gameRef))
+    const game = dateToJsonLocal(await getDoc(gameRef))
     const path = gameRef.path //? hydrate data bellow
 
     return {
@@ -555,8 +555,9 @@ const GameDetail = ({ game }) => {
                         : ''
                     }
                 </p> */}
+                <Recommendation />
+                <Reviews />
             </div>
-            <Recommendation />
         </div>
     )
 }
@@ -568,7 +569,7 @@ function Recommendation() {
     const gamesQuery = query(ref, orderBy('releasedAt'), limit(LIMIT))
     const [querySnapshot, loading] = useCollection(gamesQuery) //? make a loader here another time
 
-    const gamesData = querySnapshot?.docs.map((doc) => gameDateToJsonLocal(doc));
+    const gamesData = querySnapshot?.docs.map((doc) => dateToJsonLocal(doc));
 
     return (
         <div className='recommendations'>
@@ -581,6 +582,43 @@ function Recommendation() {
                 <MoreLikeSeries gamesData={gamesData}/>
                 <MoreLikeGenres gamesData={gamesData}/>
             </section>
+        </div>
+    )
+}
+
+function Reviews(){
+    return (
+        <div className='reviews-container'>
+            <h5>User reviews</h5>
+            <div>Newest first</div>
+            <div className='user-reviews-container'>
+                <div>
+                    <div>
+                        <h4>Exceptional</h4>
+                        <p>desciption Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, laboriosam eligendi officiis saepe eos porro. Consequatur eaque vel quia dolorum placeat alias ad nostrum harum, esse praesentium optio magnam aut.</p>
+                        <div>
+                            <div>
+                                <div className='avatar'></div>
+                                <p>username</p>
+                                <span>time posted</span>
+                            </div>
+                            <div className='review-ratings'>
+                                <i>thumb up?</i>
+                                <span>0</span>
+                                <i>thumb down?</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <form>
+                            <div className='avatar'></div>
+                            <input 
+                                type="text"
+                                placeholder='Write a reply'/>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

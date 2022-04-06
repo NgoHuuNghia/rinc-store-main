@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import {  AiFillPieChart, AiOutlineRightSquare } from'react-icons/ai'
+import React from 'react'
+import {  AiFillPieChart } from'react-icons/ai'
 import { FaFilter, FaSearch } from 'react-icons/fa'
 
 import { useSidebar } from '@lib/adminContext'
