@@ -2835,7 +2835,7 @@ div.detail-container div.detail > div.detail-secondary > div.height-container > 
   display: grid;
   grid-template-rows: none;
   grid-template-columns: 1fr 1fr;
-  gap: 0;
+  gap: 0.5em;
   place-items: unset;
   place-content: unset;
 }
@@ -3899,7 +3899,7 @@ section.admin-container > nav.terminal > .head {
   align-items: center;
   gap: 2em;
   background-color: #25252d;
-  border-bottom: 1.5px solid #8b0023;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.125);
 }
 section.admin-container > nav.terminal > .head > a {
   display: flex;
@@ -3940,7 +3940,7 @@ section.admin-container > nav.terminal > .head > button > svg:hover {
 }
 section.admin-container > nav.terminal > .admin {
   background-color: #25252d;
-  border-bottom: 1.5px solid #8b0023;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.125);
 }
 section.admin-container > nav.terminal > .admin > a {
   display: flex;
@@ -4237,11 +4237,17 @@ section.admin-container > div.controls > .title button > svg#filter-icon {
   transform: translateY(0.15em);
 }
 section.admin-container > div.controls > .dashboard-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
+  display: grid;
+  grid-template-rows: none;
+  grid-template-columns: 1fr;
   gap: 1em;
+  place-items: unset;
+  place-content: unset;
+}
+@media (min-width: 1000px) {
+  section.admin-container > div.controls > .dashboard-container {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 section.admin-container > div.controls > .dashboard-container > .notification {
   display: grid;
@@ -4250,6 +4256,16 @@ section.admin-container > div.controls > .dashboard-container > .notification {
   gap: 1em;
   place-items: unset;
   place-content: unset;
+}
+@media (min-width: 600px) {
+  section.admin-container > div.controls > .dashboard-container > .notification {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1000px) {
+  section.admin-container > div.controls > .dashboard-container > .notification {
+    grid-column: span 2;
+  }
 }
 section.admin-container > div.controls > .dashboard-container > .notification > div {
   display: flex;
@@ -4285,9 +4301,13 @@ section.admin-container > div.controls > .dashboard-container > .notification > 
 section.admin-container > div.controls > .dashboard-container > .notification > div > div.head > div > p {
   text-decoration: underline;
   font-size: 0.9em;
+  cursor: pointer;
+}
+section.admin-container > div.controls > .dashboard-container > .notification > div > div.head > div:hover {
+  color: #eef0f1;
 }
 section.admin-container > div.controls > .dashboard-container > .notification > div > div.collapse-container {
-  filter: brightness(90%);
+  filter: brightness(80%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -4296,17 +4316,26 @@ section.admin-container > div.controls > .dashboard-container > .notification > 
 }
 section.admin-container > div.controls > .dashboard-container > .notification > div > div.collapse-container > div {
   padding: 0.4em 0.8em;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.125);
+  transition: all 0.1s linear;
+  cursor: pointer;
 }
-section.admin-container > div.controls > .dashboard-container > .notification div.Reports > div {
+section.admin-container > div.controls > .dashboard-container > .notification > div > div.collapse-container > div:hover {
+  filter: brightness(120%);
+}
+section.admin-container > div.controls > .dashboard-container > .notification > div > div.collapse-container > div:last-of-type {
+  border-bottom: none;
+}
+section.admin-container > div.controls > .dashboard-container > .notification div.Reports > div, section.admin-container > div.controls > .dashboard-container > .notification div.Reports > div > div {
   background: #007bff;
 }
-section.admin-container > div.controls > .dashboard-container > .notification div.Warnings > div {
+section.admin-container > div.controls > .dashboard-container > .notification div.Warnings > div, section.admin-container > div.controls > .dashboard-container > .notification div.Warnings > div > div {
   background: #ffc107;
 }
-section.admin-container > div.controls > .dashboard-container > .notification div.Dangers > div {
+section.admin-container > div.controls > .dashboard-container > .notification div.Dangers > div, section.admin-container > div.controls > .dashboard-container > .notification div.Dangers > div > div {
   background: #c70000;
 }
-section.admin-container > div.controls > .dashboard-container > .notification div.Success > div {
+section.admin-container > div.controls > .dashboard-container > .notification div.Success > div, section.admin-container > div.controls > .dashboard-container > .notification div.Success > div > div {
   background: #6dc849;
 }
 section.admin-container > div.controls > .dashboard-container > .chart-container {
@@ -4328,8 +4357,35 @@ section.admin-container > div.controls > .dashboard-container > .chart-container
 section.admin-container > div.controls > .dashboard-container > .chart-container > p > svg {
   font-size: 1.2em;
 }
-section.admin-container > div.controls > .dashboard-container > .chart-container > div {
-  padding: 1em;
+section.admin-container > div.controls > .dashboard-container > .chart-container > div.chart {
+  margin: 1em auto;
+  position: relative;
+  width: 300px;
+  height: 150px;
+}
+@media (min-width: 400px) {
+  section.admin-container > div.controls > .dashboard-container > .chart-container > div.chart {
+    width: 400px;
+    height: 200px;
+  }
+}
+@media (min-width: 600px) {
+  section.admin-container > div.controls > .dashboard-container > .chart-container > div.chart {
+    width: 600px;
+    height: 300px;
+  }
+}
+@media (min-width: 800px) {
+  section.admin-container > div.controls > .dashboard-container > .chart-container > div.chart {
+    width: 800px;
+    height: 400px;
+  }
+}
+@media (min-width: 1000px) {
+  section.admin-container > div.controls > .dashboard-container > .chart-container > div.chart {
+    width: 600px;
+    height: 300px;
+  }
 }
 section.admin-container > div.controls > .list-container {
   display: flex;

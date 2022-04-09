@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef, useContext } from 'react'
 import parse from 'html-react-parser'
 import {FaPlaystation, FaXbox} from 'react-icons/fa'
 
-import { dateToJsonLocal } from "@lib/firebase";
+import { auth, dateToJsonLocal } from "@lib/firebase";
 import { firestore } from "@lib/firebase";
-import { addDoc, collection, doc, getDoc, getDocs, limit, orderBy, query } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, limit, onSnapshot, orderBy, query } from "firebase/firestore";
 import {useMediaQuery} from 'react-responsive'
 import MoreLikeGenres from '@components/Detail/MoreLikeGenres'
 import MoreLikeSeries from '@components/Detail/MoreLikeSeries'
@@ -20,7 +20,7 @@ import {FaChevronRight, FaWindows, FaFlag, FaShareAlt, FaStopCircle} from 'react
 import {AiOutlineStop} from 'react-icons/ai'
 import { useWindowSize } from '@lib/hooks';
 import Image from 'next/image';
-import { useCollection } from 'react-firebase-hooks/firestore';
+import { useCollection, useDocument, useDocumentData } from 'react-firebase-hooks/firestore';
 import { UserContext } from '@lib/globalContext';
 import { useRouter } from 'next/router';
 import toast from 'react-hot-toast';
@@ -90,7 +90,7 @@ export async function getStaticPaths() {
 
 //$ source
 
-const GameDetail = ({ game }) => {
+const GameDetail = ({ game, path }) => {
     //!         const {
     //!             name, description, metacritic, released, updated, background_image, background_image_additional, ratings,
     //!             platforms, parent_platforms, stores, developers, genres, tags, publishers, esrb_rating
@@ -158,9 +158,25 @@ const GameDetail = ({ game }) => {
     //         primaryReadMore.style.color = 'white'
     //     }
     // }, [windowWidth])
-    const {title, slug, mainImageUrl, secondaryImageUrls, releasedAt, updatedAt, metacritic, description, basePrice} = game
-    const { user, username, shoppingCart } = useContext(UserContext)
     const router = useRouter()
+    const { user, username, shoppingCart } = useContext(UserContext)
+
+    const gameRef = doc(firestore, path)
+    const [realTimeGame, setRealTimeGame] = useState()
+
+    useEffect(() => {
+        let unsubscribe
+        if(game){
+            unsubscribe = onSnapshot(gameRef, (doc) => { 
+                setRealTimeGame(dateToJsonLocal(doc)) 
+            })
+        } else setRealTimeGame()
+        return unsubscribe
+    }, [game])
+    
+    //* value post will default to the realtime data but fallback to prerender data on server
+    const gameData = realTimeGame || game
+    const {title, slug, mainImageUrl, secondaryImageUrls, releasedAt, updatedAt, metacritic, description, basePrice, userRatings} = gameData
 
     const addToCart = async() => {
         const cartRef = collection(firestore, 'users', user.uid, 'shoppingCart');
@@ -448,7 +464,7 @@ const GameDetail = ({ game }) => {
                                 </div>
                             </div>
 
-                            {/*//$ <DetailChartContainerBar ratings={ratings}/> */}
+                            <DetailChartContainerBar userRatings={userRatings} gameRef={gameRef} user={user} username={username}/>
 
                             <section className='action'>
                                 <div className='action-action'>
@@ -473,7 +489,7 @@ const GameDetail = ({ game }) => {
                                         <div >
                                             <p>{basePrice ? "$" + basePrice : "no pricing yet..."}</p>
                                             {/*//! also add case if game is already own or in cart */}
-                                            {user 
+                                            {username
                                                 ? (
                                                     !shoppingCart.some(cart => cart.item.slug === slug)
                                                     ? (

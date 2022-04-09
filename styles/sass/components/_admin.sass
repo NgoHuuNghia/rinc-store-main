@@ -23,7 +23,7 @@ section.admin-container
         >.head
             @include flex($gap: 2em)
             background-color: $bgc-admin-terminal-dark
-            border-bottom: 1.5px solid $bgc-subsidiary
+            border-bottom: $brd-admin-gray
             >a
                 @include headLink
             >button 
@@ -42,7 +42,7 @@ section.admin-container
                         color: $fc-subsidiary-hilight
         >.admin
             background-color: $bgc-admin-terminal-dark
-            border-bottom: 1.5px solid $bgc-subsidiary
+            border-bottom: $brd-admin-gray
             >a
                 @include headLink
         >.search
@@ -152,9 +152,16 @@ section.admin-container
                     transform: translateY(.15em)
 
         >.dashboard-container
-            @include flex($direction: column, $align: stretch, $gap: 1em)
+            // @include flex($direction: column, $align: stretch, )
+            @include grid($columns: 1fr, $gap: 1em)
+            @include bs.from(xl)
+                grid-template-columns: 1fr 1fr
             >.notification
                 @include grid($columns: 1fr, $gap: 1em)
+                @include bs.from(m)
+                    grid-template-columns: 1fr 1fr
+                @include bs.from(xl)
+                    grid-column: span 2
                 >div
                     @include flex($direction: column, $align: stretch)
                     border-top-left-radius: 5px
@@ -173,19 +180,28 @@ section.admin-container
                             >p
                                 text-decoration: underline
                                 font-size: .9em
+                                cursor: pointer
+                            &:hover
+                                color: $fc-admin-white
                     >div.collapse-container
-                        filter: brightness(90%)
+                        filter: brightness(80%)
                         @include flex($direction: column, $align: stretch)
                         >div
                             padding: .4em .8em
-                            >p
-                div.Reports >div
+                            border-bottom: $brd-admin-gray
+                            transition: $trs-instant
+                            cursor: pointer
+                            &:hover
+                                filter: brightness(120%)
+                            &:last-of-type
+                                border-bottom: none
+                div.Reports >div, div.Reports >div >div
                     background: $bgc-admin-current
-                div.Warnings >div
+                div.Warnings >div, div.Warnings >div >div
                     background: $fc-admin-warning
-                div.Dangers >div
+                div.Dangers >div, div.Dangers >div >div
                     background: $fc-admin-delete
-                div.Success >div
+                div.Success >div, div.Success >div >div
                     background: $fc-meta
             >.chart-container
                 background-color: $bgc-admin-white
@@ -199,8 +215,23 @@ section.admin-container
                     background: $bgc-hilight-soft
                     >svg
                         font-size: 1.2em
-                >div
-                    padding: 1em
+                >div.chart
+                    margin: 1em auto
+                    position: relative
+                    width: 300px
+                    height: 150px
+                    @include bs.from(s)
+                        width: 400px
+                        height: 200px
+                    @include bs.from(m)
+                        width: 600px
+                        height: 300px
+                    @include bs.from(l)
+                        width: 800px
+                        height: 400px
+                    @include bs.from(xl)
+                        width: 600px
+                        height: 300px
         
         >.list-container
             @include flex($direction: column, $align: stretch)

@@ -1,5 +1,5 @@
 import { SidebarProvider } from '@lib/adminContext'
-import { saleData, userData } from '@components/admin/chart/ChartData'
+import { saleData, userData } from '@components/admin/chart/chartData'
 import { useState } from 'react'
 import BarChart from '@components/admin/chart/BarChart'
 import LineChart from '@components/admin/chart/LineChart'
@@ -83,6 +83,14 @@ const Admin = () => {
                                 <IoIosArrowDown />
                             </div>
                         </div>
+                        <div className='collapse-container'>
+                            <div className='active'>
+                                <p>lorem report</p>
+                            </div>
+                            <div className='active'>
+                                <p>lorem report</p>
+                            </div>
+                        </div>
                     </div>
                     <div className='Dangers'>
                         <div className='head'>
@@ -90,6 +98,14 @@ const Admin = () => {
                             <div>
                                 <p>View more</p>
                                 <IoIosArrowDown />
+                            </div>
+                        </div>
+                        <div className='collapse-container'>
+                            <div className='active'>
+                                <p>lorem report</p>
+                            </div>
+                            <div className='active'>
+                                <p>lorem report</p>
                             </div>
                         </div>
                     </div>
@@ -101,17 +117,25 @@ const Admin = () => {
                                 <IoIosArrowDown />
                             </div>
                         </div>
+                        <div className='collapse-container'>
+                            <div className='active'>
+                                <p>lorem report</p>
+                            </div>
+                            <div className='active'>
+                                <p>lorem report</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className='chart-container'>
                     <p><AiOutlineBarChart /> Users report</p>
-                    <div>
+                    <div className='chart'>
                         <BarChart chartData={userChartData} />
                     </div>
                 </div>
                 <div className='chart-container'>
                     <p><AiOutlineLineChart /> Sales report</p>
-                    <div>
+                    <div className='chart'>
                         <LineChart chartData={saleChartData} />
                     </div>
                 </div>
