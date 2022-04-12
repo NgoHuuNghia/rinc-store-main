@@ -25,6 +25,7 @@ import { UserContext } from '@lib/globalContext';
 import { useRouter } from 'next/router';
 import toast from 'react-hot-toast';
 import { icons } from 'react-icons';
+import DetailReviews from '@components/detail/DetailReviews';
 
 export async function getStaticProps({ params }) { //? params instead of query like ssr
     const { gameSlug } = params
@@ -572,7 +573,7 @@ const GameDetail = ({ game, path }) => {
                     }
                 </p> */}
                 <Recommendation />
-                <Reviews />
+                <DetailReviews userRatings={userRatings} title={title} user={user} username={username} gameRef={gameRef}/>
             </div>
         </div>
     )
@@ -598,43 +599,6 @@ function Recommendation() {
                 <MoreLikeSeries gamesData={gamesData}/>
                 <MoreLikeGenres gamesData={gamesData}/>
             </section>
-        </div>
-    )
-}
-
-function Reviews(){
-    return (
-        <div className='reviews-container'>
-            <h5>User reviews</h5>
-            <div>Newest first</div>
-            <div className='user-reviews-container'>
-                <div>
-                    <div>
-                        <h4>Exceptional</h4>
-                        <p>desciption Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, laboriosam eligendi officiis saepe eos porro. Consequatur eaque vel quia dolorum placeat alias ad nostrum harum, esse praesentium optio magnam aut.</p>
-                        <div>
-                            <div>
-                                <div className='avatar'></div>
-                                <p>username</p>
-                                <span>time posted</span>
-                            </div>
-                            <div className='review-ratings'>
-                                <i>thumb up?</i>
-                                <span>0</span>
-                                <i>thumb down?</i>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <form>
-                            <div className='avatar'></div>
-                            <input 
-                                type="text"
-                                placeholder='Write a reply'/>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
     )
 }

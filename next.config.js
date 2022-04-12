@@ -6,6 +6,7 @@ const nextConfig = {
       'media.rawg.io', 
       'cdn.akamai.steamstatic.com',
       'firebasestorage.googleapis.com',
+      'lh3.googleusercontent.com',
     ],
   },
 }

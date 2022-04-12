@@ -2138,7 +2138,7 @@ div.detail-container div.detail {
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
-  gap: 1em;
+  gap: 1.5em;
 }
 @media (min-width: 600px) {
   div.detail-container div.detail {
@@ -3185,6 +3185,255 @@ div.detail-container div.detail > div.recommendations > section.recommended > di
     align-items: flex-start;
     gap: 0.25em;
   }
+}
+div.detail-container div.detail > div.reviews-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 0.8em;
+}
+div.detail-container div.detail > div.reviews-container > div.review-writer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 0.8em;
+  background: rgba(255, 255, 255, 0.07);
+  padding: 1em;
+  border-radius: 5px;
+}
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+}
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.title > p {
+  font-size: 1.2em;
+  color: #939393;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+  display: block;
+  margin: 0;
+}
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.title > div.current-user {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.3em;
+}
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.title > div.current-user > p {
+  font-size: 0.9em;
+  color: white;
+  font-weight: 400;
+  letter-spacing: 0.07em;
+  text-transform: capitalize;
+}
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.title > div.current-user > div.avatar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+}
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.title > div.current-user > div.avatar > * {
+  border-radius: 50%;
+}
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.rating-selector {
+  display: grid;
+  grid-template-rows: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5em;
+  place-items: unset;
+  place-content: unset;
+}
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.rating-selector > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.3em;
+  cursor: pointer;
+  padding: 0.5em 0 0.5em 1em;
+  border: 1px solid #c0bbca;
+  border-radius: 2em;
+  transition: all 0.1s linear;
+}
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.rating-selector > div:hover {
+  background: #f2ecff;
+  color: #302c3a;
+}
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.rating-selector > div > p {
+  font-size: 0.9em;
+  font-weight: 500;
+}
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 1em;
+}
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > form > textarea {
+  padding: 0.5em;
+  resize: none;
+  height: 10em;
+  background: #151515;
+  color: #c6d4df;
+  border: none;
+}
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > form > button {
+  align-self: flex-end;
+  padding: 0.5em;
+  background-color: #8b0023;
+  border-radius: 0.5em;
+  color: #c6d4df;
+  cursor: pointer;
+  transition: all 0.1s linear;
+  border: none;
+}
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > form > button:hover {
+  background-color: #c0bbca;
+  color: #302c3a;
+}
+div.detail-container div.detail > div.reviews-container > div.title-controller {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5em;
+}
+div.detail-container div.detail > div.reviews-container > div.title-controller > h3 {
+  font-size: 1.3em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: capitalize;
+}
+div.detail-container div.detail > div.reviews-container > div.title-controller > button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.2em;
+  background: none;
+  color: #c6d4df;
+  border: none;
+  cursor: pointer;
+  transition: all 0.1s linear;
+}
+div.detail-container div.detail > div.reviews-container > div.title-controller > button > svg {
+  transform: translateY(0.08em);
+  font-size: 1.5em;
+}
+div.detail-container div.detail > div.reviews-container > div.title-controller > button:hover {
+  color: #4c565d;
+}
+div.detail-container div.detail > div.reviews-container > div.user-reviews-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+}
+div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 0.8em;
+  background: rgba(255, 255, 255, 0.07);
+  padding: 1em;
+  border-radius: 5px;
+}
+div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container > div.rating {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
+}
+div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container > div.rating > h4 {
+  color: white;
+  font-size: 1.1em;
+  letter-spacing: 0.05em;
+  text-decoration: underline;
+  text-transform: capitalize;
+  font-weight: 400;
+}
+div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container > div.rating > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+}
+div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container > p {
+  font-size: 0.9em;
+  font-weight: 300;
+  line-height: 1.3em;
+}
+div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container > div.subsidiary {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 0;
+}
+div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container > div.subsidiary > div.user-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+}
+div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container > div.subsidiary > div.user-container > div.avatar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+}
+div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container > div.subsidiary > div.user-container > div.avatar > * {
+  border-radius: 50%;
+}
+div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container > div.subsidiary > div.user-container > div.username-time > p {
+  font-size: 0.9em;
+  color: white;
+  font-weight: 400;
+  letter-spacing: 0.07em;
+  text-transform: capitalize;
+}
+div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container > div.subsidiary > div.user-container > div.username-time > span {
+  font-size: 0.7em;
+  color: #6f6f6f;
+  font-weight: 300;
+}
+div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container > div.subsidiary > div.review-ratings {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 1.3em;
+}
+div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container > div.subsidiary > div.review-ratings > span {
+  font-weight: 700;
+}
+div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container > div.subsidiary > div.review-ratings > svg {
+  cursor: pointer;
+  transition: all 0.1s linear;
+}
+div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container > div.subsidiary > div.review-ratings > svg:hover {
+  filter: brightness(140%);
+}
+div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container > div.subsidiary > div.review-ratings > svg.thumb-up {
+  color: #6dc849;
+}
+div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container > div.subsidiary > div.review-ratings > svg.thumb-down {
+  color: #d90037;
 }
 
 section.search-container {

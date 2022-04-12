@@ -2,15 +2,6 @@
 @use "../../../node_modules/breakpoint-slicer" as bs
 @use '../abstracts/mixins/_detail-mixins' as *
 
-@mixin label-sm
-    color: $fc-tag
-    display: block
-@mixin label-md
-    font-size: 1.2em
-    color: $fc-tag
-    margin-bottom: .5em
-    text-transform: uppercase
-    display: block
 // special colors
 $bgc-chart-exeptional: linear-gradient(180deg,#b4ec51,#429321)
 $fc-chart-exeptional: #429321
@@ -48,7 +39,7 @@ div.detail-container
         position: relative
         // overflow: hidden
         transition: $trs-basic
-        @include flex($direction: column, $align: stretch, $gap: 1em)
+        @include flex($direction: column, $align: stretch, $gap: 1.5em)
         @include bs.from(m)
             width: 575px
             margin: 0 auto
@@ -467,3 +458,138 @@ div.detail-container
             //     flex-direction: row
             //     width: 950px
             //     gap: 2em
+
+        >div.reviews-container
+            @include flex($direction: column, $align: stretch, $gap: .8em)
+            >div.review-writer-container
+                @include flex($direction: column, $gap: .8em, $align: stretch)
+                background: $bgc-cooler-transparent
+                padding: 1em
+                border-radius: 5px
+                >div.title
+                    @include flex()
+                    >p
+                        @include label-md
+                        margin: 0
+                    >div.current-user
+                        @include flex($gap: .3em)
+                        >p
+                            font-size: .9em
+                            color: $fc-important
+                            font-weight: 400
+                            letter-spacing: .07em
+                            text-transform: capitalize
+                        >div.avatar
+                            @include flex
+                            >*
+                                border-radius: 50%
+                >div.rating-selector
+                    @include grid($columns: 1fr 1fr, $gap: .5em)
+                    >div
+                        @include flex($justify: flex-start, $gap: .3em)
+                        cursor: pointer
+                        padding: .5em 0 .5em 1em
+                        border: 1px solid $bgc-hilight-soft
+                        border-radius: 2em
+                        transition: $trs-instant
+                        &:hover
+                            background: $bgc-hilight
+                            color: $fc-hilight
+                        >p
+                            font-size: .9em
+                            font-weight: 500
+                >form
+                    @include flex($direction: column, $align: stretch, $gap: 1em)
+                    >textarea
+                        padding: .5em
+                        resize: none
+                        height: 10em
+                        background: $bgc-default
+                        color: $fc-default
+                        border: none
+                    >button
+                        align-self: flex-end
+                        padding: .5em
+                        background-color: $bgc-subsidiary
+                        border-radius: 0.5em
+                        color: $fc-default
+                        cursor: pointer
+                        transition: $trs-instant
+                        border: none
+                        &:hover
+                            background-color: $bgc-hilight-soft
+                            color: $fc-hilight
+            >div.title-controller
+                @include flex($direction: column, $gap: .5em)
+                >h3
+                    font-size: 1.3em
+                    font-weight: 500
+                    letter-spacing: .08em
+                    text-transform: capitalize
+                >button
+                    @include flex($gap: .2em)
+                    background: none
+                    color: $fc-default
+                    border: none
+                    cursor: pointer
+                    transition: $trs-instant
+                    >svg
+                        transform: translateY(.08em)
+                        font-size: 1.5em
+                    &:hover
+                        color: $fc-unimportant
+            >div.user-reviews-container
+                @include flex($direction: column, $gap: 1em)
+                >div.review-container
+                    @include flex($direction: column, $gap: .8em, $align: stretch)
+                    background: $bgc-cooler-transparent
+                    padding: 1em
+                    border-radius: 5px
+                    >div.rating
+                        @include flex($justify: flex-start, $gap: .5em)
+                        >h4
+                            color: $fc-important
+                            font-size: 1.1em
+                            letter-spacing: .05em
+                            text-decoration: underline
+                            text-transform: capitalize
+                            font-weight: 400
+                        >div
+                            @include flex
+                    >p
+                        font-size: .9em
+                        font-weight: 300
+                        line-height: 1.3em
+                    >div.subsidiary
+                        @include flex($align: stretch)
+                        >div.user-container
+                            @include flex
+                            >div.avatar
+                                @include flex
+                                >*
+                                    border-radius: 50%
+                            >div.username-time
+                                >p
+                                    font-size: .9em
+                                    color: $fc-important
+                                    font-weight: 400
+                                    letter-spacing: .07em
+                                    text-transform: capitalize
+                                >span
+                                    font-size: .7em
+                                    color: $fc-subsidiary-unimportant
+                                    font-weight: 300
+                        >div.review-ratings
+                            @include flex($gap: .3em)
+                            font-size: 1.3em
+                            >span
+                                font-weight: 700
+                            >svg
+                                cursor: pointer
+                                transition: $trs-instant
+                                &:hover
+                                    filter: brightness(140%)
+                            >svg.thumb-up
+                                color: $fc-meta
+                            >svg.thumb-down
+                                color: $fc-subsidiary-hilight
