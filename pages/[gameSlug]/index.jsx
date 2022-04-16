@@ -4,7 +4,7 @@ import {FaPlaystation, FaXbox} from 'react-icons/fa'
 
 import { auth, dateToJsonLocal } from "@lib/firebase";
 import { firestore } from "@lib/firebase";
-import { addDoc, collection, doc, getDoc, getDocs, limit, onSnapshot, orderBy, query } from "firebase/firestore";
+import { addDoc, collection, collectionGroup, doc, getDoc, getDocs, limit, onSnapshot, orderBy, query, where } from "firebase/firestore";
 import {useMediaQuery} from 'react-responsive'
 import MoreLikeGenres from '@components/Detail/MoreLikeGenres'
 import MoreLikeSeries from '@components/Detail/MoreLikeSeries'
@@ -34,11 +34,20 @@ export async function getStaticProps({ params }) { //? params instead of query l
     const game = dateToJsonLocal(await getDoc(gameRef))
     const path = gameRef.path //? hydrate data bellow
 
+    const reviewsRef = collectionGroup(firestore, 'review-tracker');
+    const reviewsQuery = query(
+        reviewsRef,
+        orderBy('createdAt', 'desc'),
+        limit(6),
+    )
+    const reviews = (await ( getDocs(reviewsQuery))).docs.map(dateToJsonLocal);
+
     return {
-        props: { game, path },
+        props: { game, path, reviews },
         revalidate: 5000,
     };
 }
+
 export async function getStaticPaths() {
     // Improve my using Admin SDK to select empty docs
     const q = query(
@@ -91,7 +100,7 @@ export async function getStaticPaths() {
 
 //$ source
 
-const GameDetail = ({ game, path }) => {
+const GameDetail = ({ game, path, reviews }) => {
     //!         const {
     //!             name, description, metacritic, released, updated, background_image, background_image_additional, ratings,
     //!             platforms, parent_platforms, stores, developers, genres, tags, publishers, esrb_rating
@@ -573,7 +582,7 @@ const GameDetail = ({ game, path }) => {
                     }
                 </p> */}
                 <Recommendation />
-                <DetailReviews userRatings={userRatings} title={title} user={user} username={username} gameRef={gameRef}/>
+                <DetailReviews userRatings={userRatings} title={title} user={user} username={username} gameRef={gameRef} reviews={reviews}/>
             </div>
         </div>
     )

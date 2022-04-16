@@ -461,6 +461,7 @@ div.detail-container
 
         >div.reviews-container
             @include flex($direction: column, $align: stretch, $gap: .8em)
+            grid-column: span 2
             >div.review-writer-container
                 @include flex($direction: column, $gap: .8em, $align: stretch)
                 background: $bgc-cooler-transparent
@@ -498,7 +499,7 @@ div.detail-container
                         >p
                             font-size: .9em
                             font-weight: 500
-                >form
+                >form, >div.review-viewer
                     @include flex($direction: column, $align: stretch, $gap: 1em)
                     >textarea
                         padding: .5em
@@ -507,18 +508,20 @@ div.detail-container
                         background: $bgc-default
                         color: $fc-default
                         border: none
-                    >button
-                        align-self: flex-end
-                        padding: .5em
-                        background-color: $bgc-subsidiary
-                        border-radius: 0.5em
-                        color: $fc-default
-                        cursor: pointer
-                        transition: $trs-instant
-                        border: none
-                        &:hover
-                            background-color: $bgc-hilight-soft
-                            color: $fc-hilight
+                    >div
+                        @include flex($justify: flex-end, $gap: .5em)
+                        >button
+                            align-self: flex-end
+                            padding: .5em
+                            background-color: $bgc-subsidiary
+                            border-radius: 0.5em
+                            color: $fc-default
+                            cursor: pointer
+                            transition: $trs-instant
+                            border: none
+                            &:hover
+                                background-color: $bgc-hilight-soft
+                                color: $fc-hilight
             >div.title-controller
                 @include flex($direction: column, $gap: .5em)
                 >h3

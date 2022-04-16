@@ -3192,6 +3192,7 @@ div.detail-container div.detail > div.reviews-container {
   justify-content: space-between;
   align-items: stretch;
   gap: 0.8em;
+  grid-column: span 2;
 }
 div.detail-container div.detail > div.reviews-container > div.review-writer-container {
   display: flex;
@@ -3270,14 +3271,14 @@ div.detail-container div.detail > div.reviews-container > div.review-writer-cont
   font-size: 0.9em;
   font-weight: 500;
 }
-div.detail-container div.detail > div.reviews-container > div.review-writer-container > form {
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > form, div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.review-viewer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
   gap: 1em;
 }
-div.detail-container div.detail > div.reviews-container > div.review-writer-container > form > textarea {
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > form > textarea, div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.review-viewer > textarea {
   padding: 0.5em;
   resize: none;
   height: 10em;
@@ -3285,7 +3286,14 @@ div.detail-container div.detail > div.reviews-container > div.review-writer-cont
   color: #c6d4df;
   border: none;
 }
-div.detail-container div.detail > div.reviews-container > div.review-writer-container > form > button {
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > form > div, div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.review-viewer > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5em;
+}
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > form > div > button, div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.review-viewer > div > button {
   align-self: flex-end;
   padding: 0.5em;
   background-color: #8b0023;
@@ -3295,7 +3303,7 @@ div.detail-container div.detail > div.reviews-container > div.review-writer-cont
   transition: all 0.1s linear;
   border: none;
 }
-div.detail-container div.detail > div.reviews-container > div.review-writer-container > form > button:hover {
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > form > div > button:hover, div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.review-viewer > div > button:hover {
   background-color: #c0bbca;
   color: #302c3a;
 }

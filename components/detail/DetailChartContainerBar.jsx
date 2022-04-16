@@ -1,14 +1,15 @@
 import React, {useState} from 'react'
 import {FaCircle} from 'react-icons/fa'
 import { rate } from '@lib/firebase'
+import toast from 'react-hot-toast'
 
 const DetailChartContainerBar = ({ userRatings, gameRef, user, username }) => {
     const [ curretRating, setCurretRating ] = useState("")
     const ratings = userRatings.ratings
     const ratingsKeys = Object.keys(ratings)
-    const chartContainerWidth = ratingsKeys.reduce((cum, key) => {
-        return cum + ratings[key].percent
-    }, 0)
+    //$ const chartContainerWidth = ratingsKeys.reduce((cum, key) => {
+    //$     return cum + ratings[key].percent
+    //$ }, 0)
 
     return (
         // <div>ass</div>
@@ -26,7 +27,7 @@ const DetailChartContainerBar = ({ userRatings, gameRef, user, username }) => {
                                 key={index}
                                 onMouseEnter={() => setCurretRating(key)}
                                 onMouseLeave={() => setCurretRating()}
-                                onClick={() => rate(key, user.uid, gameRef)}
+                                onClick={() => (user) ? rate(key, user.uid, gameRef) : toast.error("Must login to rate")}
                                 className={
                                     (key == curretRating)
                                         ? key + " active"
@@ -67,7 +68,7 @@ const DetailChartContainerBar = ({ userRatings, gameRef, user, username }) => {
                                 key={index}
                                 onMouseEnter={() => setCurretRating(key)}
                                 onMouseLeave={() => setCurretRating()}
-                                onClick={() => rate(key, user.uid, gameRef)}
+                                onClick={() => (user) ? rate(key, user.uid, gameRef) : toast.error("Must login to rate")}
                                 className={key === curretRating
                                     ? key + " active"
                                     : key
