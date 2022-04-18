@@ -6,7 +6,7 @@ import Image from "next/image";
 
 import BsTrash from "react-icons/bs"
 
-export function ReviewForm({user, ratingDoc, username, gameRef}) {
+export function ReviewForm({ user, ratingDoc, username, gameRef }) {
     const [reviewController, setReviewController] = useState();
 
     const [reviewRef, setReviewRef] = useState()
@@ -21,7 +21,7 @@ export function ReviewForm({user, ratingDoc, username, gameRef}) {
     // }, [user])
 
     useEffect( async() => {
-        if(user){
+        if(user && ratingDoc){
             const tempRef = doc(firestore, gameRef.path, 'review-tracker', user.uid)
             const tempDoc = await getDoc(tempRef)
             setReviewRef(tempRef)
@@ -96,7 +96,7 @@ export function ReviewForm({user, ratingDoc, username, gameRef}) {
                                 </div>
                             )
                         }
-                        {!reviewDoc?.exists()
+                        {/* {!reviewDoc?.exists()
                             ? (
                                 <form 
                                     onSubmit={setReview}
@@ -129,7 +129,7 @@ export function ReviewForm({user, ratingDoc, username, gameRef}) {
                                     </div>
                                 </form>
                             )
-                        }
+                        } */}
                     </>
                 )
                 : (

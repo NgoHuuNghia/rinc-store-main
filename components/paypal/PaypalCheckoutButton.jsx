@@ -53,27 +53,27 @@ const PaypalCheckoutButton = ({shoppingCart}) => {
                 purchase_units: [
                     {
                         reference_id: 1,
-                        description: 'ass',
+                        description: 'what',
                         amount: {
                             currency_code: "USD",
                             value: shoppingCart.reduce(
-                                (sum, cur) => sum += cur.basePrice, 0
+                                (sum, cur) => sum += cur.item.basePrice, 0
                             ),
                             breakdown: {
                                 item_total: {
                                     currency_code: "USD",
                                     value: shoppingCart.reduce(
-                                        (sum, cur) => sum += cur.basePrice, 0
+                                        (sum, cur) => sum += cur.item.basePrice, 0
                                     )
                                 }
                             },
                         },
                         items: shoppingCart.map((cartItem) => {
                             return {
-                                name: cartItem.slug,
+                                name: cartItem.item.slug,
                                 unit_amount: {
                                     currency_code: "USD",
-                                    value: cartItem.basePrice
+                                    value: cartItem.item.basePrice
                                 },
                                 quantity: "1",
                                 category: "DIGITAL_GOODS",

@@ -2050,6 +2050,9 @@ footer > div > ul:nth-child(5) > li {
   text-align: right;
 }
 
+div.detail-container {
+  padding-bottom: 5em;
+}
 div.detail-container div.detail-background {
   position: absolute;
   left: 0;
@@ -3342,8 +3345,8 @@ div.detail-container div.detail > div.reviews-container > div.title-controller >
 div.detail-container div.detail > div.reviews-container > div.user-reviews-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
+  align-items: stretch;
   gap: 1em;
 }
 div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container {
@@ -3355,6 +3358,18 @@ div.detail-container div.detail > div.reviews-container > div.user-reviews-conta
   background: rgba(255, 255, 255, 0.07);
   padding: 1em;
   border-radius: 5px;
+}
+@media (min-width: 800px) {
+  div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1000px) {
+  div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container {
+    width: 60%;
+    margin: 0 auto;
+  }
 }
 div.detail-container div.detail > div.reviews-container > div.user-reviews-container > div.review-container > div.rating {
   display: flex;

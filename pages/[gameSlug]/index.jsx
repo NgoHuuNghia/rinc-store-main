@@ -34,7 +34,7 @@ export async function getStaticProps({ params }) { //? params instead of query l
     const game = dateToJsonLocal(await getDoc(gameRef))
     const path = gameRef.path //? hydrate data bellow
 
-    const reviewsRef = collectionGroup(firestore, 'review-tracker');
+    const reviewsRef = collection(firestore, 'games', gameSlug, 'review-tracker');
     const reviewsQuery = query(
         reviewsRef,
         orderBy('createdAt', 'desc'),

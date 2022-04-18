@@ -15,6 +15,7 @@ $bgc-demo: linear-gradient( 60deg, rgba(117, 176, 34, 0.7) 5%,rgba(88, 138, 27, 
 
 //? Detail
 div.detail-container
+    padding-bottom: 5em
     div.detail-background
         position: absolute
         left: 0
@@ -542,12 +543,18 @@ div.detail-container
                     &:hover
                         color: $fc-unimportant
             >div.user-reviews-container
-                @include flex($direction: column, $gap: 1em)
+                @include flex($direction: column,$align: stretch, $justify: center, $gap: 1em)
                 >div.review-container
                     @include flex($direction: column, $gap: .8em, $align: stretch)
                     background: $bgc-cooler-transparent
                     padding: 1em
                     border-radius: 5px
+                    @include bs.from(l)
+                        width: 80%
+                        margin: 0 auto
+                    @include bs.from(xl)
+                        width: 60%
+                        margin: 0 auto
                     >div.rating
                         @include flex($justify: flex-start, $gap: .5em)
                         >h4

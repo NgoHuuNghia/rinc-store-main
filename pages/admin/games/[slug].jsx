@@ -82,6 +82,46 @@ function GameManagerForm({gameRef, defaultValues}){
                 />
                 {errors.title && <strong className="danger">{errors.title.message}</strong>}{/* if there error in content then show it */}
             </div>
+            <div className='text col-2'>
+                <label htmlFor="title">Genres: </label>
+                <input
+                    type='text'
+                    name='title'
+                    {...register('title',{ //? with added html validation
+                        maxLength: { value: 20000, message: 'title is too long' },
+                        minLength: { value: 3, message: 'title is too short' },
+                        required: true,
+                    })}
+                />
+                {errors.title && <strong className="danger">{errors.title.message}</strong>}{/* if there error in content then show it */}
+            </div>
+            <div className='text col-2'>
+                <label htmlFor="title">Platforms: </label>
+                <input
+                    type='text'
+                    name='title'
+                    {...register('title',{ //? with added html validation
+                        maxLength: { value: 20000, message: 'title is too long' },
+                        minLength: { value: 3, message: 'title is too short' },
+                        required: true,
+                    })}
+                />
+                {errors.title && <strong className="danger">{errors.title.message}</strong>}{/* if there error in content then show it */}
+            </div>
+            <div className='text col-2'>
+                <label htmlFor="title">Stores: </label>
+                <input
+                    type='text'
+                    name='title'
+                    {...register('title',{ //? with added html validation
+                        maxLength: { value: 20000, message: 'title is too long' },
+                        minLength: { value: 3, message: 'title is too short' },
+                        required: true,
+                    })}
+                />
+                {errors.title && <strong className="danger">{errors.title.message}</strong>}{/* if there error in content then show it */}
+            </div>
+            
             
             <div className='col-1'>
                 <label htmlFor='esrbRating'>Esrb: </label>
