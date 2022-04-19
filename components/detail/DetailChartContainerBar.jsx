@@ -3,7 +3,7 @@ import {FaCircle} from 'react-icons/fa'
 import { rate } from '@lib/firebase'
 import toast from 'react-hot-toast'
 
-const DetailChartContainerBar = ({ userRatings, gameRef, user, username }) => {
+const DetailChartContainerBar = ({ userRatings, gameRef, ratingDoc, ratingData, user, username, router }) => {
     const [ curretRating, setCurretRating ] = useState("")
     const ratings = userRatings.ratings
     const ratingsKeys = Object.keys(ratings)
@@ -14,10 +14,15 @@ const DetailChartContainerBar = ({ userRatings, gameRef, user, username }) => {
     return (
         // <div>ass</div>
         <div className='chart-container'>
-            {username
-                ? <p>Click to rate</p>
-                : <p>Login to rate</p>
-            }
+            <div className='guide-rated'>
+                {username
+                    ? <p>Click to rate</p>
+                    : <p onClick={() => router.replace('/enter')} className='login'>Login to rate</p>
+                }
+                {ratingDoc?.exists()
+                    && <p>You rated <span className={ratingData?.rating}>{ratingData?.rating}</span></p>
+                }
+            </div>
             <div className='chart'> {/* this is so gonna take some work might do last */}
                 {ratingsKeys
                     .sort((a, b) => ratings[b].count - ratings[a].count)

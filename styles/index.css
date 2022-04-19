@@ -2783,10 +2783,43 @@ div.detail-container div.detail > div.detail-secondary > div.height-container > 
   align-items: stretch;
   gap: 0.5em;
 }
-div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > p {
+div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.guide-rated {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+}
+div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.guide-rated > p {
+  text-transform: capitalize;
+  align-self: flex-start;
+  height: 1.1em;
   color: #939393;
   display: block;
-  align-self: flex-start;
+}
+div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.guide-rated > p.login {
+  cursor: pointer;
+  color: #d90037;
+}
+div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.guide-rated > p.login:hover {
+  filter: brightness(60%);
+}
+div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.guide-rated > p > span {
+  text-transform: capitalize;
+  font-size: 1.1em;
+  filter: brightness(120%);
+}
+div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.guide-rated > p > span.exceptional {
+  color: #429321;
+}
+div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.guide-rated > p > span.recommended {
+  color: #4354b9;
+}
+div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.guide-rated > p > span.meh {
+  color: #f76b1c;
+}
+div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.guide-rated > p > span.skip {
+  color: #f11a2a;
 }
 div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.chart {
   margin: 0.25em 0 1em 0;
@@ -3246,6 +3279,13 @@ div.detail-container div.detail > div.reviews-container > div.review-writer-cont
 div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.title > div.current-user > div.avatar > * {
   border-radius: 50%;
 }
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.login > p {
+  cursor: pointer;
+  color: #d90037 !important;
+}
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.login > p:hover {
+  filter: brightness(60%);
+}
 div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.rating-selector {
   display: grid;
   grid-template-rows: none;
@@ -3289,6 +3329,11 @@ div.detail-container div.detail > div.reviews-container > div.review-writer-cont
   color: #c6d4df;
   border: none;
 }
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > form > textarea:disabled, div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.review-viewer > textarea:disabled {
+  height: unset;
+  background: none;
+  font-family: "Roboto", sans-serif;
+}
 div.detail-container div.detail > div.reviews-container > div.review-writer-container > form > div, div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.review-viewer > div {
   display: flex;
   flex-direction: row;
@@ -3297,6 +3342,12 @@ div.detail-container div.detail > div.reviews-container > div.review-writer-cont
   gap: 0.5em;
 }
 div.detail-container div.detail > div.reviews-container > div.review-writer-container > form > div > button, div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.review-viewer > div > button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.9em;
   align-self: flex-end;
   padding: 0.5em;
   background-color: #8b0023;

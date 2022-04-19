@@ -173,7 +173,6 @@ const GameDetail = ({ game, path, reviews }) => {
 
     const gameRef = doc(firestore, path)
     const [realTimeGame, setRealTimeGame] = useState()
-
     useEffect(() => {
         let unsubscribe
         if(game){
@@ -183,6 +182,22 @@ const GameDetail = ({ game, path, reviews }) => {
         } else setRealTimeGame()
         return unsubscribe
     }, [game])
+
+    const [ratingDoc, setRatingDoc] = useState()
+    const [ratingData, setratingData] = useState()
+    useEffect(() => {
+        let unsubscribe
+        if(user){
+            unsubscribe = onSnapshot(doc(firestore, gameRef.path, 'rating-tracker', user.uid), 
+                (doc) => { 
+                    setRatingDoc(doc)
+                    setratingData(dateToJsonLocal(doc))
+                }
+            )
+        } else setRatingDoc()
+
+        return unsubscribe
+    }, [user])
     
     //* value post will default to the realtime data but fallback to prerender data on server
     const gameData = realTimeGame || game
@@ -474,7 +489,15 @@ const GameDetail = ({ game, path, reviews }) => {
                                 </div>
                             </div>
 
-                            <DetailChartContainerBar userRatings={userRatings} gameRef={gameRef} user={user} username={username}/>
+                            <DetailChartContainerBar 
+                                userRatings={userRatings} 
+                                gameRef={gameRef}
+                                ratingDoc={ratingDoc}
+                                ratingData={ratingData}
+                                user={user}
+                                username={username}
+                                router={router}
+                            />
 
                             <section className='action'>
                                 <div className='action-action'>
@@ -582,7 +605,16 @@ const GameDetail = ({ game, path, reviews }) => {
                     }
                 </p> */}
                 <Recommendation />
-                <DetailReviews userRatings={userRatings} title={title} user={user} username={username} gameRef={gameRef} reviews={reviews}/>
+                <DetailReviews 
+                    title={title} 
+                    user={user} 
+                    username={username} 
+                    ratingDoc={ratingDoc}
+                    ratingData={ratingData}
+                    gameRef={gameRef} 
+                    reviews={reviews}
+                    router={router}
+                />
             </div>
         </div>
     )

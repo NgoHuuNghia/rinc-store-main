@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { auth, firestore, rate } from "@lib/firebase";
+import { auth, dateToJsonLocal, firestore, rate } from "@lib/firebase";
 import { doc, onSnapshot } from "firebase/firestore";
 import Image from "next/image";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -7,27 +7,28 @@ import { MdOutlineThumbUpOffAlt, MdOutlineThumbDownOffAlt } from "react-icons/md
 import { useDocument } from "react-firebase-hooks/firestore";
 import { ReviewForm } from "./ReviewForm";
 
-const DetailReviews = ({ userRatings, title, user, username, gameRef, reviews}) => {
-    const [ratingDoc, setRatingDoc] = useState()
-    useEffect(() => {
-        let unsubscribe
-        if(user){
-            unsubscribe = onSnapshot(doc(firestore, gameRef.path, 'rating-tracker', user.uid), 
-                (doc) => { 
-                    setRatingDoc(doc) 
-                }
-            )
-        } else setRatingDoc()
-
-        return unsubscribe
-    }, [user])
-
-    // console.log(auth.currentUser?.uid)
+const DetailReviews = ({ 
+    title, 
+    user, 
+    username, 
+    ratingDoc, 
+    ratingData, 
+    gameRef, 
+    reviews,
+    router
+}) => {
 
     return (
         <div className='reviews-container'>
 
-            <ReviewForm user={user} username={username} ratingDoc={ratingDoc} gameRef={gameRef}/>
+            <ReviewForm 
+                user={user}
+                username={username}
+                ratingDoc={ratingDoc}
+                ratingData={ratingData}
+                gameRef={gameRef}
+                router={router}
+            />
 
             <div className="title-controller">
                 {reviews.length >= 1

@@ -1,40 +1,43 @@
 import { useEffect, useState } from "react";
 import { dateToJsonLocal, firestore, rate } from "@lib/firebase";
-import { doc, getDoc, increment, serverTimestamp, writeBatch } from "firebase/firestore";
+import { doc, getDoc, increment, onSnapshot, serverTimestamp, updateDoc, writeBatch } from "firebase/firestore";
 import toast from "react-hot-toast";
 import Image from "next/image";
+import { FaTrash, FaEdit, FaCheck } from "react-icons/fa";
+import {ImCross} from 'react-icons/im'
 
-import BsTrash from "react-icons/bs"
-
-export function ReviewForm({ user, ratingDoc, username, gameRef }) {
+export function ReviewForm({ user, ratingDoc, ratingData, username, gameRef, router }) {
     const [reviewController, setReviewController] = useState();
 
     const [reviewRef, setReviewRef] = useState()
     const [reviewDoc, setReviewDoc] = useState()
     const [reviewData, setReviewData] = useState()
-    const [ratingData, setratingData] = useState()
-    // useEffect( async() => {
-    //     if(user){
-    //         reviewRef = doc(firestore, gameRef.path, 'review-tracker', user.uid);
-    //         reviewDoc = await getDoc(reviewRef);
-    //     }
-    // }, [user])
-
-    useEffect( async() => {
-        if(user && ratingDoc){
-            const tempRef = doc(firestore, gameRef.path, 'review-tracker', user.uid)
-            const tempDoc = await getDoc(tempRef)
-            setReviewRef(tempRef)
-            setReviewDoc(tempDoc)
-            setReviewData(dateToJsonLocal(tempDoc))
-            setratingData(dateToJsonLocal(ratingDoc))
-        }
-    }, [user, ratingDoc])
+    const [reviewEdit, setReviewEdit] = useState(false)
     
+    useEffect( async() => {
+        let unsubscribe
+        if(user){
+            const ref = doc(firestore, gameRef.path, 'review-tracker', user.uid)
+            unsubscribe = onSnapshot(ref, 
+                (doc) => { 
+                    setReviewRef(ref)
+                    setReviewDoc(doc)
+                    setReviewData(dateToJsonLocal(doc))
+                }
+            )
+        } else {
+            setReviewRef()
+            setReviewDoc()
+            setReviewData()
+        }
+
+        return unsubscribe
+    }, [user])
+
+    const batch = writeBatch(firestore);
 
     const setReview = async(e) => {
         e.preventDefault();
-        const batch = writeBatch(firestore);
         
         batch.update(gameRef, {
             "reviewsCount": increment(1),
@@ -48,7 +51,33 @@ export function ReviewForm({ user, ratingDoc, username, gameRef }) {
         })
 
         await batch.commit();
+        setReviewController()
         toast.success("Review posted, thank you!")
+    };
+    const updateReview = async(e) => {
+        e.preventDefault();
+        
+        await updateDoc(reviewRef, {
+            "review": reviewController,
+            "updatedAt": serverTimestamp(),
+        })
+        // batch.update(reviewRef, {
+        //     "review": reviewController,
+        //     "updatedAt": serverTimestamp(),
+        // })
+
+        setReviewEdit(false)
+        setReviewController()
+        toast.success("Review updated, make up your mind!")
+    };
+    const deleteReview = async() => {
+        batch.update(gameRef, {
+            "reviewsCount": increment(-1),
+        })
+        batch.delete(reviewRef)
+
+        await batch.commit();
+        toast.success("Review deleted 😔")
     };
 
     return (
@@ -58,7 +87,14 @@ export function ReviewForm({ user, ratingDoc, username, gameRef }) {
                 ? (
                     <>
                         <div className="title">
-                            <p>Writer a review</p>
+                            {!reviewDoc?.exists()
+                                ? (
+                                    <p>Writer a review</p>
+                                )
+                                : (
+                                    <p>This is your review</p>
+                                )
+                            }
                             <div className="current-user">
                                 <p>{username || "no username!"}</p>
                                 <div className="avatar">
@@ -87,20 +123,20 @@ export function ReviewForm({ user, ratingDoc, username, gameRef }) {
                                     </div>
                                 </div>
                             )
-                            : (
-                                <div className="rating-selector">
-                                    <div onClick={() => rate(ratingData?.rating, user.uid, gameRef)}>
-                                        <Image src={`/icons/ratings/${ratingData?.rating}.png`} width={35} height={35} quality='35'/>
-                                        <p>You rated {ratingData?.rating}</p>
+                            : (ratingData
+                                && (
+                                    <div className="rating-selector">
+                                        <div onClick={() => rate(ratingData?.rating, user.uid, gameRef)}>
+                                            <Image src={`/icons/ratings/${ratingData.rating}.png`} width={35} height={35} quality='35'/>
+                                            <p>You rated {ratingData?.rating}</p>
+                                        </div>
                                     </div>
-                                </div>
+                                )
                             )
                         }
-                        {/* {!reviewDoc?.exists()
+                        {!reviewDoc?.exists()
                             ? (
-                                <form 
-                                    onSubmit={setReview}
-                                >
+                                <form onSubmit={setReview}>
                                     <textarea
                                         type="text"
                                         placeholder="writer your review..."
@@ -113,28 +149,48 @@ export function ReviewForm({ user, ratingDoc, username, gameRef }) {
                                 </form>
                             )
                             : (
-                                <form 
-                                    className="review-viewer" 
-                                    onSubmit={setReview}
-                                >
+                                <form onSubmit={updateReview} className="review-viewer">
                                     <textarea
                                         type="text"
-                                        value={reviewData?.review}
-                                        // onChange={(e) => setReviewController(e.target.value)} />
-                                        disabled 
+                                        placeholder="writer your review..."
+                                        disabled={!reviewEdit}
+                                        value={
+                                            reviewEdit
+                                            ? reviewController
+                                            : reviewData?.review
+                                        }
+                                        onChange={(e) => setReviewController(e.target.value)}
                                     />
-                                    <div>
-                                        <button>Edit your review <BsTrash /></button>
-                                        <button>Delete your review</button>
-                                    </div>
+                                    {reviewEdit
+                                        ? (
+                                            <div>
+                                                <button type="submit">Submit your updated review <FaCheck /></button>
+                                                <button type='button' onClick={(e) => {
+                                                    e.preventDefault()
+                                                    setReviewController()
+                                                    setReviewEdit(false)
+                                                }}>Cancel edits<ImCross /></button>
+                                            </div>
+                                        )
+                                        : (
+                                            <div>
+                                                <button type='button' onClick={(e) => {
+                                                    e.preventDefault()
+                                                    setReviewController(reviewData.review)
+                                                    setReviewEdit(true)
+                                                }}>Edit your review <FaEdit /></button>
+                                                <button onClick={deleteReview}>Delete your review <FaTrash /></button>
+                                            </div>
+                                        )
+                                    }
                                 </form>
                             )
-                        } */}
+                        }
                     </>
                 )
                 : (
-                    <div className="title">
-                        <p>Login to review</p>
+                    <div className="title login">
+                        <p onClick={() => router.replace('/enter')}>Login to review</p>
                     </div>
                 )
             }

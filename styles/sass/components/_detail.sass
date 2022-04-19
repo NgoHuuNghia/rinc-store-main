@@ -278,9 +278,30 @@ div.detail-container
 
                     >div.chart-container
                         @include flex( $direction: column,$align: stretch, $gap: .5em)
-                        >p
-                            @include label-sm
-                            align-self: flex-start
+                        >div.guide-rated
+                            @include flex()
+                            >p
+                                text-transform: capitalize
+                                align-self: flex-start
+                                height: 1.1em
+                                @include label-sm
+                                &.login
+                                    cursor: pointer
+                                    color: $fc-subsidiary-hilight
+                                    &:hover
+                                        filter: brightness(60%)
+                                >span
+                                    text-transform: capitalize
+                                    font-size: 1.1em
+                                    filter: brightness(120%)
+                                >span.exceptional
+                                    color: $fc-chart-exeptional
+                                >span.recommended
+                                    color: $fc-chart-recommended
+                                >span.meh
+                                    color: $fc-chart-meh
+                                >span.skip
+                                    color: $fc-chart-skip
                         >div.chart
                             margin: .25em 0 1em 0
                             width: 100%
@@ -485,6 +506,11 @@ div.detail-container
                             @include flex
                             >*
                                 border-radius: 50%
+                >div.login >p
+                    cursor: pointer
+                    color: $fc-subsidiary-hilight !important
+                    &:hover
+                        filter: brightness(60%)
                 >div.rating-selector
                     @include grid($columns: 1fr 1fr, $gap: .5em)
                     >div
@@ -509,9 +535,15 @@ div.detail-container
                         background: $bgc-default
                         color: $fc-default
                         border: none
+                        &:disabled
+                            height: unset
+                            background: none
+                            font-family: $ff-default
                     >div
                         @include flex($justify: flex-end, $gap: .5em)
                         >button
+                            @include flex($gap: .5em)
+                            font-size: .9em
                             align-self: flex-end
                             padding: .5em
                             background-color: $bgc-subsidiary
