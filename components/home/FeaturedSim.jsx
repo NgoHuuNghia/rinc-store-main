@@ -13,7 +13,7 @@ const FeaturedSim = ({gamesDesc}) => {
         <section className='special-card-container'>
             <div>
                 <h5>Popular Sim Game</h5>
-                <a href="/">more <FaChevronRight /></a>
+                <Link href="/"><a>more <FaChevronRight /></a></Link>
             </div>
             <div className='special-card-slider'> {/* map here 6 times */}
                 {/* map like i mean 6 here? */}

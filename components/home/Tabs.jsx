@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { FaWindows } from 'react-icons/fa'
 
 import { toTop } from '@lib/commonFunctions'
+import Image from 'next/image'
 
 // const Tabs = ({toggle, name, background_image, genres, id}) => {
 const Tabs = () => {
@@ -21,8 +22,8 @@ const Tabs = () => {
         >
             <a className={`tab-item active`}>
                 {/*//$ <img src={background_image} alt="" /> */}
-                <img src={`https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg`} />
-                <div>
+                <div className='item-image'><Image src={'https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg'} alt={'temp-image'} width={800} height={500} quality='50' layout='responsive' objectPosition='center' objectFit="cover"/></div>
+                <div className='item'>
                     <div>
                         {/*//$ <h4>{name}</h4> */}
                         <h4>{`test name`}</h4>

@@ -8,6 +8,7 @@ import { auth, googleAuthProvider } from '@lib/firebase';
 import { UserContext } from '@lib/globalContext';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const User = () => {
     const { user, username, shoppingCart } = useContext(UserContext)

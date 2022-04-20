@@ -11,7 +11,9 @@ const FeaturedRecommendedItem = ({
     const position = sliderControlClass(index, sliderIndex, length)
 
     const slide = useRef(null)
-    {index === 0 && useEffect(() => getHeight(slide.current.getBoundingClientRect().height), [])}
+    useEffect(() => {
+        if(index == 0) getHeight(slide.current.getBoundingClientRect().height)
+    }, [getHeight, index])
 
     return (
         <Link passHref href={`/${slug}`} onClick={() => toTop()}>
@@ -23,7 +25,7 @@ const FeaturedRecommendedItem = ({
                     </div>
                     <div>
                         <div className="image-container">
-                            <img src="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/2e/2ea08980f32ec568536bf791b0f3986e8b279ccb.jpg" alt="" />
+                            <Image src="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/2e/2ea08980f32ec568536bf791b0f3986e8b279ccb.jpg" width={40} height={40} quality={50} alt="placeholder avatar"></Image>
                         </div>
                         <div>
                             <h6>Zuluf</h6>

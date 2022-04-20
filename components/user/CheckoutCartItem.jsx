@@ -2,6 +2,7 @@ import { toTop } from "@lib/commonFunctions";
 import { firestore } from "@lib/firebase";
 import { UserContext } from "@lib/globalContext";
 import { deleteDoc, doc } from "firebase/firestore";
+import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
 import toast from "react-hot-toast";
@@ -15,9 +16,9 @@ const CheckoutCartItem = ({title, slug, mainImageUrl, basePrice, id}) => {
         <a className={`cart-item`}>
             {/*//$ <img src={background_image} alt="" /> */}
             <Link passHref href={`/${slug}`} onClick={() => toTop()}>
-                <img src={mainImageUrl} alt={title}/>
+                <div className='image-container'><Image src={mainImageUrl} alt={title} width={800} height={500} quality='50' layout='responsive' objectPosition='center' objectFit="cover"/></div>
             </Link>
-            <div>
+            <div className="item">
                 <Link passHref href={`/${slug}`} onClick={() => toTop()}>
                     <div>
                         {/*//$ <h4>{name}</h4> */}

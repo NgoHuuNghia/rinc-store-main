@@ -20,7 +20,7 @@ const FeaturedRecommended = ({gamesDesc}) => {
         <section className="movie-card-container">
             <div>
                 <h5>Community recommended</h5>
-                <a href="/">more <FaChevronRight /></a>
+                <Link href="/"><a>more <FaChevronRight /></a></Link>
             </div>
             <button className='previous' onClick={() => setSliderIndex(sliderIndex - 1)}>
                 <FaChevronLeft />

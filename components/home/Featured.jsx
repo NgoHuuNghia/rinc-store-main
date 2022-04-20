@@ -12,7 +12,7 @@ const Featured = ({gamesDesc}) => {
         <section className='secondary-card-container'>
             <div>
                 <h5>Special offer</h5>
-                <a href="/"><p>More</p> <FaChevronRight /></a>
+                <Link href="/"><a><p>More</p> <FaChevronRight /></a></Link>
             </div>
             <div className='slider'>
                 {/* map here  8 times */}

@@ -145,6 +145,7 @@
                     max-width: unset
                     flex-direction: row
                 >div.image-container
+                    @include flex
                     flex: 2
                     object-position: none
                     position: relative
@@ -338,12 +339,12 @@ div.subsidiary-section
                         background-color: $bgc-subsidiary-subtle
                         margin-bottom: .5em
                         transition: $trs-basic
-                        >img
+                        >div.item-image
                             @include card-img
                             box-shadow: unset
                             height: auto
                             width: 180px
-                        >div
+                        >div.item
                             @include flex
                             flex-grow: 10
                             padding: .3em .5em
@@ -431,10 +432,10 @@ div.subsidiary-section
                                 &:hover
                                     background-color: $bgc-hilight
                                     color: $fc-hilight
-                        >img
+                        >div.image-container
                             margin-bottom: .25em
+                            width: 100%
                             height: auto
-                            max-width: 100%
                         &.active
                             opacity: 1
                             background-color: $bgc-subsidiary-hilight

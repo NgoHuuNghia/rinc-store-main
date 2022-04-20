@@ -13,7 +13,9 @@ const FeaturedSliderItem = ({
     const position = sliderControlClass(index, sliderIndex, length)
 
     const slide = useRef(null)
-    {index === 0 && useEffect(() => getHeight(slide.current.getBoundingClientRect().height), [])}
+    useEffect(() => {
+        if(index == 0) getHeight(slide.current.getBoundingClientRect().height)
+    }, [getHeight, index])
 
     return (
         <Link passHref href={`/${slug}`}>
@@ -24,10 +26,10 @@ const FeaturedSliderItem = ({
                 <div>
                     <h4>{title}</h4>
                     <div className="secondary-image-container">
-                        <div><Image src={secondaryImageUrls[0] ? secondaryImageUrls[0] : '/nope-not-here.png'} width={800} height={400} quality='1' layout='responsive'/></div>
-                        <div><Image src={secondaryImageUrls[1] ? secondaryImageUrls[1] : '/nope-not-here.png'} width={800} height={400} quality='1' layout='responsive'/></div>
-                        <div><Image src={secondaryImageUrls[2] ? secondaryImageUrls[2] : '/nope-not-here.png'} width={800} height={400} quality='1' layout='responsive'/></div>
-                        <div><Image src={secondaryImageUrls[3] ? secondaryImageUrls[3] : '/nope-not-here.png'} width={800} height={400} quality='1' layout='responsive'/></div>
+                        <div><Image src={secondaryImageUrls[0] ? secondaryImageUrls[0] : '/nope-not-here.png'} width={800} height={400} quality='1' layout='responsive' alt="secondary-image-1"/></div>
+                        <div><Image src={secondaryImageUrls[1] ? secondaryImageUrls[1] : '/nope-not-here.png'} width={800} height={400} quality='1' layout='responsive' alt="secondary-image-2"/></div>
+                        <div><Image src={secondaryImageUrls[2] ? secondaryImageUrls[2] : '/nope-not-here.png'} width={800} height={400} quality='1' layout='responsive' alt="secondary-image-3"/></div>
+                        <div><Image src={secondaryImageUrls[3] ? secondaryImageUrls[3] : '/nope-not-here.png'} width={800} height={400} quality='1' layout='responsive' alt="secondary-image-4"/></div>
                     </div>
                     <div className='home-copoment-extra'>
                         <div>Now available</div>

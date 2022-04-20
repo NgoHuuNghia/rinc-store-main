@@ -116,7 +116,9 @@ header
                 >div.avatar-container
                     position: relative
                     >div.avatar
-                        height: 2.5em
+                        @include flex
+                        overflow: hidden
+                        width: 2.5em
                         border-radius: 25px
                         cursor: pointer
                         &:hover
