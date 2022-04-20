@@ -106,7 +106,7 @@ header nav > div.logo-container {
     padding: 0;
   }
 }
-header nav > div.logo-container > a > img {
+header nav > div.logo-container > a > div {
   width: 3.5em;
 }
 header nav > form {
@@ -337,12 +337,12 @@ header nav > div.sublinks > div.user-container {
 header nav > div.sublinks > div.user-container > div.avatar-container {
   position: relative;
 }
-header nav > div.sublinks > div.user-container > div.avatar-container > img {
+header nav > div.sublinks > div.user-container > div.avatar-container > div.avatar {
   height: 2.5em;
   border-radius: 25px;
   cursor: pointer;
 }
-header nav > div.sublinks > div.user-container > div.avatar-container > img:hover {
+header nav > div.sublinks > div.user-container > div.avatar-container > div.avatar:hover {
   filter: brightness(90%);
 }
 header nav > div.sublinks > div.user-container > div.avatar-container > div.cart-container {
@@ -1938,8 +1938,8 @@ footer > div > div:nth-child(1) {
     order: 1;
   }
 }
-footer > div > div:nth-child(1) > img {
-  width: 4em;
+footer > div > div:nth-child(1) > div {
+  width: 6em;
 }
 footer > div > div:nth-child(2) {
   grid-column: span 3;
@@ -1955,8 +1955,8 @@ footer > div > div:nth-child(2) {
     order: 3;
   }
 }
-footer > div > div:nth-child(2) > img {
-  width: 6em;
+footer > div > div:nth-child(2) > div {
+  width: 8em;
 }
 footer > div > p {
   grid-column: span 6;
@@ -4231,7 +4231,12 @@ section.admin-container > nav.terminal > .head > a {
   align-items: center;
   gap: 0.5em;
 }
-section.admin-container > nav.terminal > .head > a > img {
+section.admin-container > nav.terminal > .head > a > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
   width: 2.5rem;
   height: auto;
   align-self: center;
@@ -4272,7 +4277,12 @@ section.admin-container > nav.terminal > .admin > a {
   align-items: center;
   gap: 0.5em;
 }
-section.admin-container > nav.terminal > .admin > a > img {
+section.admin-container > nav.terminal > .admin > a > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
   width: 2.5rem;
   height: auto;
   align-self: center;

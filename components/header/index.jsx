@@ -9,6 +9,7 @@ import Sublink from '@components/header/Sublink'
 import User from './User'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 
 //asss
 const Header = () => {
@@ -84,7 +85,10 @@ const Header = () => {
             <nav>
                 <div className='logo-container'>
                     <Link passHref href={'/'}>
-                        <a onClick={() => toTop()}><img src="/logo/rinc-white-v2.png" alt="" /></a>
+                        <a onClick={() => toTop()}>
+                            <div><Image src={'/logo/rinc-white-v2.png'}  width={100} height={100} quality='50' alt="rinc-logo"></Image></div>
+                            {/* <img src="/logo/rinc-white-v2.png" alt="" /> */}
+                        </a>
                     </Link>
                 </div>
                 {/*//todo <form onSubmit={handleSubmit}> */}

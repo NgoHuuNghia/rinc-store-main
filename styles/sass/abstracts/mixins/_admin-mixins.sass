@@ -4,6 +4,7 @@
 @use '../../../../node_modules/breakpoint-slicer' as bs
 
 @mixin terminalLogo
+    @include flex
     width: 2.5rem
     height: auto
     align-self: center
@@ -11,7 +12,7 @@
 
 @mixin headLink
     @include flex($justify: flex-start ,$gap: .5em)
-    >img
+    >div
         @include terminalLogo
     >p
         font-size: 1.2em

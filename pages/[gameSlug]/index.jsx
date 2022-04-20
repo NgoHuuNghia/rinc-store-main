@@ -1,30 +1,25 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import parse from 'html-react-parser'
 import {FaPlaystation, FaXbox} from 'react-icons/fa'
 
-import { auth, dateToJsonLocal } from "@lib/firebase";
+import { dateToJsonLocal, dateToJsonLocalWithId } from "@lib/firebase";
 import { firestore } from "@lib/firebase";
-import { addDoc, collection, collectionGroup, doc, getDoc, getDocs, limit, onSnapshot, orderBy, query, where } from "firebase/firestore";
-import {useMediaQuery} from 'react-responsive'
+import { addDoc, collection, doc, getDoc, getDocs, limit, onSnapshot, orderBy, query } from "firebase/firestore";
 import MoreLikeGenres from '@components/Detail/MoreLikeGenres'
 import MoreLikeSeries from '@components/Detail/MoreLikeSeries'
 import DetailBackgrounds from '@components/Detail/DetailBackgrounds'
-import ConsoleIcons from '@components/ConsoleIcons'
-import DetailAgeRating from '@components/Detail/DetailAgeRating'
 import DetailChartContainerBar from '@components/Detail/DetailChartContainerBar'
 
-// import ReturnRatingIcon from '@components/ReturnRatingIcon'
 import storeIcons from '@public/icons/storeIcons'
 
 import {FaChevronRight, FaWindows, FaFlag, FaShareAlt, FaStopCircle} from 'react-icons/fa'
 import {AiOutlineStop} from 'react-icons/ai'
-import { useWindowSize } from '@lib/hooks';
 import Image from 'next/image';
-import { useCollection, useDocument, useDocumentData } from 'react-firebase-hooks/firestore';
+import { useCollection } from 'react-firebase-hooks/firestore';
 import { UserContext } from '@lib/globalContext';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import toast from 'react-hot-toast';
-import { icons } from 'react-icons';
 import DetailReviews from '@components/detail/DetailReviews';
 
 export async function getStaticProps({ params }) { //? params instead of query like ssr
@@ -40,10 +35,11 @@ export async function getStaticProps({ params }) { //? params instead of query l
         orderBy('createdAt', 'desc'),
         limit(6),
     )
-    const reviews = (await ( getDocs(reviewsQuery))).docs.map(dateToJsonLocal);
+    const staticReviews = (await ( getDocs(reviewsQuery))).docs.map(dateToJsonLocal);
+    const reviewsPath = reviewsRef.path
 
     return {
-        props: { game, path, reviews },
+        props: { game, path, staticReviews, reviewsPath },
         revalidate: 5000,
     };
 }
@@ -100,7 +96,7 @@ export async function getStaticPaths() {
 
 //$ source
 
-const GameDetail = ({ game, path, reviews }) => {
+const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
     //!         const {
     //!             name, description, metacritic, released, updated, background_image, background_image_additional, ratings,
     //!             platforms, parent_platforms, stores, developers, genres, tags, publishers, esrb_rating
@@ -175,13 +171,25 @@ const GameDetail = ({ game, path, reviews }) => {
     const [realTimeGame, setRealTimeGame] = useState()
     useEffect(() => {
         let unsubscribe
-        if(game){
+        if(game && gameRef){
             unsubscribe = onSnapshot(gameRef, (doc) => { 
                 setRealTimeGame(dateToJsonLocal(doc)) 
             })
         } else setRealTimeGame()
         return unsubscribe
-    }, [game])
+    }, [game, gameRef])
+
+    const reviewsRef = collection(firestore, reviewsPath)
+    const [realTimeReview, setRealTimeReview] = useState([])
+    useEffect(() => {
+        let unsubscribe
+        if(game){
+            unsubscribe = onSnapshot(reviewsRef, querySnapshot => { 
+                setRealTimeReview(querySnapshot?.docs.map((doc) => dateToJsonLocalWithId(doc))) 
+            })
+        } else setRealTimeReview()
+        return unsubscribe
+    }, [game, reviewsRef])
 
     const [ratingDoc, setRatingDoc] = useState()
     const [ratingData, setratingData] = useState()
@@ -197,11 +205,12 @@ const GameDetail = ({ game, path, reviews }) => {
         } else setRatingDoc()
 
         return unsubscribe
-    }, [user])
+    }, [user, gameRef.path])
     
     //* value post will default to the realtime data but fallback to prerender data on server
     const gameData = realTimeGame || game
     const {title, slug, mainImageUrl, secondaryImageUrls, releasedAt, updatedAt, metacritic, description, basePrice, userRatings} = gameData
+    const reviews = realTimeReview || staticReviews
 
     const addToCart = async() => {
         const cartRef = collection(firestore, 'users', user.uid, 'shoppingCart');
@@ -231,12 +240,12 @@ const GameDetail = ({ game, path, reviews }) => {
                             <a href='/'>{genres[1].name}</a>
                         </>
                     )} */}
-                    <a href='/'>{`genres-name`}</a>
+                    <Link href='/'><a>{`genres-name`}</a></Link>
                 </div>
                 <FaChevronRight />
                 <div>
                     {/*//$ <a href="/">{developers[0].name}</a> */}
-                    <a href="/">{`dev-name`}</a>
+                    <Link href="/"><a>{`dev-name`}</a></Link>
                 </div>
                 <FaChevronRight />
                 <div>
@@ -256,7 +265,7 @@ const GameDetail = ({ game, path, reviews }) => {
                             </div>
                         </div>
                         <a className="trailer-main">
-                            <Image src={mainImageUrl ? mainImageUrl : '/nope-not-here.png'} width={800} height={400} quality='50' layout='responsive'/>
+                            <Image src={mainImageUrl ? mainImageUrl : '/nope-not-here.png'} width={800} height={400} quality='50' layout='responsive' alt='no-images'/>
                         </a>
                         <div className='trailer-slider'>{/* map here 8 times */}
                             {secondaryImageUrls
@@ -264,7 +273,7 @@ const GameDetail = ({ game, path, reviews }) => {
                                 .map((item, index) => {
                                     return (
                                         <a key={index}>
-                                            <Image src={item ? item : '/nope-not-here.png'} width={800} height={400} quality='1' layout='responsive'/>
+                                            <Image src={item ? item : '/nope-not-here.png'} width={800} height={400} quality='1' layout='responsive' alt='no-images'/>
                                         </a>
                                     )
                                 })
@@ -284,10 +293,10 @@ const GameDetail = ({ game, path, reviews }) => {
                         <div className='glance-info'>
                             <p>Developer:</p>
                             {/* <a href="/">{developers[0].name}</a> */}
-                            <a href="/">{`dev-name`}</a>
+                            <Link href="/"><a>{`dev-name`}</a></Link>
                             <p>Publisher:</p>
                             {/* <a href="/">{publishers.length >= 1 ? publishers[0].name : developers[0].name}</a> */}
-                            <a href="/">{`publisher-name`}</a>
+                            <Link href="/"><a>{`publisher-name`}</a></Link>
                             <p>Released:</p>
                             <p>{releasedAt}</p>
                         </div>
@@ -300,8 +309,8 @@ const GameDetail = ({ game, path, reviews }) => {
                                         return <a href="/"><p>{item.name}</p></a>
                                     })
                                 } */}
-                                <a href="/"><p>{`tags-name`}</p></a>
-                                <a href="/"><p>+</p></a>
+                                <Link href="/"><a><p>{`tags-name`}</p></a></Link>
+                                <Link href="/"><a><p>+</p></a></Link>
                             </div>
                         </div>
                         <div className='ratings-container'>{/* flexbox 2-2 */}
@@ -312,20 +321,20 @@ const GameDetail = ({ game, path, reviews }) => {
                                     <div>
                                         {/*//$ <h4>{ratings[0].title}</h4>
                                         <ReturnRatingIcon title={ratings[0].title} chart={false}/> */}
-                                        <h4>{`rating-title`}</h4>
+                                        <h4>{`meh`}</h4>
                                         {/*//$ <div>
                                             <Image src={item ? item : '/nope-not-here.png'} width={800} height={400} quality='1' layout='responsive'/>
                                         </div> */}
-                                        <img src={`@public/icons/ratings/meh`} alt={`rating-title`}/>
+                                        <div><Image src="/icons/ratings/meh.png" width={25} height={25} quality='25' alt="game-rating"/></div>
                                     </div>
                                     {/*//$ <div><a href="/">{ratings[0].count} Ratings</a></div>*/}
-                                    <div><a href="/">{`rating-count`} Ratings</a></div>{/* //!  link to rating part of page */}
-                                    <p># 10 <a href="/">RPG</a></p>
-                                    <p># 1 <a href="/">Top 2020</a></p>
+                                    <div><Link href="/"><a>{`rating-count`} Ratings</a></Link></div>{/* //!  link to rating part of page */}
+                                    <p># 10 <Link href="/"><a>RPG</a></Link></p>
+                                    <p># 1 <Link href="/"><a>Top 2020</a></Link></p>
                                 </div>
                                 <div>
-                                    <p>#10</p><a href="/">RPG</a>
-                                    <p>#1</p><a href="/">Top 2020</a>
+                                    <p>#10</p><Link href="/"><a>RPG</a></Link>
+                                    <p>#1</p><Link href="/"><a>Top 2020</a></Link>
                                 </div>
                                 {metacritic
                                     ? <div>
@@ -451,15 +460,27 @@ const GameDetail = ({ game, path, reviews }) => {
                         <section className='trailer-desktop'>
                             {secondaryImageUrls.length > 1
                                 ?
-                                    <><a href='/' className="trailer-main"><img src={secondaryImageUrls[0]} alt="" /></a>
-                                    <div className='trailer-slider'>{/* map here 8 times */}
-                                        {secondaryImageUrls
-                                            .slice(0, 4)
-                                            .map((image, index) => {
-                                                return <a href="/" key={index}><img src={image} alt={title} /></a>
-                                            })
-                                        }
-                                    </div></>
+                                    <>
+                                        <Link href='/'>
+                                            <a className="trailer-main">
+                                                <Image src={secondaryImageUrls[0] ? secondaryImageUrls[0] : '/nope-not-here.png'} width={800} height={400} quality='50' layout='responsive' alt={title}/>
+                                            </a>
+                                        </Link>
+                                        <div className='trailer-slider'>{/* map here 8 times */}
+                                            {secondaryImageUrls
+                                                .slice(0, 4)
+                                                .map((image, index) => {
+                                                    return (
+                                                        <Link key={index} href="/">
+                                                            <a>
+                                                                <Image src={image ? image : '/nope-not-here.png'} width={800} height={400} quality='50' layout='responsive' alt={title}/>
+                                                            </a>
+                                                        </Link>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                    </>
                                 : 
                                     <div><AiOutlineStop /> No screenshots founded <AiOutlineStop /></div>}
                         </section>
@@ -501,8 +522,8 @@ const GameDetail = ({ game, path, reviews }) => {
 
                             <section className='action'>
                                 <div className='action-action'>
-                                    <a href="/"><FaShareAlt /></a>
-                                    <a href="/"><FaFlag /></a>
+                                    <Link href="/"><a><FaShareAlt /></a></Link>
+                                    <Link href="/"><a><FaFlag /></a></Link>
                                 </div>
                                 <div className='action-play'>
                                     <div className="play-demo">
@@ -511,7 +532,7 @@ const GameDetail = ({ game, path, reviews }) => {
                                             <FaWindows />
                                         </div>
                                         <div>
-                                            <a href='/'>Download</a>
+                                            <Link href='/'><a>Download</a></Link>
                                         </div>
                                     </div>
                                     <div>
@@ -607,6 +628,7 @@ const GameDetail = ({ game, path, reviews }) => {
                 <Recommendation />
                 <DetailReviews 
                     title={title} 
+                    slug={slug}
                     user={user} 
                     username={username} 
                     ratingDoc={ratingDoc}

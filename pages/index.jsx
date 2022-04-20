@@ -5,7 +5,7 @@ import FeaturedSim from '@components/home/FeaturedSim'
 import Tabs from '@components/home/Tabs'
 import TabViewer from '@components/home/TabViewer'
 
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import Link from 'next/link'
 import { collection, getDocs, limit, orderBy, query, where } from 'firebase/firestore'
 import { dateToJsonLocal, firestore } from '@lib/firebase'
 //todo import { useGlobalContext } from '../context'
@@ -58,18 +58,22 @@ const Home = ({gamesDesc}) => {
         <section className='home-container'>
             <div className='hero'>
                 {/* bg_mobile_english or bg_english to switch */}
-                <a href="/" className='hero-bg-mobile'>
-                    <video loop="yes" muted={true} autoPlay="yes" playsInline="" poster="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/page_bg_mobile_english.jpg?t=1631553001">
-                        <source src="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/webm_page_bg_mobile_english.webm?t=1631553001" type="video/webm" />
-                        <source src="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/mp4_page_bg_mobile_english.mp4?t=1631553001" type="video/mp4" />
-                    </video>
-                </a>
-                <a href="/"className='hero-bg'>
-                    <video loop="yes" muted={true} autoPlay="yes" playsInline="" poster="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/page_bg_english.jpg?t=1631553001">
-                        <source src="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/webm_page_bg_english.webm?t=1631553001" type="video/webm" />
-                        <source src="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/mp4_page_bg_english.mp4?t=1631553001" type="video/mp4" />
-                    </video>
-                </a>            
+                <Link href="/">
+                    <a className='hero-bg-mobile'>
+                        <video loop="yes" muted={true} autoPlay="yes" playsInline="" poster="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/page_bg_mobile_english.jpg?t=1631553001">
+                            <source src="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/webm_page_bg_mobile_english.webm?t=1631553001" type="video/webm" />
+                            <source src="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/mp4_page_bg_mobile_english.mp4?t=1631553001" type="video/mp4" />
+                        </video>
+                    </a>
+                </Link>
+                <Link href="/">
+                    <a className='hero-bg'>
+                        <video loop="yes" muted={true} autoPlay="yes" playsInline="" poster="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/page_bg_english.jpg?t=1631553001">
+                            <source src="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/webm_page_bg_english.webm?t=1631553001" type="video/webm" />
+                            <source src="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/f53c67a4c72cf00ced7afa3d/mp4_page_bg_english.mp4?t=1631553001" type="video/mp4" />
+                        </video>
+                    </a>            
+                </Link>
             </div>
             <div className='main-section'>
                 <FeaturedSlider gamesDesc={gamesDesc}/>
@@ -83,10 +87,10 @@ const Home = ({gamesDesc}) => {
                         <h5>Browse Steam</h5>
                     </div>  
                     <div>
-                        <a href="/"><p>New releases</p></a>
-                        <a href="/"><p>Special</p></a>
-                        <a href="/"><p>Free games</p></a>
-                        <a href="/"><p>By user tags</p></a>
+                        <Link href='/'><a><p>New releases</p></a></Link>
+                        <Link href='/'><a><p>Special</p></a></Link>
+                        <Link href='/'><a><p>Free games</p></a></Link>
+                        <Link href='/'><a><p>By user tags</p></a></Link>
                     </div>
                 </section>
 
@@ -127,7 +131,8 @@ const Home = ({gamesDesc}) => {
                     <section className='tab-container'>
                         <div className='tab-list'>
                             <div>
-                                <p>See more:  &nbsp;</p> <a href="/"> New releases</a>
+                                <p>See more:  &nbsp;</p>
+                                <Link href="/"><a> New releases</a></Link>
                             </div>
                             {/* map here 10 times*/}
                             <div className={`active`}>

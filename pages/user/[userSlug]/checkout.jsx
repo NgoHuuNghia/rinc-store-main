@@ -13,7 +13,7 @@ import { firestore } from "@lib/firebase";
 import { UserContext } from "@lib/globalContext";
 import { confirmPasswordReset } from "firebase/auth";
 
-const checkout = () => {
+const Checkout = () => {
     const router = useRouter()
     const { shoppingCart } = useContext(UserContext)
 
@@ -21,11 +21,11 @@ const checkout = () => {
         <div className="checkout-container">
             <div className='breadcrumbs'>
                 <div>
-                    <a href='/'>{router.query.userSlug}</a>
+                    <Link href='/'><a>{router.query.userSlug}</a></Link>
                 </div>
                 <FaChevronRight />
                 <div>
-                    <a href='/'>{router.asPath.substring(router.asPath.lastIndexOf('/') + 1)}</a>
+                    <Link href='/'><a>{router.asPath.substring(router.asPath.lastIndexOf('/') + 1)}</a></Link>
                 </div>
             </div>
             <div className="cart-container">
@@ -60,4 +60,4 @@ const checkout = () => {
     );
 }
 
-export default checkout
+export default Checkout

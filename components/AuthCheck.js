@@ -7,7 +7,7 @@ export default function AuthCheck(props){
 
     return role === "admin"
         ? props.children
-        : props.fallback || <Link href={`/`}>
+        : props.fallback || <Link passHref href={`/`}>
             <div className="fallBack">
                 <a>Admin privileges required, return to home</a>
             </div>

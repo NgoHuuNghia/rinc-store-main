@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React, {useState, useEffect} from 'react'
 import MoreLikeGenresComponent from './MoreLikeGenresComponent'
 
@@ -12,7 +13,7 @@ const MoreLikeGenres = ({ gamesData }) => {
             <div>
                 <div>
                     <h5>More Like this</h5>{/*  output games of same gerne here i think */}
-                    <a href="/">See all</a>
+                    <Link href="/"><a>See all</a></Link>
                 </div>
                 <div>
                     {/* map here 6 games */}

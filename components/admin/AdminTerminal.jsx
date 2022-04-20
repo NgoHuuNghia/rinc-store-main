@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import Link from 'next/link'
+import Image from 'next/image'
 
 import { AdminArrow } from 'public/svg/index'
 import AdminTerminalLink from '@components/admin/AdminTerminalLink'
@@ -23,8 +24,8 @@ const AdminTerminal = () => {
             <div className='head'>
                 <Link href='/'>
                     <a>
-                        <img src={'/logo/rinc-white-v2.png'} alt="" />
-                        <p>Rinc's admin</p>
+                        <div><Image src={'/logo/rinc-white-v2.png'}  width={100} height={100} quality='50' alt="rinc-logo"></Image></div>
+                        <p>Rinc&#x27;s admin</p>
                     </a>
                 </Link>
                 <button onClick={() => setSidebar('')}><AdminArrow /></button>
@@ -33,10 +34,7 @@ const AdminTerminal = () => {
                 <Link href='/'>
                     <a>
                         {/* <img src="https://media.rawg.io/media/resize/80/-/avatars/654/6549f85d93a1b4653d6030fe6bd407bf.jpg" alt="avatar" /> */}
-                        <img 
-                            src={user?.photoURL || `icons/hacker.png`} 
-                            alt="avatar" 
-                        />
+                        <div><Image src={user?.photoURL || `icons/hacker.png`} width={100} height={100} quality='50' alt={username}></Image></div>
                         <p>{username || "you not suppose to be here"}</p>    
                     </a>    
                 </Link>

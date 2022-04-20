@@ -6,20 +6,17 @@ import { collection, doc, getDoc, limit, query, updateDoc } from "firebase/fires
 import toast from "react-hot-toast";
 
 import AdminDataList from "@components/admin/AdminDataList";
-import AdminFilter from "@components/admin/AdminFilter";
-import AdminHeader from "@components/admin/AdminHeader";
-import AdminOverlay from "@components/admin/AdminOverlay";
-import AdminTerminal from "@components/admin/AdminTerminal";
 import { SidebarProvider, useSidebar } from "@lib/adminContext";
 import { dateToJsonLocal, firestore } from "@lib/firebase";
 import { capitalizeFirstLetter } from "@lib/commonFunctions";
 
-const genres = () => {
-    const router = useRouter()
-    const current = router.asPath.substring(router.asPath.lastIndexOf('/') + 1)
 
+const Misc = () => {
+    const router = useRouter()
     const { setSidebar } = useSidebar()
+    
     const [dataState, setDataState] = useState({})
+    const current = router.asPath.substring(router.asPath.lastIndexOf('/') + 1)
     
     async function getData(id) {
         const dataRef = doc(firestore, current, id)
@@ -61,7 +58,7 @@ const genres = () => {
         </>
     )
 }
-export default genres;
+export default Misc;
 
 function DataListTable({current, getData}) {
     const LIMIT = 15
@@ -85,7 +82,7 @@ function DataListTable({current, getData}) {
                 ),
             })
         }
-    }, [currentSnapshot])
+    }, [currentSnapshot, currentDatas])
     
     return (
         <ul className={`table`} style={dynamicGrid}>
@@ -145,6 +142,6 @@ function DataEditor({dataRef, data}) {
     } else return null
 }
 
-genres.getLayout = function getLayout(page) {
+Misc.getLayout = function getLayout(page) {
     return <SidebarProvider>{page}</SidebarProvider>
 }

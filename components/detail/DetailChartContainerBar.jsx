@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {FaCircle} from 'react-icons/fa'
 import { rate } from '@lib/firebase'
 import toast from 'react-hot-toast'
+import Image from 'next/image'
 
 const DetailChartContainerBar = ({ userRatings, gameRef, ratingDoc, ratingData, user, username, router }) => {
     const [ curretRating, setCurretRating ] = useState("")
@@ -44,15 +45,23 @@ const DetailChartContainerBar = ({ userRatings, gameRef, ratingDoc, ratingData, 
                                 //     : {width: `${ratings[key].percent}%`}}
                                 style={{width: 25 + "%"}}
                             >
-                                <img src={
-                                    key == 'exceptional'
-                                        ? 'icons/ratings/exceptional.png' :
-                                    key == 'recommended'
-                                        ? 'icons/ratings/recommended.png' :
-                                    key == 'meh'
-                                        ? 'icons/ratings/meh.png' 
-                                        : 'icons/ratings/skip.png'
-                                } alt="" />
+                                <div>
+                                    <Image 
+                                        src={
+                                            key == 'exceptional'
+                                                ? '/icons/ratings/exceptional.png' :
+                                            key == 'recommended'
+                                                ? '/icons/ratings/recommended.png' :
+                                            key == 'meh'
+                                                ? '/icons/ratings/meh.png' 
+                                                : '/icons/ratings/skip.png'
+                                        }
+                                        width={25} 
+                                        height={25} 
+                                        quality='25'
+                                        alt={key ? key : 'no-rating'}
+                                    />
+                                </div>
                             </div>
                         )}
                     )

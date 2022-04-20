@@ -17,10 +17,7 @@ const User = () => {
     return (
         <div className={`user-container`} onMouseOver={() => setSubmenu(true)} onMouseLeave={() => setSubmenu(false)}>
             <div className='avatar-container'>
-                <img
-                    src={user?.photoURL || `icons/hacker.png`} 
-                    alt="avatar" 
-                />
+                <div className='avatar'><Image src={user?.photoURL || `/icons/hacker.png`} width={100} height={100} quality='50' alt={username}></Image></div>
                 {user && shoppingCart.length >= 1 && (
                     <div className='cart-container'>
                         <FaShoppingCart />

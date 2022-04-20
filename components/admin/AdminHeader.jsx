@@ -30,9 +30,9 @@ const AdminHeader = () => {
                 })}
             </div>
             <div className='links'>
-                <a href="/"><MdWidgets /></a>
-                <a href="/"><AiFillDashboard /></a>
-                <a href="/"><AiFillLayout /></a>
+                <a onClick={() => router.replace('/')}><MdWidgets /></a>
+                <a onClick={() => router.replace('/')}><AiFillDashboard /></a>
+                <a onClick={() => router.replace('/')}><AiFillLayout /></a>
             </div>
         </div>
     )

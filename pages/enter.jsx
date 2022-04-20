@@ -10,13 +10,13 @@ import toast from 'react-hot-toast'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 
-const enter = () => {
+const Enter = () => {
     const {user, username} = useContext(UserContext)
     const router = useRouter()
 
     useEffect(() => {
         {username && router.push('/')}
-    }, [username])
+    }, [username, router])
     
 
     return (
@@ -58,7 +58,7 @@ function EnterForm({user, username, router}) {
                         login
                     </h2>
                     <LoginForm router={router}/>
-                    <a onClick={() => setEnter(true)}>Don't have an account? Sign up.</a>
+                    <a onClick={() => setEnter(true)}>Do&#x27;t have an account? Sign up.</a>
                 </>
             }
         </div>
@@ -190,4 +190,4 @@ function AuthButtons({user}) {
     )
 }
 
-export default enter;
+export default Enter;

@@ -14,7 +14,7 @@ export function ReviewForm({ user, ratingDoc, ratingData, username, gameRef, rou
     const [reviewData, setReviewData] = useState()
     const [reviewEdit, setReviewEdit] = useState(false)
     
-    useEffect( async() => {
+    useEffect(() => {
         let unsubscribe
         if(user){
             const ref = doc(firestore, gameRef.path, 'review-tracker', user.uid)
@@ -32,7 +32,7 @@ export function ReviewForm({ user, ratingDoc, ratingData, username, gameRef, rou
         }
 
         return unsubscribe
-    }, [user])
+    }, [user, gameRef.path])
 
     const batch = writeBatch(firestore);
 
@@ -98,7 +98,7 @@ export function ReviewForm({ user, ratingDoc, ratingData, username, gameRef, rou
                             <div className="current-user">
                                 <p>{username || "no username!"}</p>
                                 <div className="avatar">
-                                    <Image src={user?.photoURL || `/icons/hacker.png`} width={40} height={40} quality='40'/>
+                                    <Image src={user?.photoURL || `/icons/hacker.png`} width={40} height={40} quality='40' alt="current-user"/>
                                 </div>
                             </div>
                         </div>
@@ -106,19 +106,19 @@ export function ReviewForm({ user, ratingDoc, ratingData, username, gameRef, rou
                             ? (
                                 <div className="rating-selector">
                                     <div onClick={() => rate("exceptional", user.uid, gameRef)}>
-                                        <Image src="/icons/ratings/exceptional.png" width={35} height={35} quality='35'/>
+                                        <Image src="/icons/ratings/exceptional.png" width={35} height={35} quality='35' alt='rating-exceptional'/>
                                         <p>Exceptional</p>
                                     </div>
                                     <div onClick={() => rate("recommended", user.uid, gameRef)}>
-                                        <Image src="/icons/ratings/recommended.png" width={35} height={35} quality='35'/>
+                                        <Image src="/icons/ratings/recommended.png" width={35} height={35} quality='35' alt='rating-recommended'/>
                                         <p>Recommended</p>
                                     </div>
                                     <div onClick={() => rate("meh", user.uid, gameRef)}>
-                                        <Image src="/icons/ratings/meh.png" width={35} height={35} quality='35'/>
+                                        <Image src="/icons/ratings/meh.png" width={35} height={35} quality='35' alt='rating-meh'/>
                                         <p>Meh</p>
                                     </div>
                                     <div onClick={() => rate("skip", user.uid, gameRef)}>
-                                        <Image src="/icons/ratings/skip.png" width={35} height={35} quality='35'/>
+                                        <Image src="/icons/ratings/skip.png" width={35} height={35} quality='35' alt='rating-skip'/>
                                         <p>Skip</p>
                                     </div>
                                 </div>
@@ -127,7 +127,7 @@ export function ReviewForm({ user, ratingDoc, ratingData, username, gameRef, rou
                                 && (
                                     <div className="rating-selector">
                                         <div onClick={() => rate(ratingData?.rating, user.uid, gameRef)}>
-                                            <Image src={`/icons/ratings/${ratingData.rating}.png`} width={35} height={35} quality='35'/>
+                                            <Image src={`/icons/ratings/${ratingData.rating}.png`} width={35} height={35} quality='35' alt={`rating-${ratingData.rating}`}/>
                                             <p>You rated {ratingData?.rating}</p>
                                         </div>
                                     </div>
@@ -179,7 +179,11 @@ export function ReviewForm({ user, ratingDoc, ratingData, username, gameRef, rou
                                                     setReviewController(reviewData.review)
                                                     setReviewEdit(true)
                                                 }}>Edit your review <FaEdit /></button>
-                                                <button onClick={deleteReview}>Delete your review <FaTrash /></button>
+                                                <button type='button' onClick={(e) => {
+                                                    e.preventDefault()
+                                                    setReviewController()
+                                                    deleteReview()
+                                                }}>Delete your review <FaTrash /></button>
                                             </div>
                                         )
                                     }

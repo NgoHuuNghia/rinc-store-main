@@ -10,7 +10,7 @@ const AdminTerminalLink = ({menu, menuIcon, dropDown, crumbList}) => {
     useEffect(() => {
         if(crumbList[1]?.title == menu){setExpanded(true)}
         else setExpanded(false)
-    }, [crumbList])
+    }, [crumbList, menu])
     
 
     //! li.current is temp till url thing is established

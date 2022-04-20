@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
-import { auth, dateToJsonLocal, firestore, rate } from "@lib/firebase";
-import { doc, onSnapshot } from "firebase/firestore";
+import { firestore } from "@lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
 import Image from "next/image";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { MdOutlineThumbUpOffAlt, MdOutlineThumbDownOffAlt } from "react-icons/md";
-import { useDocument } from "react-firebase-hooks/firestore";
 import { ReviewForm } from "./ReviewForm";
 
 const DetailReviews = ({ 
-    title, 
+    title,
+    slug,
     user, 
     username, 
     ratingDoc, 
@@ -19,7 +18,7 @@ const DetailReviews = ({
 }) => {
 
     return (
-        <div className='reviews-container'>
+        <div onClick={() => console.log(reviews)} className='reviews-container'>
 
             <ReviewForm 
                 user={user}
@@ -39,7 +38,7 @@ const DetailReviews = ({
                         </>
                     )
                     : (
-                        <h3>{title} doesn't have any reviews yet. Write one!</h3>
+                        <h3>{title} doesn&#x27;t have any reviews yet. Write one!</h3>
                     )
                 }
                 
@@ -47,17 +46,17 @@ const DetailReviews = ({
             {reviews.length >= 1
                 ? (
                     <div className="user-reviews-container">
-                        {reviews.map(review => {
+                        {reviews.map( (review) => {
                             return (
-                                <div key={review.uid} className="review-container">
+                                <div key={review.id} className="review-container">
                                     <div className="rating">
                                         <h4>Skip</h4>
-                                        <div><Image src="/icons/ratings/skip.png" width={25} height={25} quality='25'/></div>
+                                        <div><Image src="/icons/ratings/skip.png" width={25} height={25} quality='25' alt="rating-skip"/></div>
                                     </div>
                                     <p>{review.review}</p>
                                     <div className="subsidiary">
                                         <div className="user-container">
-                                            <div className='avatar'><Image src="/icons/hacker.png" width={40} height={40} quality='25'/></div>
+                                            <div className='avatar'><Image src="/icons/hacker.png" width={40} height={40} quality='25' alt={review.username}/></div>
                                             <div className="username-time">
                                                 <p>{review.username}</p>
                                                 <span>{review.createdAt}</span>
