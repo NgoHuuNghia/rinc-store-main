@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import { AdminArrow } from 'public/svg/index'
-import AdminTerminalLink from '@components/admin/AdminTerminalLink'
+import AdminTerminalLink from '@components/Admin/AdminTerminalLink'
 import { useSidebar } from '@lib/adminContext'
 import { terminalDashboardData, terminalMenuData } from './terminalMenuData'
 import { UserContext } from '@lib/globalContext'

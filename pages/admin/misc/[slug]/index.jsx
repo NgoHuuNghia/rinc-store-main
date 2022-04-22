@@ -5,7 +5,7 @@ import { FaChevronLeft, FaChevronRight, FaFilter, FaSearch } from "react-icons/f
 import { collection, doc, getDoc, limit, query, updateDoc } from "firebase/firestore";
 import toast from "react-hot-toast";
 
-import AdminDataList from "@components/admin/AdminDataList";
+import AdminDataList from "@components/Admin/AdminDataList";
 import { SidebarProvider, useSidebar } from "@lib/adminContext";
 import { dateToJsonLocal, firestore } from "@lib/firebase";
 import { capitalizeFirstLetter } from "@lib/commonFunctions";

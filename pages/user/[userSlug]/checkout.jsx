@@ -1,4 +1,4 @@
-import PaypalCheckoutButton from "@components/paypal/PaypalCheckoutButton";
+import PaypalCheckoutButton from "@components/Paypal/PaypalCheckoutButton";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import {FaChevronRight, FaWindows} from 'react-icons/fa'
 
-import CheckoutCartItem from "@components/user/CheckoutCartItem";
+import CheckoutCartItem from "@components/User/CheckoutCartItem";
 import { firestore } from "@lib/firebase";
 import { UserContext } from "@lib/globalContext";
 import { confirmPasswordReset } from "firebase/auth";

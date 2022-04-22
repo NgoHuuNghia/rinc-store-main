@@ -6,13 +6,13 @@ import { useRouter } from 'next/router'
 import kebabCase from 'lodash.kebabcase'
 import toast from 'react-hot-toast'
 
-import AdminGamesListItem from '@components/admin/AdminGamesList'
+import AdminGamesListItem from '@components/Admin/AdminGamesList'
 import { dateToJsonLocal, firestore } from '@lib/firebase';
 import { useSidebar, SidebarProvider } from '@lib/adminContext'
-import AdminTerminal from '@components/admin/AdminTerminal';
-import AdminFilter from '@components/admin/AdminFilter';
-import AdminOverlay from '@components/admin/AdminOverlay';
-import AdminHeader from '@components/admin/AdminHeader';
+import AdminTerminal from '@components/Admin/AdminTerminal';
+import AdminFilter from '@components/Admin/AdminFilter';
+import AdminOverlay from '@components/Admin/AdminOverlay';
+import AdminHeader from '@components/Admin/AdminHeader';
 
 const AdminGameList = () => {
     const { setSidebar } = useSidebar()

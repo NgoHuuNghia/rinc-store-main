@@ -4,7 +4,7 @@ import {FaFilter, FaSearch, FaChevronLeft, FaChevronRight} from 'react-icons/fa'
 import { useCollection } from 'react-firebase-hooks/firestore'
 import toast from 'react-hot-toast'
 
-import AdminUsersListItem from '@components/admin/AdminUsersList';
+import AdminUsersListItem from '@components/Admin/AdminUsersList';
 import { dateToJsonLocal, firestore } from '@lib/firebase';
 import { useSidebar, SidebarProvider } from '@lib/adminContext'
 import Select from 'react-select'

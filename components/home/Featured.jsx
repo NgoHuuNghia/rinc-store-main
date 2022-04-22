@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import {FaChevronRight} from 'react-icons/fa'
 
-import FeaturedItem from '@components/home/FeaturedItem'
+import FeaturedItem from '@components/Home/FeaturedItem'
 
 // const Featured = ({id, background_image, name}) => {
 const Featured = ({gamesDesc}) => {

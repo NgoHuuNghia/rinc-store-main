@@ -1,8 +1,8 @@
 import { SidebarProvider } from '@lib/adminContext'
-import { saleData, userData } from '@components/admin/chart/chartData'
+import { saleData, userData } from '@components/Admin/Chart/chartData'
 import { useState } from 'react'
-import BarChart from '@components/admin/chart/BarChart'
-import LineChart from '@components/admin/chart/LineChart'
+import BarChart from '@components/Admin/Chart/BarChart'
+import LineChart from '@components/Admin/Chart/LineChart'
 
 import { AiOutlineBarChart, AiOutlineLineChart } from 'react-icons/ai'
 import {IoIosArrowDown} from 'react-icons/io'

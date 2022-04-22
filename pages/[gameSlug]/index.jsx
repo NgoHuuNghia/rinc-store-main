@@ -20,7 +20,7 @@ import { UserContext } from '@lib/globalContext';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
-import DetailReviews from '@components/detail/DetailReviews';
+import DetailReviews from '@components/Detail/DetailReviews';
 
 export async function getStaticProps({ params }) { //? params instead of query like ssr
     const { gameSlug } = params
