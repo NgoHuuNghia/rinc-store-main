@@ -4303,6 +4303,9 @@ section.admin-container > nav.terminal > .admin > a > p {
   font-size: 1.2em;
   white-space: nowrap;
 }
+section.admin-container > nav.terminal > .admin > a > div {
+  overflow: hidden;
+}
 section.admin-container > nav.terminal > .search {
   display: flex;
   flex-direction: row;

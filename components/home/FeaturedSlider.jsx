@@ -1,20 +1,17 @@
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
-//$ import ConsoleIcons from '../../Components/ConsoleIcons'
-//$ import { useGlobalContext } from '../../context'
 
-//! temp
 import { useSliderControl } from '@lib/hooks'
 import FeaturedSliderItem from './FeaturedSliderItem'
-import { useRef, useEffect } from 'react'
+//$ import { useRef, useEffect } from 'react'
 
 //$ const FeaturedSlider = ({id, name, background_image, short_screenshots, index, parent_platforms}) => {
 const FeaturedSlider = ({gamesDesc}) => {
     const [sliderIndex, setSliderIndex] = useSliderControl(gamesDesc.length, 5000)
 
-    const slider = useRef(null)
-    const height = null
-    function getHeight(data) {height = data}
-    useEffect(() => slider.current.style.height = `${height}px`, [])
+    //$ const slider = useRef(null)
+    //$ const height = null
+    //$ function getHeight(data) {height = data}
+    //$ useEffect(() => slider.current.style.height = `${height}px`, [])
 
     return (
         <section className='main-card-container'>
@@ -27,11 +24,14 @@ const FeaturedSlider = ({gamesDesc}) => {
             <button className="next" onClick={() => setSliderIndex(sliderIndex + 1)}>
                 <FaChevronRight />
             </button>
-            <div className='slider' ref={slider}>
+            <div 
+                className='slider' 
+                //$ ref={slider}
+            >
                 {gamesDesc.map((game, index, gamesDesc) => {
                     return <FeaturedSliderItem
                         key={game.slug}
-                        getHeight={getHeight}
+                        // getHeight={getHeight}
                         {...game} 
                         index={index} 
                         length={gamesDesc.length}

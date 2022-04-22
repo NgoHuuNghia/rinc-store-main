@@ -4,7 +4,6 @@ import {FaPlaystation} from 'react-icons/fa'
 
 import { toTop, sliderControlClass } from "@lib/commonFunctions"
 import Image from "next/image"
-import { Timestamp } from "firebase/firestore"
 
 const FeaturedSliderItem = ({
     mainImageUrl, title, slug, secondaryImageUrls,
@@ -12,14 +11,18 @@ const FeaturedSliderItem = ({
 }) => {
     const position = sliderControlClass(index, sliderIndex, length)
 
-    const slide = useRef(null)
-    useEffect(() => {
-        if(index == 0) getHeight(slide.current.getBoundingClientRect().height)
-    }, [getHeight, index])
+    //$ const slide = useRef(null)
+    //$ useEffect(() => {
+    //$     if(index == 0) getHeight(slide.current.getBoundingClientRect().height)
+    //$ }, [getHeight, index])
 
     return (
         <Link passHref href={`/${slug}`}>
-            <a onClick={() => toTop()} className={position} ref={slide}>
+            <a 
+                onClick={() => toTop()} 
+                className={position} 
+                //$ref={slide}
+            >
                 <div className="main-image-container">
                     <Image src={mainImageUrl} alt={slug} width={800} height={500} quality='75' layout='responsive' objectPosition='center' objectFit="cover"/>
                 </div>

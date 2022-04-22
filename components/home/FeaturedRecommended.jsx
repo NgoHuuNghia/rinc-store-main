@@ -11,10 +11,10 @@ import FeaturedRecommendedItem from './FeaturedRecommendedItem'
 const FeaturedRecommended = ({gamesDesc}) => {
     const [sliderIndex, setSliderIndex] = useSliderControl(gamesDesc.length, 8000)
 
-    const slider = useRef(null)
-    const height = null
-    function getHeight(data) {height = data}
-    useEffect(() => slider.current.style.height = `${height}px`, [])
+    //$ const slider = useRef(null)
+    //$ const height = null
+    //$ function getHeight(data) {height = data}
+    //$ useEffect(() => slider.current.style.height = `${height}px`, [])
 
     return (
         <section className="movie-card-container">
@@ -28,10 +28,13 @@ const FeaturedRecommended = ({gamesDesc}) => {
             <button className="next" onClick={() => setSliderIndex(sliderIndex + 1)}>
                 <FaChevronRight />
             </button>
-            <div className='slider' ref={slider}> 
+            <div 
+                className='slider' 
+                //$ ref={slider}
+            > 
                 {gamesDesc.map((game, index, gamesDesc) => {
                     return <FeaturedRecommendedItem 
-                        getHeight={getHeight}
+                        //$ getHeight={getHeight}
                         key={game.slug}
                         {...game} 
                         index={index} 

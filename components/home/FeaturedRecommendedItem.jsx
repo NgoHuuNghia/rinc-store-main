@@ -10,14 +10,17 @@ const FeaturedRecommendedItem = ({
 }) => {
     const position = sliderControlClass(index, sliderIndex, length)
 
-    const slide = useRef(null)
-    useEffect(() => {
-        if(index == 0) getHeight(slide.current.getBoundingClientRect().height)
-    }, [getHeight, index])
+    //$ const slide = useRef(null)
+    //$ useEffect(() => {
+    //$     if(index == 0) getHeight(slide.current.getBoundingClientRect().height)
+    //$ }, [getHeight, index])
 
     return (
         <Link passHref href={`/${slug}`} onClick={() => toTop()}>
-            <a className={position} ref={slide}>
+            <a 
+                className={position} 
+                //$ ref={slide}
+            >
                 <div className="top-review">
                     <div>
                         {/* {description ? parse(description) : "loading description"} */}
