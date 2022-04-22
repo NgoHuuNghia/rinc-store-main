@@ -10,8 +10,6 @@ import MoreLikeSeries from '@components/Detail/MoreLikeSeries'
 import DetailBackgrounds from '@components/Detail/DetailBackgrounds'
 import DetailChartContainerBar from '@components/Detail/DetailChartContainerBar'
 
-import storeIcons from '@public/icons/storeIcons'
-
 import {FaChevronRight, FaWindows, FaFlag, FaShareAlt, FaStopCircle} from 'react-icons/fa'
 import {AiOutlineStop} from 'react-icons/ai'
 import Image from 'next/image';
