@@ -36,9 +36,12 @@ const DetailChartContainerBar = ({ userRatings, gameRef, ratingDoc, ratingData, 
                                 onClick={() => (user) ? rate(key, user.uid, gameRef) : toast.error("Must login to rate")}
                                 className={
                                     (key == curretRating)
-                                        ? key + " active"
-                                        : key
-                                    
+                                        ? (ratingDoc?.exists() && ratingData?.rating == key)
+                                            ? key + " rated-active"
+                                            : key + " active" 
+                                        : (ratingDoc?.exists() && ratingData?.rating == key)
+                                            ? key + " rated"
+                                            : key
                                 }
                                 //$ style={ratingsKeys.length - 1 == index || chartContainerWidth > 100
                                 //     ? {width: `${ratings[key].percent - (chartContainerWidth - 100)}%`}
@@ -56,9 +59,9 @@ const DetailChartContainerBar = ({ userRatings, gameRef, ratingDoc, ratingData, 
                                                 ? '/icons/ratings/meh.png' 
                                                 : '/icons/ratings/skip.png'
                                         }
-                                        width={25} 
-                                        height={25} 
-                                        quality='25'
+                                        width={55} 
+                                        height={55} 
+                                        quality='50'
                                         alt={key ? key : 'no-rating'}
                                     />
                                 </div>
@@ -83,10 +86,16 @@ const DetailChartContainerBar = ({ userRatings, gameRef, ratingDoc, ratingData, 
                                 onMouseEnter={() => setCurretRating(key)}
                                 onMouseLeave={() => setCurretRating()}
                                 onClick={() => (user) ? rate(key, user.uid, gameRef) : toast.error("Must login to rate")}
-                                className={key === curretRating
-                                    ? key + " active"
-                                    : key
-                            }>
+                                className={
+                                    (key == curretRating)
+                                        ? (ratingDoc?.exists() && ratingData?.rating == key)
+                                            ? key + " rated-active"
+                                            : key + " active" 
+                                        : (ratingDoc?.exists() && ratingData?.rating == key)
+                                            ? key + " rated"
+                                            : key
+                                }
+                            >
                                 <FaCircle />
                                 <p>{key}</p>
                                 <p>{ratings[key].count}</p>

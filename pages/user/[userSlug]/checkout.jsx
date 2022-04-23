@@ -1,17 +1,11 @@
 import PaypalCheckoutButton from "@components/Paypal/PaypalCheckoutButton";
-import { collection, onSnapshot, query } from "firebase/firestore";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import { useContext } from "react";
-import { useCollection } from "react-firebase-hooks/firestore";
-import {FaChevronRight, FaWindows} from 'react-icons/fa'
+import {FaChevronRight} from 'react-icons/fa'
 
 import CheckoutCartItem from "@components/User/CheckoutCartItem";
-import { firestore } from "@lib/firebase";
 import { UserContext } from "@lib/globalContext";
-import { confirmPasswordReset } from "firebase/auth";
 
 const Checkout = () => {
     const router = useRouter()
@@ -42,16 +36,16 @@ const Checkout = () => {
                         <ul className="table">
                             <li className="title">Total: </li>
                             <li className="number">{
-                                `$` +
-                                shoppingCart?.reduce((sum, cur) => sum += cur.item.basePrice, 0)
+                                `$` + shoppingCart?.reduce((sum, cur) => sum += cur.item.basePrice, 0)
                             }</li>
-                            {/* value: cartData.reduce(
-                                (sum, cur) => sum += cur.basePrice, 0
-                            ) */}
                             <li className="title">Discount: </li>
-                            <li className="number">$420</li>
+                            <li className="number">{
+                                `$` + shoppingCart?.reduce((sum, cur) => sum += cur.item.basePrice, 0)
+                            }</li>
                             <li className="title">Final total: </li>
-                            <li className="number">$420</li>
+                            <li className="number">{
+                                `$` + shoppingCart?.reduce((sum, cur) => sum += cur.item.basePrice, 0)
+                            }</li>
                         </ul>
                     </div>
                 </div>

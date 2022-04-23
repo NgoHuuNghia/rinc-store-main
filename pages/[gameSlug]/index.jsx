@@ -33,7 +33,7 @@ export async function getStaticProps({ params }) { //? params instead of query l
         orderBy('createdAt', 'desc'),
         limit(6),
     )
-    const staticReviews = (await ( getDocs(reviewsQuery))).docs.map(dateToJsonLocal);
+    const staticReviews = (await ( getDocs(reviewsQuery))).docs.map(dateToJsonLocalWithId);
     const reviewsPath = reviewsRef.path
 
     return {
@@ -177,17 +177,17 @@ const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
         return unsubscribe
     }, [game, gameRef])
 
-    const reviewsRef = collection(firestore, reviewsPath)
-    const [realTimeReview, setRealTimeReview] = useState([])
-    useEffect(() => {
-        let unsubscribe
-        if(game){
-            unsubscribe = onSnapshot(reviewsRef, querySnapshot => { 
-                setRealTimeReview(querySnapshot?.docs.map((doc) => dateToJsonLocalWithId(doc))) 
-            })
-        } else setRealTimeReview()
-        return unsubscribe
-    }, [game, reviewsRef])
+    // const reviewsRef = collection(firestore, reviewsPath)
+    // const [realTimeReviews, setRealTimeReview] = useState()
+    // useEffect(() => {
+    //     let unsubscribe
+    //     if(game && reviewsRef){
+    //         unsubscribe = onSnapshot(reviewsRef, querySnapshot => { 
+    //             setRealTimeReview(querySnapshot.docs.map(dateToJsonLocalWithId))
+    //         })
+    //     } else setRealTimeReview()
+    //     return unsubscribe
+    // }, [game, reviewsRef])
 
     const [ratingDoc, setRatingDoc] = useState()
     const [ratingData, setratingData] = useState()
@@ -208,7 +208,8 @@ const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
     //* value post will default to the realtime data but fallback to prerender data on server
     const gameData = realTimeGame || game
     const {title, slug, mainImageUrl, secondaryImageUrls, releasedAt, updatedAt, metacritic, description, basePrice, userRatings} = gameData
-    const reviews = realTimeReview || staticReviews
+    //? const reviews = realTimeReviews || staticReviews
+    const reviews = staticReviews
 
     const addToCart = async() => {
         const cartRef = collection(firestore, 'users', user.uid, 'shoppingCart');
@@ -631,7 +632,7 @@ const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
                     username={username} 
                     ratingDoc={ratingDoc}
                     ratingData={ratingData}
-                    gameRef={gameRef} 
+                    gameRef={gameRef}
                     reviews={reviews}
                     router={router}
                 />

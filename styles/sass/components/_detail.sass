@@ -314,14 +314,18 @@ div.detail-container
                                 position: relative
                                 transition: all 0.2s linear
                                 cursor: pointer
-                                >img
+                                >div
                                     height: auto
                                     width: 3.5em
                                     position: absolute
-                                    bottom: -.75em
+                                    bottom: -.9em
                                     left: -1em
                             .active
                                 box-shadow: $bs-card-light
+                            .rated
+                                box-shadow: $bs-card-subsidiary-subtle-soft
+                            .rated-active
+                                box-shadow: $bs-card-subsidiary-hilight
                             >.exceptional
                                 background-image: $bgc-chart-exeptional
                                 >img
@@ -353,10 +357,15 @@ div.detail-container
                                 >p
                                     color: $fc-unimportant
                                     text-transform: capitalize
-                            .active // !link with it's chart
-                                border: 3px solid $bgc-hilight-soft
+                            >.active, >.rated, >.rated-active
                                 >p
                                     color: $fc-important
+                            .active // !link with it's chart
+                                border: 3px solid $bgc-hilight-soft
+                            .rated
+                                border: 3px solid $bgc-subsidiary-subtle-soft
+                            .rated-active
+                                border: 3px solid $bgc-subsidiary
                             >.exceptional
                                 >svg
                                     color: $fc-chart-exeptional

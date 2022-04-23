@@ -2846,15 +2846,21 @@ div.detail-container div.detail > div.detail-secondary > div.height-container > 
   transition: all 0.2s linear;
   cursor: pointer;
 }
-div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.chart > div > img {
+div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.chart > div > div {
   height: auto;
   width: 3.5em;
   position: absolute;
-  bottom: -0.75em;
+  bottom: -0.9em;
   left: -1em;
 }
 div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.chart .active {
   box-shadow: white 0 1px 10px;
+}
+div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.chart .rated {
+  box-shadow: #3f0010 0 1px 10px;
+}
+div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.chart .rated-active {
+  box-shadow: #ff0040 0 1px 10px;
 }
 div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.chart > .exceptional {
   background-image: linear-gradient(180deg, #b4ec51, #429321);
@@ -2907,11 +2913,17 @@ div.detail-container div.detail > div.detail-secondary > div.height-container > 
   color: #4c565d;
   text-transform: capitalize;
 }
+div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.chart-label > .active > p, div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.chart-label > .rated > p, div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.chart-label > .rated-active > p {
+  color: white;
+}
 div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.chart-label .active {
   border: 3px solid #c0bbca;
 }
-div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.chart-label .active > p {
-  color: white;
+div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.chart-label .rated {
+  border: 3px solid #3f0010;
+}
+div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.chart-label .rated-active {
+  border: 3px solid #8b0023;
 }
 div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > div.chart-container > div.chart-label > .exceptional > svg {
   color: #429321;
