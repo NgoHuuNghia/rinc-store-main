@@ -381,10 +381,10 @@ div.subsidiary-section
                                     >p:nth-child(1)
                                         text-decoration: line-through
                                         color: $fc-subsidiary-unimportant
-                                        font-size: .7em
+                                        font-size: .9em
                                     >p:nth-child(2)
                                         color: $fc-default
-                                        font-size: .8em
+                                        font-size: 1em
                         &.active
                             background-color: $bgc-subsidiary-hilight
                             h4
@@ -412,10 +412,10 @@ div.subsidiary-section
                         background-color: $bgc-subsidiary
                         >div
                             margin-bottom: .5em
-                        >div:nth-child(1)
+                        >div.title
                             color: $fc-important
                             font-size: 1.3em
-                        >div:nth-child(2)
+                        >div.reviews
                             background-color: $bgc-subsidiary
                             align-self: stretch
                             padding: .5em
@@ -423,7 +423,7 @@ div.subsidiary-section
                             >p:last-child
                                 >span
                                     color: $fc-meta
-                        >div:nth-child(3)
+                        >div.genres
                             @include flex($justify: flex-start, $gap: .25em)
                             >a
                                 font-size: .7em

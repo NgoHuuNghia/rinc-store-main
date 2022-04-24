@@ -1823,11 +1823,11 @@ div.subsidiary-section div.subsidiary-container > section.tab-container > div.ta
 div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-list > div:not(:first-child) > a.tab-item > div.item > div:nth-child(2) > div:nth-child(2) > p:nth-child(1) {
   text-decoration: line-through;
   color: #6f6f6f;
-  font-size: 0.7em;
+  font-size: 0.9em;
 }
 div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-list > div:not(:first-child) > a.tab-item > div.item > div:nth-child(2) > div:nth-child(2) > p:nth-child(2) {
   color: #c6d4df;
-  font-size: 0.8em;
+  font-size: 1em;
 }
 div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-list > div:not(:first-child) > a.tab-item.active {
   background-color: #ff0040;
@@ -1871,33 +1871,33 @@ div.subsidiary-section div.subsidiary-container > section.tab-container > div.ta
   div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-viewer > div > div {
     margin-bottom: 0.5em;
   }
-  div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-viewer > div > div:nth-child(1) {
+  div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-viewer > div > div.title {
     color: white;
     font-size: 1.3em;
   }
-  div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-viewer > div > div:nth-child(2) {
+  div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-viewer > div > div.reviews {
     background-color: #8b0023;
     align-self: stretch;
     padding: 0.5em;
     font-size: 0.75em;
   }
-  div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-viewer > div > div:nth-child(2) > p:last-child > span {
+  div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-viewer > div > div.reviews > p:last-child > span {
     color: #6dc849;
   }
-  div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-viewer > div > div:nth-child(3) {
+  div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-viewer > div > div.genres {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     gap: 0.25em;
   }
-  div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-viewer > div > div:nth-child(3) > a {
+  div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-viewer > div > div.genres > a {
     font-size: 0.7em;
     padding: 0.3em 0.6em;
     background-color: #8b0023;
     color: white;
   }
-  div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-viewer > div > div:nth-child(3) > a:hover {
+  div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-viewer > div > div.genres > a:hover {
     background-color: #f2ecff;
     color: #302c3a;
   }
