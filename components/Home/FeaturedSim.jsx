@@ -7,7 +7,7 @@ import { toTop } from '@lib/commonFunctions'
 import FeaturedSimItem from './FeaturedSimItem'
 
 // const FeaturedSim = ({name, id, background_image}) => {
-const FeaturedSim = ({gamesDesc}) => {
+const FeaturedSim = ({games}) => {
 
     return (
         <section className='special-card-container'>
@@ -20,7 +20,7 @@ const FeaturedSim = ({gamesDesc}) => {
                 {/*//$ {featuredListSim.slice(3).map((item) => {
                     //$ return <FeaturedSim key={item.id} {...item}/>
                 })} */}
-                {gamesDesc.slice(0,5).map((game) => {
+                {games.slice(0,5).map((game) => {
                     return <FeaturedSimItem key={game.slug} {...game}/>
                 })}
             </div>

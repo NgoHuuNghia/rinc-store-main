@@ -5,8 +5,8 @@ import FeaturedSliderItem from './FeaturedSliderItem'
 //$ import { useRef, useEffect } from 'react'
 
 //$ const FeaturedSlider = ({id, name, background_image, short_screenshots, index, parent_platforms}) => {
-const FeaturedSlider = ({gamesDesc}) => {
-    const [sliderIndex, setSliderIndex] = useSliderControl(gamesDesc.length, 5000)
+const FeaturedSlider = ({games}) => {
+    const [sliderIndex, setSliderIndex] = useSliderControl(games.length, 5000)
 
     //$ const slider = useRef(null)
     //$ const height = null
@@ -28,13 +28,13 @@ const FeaturedSlider = ({gamesDesc}) => {
                 className='slider' 
                 //$ ref={slider}
             >
-                {gamesDesc.map((game, index, gamesDesc) => {
+                {games.map((game, index, games) => {
                     return <FeaturedSliderItem
                         key={game.slug}
                         // getHeight={getHeight}
                         {...game} 
                         index={index} 
-                        length={gamesDesc.length}
+                        length={games.length}
                         sliderIndex={sliderIndex}
                     />
                 })}

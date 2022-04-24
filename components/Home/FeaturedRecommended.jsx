@@ -8,8 +8,8 @@ import {FaChevronRight, FaChevronLeft} from 'react-icons/fa'
 import FeaturedRecommendedItem from './FeaturedRecommendedItem'
 
 // const FeaturedRecommended = ({id, background_image, index}) => {
-const FeaturedRecommended = ({gamesDesc}) => {
-    const [sliderIndex, setSliderIndex] = useSliderControl(gamesDesc.length, 8000)
+const FeaturedRecommended = ({games}) => {
+    const [sliderIndex, setSliderIndex] = useSliderControl(games.length, 8000)
 
     //$ const slider = useRef(null)
     //$ const height = null
@@ -32,13 +32,13 @@ const FeaturedRecommended = ({gamesDesc}) => {
                 className='slider' 
                 //$ ref={slider}
             > 
-                {gamesDesc.map((game, index, gamesDesc) => {
+                {games.map((game, index, games) => {
                     return <FeaturedRecommendedItem 
                         //$ getHeight={getHeight}
                         key={game.slug}
                         {...game} 
                         index={index} 
-                        length={gamesDesc.length}
+                        length={games.length}
                         sliderIndex={sliderIndex}
                     />
                 })}

@@ -5,7 +5,7 @@ import {FaChevronRight} from 'react-icons/fa'
 import FeaturedItem from '@components/Home/FeaturedItem'
 
 // const Featured = ({id, background_image, name}) => {
-const Featured = ({gamesDesc}) => {
+const Featured = ({games}) => {
     //todo const { ToTop } = useGlobalContext()
 
     return (
@@ -19,7 +19,7 @@ const Featured = ({gamesDesc}) => {
                 {/*//$ {featuredList.slice(3).map((item) => {
                     //$ return <Featured key={item.id} {...item} />
                 })} */}
-                {gamesDesc.slice(0,5).map((game, index) => { //$ temp fix
+                {games.slice(0,5).map((game, index) => { //$ temp fix
                     return <FeaturedItem key={game.slug} {...game} index={index}/>
                 })}
             </div>

@@ -3,7 +3,7 @@ import { UserContext } from "@lib/globalContext";
 import { useContext } from "react";
 
 export default function AuthCheck(props){
-    const { user, role } = useContext(UserContext)
+    const { role } = useContext(UserContext)
 
     return role === "admin"
         ? props.children

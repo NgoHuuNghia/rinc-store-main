@@ -1,23 +1,23 @@
 import { useContext, useState } from 'react';
-import { signInWithPopup, signOut } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
 import {FaShoppingCart} from 'react-icons/fa'
-import {MdLogout} from 'react-icons/md'
-import {FcGoogle} from 'react-icons/fc'
+import {MdLogout, MdLogin} from 'react-icons/md'
+import {RiAdminFill} from 'react-icons/ri'
 
-import { auth, googleAuthProvider } from '@lib/firebase';
+import { auth } from '@lib/firebase';
 import { UserContext } from '@lib/globalContext';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 const User = () => {
-    const { user, username, shoppingCart } = useContext(UserContext)
+    const { user, username, role, shoppingCart } = useContext(UserContext)
     const router = useRouter()
     const [submenu, setSubmenu] = useState(false)
 
     return (
         <div className={`user-container`} onMouseOver={() => setSubmenu(true)} onMouseLeave={() => setSubmenu(false)}>
-            <div className='avatar-container'>
+            <div onClick={() => console.log(role)} className='avatar-container'>
                 <div className='avatar'><Image src={user?.photoURL || `/icons/hacker.png`} width={100} height={100} quality='50' alt={username}></Image></div>
                 {user && shoppingCart.length >= 1 && (
                     <div className='cart-container'>
@@ -33,19 +33,22 @@ const User = () => {
                     {!user 
                         ? (
                         <li onClick={() => router.push('/enter')}>
-                            <a><p>Sign in</p><FcGoogle /></a>
+                            <a><p>Sign in</p><MdLogin /></a>
                         </li>
                         )
                         : (
                             <>
-                                <li onClick={() => router.push('/admin')}>
-                                    <a><p>Admin</p></a>
-                                </li>
+                                {role === "admin" && (
+                                    <li onClick={() => router.push('/admin')}>
+                                        <a><p>Admin</p><RiAdminFill/></a>
+                                    </li>
+                                )
+                                }
                                 <SignOutButton />
                                 {/*//! cart checkout */}
                                 {shoppingCart.length >= 1 && (
                                     <li onClick={() => router.push(`/user/${username}/checkout`)}>
-                                        <a><p>{`Checkout: ${shoppingCart.length} items`}</p></a>
+                                        <a><p>{`Checkout: ${shoppingCart.length} items`}</p><FaShoppingCart /></a>
                                     </li>
                                 )}
                             </>

@@ -321,6 +321,9 @@ header nav > div.sublinks > ul > li > .mobile-submenu > ul > li > a {
   cursor: pointer;
   white-space: nowrap;
 }
+header nav > div.sublinks > ul > li > .mobile-submenu > ul > li > a svg {
+  color: #c6d4df;
+}
 header nav > div.sublinks > ul > li > .mobile-submenu > ul > li > a:hover {
   background: #ff0040;
 }
@@ -405,6 +408,9 @@ header nav > div.sublinks > div.user-container > div.user-sublinks > ul > li > a
   padding: 0.8em 0.5em;
   cursor: pointer;
   white-space: nowrap;
+}
+header nav > div.sublinks > div.user-container > div.user-sublinks > ul > li > a svg {
+  color: #c6d4df;
 }
 header nav > div.sublinks > div.user-container > div.user-sublinks > ul > li > a:hover {
   background: #ff0040;
@@ -1665,6 +1671,7 @@ div.subsidiary-section div.subsidiary-container div.tab-selector button {
   transition: 0.3s;
   z-index: 2;
   background: none;
+  cursor: pointer;
 }
 div.subsidiary-section div.subsidiary-container div.tab-selector button > p {
   font-size: 1em;
@@ -5000,7 +5007,7 @@ section.admin-container > div.controls > div.game-edit > * {
   padding: 1em;
 }
 section.admin-container > div.controls > div.game-edit > form {
-  flex: 1;
+  flex: 1.5;
   display: grid;
   grid-template-rows: none;
   grid-template-columns: 50% 50%;
@@ -5042,7 +5049,7 @@ section.admin-container > div.controls > div.game-edit > form > div > .selection
   flex: 1;
   color: #10161b;
 }
-section.admin-container > div.controls > div.game-edit > form > div > .selection > div {
+section.admin-container > div.controls > div.game-edit > form > div > .selection > div:first-of-type {
   font-size: 0.9em;
   padding: 0.5em;
   background: #ffffff;
@@ -5052,7 +5059,7 @@ section.admin-container > div.controls > div.game-edit > form > div > .selection
   border-radius: 0;
   padding: 0.2em 0.5em;
 }
-section.admin-container > div.controls > div.game-edit > form > div > .selection > div > div {
+section.admin-container > div.controls > div.game-edit > form > div > .selection > div:first-of-type > div {
   padding: 0;
 }
 section.admin-container > div.controls > div.game-edit > form > div > strong.danger {

@@ -2,10 +2,8 @@ import React from 'react'
 import {deleteDoc, doc} from 'firebase/firestore'
 import {RiEditBoxFill, RiDeleteBack2Fill} from 'react-icons/ri'
 import toast from 'react-hot-toast'
-import Link from 'next/link'
 
 import { firestore } from '@lib/firebase'
-import { gameDateToJsonLocal } from '@lib/commonFunctions'
 
 const AdminDataList = ({data, current, getData}) => {
     return (

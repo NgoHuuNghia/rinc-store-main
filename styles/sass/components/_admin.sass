@@ -354,7 +354,7 @@ section.admin-container
             >*
                 padding: 1em
             >form
-                flex: 1
+                flex: 1.5
                 @include grid($columns: 50% 50%, $gap: 1.5em)
                 >.col-1
                     grid-column: span 1
@@ -374,7 +374,7 @@ section.admin-container
                     >.selection
                         flex: 1
                         color: $fc-admin
-                        >div
+                        >div:first-of-type
                             @include inputText
                             border-radius: 0
                             padding: .2em .5em

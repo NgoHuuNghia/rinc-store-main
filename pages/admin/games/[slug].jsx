@@ -1,17 +1,12 @@
-import {doc, serverTimestamp, updateDoc} from 'firebase/firestore'
+import {collection, doc, serverTimestamp, updateDoc} from 'firebase/firestore'
 import {useRouter} from 'next/router'
 
-import Image from 'next/image'
 import { useForm, Controller } from "react-hook-form"
 import Select from 'react-select'
 import {AiFillDelete, AiFillEye} from 'react-icons/ai'
-import { useDocumentData } from 'react-firebase-hooks/firestore'
+import { useCollection, useDocumentData } from 'react-firebase-hooks/firestore'
 import toast from 'react-hot-toast'
 
-import AdminTerminal from '@components/Admin/AdminTerminal'
-import AdminHeader from '@components/Admin/AdminHeader'
-import AdminFilter from '@components/Admin/AdminFilter'
-import AdminOverlay from '@components/Admin/AdminOverlay'
 import UploadMainImage from '@components/Admin/UploadMainImage'
 import SecondaryImages from '@components/Admin/SecondaryImages'
 import { SidebarProvider } from '@lib/adminContext'
@@ -23,9 +18,44 @@ function GameManager(){
     const router = useRouter();
     const { slug } = router.query;
 
-    //! no idea why refresh would throw a bug
     const gameRef = doc(firestore, 'games', slug)
     const [games] = useDocumentData(gameRef)//? will fetch the data once when the component is initialized
+
+    //? fetching selections
+    const genresRef = collection(firestore, 'genres')
+    const [genresSnap] = useCollection(genresRef)
+    const genresData = genresSnap?.docs.map(doc => {
+        const data = doc.data()
+        return {
+            id: doc.id,
+            label: data.title,
+            value: data.title,
+        }
+    })
+
+    const platformsRef = collection(firestore, 'platforms')
+    const [platformsSnap] = useCollection(platformsRef)
+    const platformsData = platformsSnap?.docs.map(doc => {
+        const data = doc.data()
+        return {
+            id: doc.id,
+            label: data.title,
+            value: data.title,
+            url: data.url
+        }
+    })
+
+    const storesRef = collection(firestore, 'stores')
+    const [storesSnap] = useCollection(storesRef)
+    const storesData = storesSnap?.docs.map(doc => {
+        const data = doc.data()
+        return {
+            id: doc.id,
+            label: data.title,
+            value: data.title,
+            url: data.url
+        }
+    })
 
     return (
         <>
@@ -39,7 +69,13 @@ function GameManager(){
                         </div>
                     </div>
                     <div className='game-edit'>
-                        <GameManagerForm gameRef={gameRef} defaultValues={games}/>
+                        <GameManagerForm 
+                            gameRef={gameRef} 
+                            defaultValues={games}
+                            genresData={genresData}
+                            platformsData={platformsData}
+                            storesData={storesData}
+                        />
                         <PreviewImages slug={slug} mainUrl={games.mainImageUrl} secondaryImageUrls={games.secondaryImageUrls}/>
                     </div>
                 </>
@@ -49,20 +85,23 @@ function GameManager(){
 }
 export default GameManager
 
-function GameManagerForm({gameRef, defaultValues}){
+function GameManagerForm({gameRef, defaultValues, genresData, platformsData, storesData}){
     const { register, handleSubmit, formState, reset, control } = useForm({ defaultValues, mode: 'onChange' });//? mode act like state
     const { isValid, isDirty, errors } = formState
 
-    const updateGame = async ({ title, esrbRating, published }) => {
+    const updateGame = async ({ title, esrbRating, published, genres, platforms, stores }) => {
 
         await updateDoc(gameRef, {//? firestore function to update
             title: title.charAt(0).toUpperCase() + title.slice(1).toLowerCase(), //? capitalized 1st letter
             esrbRating,
             published,
+            genres,
+            platforms,
+            stores,
             updatedAt: serverTimestamp(),
         })
     
-        reset({ title, esrbRating, published });//? reset the form
+        reset({ title, esrbRating, published, genres, platforms, stores });//? reset the form
     
         toast.success('Game updated successfully!');
     };
@@ -82,48 +121,8 @@ function GameManagerForm({gameRef, defaultValues}){
                 />
                 {errors.title && <strong className="danger">{errors.title.message}</strong>}{/* if there error in content then show it */}
             </div>
-            <div className='text col-2'>
-                <label htmlFor="title">Genres: </label>
-                <input
-                    type='text'
-                    name='title'
-                    {...register('title',{ //? with added html validation
-                        maxLength: { value: 20000, message: 'title is too long' },
-                        minLength: { value: 3, message: 'title is too short' },
-                        required: true,
-                    })}
-                />
-                {errors.title && <strong className="danger">{errors.title.message}</strong>}{/* if there error in content then show it */}
-            </div>
-            <div className='text col-2'>
-                <label htmlFor="title">Platforms: </label>
-                <input
-                    type='text'
-                    name='title'
-                    {...register('title',{ //? with added html validation
-                        maxLength: { value: 20000, message: 'title is too long' },
-                        minLength: { value: 3, message: 'title is too short' },
-                        required: true,
-                    })}
-                />
-                {errors.title && <strong className="danger">{errors.title.message}</strong>}{/* if there error in content then show it */}
-            </div>
-            <div className='text col-2'>
-                <label htmlFor="title">Stores: </label>
-                <input
-                    type='text'
-                    name='title'
-                    {...register('title',{ //? with added html validation
-                        maxLength: { value: 20000, message: 'title is too long' },
-                        minLength: { value: 3, message: 'title is too short' },
-                        required: true,
-                    })}
-                />
-                {errors.title && <strong className="danger">{errors.title.message}</strong>}{/* if there error in content then show it */}
-            </div>
-            
-            
-            <div className='col-1'>
+
+            <div className='col-2'>
                 <label htmlFor='esrbRating'>Esrb: </label>
                 <Controller
                     name="esrbRating"
@@ -131,19 +130,58 @@ function GameManagerForm({gameRef, defaultValues}){
                     render={({ field }) => 
                         <Select className='selection'
                             {...field}
-                            defaultValue={defaultValues.esrbRating}
                             options={[
-                                { value: "Everyone 10+", label: "Everyone 10+" },
-                                { value: "Mature 17+", label: "Mature 17+" },
-                                { value: "Adult 18+", label: "Adult 18+" },
-                                { value: "Rating Pending", label: "Rating Pending" }
-                        ]}/>}
+                                { id: "everyone-10+", value: "Everyone 10+", label: "Everyone 10+" },
+                                { id: "teen", value: "Teen", label: "Teen" },
+                                { id: "mature-17+", value: "Mature 17+", label: "Mature 17+" },
+                                { id: "adult-18+", value: "Adult 18+", label: "Adult 18+" },
+                                { id: "rating-pending", value: "Rating Pending", label: "Rating Pending" }
+                            ]}
+                        />
+                    }
                 />
             </div>
-            {/* <fieldset>
-                <input className={styles.checkbox} name="published" type="checkbox" {...register('published')} />
-                <label>Published</label>
-            </fieldset> */}
+
+            <div onClick={() => console.log(defaultValues.genres)} className='col-2'>
+                <label htmlFor='genres'>Genres: </label>
+                <Controller
+                    name="genres"
+                    control={control}
+                    render={({ field }) => 
+                        <Select isMulti className='selection'
+                            {...field}
+                            options={genresData}
+                        />
+                    }
+                />
+            </div>
+            <div className='col-2'>
+                <label htmlFor='platforms'>Platforms: </label>
+                <Controller
+                    name="platforms"
+                    control={control}
+                    render={({ field }) => 
+                        <Select isMulti className='selection'
+                            {...field}
+                            options={platformsData}
+                        />
+                    }
+                />
+            </div>
+            <div className='col-2'>
+                <label htmlFor='stores'>Stores: </label>
+                <Controller
+                    name="stores"
+                    control={control}
+                    render={({ field }) => 
+                        <Select isMulti className='selection'
+                            {...field}
+                            options={storesData}
+                        />
+                    }
+                />
+            </div>
+
             <div className='published col-1'>
                 <label htmlFor="title">Published </label>
                 <fieldset>

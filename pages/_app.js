@@ -44,7 +44,7 @@ function MyApp({ Component, pageProps }) {
   }
 
   return (
-    <UserContext.Provider value={{user, username, shoppingCart}}>
+    <UserContext.Provider value={{user, username, role, shoppingCart}}>
       <PayPalScriptProvider options={{"client-id": process.env.NEXT_PUBLIC_PAYPAL_SANDBOX_CLIENT_ID}}>
         <AppProvider>
           <div className='main-body'>
