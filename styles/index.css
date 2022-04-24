@@ -1915,7 +1915,7 @@ div.subsidiary-section div.subsidiary-container > section.tab-container > div.ta
 
 footer {
   position: relative;
-  z-index: 0;
+  z-index: -5;
   padding: 1em 0.5em 1em 0.5em;
 }
 footer.display-none {
@@ -3343,6 +3343,13 @@ div.detail-container div.detail > div.reviews-container > div.review-writer-cont
 div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.rating-selector > div > p {
   font-size: 0.9em;
   font-weight: 500;
+}
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.rating-selector > div.rated {
+  background: #f2ecff;
+  color: #302c3a;
+}
+div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.rating-selector > div.rated:hover {
+  filter: brightness(60%);
 }
 div.detail-container div.detail > div.reviews-container > div.review-writer-container > form, div.detail-container div.detail > div.reviews-container > div.review-writer-container > div.review-viewer {
   display: flex;

@@ -126,7 +126,7 @@ export function ReviewForm({ user, ratingDoc, ratingData, username, gameRef, rou
                             : (ratingData
                                 && (
                                     <div className="rating-selector">
-                                        <div onClick={() => rate(ratingData?.rating, user.uid, gameRef)}>
+                                        <div className="rated" onClick={() => rate(ratingData?.rating, user.uid, gameRef)}>
                                             <Image src={`/icons/ratings/${ratingData.rating}.png`} width={35} height={35} quality='35' alt={`rating-${ratingData.rating}`}/>
                                             <p>You rated {ratingData?.rating}</p>
                                         </div>

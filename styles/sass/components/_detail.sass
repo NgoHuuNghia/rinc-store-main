@@ -535,6 +535,11 @@ div.detail-container
                         >p
                             font-size: .9em
                             font-weight: 500
+                    >div.rated
+                        background: $bgc-hilight
+                        color: $fc-hilight
+                        &:hover
+                            filter: brightness(60%)
                 >form, >div.review-viewer
                     @include flex($direction: column, $align: stretch, $gap: 1em)
                     >textarea
