@@ -1,0 +1,129 @@
+.header_about{
+    display: flex;
+    justify-content: space-between;
+    padding: 100px 200px 100px 200px;
+    background-color: #213044;
+    .about_greeting{
+        width: 50%;
+        .about_greeting_subtitle{
+            .about_greeting_title{
+                font-size: 24px;
+            }
+            .about_greeting_status{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 60px 0 0;
+                .about_greeting_online{
+                    padding: 50px 20px 50px 0px;
+                    
+                    .about_greeting_status_name{
+                        font-weight: 700;
+                        line-height: 30px;
+                        font-size: 22px;
+                    }
+                    .about_greeting_status_numbers{
+                        font-size: 20px;
+                    }
+                }
+                .about_gretting_satis{
+                    .about_greeting_status_name{
+                        font-weight: 700;
+                        line-height: 30px;
+                        font-size: 22px;
+                    }
+                    .about_greeting_status_numbers{
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+    .about_monitor{
+        flex: 1;
+        .about_monitor_img{
+            img{
+               height: 350px; 
+            }
+        }
+    }
+}
+.about_seemore{
+    margin-top: 100px;
+    margin-bottom: 140px;
+    text-align: center;
+    .about_seemore_text{
+        color: #c6d4df;
+        text-decoration: none;
+        background-color: #151515;
+        font-size: 17px;
+        cursor: pointer;
+    }
+    .down_arrow{
+        display: block;
+        &::after{
+            content: "";
+            border: solid #707070;
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 5px;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+    }
+}
+// mobile 
+@media only screen  and(max-width: 740px ){
+    .header_about{
+        display: block;
+        padding: 50px 20px 30px 20px;
+        background-color: #213044;
+        .about_greeting{
+            width: 100%;
+            .about_greeting_subtitle{
+                font-size: 22px;
+            }
+        }
+        .about_monitor{
+            flex: 1;
+            margin-top: 50px;
+            .about_monitor_img{
+                img{
+                   height: 205px; 
+                }
+            }
+        }
+    }
+    .about_seemore{
+        margin-top: 60px;
+        margin-bottom: 70px;
+    }
+}
+
+// tablet 
+@media only screen  and(min-width: 740px ) and (max-width : 1024px ){
+    .header_about{
+        display: flex;
+        justify-content: space-between;
+        padding: 100px 30px 50px 30px;
+        background-color: #213044;
+        .about_greeting{
+            width: 50%;
+            .about_greeting_subtitle{
+                font-size: 24px;
+            }
+        }
+        .about_monitor{
+            flex: 1;
+            .about_monitor_img{
+                img{
+                   height: 230px; 
+                }
+            }
+        }
+    }
+    .about_seemore{
+        margin-top: 60px;
+        margin-bottom: 80px;
+    }
+}

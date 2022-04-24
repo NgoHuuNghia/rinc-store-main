@@ -1,0 +1,487 @@
+.contact{
+    display: flex   ;
+    padding-left: 300px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    .content_____text{
+        height: auto;
+        width: 233px;
+        .content_____title{
+            h4{
+                color:#9b0027 ;
+                font-size: 30px;
+                margin-bottom: 50px;
+            }
+        }
+        .content_____detail{
+            .nameNation{
+                color: #9b0027;
+                font-size: 15px;
+            }
+            p{
+                color: white;
+                margin: 0;
+                font-size: 13px;
+            }
+            .space_____text{
+                margin-bottom: 15px;
+            }
+        }
+    }
+    .form_____content{
+        width: 654px;
+        margin-left: 50px;
+        h4{
+            color: #9b0027;
+            font-size: 30px;
+            margin-bottom: 50px;
+        }
+        .from_____detail{
+            display: inline-block;
+            .form_caicontact{
+                display: flex;
+                .form_____name{
+                    width: 270px;
+                    label{
+                        font-size: 13px;
+                        color: white;
+                    }
+                    .input_____name{
+                        .nameInput{
+                            background-color: rgb(51, 49, 50);
+                            border:0;
+                            border-bottom: solid #9b0027 2px;
+                            width: 100%;
+                            color: white;
+                            font-size: 13px;
+                            &:focus{
+                                outline: none;
+                            }
+                            &:hover{
+                                border-bottom: solid rgb(223, 223, 223) 2px;
+                                transition: .5;
+                            }
+                        }
+                    }
+                }
+                .form_____email{
+                    width: 270px;
+                    margin-left: 40px;                    
+                    label{
+                        font-size: 13px;
+                        color: white;
+                    }
+                    .input_____email{
+                        .emailInput{
+                            background-color: rgb(51, 49, 50);
+                            border:0;
+                            border-bottom: solid #9b0027 2px;
+                            width: 100%;
+                            color: white;
+                            font-size: 13px;
+                            &:focus{
+                                outline: none;
+                            }
+                            &:hover{
+                                border-bottom: solid rgb(223, 223, 223) 2px;
+                                transition: .5;
+                            }
+                        }
+                    }
+                }
+            }
+            .form_____phone{
+                width: 270px;
+                margin-top: 30px;
+                label{
+                    font-size: 13px;
+                    color: white;
+                }
+                .input_____phone{
+                    .phoneInput{
+                        background-color: rgb(51, 49, 50);
+                        border:0;
+                        border-bottom: solid #9b0027 2px;
+                        width: 100%;
+                        color: white;
+                        font-size: 13px;
+                        &:focus{
+                            outline: none;
+                        }
+                        &:hover{
+                            border-bottom: solid rgb(223, 223, 223) 2px;
+                            transition: .5;
+                        }
+                    }
+                }
+            }
+            .form_____company{
+                width: 100%;
+                margin-top: 30px;
+                label{
+                    font-size: 13px;
+                    color: white;
+                }
+                .input_____company{
+                    .companyInput{
+                        background-color: rgb(51, 49, 50);
+                        border:0;
+                        border-bottom: solid #9b0027 2px;
+                        width: 100%;
+                        color: white;
+                        font-size: 13px;
+                        &:focus{
+                            outline: none;
+                        }
+                        &:hover{
+                            border-bottom: solid rgb(223, 223, 223) 2px;
+                            transition: .5;
+                        }
+                    }
+                }
+            }
+            .button_submit{
+                margin-left: 466px;
+                margin-top: 20px;
+                button{
+                    color: #9b0027;
+                    background-color: #151515;
+                    border-style: none;
+                    font-size: 30px;
+                    &:hover{
+                        color: #c6d4df;
+                        transition: .9;
+                    }
+                }
+                
+            }
+        }
+    }
+}
+// mobile 
+@media only screen  and(max-width: 740px ){
+    .contact{
+        display: block;
+        padding-left: 50px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        .content_____text{
+            height: auto;
+            width: 233px;
+            .content_____title{
+                h4{
+                    color:#9b0027 ;
+                    font-size: 30px;
+                    margin-bottom: 50px;
+                }
+            }
+            .content_____detail{
+                .nameNation{
+                    color: #9b0027;
+                    font-size: 15px;
+                }
+                p{
+                    color: white;
+                    margin: 0;
+                    font-size: 13px;
+                }
+                .space_____text{
+                    margin-bottom: 15px;
+                }
+            }
+        }
+        .form_____content{
+            width: 300px;
+            margin-left: 0px;
+            h4{
+                color: #9b0027;
+                font-size: 30px;
+                margin-bottom: 50px;
+            }
+            .from_____detail{
+                display: inline-block;
+                .form_caicontact{
+                    display: block;
+                    .form_____name{
+                        width: 270px;
+                        label{
+                            font-size: 13px;
+                            color: white;
+                        }
+                        .input_____name{
+                            .nameInput{
+                                background-color: rgb(51, 49, 50);
+                                border:0;
+                                border-bottom: solid #9b0027 2px;
+                                width: 100%;
+                                color: white;
+                                font-size: 13px;
+                                &:focus{
+                                    outline: none;
+                                }
+                                &:hover{
+                                    border-bottom: solid rgb(223, 223, 223) 2px;
+                                    transition: .5;
+                                }
+                            }
+                        }
+                    }
+                    .form_____email{
+                        width: 270px;
+                        margin-left: 0px;                    
+                        label{
+                            font-size: 13px;
+                            color: white;
+                        }
+                        .input_____email{
+                            .emailInput{
+                                background-color: rgb(51, 49, 50);
+                                border:0;
+                                border-bottom: solid #9b0027 2px;
+                                width: 100%;
+                                color: white;
+                                font-size: 13px;
+                                &:focus{
+                                    outline: none;
+                                }
+                                &:hover{
+                                    border-bottom: solid rgb(223, 223, 223) 2px;
+                                    transition: .5;
+                                }
+                            }
+                        }
+                    }
+                }
+                .form_____phone{
+                    width: 270px;
+                    margin-top: 30px;
+                    label{
+                        font-size: 13px;
+                        color: white;
+                    }
+                    .input_____phone{
+                        .phoneInput{
+                            background-color: rgb(51, 49, 50);
+                            border:0;
+                            border-bottom: solid #9b0027 2px;
+                            width: 100%;
+                            color: white;
+                            font-size: 13px;
+                            &:focus{
+                                outline: none;
+                            }
+                            &:hover{
+                                border-bottom: solid rgb(223, 223, 223) 2px;
+                                transition: .5;
+                            }
+                        }
+                    }
+                }
+                .form_____company{
+                    width: 100%;
+                    margin-top: 30px;
+                    label{
+                        font-size: 13px;
+                        color: white;
+                    }
+                    .input_____company{
+                        .companyInput{
+                            background-color: rgb(51, 49, 50);
+                            border:0;
+                            border-bottom: solid #9b0027 2px;
+                            width: 100%;
+                            color: white;
+                            font-size: 13px;
+                            &:focus{
+                                outline: none;
+                            }
+                            &:hover{
+                                border-bottom: solid rgb(223, 223, 223) 2px;
+                                transition: .5;
+                            }
+                        }
+                    }
+                }
+                .button_submit{
+                    margin-left: 180px;
+                    margin-top: 20px;
+                    button{
+                        color: #9b0027;
+                        background-color: #151515;
+                        border-style: none;
+                        font-size: 25px;
+                        &:hover{
+                            color: #c6d4df;
+                            transition: .9;
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+
+// tablet 
+@media only screen  and(min-width: 740px ) and (max-width : 1024px ){
+    .contact{
+        display: flex   ;
+        padding-left: 50px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        .content_____text{
+            height: auto;
+            width: 233px;
+            .content_____title{
+                h4{
+                    color:#9b0027 ;
+                    font-size: 30px;
+                    margin-bottom: 50px;
+                }
+            }
+            .content_____detail{
+                .nameNation{
+                    color: #9b0027;
+                    font-size: 15px;
+                }
+                p{
+                    color: white;
+                    margin: 0;
+                    font-size: 13px;
+                }
+                .space_____text{
+                    margin-bottom: 15px;
+                }
+            }
+        }
+        .form_____content{
+            width: 654px;
+            margin-left: 50px;
+            h4{
+                color: #9b0027;
+                font-size: 30px;
+                margin-bottom: 50px;
+            }
+            .from_____detail{
+                display: inline-block;
+                .form_caicontact{
+                    display: flex;
+                    .form_____name{
+                        width: 200px;
+                        label{
+                            font-size: 13px;
+                            color: white;
+                        }
+                        .input_____name{
+                            .nameInput{
+                                background-color: rgb(51, 49, 50);
+                                border:0;
+                                border-bottom: solid #9b0027 2px;
+                                width: 100%;
+                                color: white;
+                                font-size: 13px;
+                                &:focus{
+                                    outline: none;
+                                }
+                                &:hover{
+                                    border-bottom: solid rgb(223, 223, 223) 2px;
+                                    transition: .5;
+                                }
+                            }
+                        }
+                    }
+                    .form_____email{
+                        width: 200px;
+                        margin-left: 40px;                    
+                        label{
+                            font-size: 13px;
+                            color: white;
+                        }
+                        .input_____email{
+                            .emailInput{
+                                background-color: rgb(51, 49, 50);
+                                border:0;
+                                border-bottom: solid #9b0027 2px;
+                                width: 100%;
+                                color: white;
+                                font-size: 13px;
+                                &:focus{
+                                    outline: none;
+                                }
+                                &:hover{
+                                    border-bottom: solid rgb(223, 223, 223) 2px;
+                                    transition: .5;
+                                }
+                            }
+                        }
+                    }
+                }
+                .form_____phone{
+                    width: 270px;
+                    margin-top: 30px;
+                    label{
+                        font-size: 13px;
+                        color: white;
+                    }
+                    .input_____phone{
+                        .phoneInput{
+                            background-color: rgb(51, 49, 50);
+                            border:0;
+                            border-bottom: solid #9b0027 2px;
+                            width: 100%;
+                            color: white;
+                            font-size: 13px;
+                            &:focus{
+                                outline: none;
+                            }
+                            &:hover{
+                                border-bottom: solid rgb(223, 223, 223) 2px;
+                                transition: .5;
+                            }
+                        }
+                    }
+                }
+                .form_____company{
+                    width: 90%;
+                    margin-top: 30px;
+                    label{
+                        font-size: 13px;
+                        color: white;
+                    }
+                    .input_____company{
+                        .companyInput{
+                            background-color: rgb(51, 49, 50);
+                            border:0;
+                            border-bottom: solid #9b0027 2px;
+                            width: 100%;
+                            color: white;
+                            font-size: 13px;
+                            &:focus{
+                                outline: none;
+                            }
+                            &:hover{
+                                border-bottom: solid rgb(223, 223, 223) 2px;
+                                transition: .5;
+                            }
+                        }
+                    }
+                }
+                .button_submit{
+                    margin-left:380px;
+                    margin-top: 20px;
+                    button{
+                        color: #9b0027;
+                        background-color: #151515;
+                        border-style: none;
+                        font-size: 30px;
+                        &:hover{
+                            color: #c6d4df;
+                            transition: .9;
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+}

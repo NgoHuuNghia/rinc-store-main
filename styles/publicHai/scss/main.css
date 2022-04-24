@@ -1,0 +1,1086 @@
+.header_about {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 100px 200px 100px 200px;
+  background-color: #213044;
+}
+
+.header_about .about_greeting {
+  width: 50%;
+}
+
+.header_about .about_greeting .about_greeting_subtitle .about_greeting_title {
+  font-size: 24px;
+}
+
+.header_about .about_greeting .about_greeting_subtitle .about_greeting_status {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 60px 0 0;
+}
+
+.header_about .about_greeting .about_greeting_subtitle .about_greeting_status .about_greeting_online {
+  padding: 50px 20px 50px 0px;
+}
+
+.header_about .about_greeting .about_greeting_subtitle .about_greeting_status .about_greeting_online .about_greeting_status_name {
+  font-weight: 700;
+  line-height: 30px;
+  font-size: 22px;
+}
+
+.header_about .about_greeting .about_greeting_subtitle .about_greeting_status .about_greeting_online .about_greeting_status_numbers {
+  font-size: 20px;
+}
+
+.header_about .about_greeting .about_greeting_subtitle .about_greeting_status .about_gretting_satis .about_greeting_status_name {
+  font-weight: 700;
+  line-height: 30px;
+  font-size: 22px;
+}
+
+.header_about .about_greeting .about_greeting_subtitle .about_greeting_status .about_gretting_satis .about_greeting_status_numbers {
+  font-size: 20px;
+}
+
+.header_about .about_monitor {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.header_about .about_monitor .about_monitor_img img {
+  height: 350px;
+}
+
+.about_seemore {
+  margin-top: 100px;
+  margin-bottom: 140px;
+  text-align: center;
+}
+
+.about_seemore .about_seemore_text {
+  color: #c6d4df;
+  text-decoration: none;
+  background-color: #151515;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.about_seemore .down_arrow {
+  display: block;
+}
+
+.about_seemore .down_arrow::after {
+  content: "";
+  border: solid #707070;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 5px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+@media only screen and (max-width: 740px) {
+  .header_about {
+    display: block;
+    padding: 50px 20px 30px 20px;
+    background-color: #213044;
+  }
+  .header_about .about_greeting {
+    width: 100%;
+  }
+  .header_about .about_greeting .about_greeting_subtitle {
+    font-size: 22px;
+  }
+  .header_about .about_monitor {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    margin-top: 50px;
+  }
+  .header_about .about_monitor .about_monitor_img img {
+    height: 205px;
+  }
+  .about_seemore {
+    margin-top: 60px;
+    margin-bottom: 70px;
+  }
+}
+
+@media only screen and (min-width: 740px) and (max-width: 1024px) {
+  .header_about {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 100px 30px 50px 30px;
+    background-color: #213044;
+  }
+  .header_about .about_greeting {
+    width: 50%;
+  }
+  .header_about .about_greeting .about_greeting_subtitle {
+    font-size: 24px;
+  }
+  .header_about .about_monitor {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+  }
+  .header_about .about_monitor .about_monitor_img img {
+    height: 230px;
+  }
+  .about_seemore {
+    margin-top: 60px;
+    margin-bottom: 80px;
+  }
+}
+
+body {
+  margin: 0;
+}
+
+.about {
+  background-color: #151515;
+  color: #c6d4df;
+  font-family: 'Quicksand', sans-serif;
+  overflow: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#about_games_hero {
+  padding-top: 30px;
+  height: 700px;
+}
+
+#about_games_hero .about_game_cta {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  display: flex;
+}
+
+#about_games_hero .about_game_cta .game_col_left {
+  width: 50%;
+  position: relative;
+}
+
+#about_games_hero .about_game_cta .game_col_left .game_image {
+  position: absolute;
+}
+
+#about_games_hero .about_game_cta .game_col_left .game_image:nth-child(1) {
+  width: 130px;
+  left: 340px;
+}
+
+#about_games_hero .about_game_cta .game_col_left .game_image:nth-child(2) {
+  width: 180px;
+  top: 40px;
+  right: 500px;
+}
+
+#about_games_hero .about_game_cta .game_col_left .game_image:nth-child(3) {
+  width: 110px;
+  top: 150px;
+  right: 620px;
+}
+
+#about_games_hero .about_game_cta .game_col_left .game_image:nth-child(4) {
+  width: 220px;
+  top: 180px;
+  right: 350px;
+}
+
+#about_games_hero .about_game_cta .game_col_left .game_image:nth-child(5) {
+  width: 110px;
+  top: 370px;
+  right: 620px;
+}
+
+#about_games_hero .about_game_cta .game_col_left .game_image:nth-child(6) {
+  width: 220px;
+  top: 400px;
+  right: 290px;
+}
+
+#about_games_hero .about_game_cta .game_col_left .game_image:nth-child(7) {
+  width: 180px;
+  top: 500px;
+  right: 580px;
+}
+
+#about_games_hero .about_game_cta .game_col_left .game_image:nth-child(8) {
+  width: 110px;
+  top: 550px;
+  right: 200px;
+}
+
+#about_games_hero .about_game_cta .game_col_right {
+  position: relative;
+}
+
+#about_games_hero .about_game_cta .game_col_right .game_image {
+  position: absolute;
+}
+
+#about_games_hero .about_game_cta .game_col_right .game_image:nth-child(1) {
+  width: 130px;
+  right: -415px;
+}
+
+#about_games_hero .about_game_cta .game_col_right .game_image:nth-child(2) {
+  width: 180px;
+  left: 505px;
+  top: 40px;
+}
+
+#about_games_hero .about_game_cta .game_col_right .game_image:nth-child(3) {
+  width: 110px;
+  top: 150px;
+  left: 625px;
+}
+
+#about_games_hero .about_game_cta .game_col_right .game_image:nth-child(4) {
+  width: 220px;
+  top: 180px;
+  left: 355px;
+}
+
+#about_games_hero .about_game_cta .game_col_right .game_image:nth-child(5) {
+  width: 110px;
+  top: 370px;
+  left: 625px;
+}
+
+#about_games_hero .about_game_cta .game_col_right .game_image:nth-child(6) {
+  width: 220px;
+  top: 400px;
+  left: 295px;
+}
+
+#about_games_hero .about_game_cta .game_col_right .game_image:nth-child(7) {
+  width: 180px;
+  top: 500px;
+  left: 575px;
+}
+
+#about_games_hero .about_game_cta .game_col_right .game_image:nth-child(8) {
+  width: 110px;
+  top: 550px;
+  left: 205px;
+}
+
+#about_games_hero .about_game_cta .about_cta_content {
+  max-width: 600px;
+  position: absolute;
+  top: 145px;
+  right: 460px;
+}
+
+#about_games_hero .about_game_cta .about_cta_content .about_cta_title {
+  padding-left: 150px;
+  font-weight: 700;
+}
+
+#about_games_hero .about_game_cta .about_cta_content .about_cta_text {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+#about_games_hero .about_game_cta .about_cta_content .about_cta_btn .about_cta_btn_des {
+  text-decoration: none;
+  color: #9b0027;
+  font-size: 17px;
+  font-weight: 700;
+  padding-left: 225px;
+}
+
+@media only screen and (max-width: 740px) {
+  #about_games_hero {
+    height: 300px;
+  }
+  #about_games_hero .about_game_cta .game_col_left {
+    display: none;
+  }
+  #about_games_hero .about_game_cta .game_col_right {
+    display: none;
+  }
+  #about_games_hero .about_game_cta .about_cta_content {
+    padding: 0 30px 0 30px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+  }
+  #about_games_hero .about_game_cta .about_cta_content .about_cta_title {
+    padding-left: 20px;
+    font-weight: 700;
+  }
+  #about_games_hero .about_game_cta .about_cta_content .about_cta_text {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  #about_games_hero .about_game_cta .about_cta_content .about_cta_btn .about_cta_btn_des {
+    text-decoration: none;
+    color: #9b0027;
+    font-size: 17px;
+    font-weight: 700;
+    padding-left: 95px;
+  }
+}
+
+@media only screen and (min-width: 740px) and (max-width: 1024px) {
+  #about_games_hero {
+    height: 300px;
+  }
+  #about_games_hero .about_game_cta .game_col_left {
+    display: none;
+  }
+  #about_games_hero .about_game_cta .game_col_right {
+    display: none;
+  }
+  #about_games_hero .about_game_cta .about_cta_content {
+    max-width: 400px;
+    padding: 0 30px 0 30px;
+    position: absolute;
+    top: 0px;
+    right: 150px;
+  }
+  #about_games_hero .about_game_cta .about_cta_content .about_cta_title {
+    padding-left: 50px;
+    font-weight: 700;
+  }
+  #about_games_hero .about_game_cta .about_cta_content .about_cta_text {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  #about_games_hero .about_game_cta .about_cta_content .about_cta_btn .about_cta_btn_des {
+    text-decoration: none;
+    color: #9b0027;
+    font-size: 17px;
+    font-weight: 700;
+    padding-left: 115px;
+  }
+}
+
+.about_content {
+  margin: 0 200px 0 200px;
+}
+
+.about_content .about_content_ctas {
+  padding-top: 120px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.about_content .about_content_ctas .about_cta_content_text .about_cta_text_title {
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.about_content .about_content_ctas .about_cta_content_text .about_cta_text_des {
+  font-size: 19px;
+}
+
+.about_content .about_content_ctas .about_cta_content_text .about_cta_content_btn {
+  font-weight: 700;
+  font-size: 24px;
+  color: #9b0027;
+  margin-top: 10px;
+}
+
+.about_content .about_content_ctas .hardware_text {
+  padding-left: 50px;
+}
+
+.about_content .about_content_ctas .about_cta_content_image .image_cta_content {
+  width: 600px;
+}
+
+.about_content .about_content_ctas .about_cta_content_image .hardwareimg {
+  width: 500px;
+}
+
+@media only screen and (max-width: 740px) {
+  .about_content {
+    margin: 0 20px 0 20px;
+  }
+  .about_content .about_content_ctas {
+    padding-top: 120px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .about_content .about_content_ctas .about_cta_content_text .about_cta_text_title {
+    font-weight: 700;
+    font-size: 30px;
+  }
+  .about_content .about_content_ctas .about_cta_content_text .about_cta_text_des {
+    font-size: 19px;
+  }
+  .about_content .about_content_ctas .about_cta_content_text .about_cta_content_btn {
+    font-weight: 700;
+    font-size: 24px;
+    color: #9b0027;
+    margin-top: 10px;
+  }
+  .about_content .about_content_ctas .hardware_text {
+    padding-left: 0px;
+  }
+  .about_content .about_content_ctas .about_cta_content_image {
+    display: none;
+  }
+  .about_content .about_content_ctas .about_cta_content_image .image_cta_content {
+    width: 600px;
+  }
+  .about_content .about_content_ctas .about_cta_content_image .hardwareimg {
+    width: 500px;
+  }
+}
+
+@media only screen and (min-width: 740px) and (max-width: 1024px) {
+  .about_content {
+    margin: 0 30px 0 30px;
+  }
+  .about_content .about_content_ctas {
+    padding-top: 120px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .about_content .about_content_ctas .about_cta_content_text .about_cta_text_title {
+    font-weight: 700;
+    font-size: 30px;
+  }
+  .about_content .about_content_ctas .about_cta_content_text .about_cta_text_des {
+    font-size: 19px;
+  }
+  .about_content .about_content_ctas .about_cta_content_text .about_cta_content_btn {
+    font-weight: 700;
+    font-size: 24px;
+    color: #9b0027;
+    margin-top: 10px;
+  }
+  .about_content .about_content_ctas .hardware_text {
+    padding-left: 50px;
+  }
+  .about_content .about_content_ctas .about_cta_content_image .image_cta_content {
+    width: 400px;
+  }
+  .about_content .about_content_ctas .about_cta_content_image .hardwareimg {
+    width: 300px;
+  }
+}
+
+.about_member_title {
+  padding: 150px 0 0 200px;
+  font-weight: 700;
+  font-size: 30px;
+  color: #9b0027;
+}
+
+.member {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 70px 150px 100px 150px;
+}
+
+.member .member_info {
+  padding: 0 50px 0 50px;
+}
+
+.member .member_info .image_info .image_number {
+  width: 200px;
+  border-radius: 100px;
+}
+
+.member .member_info .member_info_des .member_infor_title {
+  padding-left: 30%;
+}
+
+.member .member_info .member_info_des .member_info_name {
+  padding-left: 20%;
+}
+
+@media only screen and (max-width: 740px) {
+  .about_member_title {
+    padding: 150px 0 0 20px;
+    font-weight: 700;
+    font-size: 30px;
+    color: #9b0027;
+  }
+  .member {
+    display: block;
+    padding: 30px 20px 100px 20px;
+  }
+  .member .member_info {
+    padding: 80px 50px 0 50px;
+  }
+  .member .member_info .image_info .image_number {
+    width: 250px;
+    border-radius: 125px;
+  }
+  .member .member_info .member_info_des .member_infor_title {
+    padding-left: 35%;
+  }
+  .member .member_info .member_info_des .member_info_name {
+    padding-left: 25%;
+  }
+}
+
+@media only screen and (min-width: 740px) and (max-width: 1024px) {
+  .about_member_title {
+    padding: 150px 0 0 80px;
+    font-weight: 700;
+    font-size: 30px;
+    color: #9b0027;
+  }
+  .member {
+    display: block;
+    padding: 30px 20px 100px 20px;
+  }
+  .member .member_info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 80px 100px 0 100px;
+  }
+  .member .member_info .image_info .image_number {
+    width: 300px;
+    border-radius: 150px;
+  }
+  .member .member_info .member_info_des {
+    padding-left: 80px;
+  }
+  .member .member_info .member_info_des .member_infor_title {
+    padding-left: 0;
+  }
+  .member .member_info .member_info_des .member_info_name {
+    width: 100%;
+    padding-left: 0;
+  }
+}
+
+.contact {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 300px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.contact .content_____text {
+  height: auto;
+  width: 233px;
+}
+
+.contact .content_____text .content_____title h4 {
+  color: #9b0027;
+  font-size: 30px;
+  margin-bottom: 50px;
+}
+
+.contact .content_____text .content_____detail .nameNation {
+  color: #9b0027;
+  font-size: 15px;
+}
+
+.contact .content_____text .content_____detail p {
+  color: white;
+  margin: 0;
+  font-size: 13px;
+}
+
+.contact .content_____text .content_____detail .space_____text {
+  margin-bottom: 15px;
+}
+
+.contact .form_____content {
+  width: 654px;
+  margin-left: 50px;
+}
+
+.contact .form_____content h4 {
+  color: #9b0027;
+  font-size: 30px;
+  margin-bottom: 50px;
+}
+
+.contact .form_____content .from_____detail {
+  display: inline-block;
+}
+
+.contact .form_____content .from_____detail .form_caicontact {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.contact .form_____content .from_____detail .form_caicontact .form_____name {
+  width: 270px;
+}
+
+.contact .form_____content .from_____detail .form_caicontact .form_____name label {
+  font-size: 13px;
+  color: white;
+}
+
+.contact .form_____content .from_____detail .form_caicontact .form_____name .input_____name .nameInput {
+  background-color: #333132;
+  border: 0;
+  border-bottom: solid #9b0027 2px;
+  width: 100%;
+  color: white;
+  font-size: 13px;
+}
+
+.contact .form_____content .from_____detail .form_caicontact .form_____name .input_____name .nameInput:focus {
+  outline: none;
+}
+
+.contact .form_____content .from_____detail .form_caicontact .form_____name .input_____name .nameInput:hover {
+  border-bottom: solid #dfdfdf 2px;
+  -webkit-transition: .5;
+  transition: .5;
+}
+
+.contact .form_____content .from_____detail .form_caicontact .form_____email {
+  width: 270px;
+  margin-left: 40px;
+}
+
+.contact .form_____content .from_____detail .form_caicontact .form_____email label {
+  font-size: 13px;
+  color: white;
+}
+
+.contact .form_____content .from_____detail .form_caicontact .form_____email .input_____email .emailInput {
+  background-color: #333132;
+  border: 0;
+  border-bottom: solid #9b0027 2px;
+  width: 100%;
+  color: white;
+  font-size: 13px;
+}
+
+.contact .form_____content .from_____detail .form_caicontact .form_____email .input_____email .emailInput:focus {
+  outline: none;
+}
+
+.contact .form_____content .from_____detail .form_caicontact .form_____email .input_____email .emailInput:hover {
+  border-bottom: solid #dfdfdf 2px;
+  -webkit-transition: .5;
+  transition: .5;
+}
+
+.contact .form_____content .from_____detail .form_____phone {
+  width: 270px;
+  margin-top: 30px;
+}
+
+.contact .form_____content .from_____detail .form_____phone label {
+  font-size: 13px;
+  color: white;
+}
+
+.contact .form_____content .from_____detail .form_____phone .input_____phone .phoneInput {
+  background-color: #333132;
+  border: 0;
+  border-bottom: solid #9b0027 2px;
+  width: 100%;
+  color: white;
+  font-size: 13px;
+}
+
+.contact .form_____content .from_____detail .form_____phone .input_____phone .phoneInput:focus {
+  outline: none;
+}
+
+.contact .form_____content .from_____detail .form_____phone .input_____phone .phoneInput:hover {
+  border-bottom: solid #dfdfdf 2px;
+  -webkit-transition: .5;
+  transition: .5;
+}
+
+.contact .form_____content .from_____detail .form_____company {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.contact .form_____content .from_____detail .form_____company label {
+  font-size: 13px;
+  color: white;
+}
+
+.contact .form_____content .from_____detail .form_____company .input_____company .companyInput {
+  background-color: #333132;
+  border: 0;
+  border-bottom: solid #9b0027 2px;
+  width: 100%;
+  color: white;
+  font-size: 13px;
+}
+
+.contact .form_____content .from_____detail .form_____company .input_____company .companyInput:focus {
+  outline: none;
+}
+
+.contact .form_____content .from_____detail .form_____company .input_____company .companyInput:hover {
+  border-bottom: solid #dfdfdf 2px;
+  -webkit-transition: .5;
+  transition: .5;
+}
+
+.contact .form_____content .from_____detail .button_submit {
+  margin-left: 466px;
+  margin-top: 20px;
+}
+
+.contact .form_____content .from_____detail .button_submit button {
+  color: #9b0027;
+  background-color: #151515;
+  border-style: none;
+  font-size: 30px;
+}
+
+.contact .form_____content .from_____detail .button_submit button:hover {
+  color: #c6d4df;
+  -webkit-transition: .9;
+  transition: .9;
+}
+
+@media only screen and (max-width: 740px) {
+  .contact {
+    display: block;
+    padding-left: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .contact .content_____text {
+    height: auto;
+    width: 233px;
+  }
+  .contact .content_____text .content_____title h4 {
+    color: #9b0027;
+    font-size: 30px;
+    margin-bottom: 50px;
+  }
+  .contact .content_____text .content_____detail .nameNation {
+    color: #9b0027;
+    font-size: 15px;
+  }
+  .contact .content_____text .content_____detail p {
+    color: white;
+    margin: 0;
+    font-size: 13px;
+  }
+  .contact .content_____text .content_____detail .space_____text {
+    margin-bottom: 15px;
+  }
+  .contact .form_____content {
+    width: 300px;
+    margin-left: 0px;
+  }
+  .contact .form_____content h4 {
+    color: #9b0027;
+    font-size: 30px;
+    margin-bottom: 50px;
+  }
+  .contact .form_____content .from_____detail {
+    display: inline-block;
+  }
+  .contact .form_____content .from_____detail .form_caicontact {
+    display: block;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____name {
+    width: 270px;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____name label {
+    font-size: 13px;
+    color: white;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____name .input_____name .nameInput {
+    background-color: #333132;
+    border: 0;
+    border-bottom: solid #9b0027 2px;
+    width: 100%;
+    color: white;
+    font-size: 13px;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____name .input_____name .nameInput:focus {
+    outline: none;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____name .input_____name .nameInput:hover {
+    border-bottom: solid #dfdfdf 2px;
+    -webkit-transition: .5;
+    transition: .5;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____email {
+    width: 270px;
+    margin-left: 0px;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____email label {
+    font-size: 13px;
+    color: white;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____email .input_____email .emailInput {
+    background-color: #333132;
+    border: 0;
+    border-bottom: solid #9b0027 2px;
+    width: 100%;
+    color: white;
+    font-size: 13px;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____email .input_____email .emailInput:focus {
+    outline: none;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____email .input_____email .emailInput:hover {
+    border-bottom: solid #dfdfdf 2px;
+    -webkit-transition: .5;
+    transition: .5;
+  }
+  .contact .form_____content .from_____detail .form_____phone {
+    width: 270px;
+    margin-top: 30px;
+  }
+  .contact .form_____content .from_____detail .form_____phone label {
+    font-size: 13px;
+    color: white;
+  }
+  .contact .form_____content .from_____detail .form_____phone .input_____phone .phoneInput {
+    background-color: #333132;
+    border: 0;
+    border-bottom: solid #9b0027 2px;
+    width: 100%;
+    color: white;
+    font-size: 13px;
+  }
+  .contact .form_____content .from_____detail .form_____phone .input_____phone .phoneInput:focus {
+    outline: none;
+  }
+  .contact .form_____content .from_____detail .form_____phone .input_____phone .phoneInput:hover {
+    border-bottom: solid #dfdfdf 2px;
+    -webkit-transition: .5;
+    transition: .5;
+  }
+  .contact .form_____content .from_____detail .form_____company {
+    width: 100%;
+    margin-top: 30px;
+  }
+  .contact .form_____content .from_____detail .form_____company label {
+    font-size: 13px;
+    color: white;
+  }
+  .contact .form_____content .from_____detail .form_____company .input_____company .companyInput {
+    background-color: #333132;
+    border: 0;
+    border-bottom: solid #9b0027 2px;
+    width: 100%;
+    color: white;
+    font-size: 13px;
+  }
+  .contact .form_____content .from_____detail .form_____company .input_____company .companyInput:focus {
+    outline: none;
+  }
+  .contact .form_____content .from_____detail .form_____company .input_____company .companyInput:hover {
+    border-bottom: solid #dfdfdf 2px;
+    -webkit-transition: .5;
+    transition: .5;
+  }
+  .contact .form_____content .from_____detail .button_submit {
+    margin-left: 180px;
+    margin-top: 20px;
+  }
+  .contact .form_____content .from_____detail .button_submit button {
+    color: #9b0027;
+    background-color: #151515;
+    border-style: none;
+    font-size: 25px;
+  }
+  .contact .form_____content .from_____detail .button_submit button:hover {
+    color: #c6d4df;
+    -webkit-transition: .9;
+    transition: .9;
+  }
+}
+
+@media only screen and (min-width: 740px) and (max-width: 1024px) {
+  .contact {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .contact .content_____text {
+    height: auto;
+    width: 233px;
+  }
+  .contact .content_____text .content_____title h4 {
+    color: #9b0027;
+    font-size: 30px;
+    margin-bottom: 50px;
+  }
+  .contact .content_____text .content_____detail .nameNation {
+    color: #9b0027;
+    font-size: 15px;
+  }
+  .contact .content_____text .content_____detail p {
+    color: white;
+    margin: 0;
+    font-size: 13px;
+  }
+  .contact .content_____text .content_____detail .space_____text {
+    margin-bottom: 15px;
+  }
+  .contact .form_____content {
+    width: 654px;
+    margin-left: 50px;
+  }
+  .contact .form_____content h4 {
+    color: #9b0027;
+    font-size: 30px;
+    margin-bottom: 50px;
+  }
+  .contact .form_____content .from_____detail {
+    display: inline-block;
+  }
+  .contact .form_____content .from_____detail .form_caicontact {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____name {
+    width: 200px;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____name label {
+    font-size: 13px;
+    color: white;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____name .input_____name .nameInput {
+    background-color: #333132;
+    border: 0;
+    border-bottom: solid #9b0027 2px;
+    width: 100%;
+    color: white;
+    font-size: 13px;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____name .input_____name .nameInput:focus {
+    outline: none;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____name .input_____name .nameInput:hover {
+    border-bottom: solid #dfdfdf 2px;
+    -webkit-transition: .5;
+    transition: .5;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____email {
+    width: 200px;
+    margin-left: 40px;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____email label {
+    font-size: 13px;
+    color: white;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____email .input_____email .emailInput {
+    background-color: #333132;
+    border: 0;
+    border-bottom: solid #9b0027 2px;
+    width: 100%;
+    color: white;
+    font-size: 13px;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____email .input_____email .emailInput:focus {
+    outline: none;
+  }
+  .contact .form_____content .from_____detail .form_caicontact .form_____email .input_____email .emailInput:hover {
+    border-bottom: solid #dfdfdf 2px;
+    -webkit-transition: .5;
+    transition: .5;
+  }
+  .contact .form_____content .from_____detail .form_____phone {
+    width: 270px;
+    margin-top: 30px;
+  }
+  .contact .form_____content .from_____detail .form_____phone label {
+    font-size: 13px;
+    color: white;
+  }
+  .contact .form_____content .from_____detail .form_____phone .input_____phone .phoneInput {
+    background-color: #333132;
+    border: 0;
+    border-bottom: solid #9b0027 2px;
+    width: 100%;
+    color: white;
+    font-size: 13px;
+  }
+  .contact .form_____content .from_____detail .form_____phone .input_____phone .phoneInput:focus {
+    outline: none;
+  }
+  .contact .form_____content .from_____detail .form_____phone .input_____phone .phoneInput:hover {
+    border-bottom: solid #dfdfdf 2px;
+    -webkit-transition: .5;
+    transition: .5;
+  }
+  .contact .form_____content .from_____detail .form_____company {
+    width: 90%;
+    margin-top: 30px;
+  }
+  .contact .form_____content .from_____detail .form_____company label {
+    font-size: 13px;
+    color: white;
+  }
+  .contact .form_____content .from_____detail .form_____company .input_____company .companyInput {
+    background-color: #333132;
+    border: 0;
+    border-bottom: solid #9b0027 2px;
+    width: 100%;
+    color: white;
+    font-size: 13px;
+  }
+  .contact .form_____content .from_____detail .form_____company .input_____company .companyInput:focus {
+    outline: none;
+  }
+  .contact .form_____content .from_____detail .form_____company .input_____company .companyInput:hover {
+    border-bottom: solid #dfdfdf 2px;
+    -webkit-transition: .5;
+    transition: .5;
+  }
+  .contact .form_____content .from_____detail .button_submit {
+    margin-left: 380px;
+    margin-top: 20px;
+  }
+  .contact .form_____content .from_____detail .button_submit button {
+    color: #9b0027;
+    background-color: #151515;
+    border-style: none;
+    font-size: 30px;
+  }
+  .contact .form_____content .from_____detail .button_submit button:hover {
+    color: #c6d4df;
+    -webkit-transition: .9;
+    transition: .9;
+  }
+}
+/*# sourceMappingURL=main.css.map */

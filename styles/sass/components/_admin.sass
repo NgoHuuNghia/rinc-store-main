@@ -253,6 +253,12 @@ section.admin-container
                 button
                     background: $bgc-admin-current
                     color: $fc-admin-white
+                    &:hover
+                        filter: brightness(90%)
+                button.cancel
+                    background: $fc-admin-delete
+                button.edit
+                    background: $fc-admin-edit
                 button:disabled
                     background: $bgc-subtle
                     filter: brightness(50%)

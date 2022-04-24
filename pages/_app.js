@@ -1,4 +1,5 @@
-//import '../styles/globals.css'
+// import '@styles/publicHai/aos.css'
+
 import '@styles/index.css'
 import {Toaster} from 'react-hot-toast'
 

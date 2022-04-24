@@ -1,0 +1,199 @@
+.about_games_hero{
+    padding-top: 30px;
+    height: 700px;
+    .about_game_cta{
+        display: flex;
+        position: relative;
+        display: flex;
+        .game_col_left{
+            width: 50%;
+            position: relative;
+            .game_image{
+                position: absolute;
+            }
+            .game_image:nth-child(1){
+                width: 130px;
+                left: 340px;
+            }
+            .game_image:nth-child(2){
+                width: 180px;
+                top: 40px;
+                right: 500px;
+            }
+            .game_image:nth-child(3){
+                width: 110px;
+                top: 150px;
+                right: 620px;
+            }
+            .game_image:nth-child(4){
+                width: 220px;
+                top : 180px;
+                right: 350px;
+            }
+            .game_image:nth-child(5){
+                width: 110px;
+                top: 370px;
+                right: 620px;
+            }
+            .game_image:nth-child(6){
+                width: 220px;
+                top: 400px;
+                right: 290px;
+            }
+            .game_image:nth-child(7){
+                width: 180px;
+                top : 500px;
+                right: 580px;
+            }
+            .game_image:nth-child(8){
+                width: 110px;
+                top: 550px;
+                right: 200px;
+            }
+        }
+        .game_col_right{
+            position: relative;
+            .game_image{
+                position: absolute;
+            }
+            .game_image:nth-child(1){
+                width: 130px;
+                right: -415px;
+            }
+            .game_image:nth-child(2){
+                width: 180px;
+                left: 505px;
+                top: 40px;
+            }
+            .game_image:nth-child(3){
+                width: 110px;
+                top: 150px;
+                left: 625px;
+            }
+            .game_image:nth-child(4){
+                width: 220px;
+                top : 180px;
+                left: 355px;
+            }
+            .game_image:nth-child(5){
+                width: 110px;
+                top: 370px;
+                left: 625px;
+            }
+            .game_image:nth-child(6){
+                width: 220px;
+                top: 400px;
+                left: 295px;
+            }
+            .game_image:nth-child(7){
+                width: 180px;
+                top : 500px;
+                left: 575px;
+            }
+            .game_image:nth-child(8){
+                width: 110px;
+                top: 550px;
+                left: 205px;
+            }
+        }   
+        .about_cta_content{
+            max-width: 600px;
+            position: absolute;
+            top: 145px;
+            right: 460px;
+            .about_cta_title{
+                padding-left: 150px;
+                font-weight: 700;
+            }
+            .about_cta_text{
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+            .about_cta_btn{
+                .about_cta_btn_des{
+                    text-decoration: none;
+                    color: #9b0027;
+                    font-size: 17px;
+                    font-weight: 700;
+                    padding-left: 225px;
+                }
+            }
+        }     
+    }
+}
+// mobile 
+@media only screen  and(max-width: 740px ){
+    #about_games_hero{
+        height: 300px;
+        .about_game_cta{
+            .game_col_left{
+                display: none;
+            }
+            .game_col_right{
+                display: none;
+            }
+            .about_cta_content{
+                padding: 0 30px 0 30px;
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                .about_cta_title{
+                    padding-left: 20px;
+                    font-weight: 700;
+                }
+                .about_cta_text{
+                    font-size: 20px;
+                    margin-bottom: 20px;
+                }
+                .about_cta_btn{
+                    .about_cta_btn_des{
+                        text-decoration: none;
+                        color: #9b0027;
+                        font-size: 17px;
+                        font-weight: 700;
+                        padding-left: 95px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// tablet 
+@media only screen  and(min-width: 740px ) and (max-width : 1024px ){
+    #about_games_hero{
+        height: 300px;
+        .about_game_cta{
+            .game_col_left{
+                display: none;
+            }
+            .game_col_right{
+                display: none;
+            }
+            .about_cta_content{
+                max-width: 400px;
+                padding: 0 30px 0 30px;
+                position: absolute;
+                top: 0px;
+                right: 150px;
+                .about_cta_title{
+                    padding-left: 50px;
+                    font-weight: 700;
+                }
+                .about_cta_text{
+                    font-size: 20px;
+                    margin-bottom: 20px;
+                }
+                .about_cta_btn{
+                    .about_cta_btn_des{
+                        text-decoration: none;
+                        color: #9b0027;
+                        font-size: 17px;
+                        font-weight: 700;
+                        padding-left: 115px;
+                    }
+                }
+            }
+        }
+    }
+}

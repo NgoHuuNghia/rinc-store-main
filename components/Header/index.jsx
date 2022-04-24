@@ -1,4 +1,3 @@
-import React, {useRef, useEffect} from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { TiCancel } from 'react-icons/ti'
 

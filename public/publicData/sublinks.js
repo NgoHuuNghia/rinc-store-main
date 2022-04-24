@@ -25,7 +25,7 @@ const sublinks = [
   {
     id: 3,
     page: 'about',
-    mainUrl: '/',
+    mainUrl: '/about',
     links: [
       { label: 'about', icon: <FaBriefcase />, url: '/products' },
       { label: 'customers', icon: <FaBriefcase />, url: '/products' },

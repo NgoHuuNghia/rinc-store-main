@@ -1,0 +1,109 @@
+.about_content{
+    margin: 0 200px 0 200px;
+    .about_content_ctas{
+        padding-top: 120px;
+        display: flex;
+    .about_cta_content_text{
+       
+        .about_cta_text_title{
+            font-weight: 700;
+            font-size: 30px;
+        }
+        .about_cta_text_des{
+            font-size: 19px;
+        }
+        .about_cta_content_btn{
+            font-weight: 700;
+            font-size: 24px;
+            color: #9b0027;
+            margin-top: 10px;
+        }
+    }
+    .hardware_text{
+        padding-left: 50px;
+    }
+    .about_cta_content_image{
+        .image_cta_content{
+            width: 600px;
+        }
+        .hardwareimg{
+            width: 500px;
+        }
+    }
+    }
+}
+// mobile 
+@media only screen  and(max-width: 740px ){
+    .about_content{
+        margin: 0 20px 0 20px;
+        .about_content_ctas{
+            padding-top: 120px;
+            display: flex;
+        .about_cta_content_text{
+           
+            .about_cta_text_title{
+                font-weight: 700;
+                font-size: 30px;
+            }
+            .about_cta_text_des{
+                font-size: 19px;
+            }
+            .about_cta_content_btn{
+                font-weight: 700;
+                font-size: 24px;
+                color: #9b0027;
+                margin-top: 10px;
+            }
+        }
+        .hardware_text{
+            padding-left: 0px;
+        }
+        .about_cta_content_image{
+            display: none;
+            .image_cta_content{
+                width: 600px;
+            }
+            .hardwareimg{
+                width: 500px;
+            }
+        }
+        }
+    }
+}
+
+// tablet 
+@media only screen  and(min-width: 740px ) and (max-width : 1024px ){
+    .about_content{
+        margin: 0 30px 0 30px;
+        .about_content_ctas{
+            padding-top: 120px;
+            display: flex;
+        .about_cta_content_text{
+            .about_cta_text_title{
+                font-weight: 700;
+                font-size: 30px;
+            }
+            .about_cta_text_des{
+                font-size: 19px;
+            }
+            .about_cta_content_btn{
+                font-weight: 700;
+                font-size: 24px;
+                color: #9b0027;
+                margin-top: 10px;
+            }
+        }
+        .hardware_text{
+            padding-left: 50px;
+        }
+        .about_cta_content_image{
+            .image_cta_content{
+                width: 400px;
+            }
+            .hardwareimg{
+                width: 300px;
+            }
+        }
+        }
+    }
+}

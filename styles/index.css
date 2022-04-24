@@ -4803,6 +4803,15 @@ section.admin-container > div.controls > .list-container > form button {
   background: #007bff;
   color: #eef0f1;
 }
+section.admin-container > div.controls > .list-container > form button:hover {
+  filter: brightness(90%);
+}
+section.admin-container > div.controls > .list-container > form button.cancel {
+  background: #c70000;
+}
+section.admin-container > div.controls > .list-container > form button.edit {
+  background: #04F404;
+}
 section.admin-container > div.controls > .list-container > form button:disabled {
   background: #313438;
   filter: brightness(50%);
