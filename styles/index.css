@@ -120,7 +120,6 @@ header nav > form {
   background-color: #313438;
   border-radius: 1em;
   transition: 0.3s;
-  overflow: hidden;
   position: relative;
 }
 @media (min-width: 1000px) {
@@ -165,6 +164,82 @@ header nav > form > input {
 }
 header nav > form:hover > input, header nav > form:hover > svg:first-child {
   color: black;
+}
+header nav > form > div.search-results-container {
+  visibility: hidden;
+  position: absolute;
+  top: 130%;
+  left: 0;
+  right: 0;
+  z-index: -10;
+  opacity: 0;
+  background-color: #313438;
+  transition: all 0.1s linear;
+}
+header nav > form > div.search-results-container.display {
+  visibility: visible;
+  opacity: 1;
+  z-index: 10;
+  box-shadow: black 0px 20px 30px -10px;
+}
+header nav > form > div.search-results-container > ul > li {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: none;
+  gap: 0.6em;
+  padding: 0.3em 0.5em 0 0.5em;
+  border-bottom: 1px solid black;
+}
+header nav > form > div.search-results-container > ul > li:last-of-type {
+  padding: 0.3em 0.5em;
+}
+header nav > form > div.search-results-container > ul > li > div.search-image {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+}
+header nav > form > div.search-results-container > ul > li > div.search-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+}
+header nav > form > div.search-results-container > ul > li > div.search-info > div.search-title-console {
+  display: inline-flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5em;
+}
+header nav > form > div.search-results-container > ul > li > div.search-info > div.search-title-console > p {
+  font-size: 1.1em;
+  text-transform: capitalize;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+header nav > form > div.search-results-container > ul > li > div.search-info > div.search-title-console > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.2em;
+}
+header nav > form > div.search-results-container > ul > li > div.search-info > div.search-price-discount {
+  display: inline-flex;
+  font-size: 0.8em;
+  background: black;
+}
+header nav > form > div.search-results-container > ul > li > div.search-info > div.search-price-discount > p.final-price {
+  padding: 0.2em;
+}
+header nav > form > div.search-results-container > ul > li > div.search-info > div.search-price-discount > p.discount {
+  background: #4c6b22;
+  padding: 0.2em;
 }
 header nav > div.sublinks {
   display: flex;
@@ -301,6 +376,7 @@ header nav > div.sublinks > ul > li > .mobile-submenu.display {
   visibility: visible;
   opacity: 1;
   z-index: 10;
+  box-shadow: black 0px 20px 30px -10px;
 }
 header nav > div.sublinks > ul > li > .mobile-submenu > ul {
   display: grid;
@@ -389,6 +465,7 @@ header nav > div.sublinks > div.user-container > div.user-sublinks.display {
   visibility: visible;
   opacity: 1;
   z-index: 10;
+  box-shadow: black 0px 20px 30px -10px;
 }
 header nav > div.sublinks > div.user-container > div.user-sublinks > ul {
   display: grid;

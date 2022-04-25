@@ -40,7 +40,7 @@ header
             background-color: $bgc-subtle
             border-radius: 1em
             transition: 0.3s
-            overflow: hidden
+            // overflow: hidden
             position: relative
             @include bs.from(xl)
                 grid-column: span 8
@@ -73,6 +73,54 @@ header
                 font-size: 1.15em
             &:hover > input,&:hover > svg:first-child
                 color: $bgc-important
+            >div.search-results-container
+                visibility: hidden
+                position: absolute
+                top: 130%
+                left: 0
+                right: 0
+                z-index: -10
+                opacity: 0
+                background-color: $bgc-subtle
+                transition: $trs-instant
+                &.display
+                    visibility: visible
+                    opacity: 1
+                    z-index: 10
+                    box-shadow: $bs-card-lg
+                >ul
+                    >li
+                        @include flex($align: none, $justify: flex-start, $gap: .6em)
+                        padding: .3em .5em 0 .5em
+                        border-bottom: 1px solid black
+                        &:last-of-type
+                            padding: .3em .5em
+                        >div.search-image
+                            @include flex
+                        >div.search-info
+                            @include flex($direction: column, $justify: center, $align: flex-start)
+                            // >div > *
+                            //     display: inline-block
+                            >div.search-title-console
+                                display: inline-flex
+                                @include flex($gap: .5em)
+                                >p
+                                    font-size: 1.1em
+                                    text-transform: capitalize
+                                    font-weight: 600
+                                    letter-spacing: .06em
+                                >div
+                                    @include flex($gap: .2em)
+                                    >svg
+                            >div.search-price-discount
+                                display: inline-flex
+                                font-size: .8em
+                                background: black
+                                >p.final-price
+                                    padding: .2em
+                                >p.discount
+                                    background: $bgc-discounted
+                                    padding: .2em
 
         >div.sublinks
             @include flex($justify: center, $align: stretch, $gap: .5em)

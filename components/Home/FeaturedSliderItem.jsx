@@ -1,4 +1,3 @@
-import { useRef, useEffect } from "react"
 import Link from "next/link"
 import {FaPlaystation} from 'react-icons/fa'
 

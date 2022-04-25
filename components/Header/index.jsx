@@ -1,4 +1,4 @@
-import { FaSearch } from 'react-icons/fa'
+import { FaSearch, FaPlaystation } from 'react-icons/fa'
 import { TiCancel } from 'react-icons/ti'
 
 import sublinks from '@public/publicData/sublinks'
@@ -108,6 +108,50 @@ const Header = () => {
                         //todo     searchValue.current.value = ''}
                         //todo }
                     />
+                    <div className='search-results-container display'>
+                        <ul>
+                            <li>
+                                <div className='search-image'>
+                                    <Image src={`https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg`} 
+                                        alt={`title`} width={130} height={50} quality='50' objectPosition='center' objectFit="cover"
+                                    />
+                                </div>
+                                <div className='search-info'>
+                                    <div className='search-title-console'>
+                                        <p>Game title</p>
+                                        <div>
+                                            <FaPlaystation />
+                                            <FaPlaystation />
+                                        </div>
+                                    </div>
+                                    <div className='search-price-discount'>
+                                        <p className='final-price'>$100</p>
+                                        <p className='discount'>-10%</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div className='search-image'>
+                                    <Image src={`https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg`} 
+                                        alt={`title`} width={130} height={50} quality='50' objectPosition='center' objectFit="cover"
+                                    />
+                                </div>
+                                <div className='search-info'>
+                                    <div className='search-title-console'>
+                                        <p>Game title</p>
+                                        <div>
+                                            <FaPlaystation />
+                                            <FaPlaystation />
+                                        </div>
+                                    </div>
+                                    <div className='search-price-discount'>
+                                        <p className='final-price'>$100</p>
+                                        <p className='discount'>-10%</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </form>
                 <div className='sublinks'>
                     <div 
