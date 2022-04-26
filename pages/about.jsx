@@ -1,8 +1,9 @@
-import styles from '@styles/publicHai/scss/main.module.scss'
+import styles from '@styles/publicDat/scss/main.module.scss'
 
 import { useEffect } from 'react'
 import Aos from 'aos'
 import 'aos/dist/aos.css'
+import Image from 'next/image'
 const about = () => {
     useEffect(() => {
         Aos.init();
@@ -13,7 +14,9 @@ const about = () => {
         <div className={styles.header_about}>
             <div className={styles.about_greeting}>
                 <div className={styles.about_greeting_rinc}>
-                    <img src="imageHai/imageHai/img/logonew.png" alt="the logo for Rinc"/>
+                    <div>
+                        <Image src="/imageDat/img/logonew.png" alt="the logo for Rinc"/>
+                    </div>
                 </div>
                 <div className={styles.about_greeting_subtitle} >
                     <div className={styles.about_greeting_title} dataAos="fade-left">
@@ -42,12 +45,12 @@ const about = () => {
             </div>
             <div className={styles.about_monitor}>
                 <div className={styles.about_monitor_img} data-aos="zoom-in-down">
-                    <img src="imageHai/img/imageheader.jpg" alt=""/>
+                    <img src="imageDat/img/imageheader.jpg" alt=""/>
                 </div>
             </div>
         </div>
         <div className={styles.about_seemore}>
-            <a  className={styles.about_seemore_text} href="#about_games_hero">Looking for more information
+            <a  className={styles.about_seemore_text}>Looking for more information
                 <span className={styles.down_arrow}></span>
             </a>
         </div>
@@ -55,54 +58,54 @@ const about = () => {
             <div className={styles.about_game_cta}>
                 <div className={styles.game_col_left}>
                     <div className={styles.game_image} data-aos="fade-up">
-                        <img src="imageHai/img/game_img1.jpg" alt="" style={{width: '100%'}}/ >
+                        <img src="imageDat/img/game_img1.jpg" alt="" style={{width: '100%'}}/ >
                     </div>
                     <div className={styles.game_image} data-aos="fade-up">
-                        <img src="imageHai/img/game_img2.jpg" alt="" style={{width: '100%'}}/>
+                        <img src="imageDat/img/game_img2.jpg" alt="" style={{width: '100%'}}/>
                     </div>
                     <div className={styles.game_image} data-aos="fade-up">
-                        <img src="imageHai/img/game_img3.jpg" alt="" style={{width: '100%'}}/>
+                        <img src="imageDat/img/game_img3.jpg" alt="" style={{width: '100%'}}/>
                     </div>
                     <div className={styles.game_image} data-aos="fade-up" >
-                        <img src="imageHai/img/game_img4.jpg" alt="" style={{width: '100%'}}/>
+                        <img src="imageDat/img/game_img4.jpg" alt="" style={{width: '100%'}}/>
                     </div>
                     <div className={styles.game_image} data-aos="fade-up">
-                        <img src="imageHai/img/game_img5.jpg" alt="" style={{width: '100%'}}/>
+                        <img src="imageDat/img/game_img5.jpg" alt="" style={{width: '100%'}}/>
                     </div>
                     <div className={styles.game_image} data-aos="fade-up">
-                        <img src="imageHai/img/game_img6.jpg" alt="" style={{width: '100%'}}/>
+                        <img src="imageDat/img/game_img6.jpg" alt="" style={{width: '100%'}}/>
                     </div>
                     <div className={styles.game_image} data-aos="fade-up">
-                        <img src="imageHai/img/game_img7.jpg" alt="" style={{width: '100%'}}/>
+                        <img src="imageDat/img/game_img7.jpg" alt="" style={{width: '100%'}}/>
                     </div>
                     <div className={styles.game_image} data-aos="fade-up">
-                        <img src="imageHai/img/game_img8.jpg" alt="" style={{width: '100%'}}/>
+                        <img src="imageDat/img/game_img8.jpg" alt="" style={{width: '100%'}}/>
                     </div>
                 </div>
                 <div className={styles.game_col_right}>
                     <div className={styles.game_image} data-aos="fade-up">
-                        <img src="imageHai/img/game_img9.jpg" alt="" style={{width: '100%'}}/>
+                        <img src="imageDat/img/game_img9.jpg" alt="" style={{width: '100%'}}/>
                     </div>
                     <div className={styles.game_image} data-aos="fade-up">
-                        <img src="imageHai/img/game_img10.jpg" alt="" style={{width: '100%'}}/>
+                        <img src="imageDat/img/game_img10.jpg" alt="" style={{width: '100%'}}/>
                     </div>
                     <div className={styles.game_image} data-aos="fade-up">
-                        <img src="imageHai/img/game_img11.jpg" alt="" style={{width: '100%'}}/>
+                        <img src="imageDat/img/game_img11.jpg" alt="" style={{width: '100%'}}/>
                     </div>
                     <div className={styles.game_image} data-aos="fade-up">
-                        <img src="imageHai/img/game_img12.jpg" alt="" style={{width: '100%'}}/>
+                        <img src="imageDat/img/game_img12.jpg" alt="" style={{width: '100%'}}/>
                     </div>
                     <div className={styles.game_image} data-aos="fade-up">
-                        <img src="imageHai/img/game_img13.jpg" alt="" style={{width: '100%'}}/>
+                        <img src="imageDat/img/game_img13.jpg" alt="" style={{width: '100%'}}/>
                     </div>
                     <div className={styles.game_image} data-aos="fade-up">
-                        <img src="imageHai/img/game_img14.jpg" alt="" style={{width: '100%'}}/>
+                        <img src="imageDat/img/game_img14.jpg" alt="" style={{width: '100%'}}/>
                     </div>
                     <div className={styles.game_image} data-aos="fade-up">
-                        <img src="imageHai/img/game_img15.jpg" alt="" style={{width: '100%'}}/>
+                        <img src="imageDat/img/game_img15.jpg" alt="" style={{width: '100%'}}/>
                     </div>
                     <div className={styles.game_image} data-aos="fade-up">
-                        <img src="imageHai/img/game_img16.jpg" alt="" style={{width: '100%'}}/>
+                        <img src="imageDat/img/game_img16.jpg" alt="" style={{width: '100%'}}/>
                     </div>
                 </div>
                 <div className={styles.about_cta_content} data-aos="flip-left">
@@ -111,7 +114,7 @@ const about = () => {
                         Enjoy exclusive deals, automatic updates and more from over 30,000 games to choose from, AAA or indie.
                     </div>
                     <div className={styles.about_cta_btn}>
-                        <a className={styles.about_cta_btn_des} href="">BROWSE STORE</a>
+                        <a className={styles.about_cta_btn_des}>BROWSE STORE</a>
                     </div>
                 </div>
             </div>
@@ -124,12 +127,12 @@ const about = () => {
                     <div className={styles.about_cta_content_btn}>Community</div>
                 </div>
                 <div className={styles.about_cta_content_image} data-aos="zoom-in-down">
-                    <img className={styles.image_cta_content}  src="imageHai/img/cta_hero_community.png" alt=""/>
+                    <img className={styles.image_cta_content}  src="imageDat/img/cta_hero_community.png" alt=""/>
                 </div>
             </div>
             <div className={styles.about_content_ctas} >
                 <div className={styles.about_cta_content_image}  data-aos="zoom-in-down">
-                    <img className={`${styles.image_cta_content} ${styles.hardwareimg}`}  src="imageHai/img/cta_hero_hardware.png" alt=""/>
+                    <img className={`${styles.image_cta_content} ${styles.hardwareimg}`}  src="imageDat/img/cta_hero_hardware.png" alt=""/>
                 </div>
                 <div className={`${styles.about_cta_content_text} ${styles.hardware_text}`}  data-aos="fade-left">
                     <h2 className={styles.about_cta_text_title} >Exploring Rinc Hardware</h2>
@@ -144,7 +147,7 @@ const about = () => {
                     <div className={styles.about_cta_content_btn} >Learn more about Rincworks</div>
                 </div>
                 <div className={styles.about_cta_content_image}  data-aos="zoom-in-down">
-                    <img className={styles.image_cta_content}  src="imageHai/img/cta_hero_steamworks.png" alt=""/>
+                    <img className={styles.image_cta_content}  src="imageDat/img/cta_hero_steamworks.png" alt=""/>
                 </div>
             </div>
         </div>
@@ -154,7 +157,9 @@ const about = () => {
         <div className={styles.member} >
             <div className={styles.member_info}  data-aos="zoom-in-up">
                 <div className={styles.image_info} >
-                    <img className={styles.image_number}  src="./imageHai/img/avt.jpg" alt=""/>
+                    <div className={styles.image_number}>
+                        <Image src="/publicData/avatar/nghia.jpg" width={200} height={200} quality={100} layout='responsive' objectPosition='center' objectFit="cover" alt='nghia'/>
+                    </div>
                 </div>
                 <div className={styles.member_info_des} >
                     <h3 className={styles.member_infor_title} >Founder</h3>
@@ -163,7 +168,9 @@ const about = () => {
             </div>
             <div className={styles.member_info}  data-aos="zoom-in-up">
                 <div className={styles.image_info} >
-                    <img className={styles.image_number}  src="./imageHai/img/avt.jpg" alt=""/>
+                    <div className={styles.image_number}>
+                        <Image src="/publicData/avatar/chung.jpg" width={200} height={200} quality={100} layout='responsive' objectPosition='center' objectFit="cover" alt='chung'/>
+                    </div>
                 </div>
                 <div className={styles.member_info_des} >
                     <h3 className={styles.member_infor_title} >Developer</h3>
@@ -172,7 +179,9 @@ const about = () => {
             </div>
             <div className={styles.member_info}  data-aos="zoom-in-up">
                 <div className={styles.image_info} >
-                    <img className={styles.image_number}  src="./imageHai/img/avt.jpg" alt=""/>
+                    <div className={styles.image_number}>
+                        <Image src="/publicData/avatar/dien.jpg" width={200} height={200} quality={100} layout='responsive' objectPosition='center' objectFit="cover" alt='dien'/>
+                    </div>
                 </div>
                 <div className={styles.member_info_des} >
                     <h3 className={styles.member_infor_title} >Developer</h3>
@@ -181,7 +190,9 @@ const about = () => {
             </div>
             <div className={styles.member_info}  data-aos="zoom-in-up">
                 <div className={styles.image_info} >
-                    <img className={styles.image_number}  src="./imageHai/img/avt.jpg" alt=""/>
+                    <div className={styles.image_number}>
+                        <Image src="/publicData/avatar/dat.jpg" width={200} height={200} quality={100} layout='responsive' objectPosition='center' objectFit="cover" alt='dat'/>
+                    </div>
                 </div>
                 <div className={styles.member_info_des} >
                     <h3 className={styles.member_infor_title} >Developer</h3>
