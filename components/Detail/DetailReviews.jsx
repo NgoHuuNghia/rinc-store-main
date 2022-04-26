@@ -18,7 +18,7 @@ const DetailReviews = ({
 }) => {
 
     return (
-        <div onClick={() => console.log(reviews)} className='reviews-container'>
+        <div className='reviews-container'>
 
             <ReviewForm 
                 user={user}

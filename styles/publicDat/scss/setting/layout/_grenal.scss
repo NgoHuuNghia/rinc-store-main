@@ -1,0 +1,254 @@
+.setting__general{
+    padding: 20px;
+    .setting__general__title{
+        border-bottom: 2px solid #302c3a;
+        color:#5aa9d6 ;
+        .setting__general__title__text{
+            margin-bottom: 0;
+        }
+    }
+    .setting__general__form{
+        padding: 50px 40px 20px 40px;
+        .setting__general__form_profile{
+            display: block;
+            padding-bottom: 30px;
+            .profile__name__title{
+                padding: 10px 0 15px 0;
+                
+            }
+            .profile__name__input{
+                width: 98%;
+                height: 15px;
+                font-size: 14px;
+                padding: 10px 10px ;
+                border: 2px solid #302c3a ;
+                color: white;
+                background-color:rgba(3, 3, 3, 0.7) ;
+                &:focus{
+                    outline: none;
+                }
+            }
+        }
+        .profile__avatar{
+           .new__avatar__profile{
+               height: 50px;
+           } 
+           .profile__name__title{
+            padding: 10px 0 12px 0;
+        }
+        }
+    }
+    .setting__summary{
+        margin: 0 30px 0 20px;
+        .setting__summary__title{
+            padding: 30px 0 15px 0;
+        }
+        .setting__summary__text{
+            width: 98%;
+            height: 50px;
+            font-size: 14px;
+            padding: 0px 12px 12px 12px ;
+            margin-bottom: 50px;
+            color: white;
+            border: 2px solid #302c3a ;
+            background-color: rgba(3, 3, 3, 0.7) ;
+            &:focus{
+                outline: none;
+            }
+        }
+    }
+    .setting__button{
+        padding-left: 49%;
+        .setting__button__cancel{
+            color: white;
+            background-color: #434953;
+            border: 0px solid;
+            height: 30px;
+            width: 150px;
+            padding: 0;
+            &:hover{
+                background-color: #302c3a;
+            }
+        }
+        .setting__button__save{
+            color: white;
+            background: linear-gradient(to right, #6dc849 0%, #a4d007 60%);
+            border: 0px solid; 
+            height: 30px;
+            width: 150px;
+            padding: 0;
+            &:hover{
+                background: linear-gradient(to left, #6dc849 0%, #a4d007 60%);
+            }
+        }
+    }
+}
+// mobile 
+@media only screen  and(max-width: 740px ){
+    .setting__general{
+        padding: 20px 20px 20px 0;
+        .setting__general__title{
+            border-bottom: 2px solid #302c3a;
+            .setting__general__title__text{
+                margin-bottom: 0;
+            }
+        }
+        .setting__general__form{
+            padding: 50px 20px 20px 20px;
+            .setting__general__form_profile{
+                display: block;
+                padding-bottom: 30px;
+                .profile__name__title{
+                    padding: 10px 0 15px 0;
+                }
+                .profile__name__input{
+                    width: 98%;
+                    height: 15px;
+                    font-size: 14px;
+                    padding: 10px 10px ;
+                    border: 2px solid #302c3a ;
+                    background-color:rgba(3, 3, 3, 0.7);
+                    &:focus{
+                        outline: none;
+                    }
+                }
+            }
+            .profile__avatar{
+               .new__avatar__profile{
+                   height: 50px;
+               } 
+               .profile__name__title{
+                padding: 10px 0 12px 0;
+            }
+            }
+        }
+        .setting__summary{
+            margin: 0 30px 0 20px;
+            .setting__summary__title{
+                padding: 30px 0 15px 0;
+            }
+            .setting__summary__text{
+                width: 98%;
+                height: 50px;
+                font-size: 14px;
+                padding: 0px 12px 12px 12px ;
+                margin-bottom: 20px;
+                border: 2px solid #302c3a ;
+                background-color: rgba(3, 3, 3, 0.7);
+                &:focus{
+                    outline: none;
+                }
+            }
+        }
+        .setting__button{
+            padding-left: 32%;
+            .setting__button__cancel{
+                color: white;
+                background-color: #434953;
+                border: 0px solid;
+                height: 30px;
+                width: 100px;
+                padding: 0;
+                &:hover{
+                    background-color: #302c3a;
+                }
+            }
+            .setting__button__save{
+                color: white;
+                background: linear-gradient(to right, #6dc849 0%, #a4d007 60%);
+                border: 0px solid; 
+                height: 30px;
+                width: 100px;
+                padding: 0;
+                &:hover{
+                    background: linear-gradient(to left, #6dc849 0%, #a4d007 60%);
+                }
+            }
+        }
+    }
+}
+
+// tablet 
+@media only screen  and(min-width: 740px ) and (max-width : 1024px ){
+    .setting__general{
+        padding: 20px;
+        .setting__general__title{
+            border-bottom: 2px solid #302c3a;
+            .setting__general__title__text{
+                margin-bottom: 0;
+            }
+        }
+        .setting__general__form{
+            padding: 50px 20px 20px 20px;
+            .setting__general__form_profile{
+                display: block;
+                padding-bottom: 30px;
+                .profile__name__title{
+                    padding: 10px 0 15px 0;
+                }
+                .profile__name__input{
+                    width: 98%;
+                    height: 15px;
+                    font-size: 14px;
+                    padding: 10px 10px ;
+                    border: 2px solid #302c3a ;
+                    background-color:rgba(3, 3, 3, 0.7);
+                    &:focus{
+                        outline: none;
+                    }
+                }
+            }
+            .profile__avatar{
+               .new__avatar__profile{
+                   height: 50px;
+               } 
+               .profile__name__title{
+                padding: 10px 0 12px 0;
+            }
+            }
+        }
+        .setting__summary{
+            margin: 0 30px 0 20px;
+            .setting__summary__title{
+                padding: 30px 0 15px 0;
+            }
+            .setting__summary__text{
+                width: 98%;
+                height: 50px;
+                font-size: 14px;
+                padding: 0px 12px 12px 12px ;
+                margin-bottom: 50px;
+                border: 2px solid #302c3a ;
+                background-color:rgba(3, 3, 3, 0.7);
+                &:focus{
+                    outline: none;
+                }
+            }
+        }
+        .setting__button{
+            padding-left: 68%;
+            .setting__button__cancel{
+                color: white;
+                background-color: #434953;
+                border: 0px solid;
+                height: 30px;
+                width: 100px;
+                padding: 0;
+                &:hover{
+                    background-color: #302c3a;
+                }
+            }
+            .setting__button__save{
+                color: white;
+                background: linear-gradient(to right, #6dc849 0%, #a4d007 60%);
+                border: 0px solid; 
+                height: 30px;
+                width: 100px;
+                padding: 0;
+                &:hover{
+                    background: linear-gradient(to left, #6dc849 0%, #a4d007 60%);
+                }
+            }
+        }
+    }
+}

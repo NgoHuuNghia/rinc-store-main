@@ -111,7 +111,7 @@ function DataEditor({dataRef, data, current, defaultKeys}) {
             delete dataController.id
             await updateDoc(dataRef, dataController)
             setDataController()
-            toast.success('User updated successfully!')
+            toast.success(`${current} update successfully!`)
         } else toast.error("All field is required!")
     };
     const setNewData = async (e) => {
@@ -130,7 +130,7 @@ function DataEditor({dataRef, data, current, defaultKeys}) {
                 emptyObject[key] = ''
             })
             setNewDataController(emptyObject)
-            toast.success('User updated successfully!')
+            toast.success(`New ${current} added successfully!`)
         } else toast.error("All field is required!")
     };
 

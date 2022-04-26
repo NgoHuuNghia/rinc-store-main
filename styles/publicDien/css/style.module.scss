@@ -167,7 +167,7 @@
         width: 100%;
         background-color: #0d121a;
         height: 5px;
-        margin-top: -10px;
+        // margin-top: -10px;
         margin-bottom: 10px;
     }
 
@@ -391,7 +391,7 @@
 
                 .user {
                     display: flex;
-                    justify-content: start;
+                    justify-content: flex-start;
                     gap: .5rem;
 
                     img {
@@ -791,5 +791,19 @@
     .community__header__home .search_box {
         margin: 0 auto;
         width: 100%;
+    }
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .col_25 {
+        width: 100%;
+        margin-top: 0;
     }
 }

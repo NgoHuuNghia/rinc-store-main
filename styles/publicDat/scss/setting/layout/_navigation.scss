@@ -1,0 +1,49 @@
+.setting__navigation{
+    width: 350px;
+    background-color:rgba(154, 157, 174, 0.5);
+    margin-right: 10px;
+    .setting__navigation__header{
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px #302c3a solid;
+        margin-bottom: 10px;
+        .setting__navigation__avatar{
+            width: 80px;
+            height: 80px;
+            .avatar__profile{
+                width: 100%;
+                border-radius: 50%;
+            }
+        }
+        .setting__navigation__name{
+            font-size: 20px;
+            font-weight: 700;
+            padding-left: 7%;
+        }
+    }
+    .setting__navigation__profile{
+        .profile__account{
+            padding: 10px 20px 10px 20px;
+            font-size: 18px;
+            font-weight: 600;
+            .profile__name{
+               font-weight: 500;
+            }
+        }
+        
+    }
+}
+// mobile 
+@media only screen  and(max-width: 740px ){
+    .setting__navigation{
+        width: 335px;
+    }
+}
+
+// tablet 
+@media only screen  and(min-width: 740px ) and (max-width : 1024px ){
+    .setting__navigation{
+        width: 100%;
+    }
+}

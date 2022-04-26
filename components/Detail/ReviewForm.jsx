@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { dateToJsonLocal, firestore, rate } from "@lib/firebase";
-import { doc, getDoc, increment, onSnapshot, serverTimestamp, updateDoc, writeBatch } from "firebase/firestore";
+import { doc, increment, onSnapshot, serverTimestamp, updateDoc, writeBatch } from "firebase/firestore";
 import toast from "react-hot-toast";
 import Image from "next/image";
 import { FaTrash, FaEdit, FaCheck } from "react-icons/fa";

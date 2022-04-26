@@ -21,6 +21,9 @@ html body {
 html a {
   color: #c6d4df;
 }
+html textarea {
+  resize: none;
+}
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -109,63 +112,65 @@ header nav > div.logo-container {
 header nav > div.logo-container > a > div {
   width: 3.5em;
 }
-header nav > form {
+header nav > div.search {
+  align-self: center;
+  grid-column: span 6;
+  position: relative;
+}
+@media (min-width: 1000px) {
+  header nav > div.search {
+    grid-column: span 8;
+  }
+}
+header nav > div.search > form {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 0.2em;
-  align-self: center;
-  grid-column: span 6;
   background-color: #313438;
   border-radius: 1em;
-  transition: 0.3s;
-  position: relative;
+  transition: all 0.1s linear;
 }
-@media (min-width: 1000px) {
-  header nav > form {
-    grid-column: span 8;
-  }
-}
-header nav > form ::placeholder {
+header nav > div.search > form ::placeholder {
   text-transform: capitalize;
 }
-header nav > form:hover {
+header nav > div.search > form:hover {
   background-color: #f2ecff;
 }
-header nav > form > svg {
+header nav > div.search > form > svg {
   flex: 1;
   cursor: pointer;
   transition: all 0.1s linear;
 }
-header nav > form > svg:first-child {
+header nav > div.search > form > svg:first-child {
   padding: 0.25em 0;
   color: #c6d4df;
   font-size: 2.3em;
 }
-header nav > form > svg:first-child:hover {
+header nav > div.search > form > svg:first-child:hover {
   color: #9b0027 !important;
 }
-header nav > form > svg:last-child {
+header nav > div.search > form > svg:last-child {
   opacity: 0;
   color: #d90037;
   font-size: 1.5em;
   z-index: -5;
 }
-header nav > form > svg:last-child:hover {
+header nav > div.search > form > svg:last-child:hover {
   opacity: 1 !important;
 }
-header nav > form > input {
+header nav > div.search > form > input {
   flex: 11;
   background: none;
   border: none;
   color: #c6d4df;
   font-size: 1.15em;
 }
-header nav > form:hover > input, header nav > form:hover > svg:first-child {
+header nav > div.search > form:hover > input, header nav > div.search > form:hover > svg:first-child {
   color: black;
 }
-header nav > form > div.search-results-container {
+header nav > div.search > div.search-results-container {
   visibility: hidden;
   position: absolute;
   top: 130%;
@@ -176,39 +181,41 @@ header nav > form > div.search-results-container {
   background-color: #313438;
   transition: all 0.1s linear;
 }
-header nav > form > div.search-results-container.display {
+header nav > div.search > div.search-results-container.display {
   visibility: visible;
   opacity: 1;
   z-index: 10;
   box-shadow: black 0px 20px 30px -10px;
 }
-header nav > form > div.search-results-container > ul > li {
+header nav > div.search > div.search-results-container > ul > li {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: none;
   gap: 0.6em;
-  padding: 0.3em 0.5em 0 0.5em;
-  border-bottom: 1px solid black;
-}
-header nav > form > div.search-results-container > ul > li:last-of-type {
   padding: 0.3em 0.5em;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+  transition: all 0.1s linear;
 }
-header nav > form > div.search-results-container > ul > li > div.search-image {
+header nav > div.search > div.search-results-container > ul > li:hover {
+  background-color: #f2ecff;
+}
+header nav > div.search > div.search-results-container > ul > li > div.search-image {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 0;
 }
-header nav > form > div.search-results-container > ul > li > div.search-info {
+header nav > div.search > div.search-results-container > ul > li > div.search-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 0;
 }
-header nav > form > div.search-results-container > ul > li > div.search-info > div.search-title-console {
+header nav > div.search > div.search-results-container > ul > li > div.search-info > div.search-title-console {
   display: inline-flex;
   display: flex;
   flex-direction: row;
@@ -216,30 +223,33 @@ header nav > form > div.search-results-container > ul > li > div.search-info > d
   align-items: center;
   gap: 0.5em;
 }
-header nav > form > div.search-results-container > ul > li > div.search-info > div.search-title-console > p {
+header nav > div.search > div.search-results-container > ul > li > div.search-info > div.search-title-console > p {
   font-size: 1.1em;
   text-transform: capitalize;
   font-weight: 600;
   letter-spacing: 0.06em;
 }
-header nav > form > div.search-results-container > ul > li > div.search-info > div.search-title-console > div {
+header nav > div.search > div.search-results-container > ul > li > div.search-info > div.search-title-console > div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 0.2em;
 }
-header nav > form > div.search-results-container > ul > li > div.search-info > div.search-price-discount {
+header nav > div.search > div.search-results-container > ul > li > div.search-info > div.search-price-discount {
   display: inline-flex;
-  font-size: 0.8em;
+  font-size: 0.75em;
   background: black;
 }
-header nav > form > div.search-results-container > ul > li > div.search-info > div.search-price-discount > p.final-price {
+header nav > div.search > div.search-results-container > ul > li > div.search-info > div.search-price-discount > p.final-price {
   padding: 0.2em;
 }
-header nav > form > div.search-results-container > ul > li > div.search-info > div.search-price-discount > p.discount {
+header nav > div.search > div.search-results-container > ul > li > div.search-info > div.search-price-discount > p.discount {
   background: #4c6b22;
   padding: 0.2em;
+}
+header nav > div.search > div.search-results-container > ul > li:hover > .search-info > .search-title-console {
+  color: black;
 }
 header nav > div.sublinks {
   display: flex;
@@ -5120,7 +5130,7 @@ section.admin-container > div.controls > div.game-edit > form > div > label {
   font-weight: bold;
   white-space: nowrap;
 }
-section.admin-container > div.controls > div.game-edit > form > div > input {
+section.admin-container > div.controls > div.game-edit > form > div > input, section.admin-container > div.controls > div.game-edit > form > div > textarea {
   flex: 1;
   font-size: 0.9em;
   padding: 0.5em;
@@ -5128,6 +5138,9 @@ section.admin-container > div.controls > div.game-edit > form > div > input {
   border: 1px solid rgba(0, 0, 0, 0.3);
   color: #10161b;
   min-width: 6em;
+}
+section.admin-container > div.controls > div.game-edit > form > div > textarea {
+  height: 10em;
 }
 section.admin-container > div.controls > div.game-edit > form > div > .selection {
   flex: 1;

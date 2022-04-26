@@ -46,13 +46,13 @@ export async function getStaticPaths() {
     // Improve my using Admin SDK to select empty docs
     const q = query(
         collection(firestore, 'games'),
-        limit(20)
+        // limit(20)
     )
     const snapshot = await getDocs(q);
 
     const paths = snapshot.docs.map((doc) => {
         const { slug } = doc.data();
-            return {
+        return {
             params: { gameSlug: slug },
         };
     });
@@ -164,37 +164,36 @@ const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
     // }, [windowWidth])
     const router = useRouter()
     const { user, username, shoppingCart } = useContext(UserContext)
-
     const gameRef = doc(firestore, path)
+
     const [realTimeGame, setRealTimeGame] = useState()
     useEffect(() => {
         let unsubscribe
-        if(game && gameRef){
-            unsubscribe = onSnapshot(gameRef, (doc) => { 
-                setRealTimeGame(dateToJsonLocal(doc)) 
+        if(game){
+            unsubscribe = onSnapshot(doc(firestore, path), (doc) => { 
+                setRealTimeGame(dateToJsonLocal(doc))
             })
         } else setRealTimeGame()
         return unsubscribe
-    }, [game, gameRef])
+    }, [game, path])
 
-    // const reviewsRef = collection(firestore, reviewsPath)
-    // const [realTimeReviews, setRealTimeReview] = useState()
-    // useEffect(() => {
-    //     let unsubscribe
-    //     if(game && reviewsRef){
-    //         unsubscribe = onSnapshot(reviewsRef, querySnapshot => { 
-    //             setRealTimeReview(querySnapshot.docs.map(dateToJsonLocalWithId))
-    //         })
-    //     } else setRealTimeReview()
-    //     return unsubscribe
-    // }, [game, reviewsRef])
+    const [realTimeReviews, setRealTimeReview] = useState()
+    useEffect(() => {
+        let unsubscribe
+        if(game){
+            unsubscribe = onSnapshot(collection(firestore, reviewsPath), querySnapshot => { 
+                setRealTimeReview(querySnapshot.docs.map(dateToJsonLocalWithId))
+            })
+        } else setRealTimeReview()
+        return unsubscribe
+    }, [game, reviewsPath])
 
     const [ratingDoc, setRatingDoc] = useState()
     const [ratingData, setratingData] = useState()
     useEffect(() => {
         let unsubscribe
         if(user){
-            unsubscribe = onSnapshot(doc(firestore, gameRef.path, 'rating-tracker', user.uid), 
+            unsubscribe = onSnapshot(doc(firestore, path, 'rating-tracker', user.uid), 
                 (doc) => { 
                     setRatingDoc(doc)
                     setratingData(dateToJsonLocal(doc))
@@ -203,13 +202,12 @@ const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
         } else setRatingDoc()
 
         return unsubscribe
-    }, [user, gameRef.path])
+    }, [user, path])
     
-    //* value post will default to the realtime data but fallback to prerender data on server
     const gameData = realTimeGame || game
     const {title, slug, mainImageUrl, secondaryImageUrls, releasedAt, updatedAt, metacritic, description, basePrice, userRatings} = gameData
-    //? const reviews = realTimeReviews || staticReviews
-    const reviews = staticReviews
+
+    const reviews = realTimeReviews || staticReviews
 
     const addToCart = async() => {
         const cartRef = collection(firestore, 'users', user.uid, 'shoppingCart');
@@ -615,15 +613,6 @@ const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
                         </div>
                     </div>
                 </div>
-
-                {/* <p className='read-more' onClick={() => setReadMore(!readMore)}>
-                    {fromXl
-                        ? !readMore
-                            ? 'Read more...'
-                            : 'Collapse...'
-                        : ''
-                    }
-                </p> */}
                 <Recommendation />
                 <DetailReviews 
                     title={title} 

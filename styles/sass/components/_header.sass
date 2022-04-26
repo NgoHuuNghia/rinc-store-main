@@ -33,46 +33,46 @@ header
                 >div
                     width: 3.5em
 
-        >form
-            @include flex($gap: .2em)
+        >div.search
             align-self: center
             grid-column: span 6
-            background-color: $bgc-subtle
-            border-radius: 1em
-            transition: 0.3s
-            // overflow: hidden
             position: relative
             @include bs.from(xl)
                 grid-column: span 8
-            ::placeholder
-                text-transform: capitalize
-            &:hover
-                background-color: $bgc-hilight
-            >svg
-                flex: 1
-                cursor: pointer
+            >form
+                @include flex($gap: .2em)
+                background-color: $bgc-subtle
+                border-radius: 1em
                 transition: $trs-instant
-            >svg:first-child
-                padding: .25em 0
-                color: $fc-default
-                font-size: 2.3em
+                ::placeholder
+                    text-transform: capitalize
                 &:hover
-                    color: $fc-subsidiary !important
-            >svg:last-child
-                opacity: 0
-                color: $fc-subsidiary-hilight
-                font-size: 1.5em
-                z-index: -5
-                &:hover
-                    opacity: 1 !important
-            >input
-                flex: 11
-                background: none
-                border: none
-                color: $fc-default
-                font-size: 1.15em
-            &:hover > input,&:hover > svg:first-child
-                color: $bgc-important
+                    background-color: $bgc-hilight
+                >svg
+                    flex: 1
+                    cursor: pointer
+                    transition: $trs-instant
+                >svg:first-child
+                    padding: .25em 0
+                    color: $fc-default
+                    font-size: 2.3em
+                    &:hover
+                        color: $fc-subsidiary !important
+                >svg:last-child
+                    opacity: 0
+                    color: $fc-subsidiary-hilight
+                    font-size: 1.5em
+                    z-index: -5
+                    &:hover
+                        opacity: 1 !important
+                >input
+                    flex: 11
+                    background: none
+                    border: none
+                    color: $fc-default
+                    font-size: 1.15em
+                &:hover > input,&:hover > svg:first-child
+                    color: $bgc-important
             >div.search-results-container
                 visibility: hidden
                 position: absolute
@@ -91,10 +91,12 @@ header
                 >ul
                     >li
                         @include flex($align: none, $justify: flex-start, $gap: .6em)
-                        padding: .3em .5em 0 .5em
+                        padding: .3em .5em
                         border-bottom: 1px solid black
-                        &:last-of-type
-                            padding: .3em .5em
+                        cursor: pointer
+                        transition: $trs-instant
+                        &:hover
+                            background-color: $bgc-hilight
                         >div.search-image
                             @include flex
                         >div.search-info
@@ -111,16 +113,17 @@ header
                                     letter-spacing: .06em
                                 >div
                                     @include flex($gap: .2em)
-                                    >svg
                             >div.search-price-discount
                                 display: inline-flex
-                                font-size: .8em
+                                font-size: .75em
                                 background: black
                                 >p.final-price
                                     padding: .2em
                                 >p.discount
                                     background: $bgc-discounted
                                     padding: .2em
+                        &:hover>.search-info>.search-title-console
+                            color: $bgc-important
 
         >div.sublinks
             @include flex($justify: center, $align: stretch, $gap: .5em)

@@ -1,0 +1,36 @@
+.setting__pagecontent{
+    .setting__about{
+        padding: 20px;
+        border-bottom: 2px solid #10161b;
+        .setting__about__header{
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            .setting__about__back{
+                .back__your__profile{
+                    text-decoration: none;
+                    color: #10161b;
+                    font-weight: 500;
+                    border-bottom: 1px solid #10161b;
+                }
+            }
+            .setting__about__title{
+                color:#5aa9d6 ;
+            }
+        }
+        .setting__about__content{
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 28px;
+        }
+    }
+}
+// mobile 
+@media only screen  and(max-width: 740px ){
+   
+}
+
+// tablet 
+@media only screen  and(min-width: 740px ) and (max-width : 1024px ){
+    
+}

@@ -1,0 +1,21 @@
+.setting{
+    background-color:#151515;  
+    color:#969696;
+    font-family: 'Quicksand', sans-serif;
+    padding: 100px 250px 100px 250px;
+    display: flex;
+}
+// mobile 
+@media only screen  and(max-width: 740px ){
+    .setting{
+        padding: 100px 20px 100px 20px;
+        display: block;
+    }
+}
+// tablet 
+@media only screen  and(min-width: 740px ) and (max-width : 1024px ){
+    .setting{
+        padding: 100px 20px 100px 20px;
+        display: block;
+    } 
+}

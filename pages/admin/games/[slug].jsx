@@ -13,7 +13,6 @@ import { SidebarProvider } from '@lib/adminContext'
 import { firestore } from '@lib/firebase'
 import GameMainImage from '@components/Admin/GameMainImage'
 import UploadSecondaryImages from '@components/Admin/UploadSecondaryImages'
-
 function GameManager(){
     const router = useRouter();
     const { slug } = router.query;
@@ -89,11 +88,14 @@ function GameManagerForm({gameRef, defaultValues, genresData, platformsData, sto
     const { register, handleSubmit, formState, reset, control } = useForm({ defaultValues, mode: 'onChange' });//? mode act like state
     const { isValid, isDirty, errors } = formState
 
-    const updateGame = async ({ title, esrbRating, published, genres, platforms, stores }) => {
+    const updateGame = async ({ title, esrbRating, published, genres, platforms, stores, description, basePrice, discount }) => {
 
         await updateDoc(gameRef, {//? firestore function to update
-            title: title.charAt(0).toUpperCase() + title.slice(1).toLowerCase(), //? capitalized 1st letter
+            title: title.toLowerCase(), //? capitalized 1st letter
             esrbRating,
+            description,
+            basePrice,
+            discount,
             published,
             genres,
             platforms,
@@ -101,7 +103,7 @@ function GameManagerForm({gameRef, defaultValues, genresData, platformsData, sto
             updatedAt: serverTimestamp(),
         })
     
-        reset({ title, esrbRating, published, genres, platforms, stores });//? reset the form
+        reset({ title, esrbRating, published, genres, platforms, stores, description, basePrice, discount });//? reset the form
     
         toast.success('Game updated successfully!');
     };
@@ -114,12 +116,12 @@ function GameManagerForm({gameRef, defaultValues, genresData, platformsData, sto
                     type='text'
                     name='title'
                     {...register('title',{ //? with added html validation
-                        maxLength: { value: 20000, message: 'title is too long' },
+                        maxLength: { value: 100, message: 'title is too long' },
                         minLength: { value: 3, message: 'title is too short' },
                         required: true,
                     })}
                 />
-                {errors.title && <strong className="danger">{errors.title.message}</strong>}{/* if there error in content then show it */}
+                {errors.title && <strong className="danger">{errors.title.message}</strong>}
             </div>
 
             <div className='col-2'>
@@ -155,6 +157,7 @@ function GameManagerForm({gameRef, defaultValues, genresData, platformsData, sto
                     }
                 />
             </div>
+
             <div className='col-2'>
                 <label htmlFor='platforms'>Platforms: </label>
                 <Controller
@@ -168,6 +171,7 @@ function GameManagerForm({gameRef, defaultValues, genresData, platformsData, sto
                     }
                 />
             </div>
+
             <div className='col-2'>
                 <label htmlFor='stores'>Stores: </label>
                 <Controller
@@ -182,33 +186,73 @@ function GameManagerForm({gameRef, defaultValues, genresData, platformsData, sto
                 />
             </div>
 
-            <div className='published col-1'>
-                <label htmlFor="title">Published </label>
-                <fieldset>
-                    <input name="published" type="checkbox" {...register('published')} />
-                </fieldset>
-                {errors.title && <strong className="danger">{errors.title.message}</strong>}{/* if there error in content then show it */}
+            <div className='col-2'>
+                <label htmlFor="description">Description: </label>
+                <textarea
+                    name='description'
+                    {...register('description',{ //? with added html validation
+                        maxLength: { value: 20000, message: 'description is too long' },
+                        minLength: { value: 20, message: 'description is too short' },
+                    })}
+                />
+                {errors.description && <strong className="danger">{errors.description.message}</strong>}
             </div>
-
-            <UploadMainImage gameRef={gameRef} slug={defaultValues.slug}/>
-
-            <UploadSecondaryImages gameRef={gameRef} slug={defaultValues.slug}/>
 
             <div className='text col-1'>
                 <label htmlFor="metacritic">Metacritic: </label>
                 <input
                     type='text'
                     name='metacritic'
-                    // {...register('metacritic',{valueAsNumber: {value: true, message: 'must be a number'}})}
                     {...register("metacritic", {
                         pattern: {value: /^[0-9]+$/, message: 'no strings'},
                         pattern: {value: /^[0-9][0-9]?$|^100$/, message: 'score 0-100 only'},
                         maxLength: { value: 3, message: 'score 0-100 only' },
                         valueAsNumber: false,
                     })}
-
                 />
-                {errors.metacritic && <strong className="danger">{errors.metacritic.message}</strong>}{/* if there error in content then show it */}
+                {errors.metacritic && <strong className="danger">{errors.metacritic.message}</strong>}
+            </div>
+
+            <div className='text col-1'>
+                <label htmlFor="basePrice">Base price in dollars: </label>
+                <input
+                    type='text'
+                    name='basePrice'
+                    {...register("basePrice", {
+                        pattern: {value: /^[0-9]+$/, message: 'no strings'},
+                        pattern: {value: /^([1-9][0-9]{0,2}|1000)$/, message: 'score 0-1000 only'},
+                        maxLength: { value: 4, message: 'score 0-100 only' },
+                        valueAsNumber: false,
+                    })}
+                />
+                {errors.basePrice && <strong className="danger">{errors.basePrice.message}</strong>}
+            </div>
+
+            <div className='text col-1'>
+                <label htmlFor="discount">Discount in percentage: </label>
+                <input
+                    type='text'
+                    name='discount'
+                    {...register("discount", {
+                        pattern: {value: /^[0-9]+$/, message: 'no strings'},
+                        pattern: {value: /^[0-9][0-9]?$|^100$/, message: 'score 0-100 only'},
+                        maxLength: { value: 3, message: 'score 0-100 only' },
+                        valueAsNumber: false,
+                    })}
+                />
+                {errors.discount && <strong className="danger">{errors.discount.message}</strong>}
+            </div>
+
+            <UploadMainImage gameRef={gameRef} slug={defaultValues.slug}/>
+
+            <UploadSecondaryImages gameRef={gameRef} slug={defaultValues.slug}/>
+
+            <div className='published col-1'>
+                <label htmlFor="title">Published </label>
+                <fieldset>
+                    <input name="published" type="checkbox" {...register('published')} />
+                </fieldset>
+                {errors.title && <strong className="danger">{errors.title.message}</strong>}
             </div>
             
             <button type="submit" className="custom-button submit col-1" disabled={!isDirty || !isValid}>{/*//? disabled if either of these are false */}
