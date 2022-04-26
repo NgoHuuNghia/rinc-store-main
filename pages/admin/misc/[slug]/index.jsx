@@ -28,7 +28,7 @@ const Misc = () => {
         return {id: doc.id, data: dateToJsonLocal(doc)}
     });
     useEffect(() => {
-        if(currentDatas) setDefaultKeys(["id"].concat(Object.keys(currentDatas[0].data)))
+        if(currentSnapshot) setDefaultKeys(["id"].concat(Object.keys(currentDatas[0].data)))
     }, [currentSnapshot])
     useEffect(() => {
         setDataState()
@@ -202,15 +202,16 @@ function DataListTable({ currentDatas, getData, current, defaultKeys }) {
     const [dynamicGrid, setDynamicGrid] = useState({})
 
     useEffect(() => {
-        if (currentDatas) {
+        if (defaultKeys) {
             setDynamicGrid({
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr " + defaultKeys.reduce(
                     (sum) => sum += "1fr ", ''
                 ),
             })
+            console.log('defaultKeys')
         }
-    }, [currentDatas])
+    }, [defaultKeys])
     
     return (
         <ul className={`table`} style={dynamicGrid}>

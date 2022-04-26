@@ -42,7 +42,7 @@
     .about_monitor{
         flex: 1;
         .about_monitor_img{
-            img{
+            >div{
                height: 350px; 
             }
         }
@@ -88,7 +88,7 @@
             flex: 1;
             margin-top: 50px;
             .about_monitor_img{
-                img{
+                >div{
                    height: 205px; 
                 }
             }
@@ -116,7 +116,7 @@
         .about_monitor{
             flex: 1;
             .about_monitor_img{
-                img{
+                >div{
                    height: 230px; 
                 }
             }

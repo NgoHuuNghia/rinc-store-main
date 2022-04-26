@@ -170,7 +170,7 @@ const index = ({blog, path, crumbList}) => {
                             </div>
                             <div className={style.card__body}>
                                 <span  className={`${style.tag} ${style.tag_red}`}>American Truck Simulator</span>
-                                <h4>What's new in 2022 Tech</h4>
+                                <h4>What&rsquo;s new in 2022 Tech</h4>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non
                                     nemo doloribus.
                                     Doloremque, nihil! At ea atque quidem!</p>
@@ -197,7 +197,7 @@ const index = ({blog, path, crumbList}) => {
                             </div>
                             <div className={style.card__body}>
                                 <span  className={`${style.tag} ${style.tag_red}`}>American Truck Simulator</span>
-                                <h4>What's new in 2022 Tech</h4>
+                                <h4>What&rsquo;s new in 2022 Tech</h4>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non
                                     nemo doloribus.
                                     Doloremque, nihil! At ea atque quidem!</p>
@@ -224,7 +224,7 @@ const index = ({blog, path, crumbList}) => {
                             </div>
                             <div className={style.card__body}>
                                 <span  className={`${style.tag} ${style.tag_red}`}>American Truck Simulator</span>
-                                <h4>What's new in 2022 Tech</h4>
+                                <h4>What&rsquo;s new in 2022 Tech</h4>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non
                                     nemo doloribus.
                                     Doloremque, nihil! At ea atque quidem!</p>
@@ -252,7 +252,7 @@ const index = ({blog, path, crumbList}) => {
                             </div>
                             <div className={style.card__body}>
                                 <span  className={`${style.tag} ${style.tag_red}`}>American Truck Simulator</span>
-                                <h4>What's new in 2022 Tech</h4>
+                                <h4>What&rsquo;s new in 2022 Tech</h4>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non
                                     nemo doloribus.
                                     Doloremque, nihil! At ea atque quidem!</p>
@@ -279,7 +279,7 @@ const index = ({blog, path, crumbList}) => {
                             </div>
                             <div className={style.card__body}>
                                 <span  className={`${style.tag} ${style.tag_red}`}>American Truck Simulator</span>
-                                <h4>What's new in 2022 Tech</h4>
+                                <h4>What&rsquo;s new in 2022 Tech</h4>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non
                                     nemo doloribus.
                                     Doloremque, nihil! At ea atque quidem!</p>
@@ -306,7 +306,7 @@ const index = ({blog, path, crumbList}) => {
                             </div>
                             <div className={style.card__body}>
                                 <span  className={`${style.tag} ${style.tag_red}`}>American Truck Simulator</span>
-                                <h4>What's new in 2022 Tech</h4>
+                                <h4>What&rsquo;s new in 2022 Tech</h4>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non
                                     nemo doloribus.
                                     Doloremque, nihil! At ea atque quidem!</p>

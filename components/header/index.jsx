@@ -25,10 +25,6 @@ const Header = () => {
     const [searchQuery, setsearchQuery] = useState('')
     const [searchResults, setSearchResults] = useState([])
 
-    useEffect( async() => {
-        FetchResults(searchQuery)
-    }, [searchQuery])
-
     const FetchResults = useCallback(
         debounce(async (queryValue) => {
             if (queryValue.length >= 1) {
@@ -46,6 +42,9 @@ const Header = () => {
         []
     );
     
+    useEffect(() => {
+        FetchResults(searchQuery)
+    }, [searchQuery, FetchResults])
     return (
         <header
             className={

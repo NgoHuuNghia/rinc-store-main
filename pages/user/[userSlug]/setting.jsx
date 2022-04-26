@@ -6,7 +6,7 @@ const setting = () => {
             <div className ={styles.setting__navigation} >
                 <div className ={styles.setting__navigation__header} >
                     <div className ={styles.setting__navigation__avatar}  >
-                        <img className ={styles.avatar__profile}  src="img/avatar.jpg" alt=""/>
+                        <img className ={styles.avatar__profile}  src="/imageDat/img/avt.jpg" alt=""/>
                     </div>
                     <div className ={styles.setting__navigation__name} >
                         Nhật Midas

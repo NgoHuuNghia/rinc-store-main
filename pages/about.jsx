@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import Aos from 'aos'
 import 'aos/dist/aos.css'
 import Image from 'next/image'
-const about = () => {
+const About = () => {
     useEffect(() => {
         Aos.init();
     })
@@ -15,7 +15,7 @@ const about = () => {
             <div className={styles.about_greeting}>
                 <div className={styles.about_greeting_rinc}>
                     <div>
-                        <Image src="/imageDat/img/logonew.png" alt="the logo for Rinc"/>
+                        <Image src="/imageDat/img/logonew.png" alt="the logo for Rinc" width={100} height={100}/>
                     </div>
                 </div>
                 <div className={styles.about_greeting_subtitle} >
@@ -45,7 +45,9 @@ const about = () => {
             </div>
             <div className={styles.about_monitor}>
                 <div className={styles.about_monitor_img} data-aos="zoom-in-down">
-                    <img src="imageDat/img/imageheader.jpg" alt=""/>
+                    <div>
+                        <Image src="/imageDat/img/imageheader.jpg" alt="the logo for Rinc" layout='fill'/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -123,7 +125,7 @@ const about = () => {
             <div className={styles.about_content_ctas}>
                 <div className={styles.about_cta_content_text} data-aos="fade-right">
                     <h2 className={styles.about_cta_text_title}>Join the community</h2>
-                    <div className={styles.about_cta_text_des}>Meet people, join parties, form clans, participate in in-game chats and more! With over 100 million potential friends (or competitors), you're still not happy.</div>
+                    <div className={styles.about_cta_text_des}>Meet people, join parties, form clans, participate in in-game chats and more! With over 100 million potential friends (or competitors), youre still not happy.</div>
                     <div className={styles.about_cta_content_btn}>Community</div>
                 </div>
                 <div className={styles.about_cta_content_image} data-aos="zoom-in-down">
@@ -227,27 +229,27 @@ const about = () => {
                 <div className={styles.from_____detail} >
                     <div className={styles.form_caicontact} >
                         <div className={styles.form_____name} >
-                            <label for="name">N A M E</label>
+                            <label htmlFor="name">N A M E</label>
                             <div className={styles.input_____name} >
                                 <input type="text" className={styles.nameInput} />
                             </div>
                         </div>
                         <div className={styles.form_____email} >
-                            <label for="email">E M A I L</label>
+                            <label htmlFor="email">E M A I L</label>
                             <div className={styles.input_____email} >
                                 <input type="text" className={styles.emailInput} />
                             </div>
                         </div>
                     </div>            
                     <div className={styles.form_____phone} >
-                        <label for="phone">P H O N E</label>
+                        <label htmlFor="phone">P H O N E</label>
                         <div className={styles.input_____phone} >
                             <input type="text" className={styles.phoneInput} />
                         </div>
                     </div>
     
                     <div className={styles.form_____company} >
-                        <label for="company">C O M P A N Y</label>
+                        <label htmlFor="company">C O M P A N Y</label>
                         <div className={styles.input_____company} >
                             <input type="text" className={styles.companyInput}/>
                         </div>
@@ -263,4 +265,4 @@ const about = () => {
     );
 }
 
-export default about;
+export default About;

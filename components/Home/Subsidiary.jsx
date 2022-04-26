@@ -26,7 +26,7 @@ const Subsidiary = ({tab1, tab2}) => {
             setActiveTabItem(tab2[0].slug)
             setActiveTabViewer(tab2[0])
         }
-    }, [tabState])
+    }, [tabState, tab1, tab2])
     
 
     return (

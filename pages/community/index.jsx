@@ -24,7 +24,7 @@ export async function getServerSideProps(){
     };
 }
 
-const index = ({blogsDesc}) => {
+const Index = ({blogsDesc}) => {
     const [blogController, setBlogController] = useState({title: '', content: ''})
     const { user, username } = useContext(UserContext)
 
@@ -543,4 +543,4 @@ const index = ({blogsDesc}) => {
     );
 }
 
-export default index;
+export default Index;
