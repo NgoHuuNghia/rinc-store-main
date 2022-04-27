@@ -4,6 +4,7 @@ import {FaShoppingCart} from 'react-icons/fa'
 import {MdLogout, MdLogin} from 'react-icons/md'
 import {RiAdminFill} from 'react-icons/ri'
 
+import Link from 'next/link'
 import { auth } from '@lib/firebase';
 import { UserContext } from '@lib/globalContext';
 import toast from 'react-hot-toast';
@@ -17,14 +18,16 @@ const User = () => {
 
     return (
         <div className={`user-container`} onMouseOver={() => setSubmenu(true)} onMouseLeave={() => setSubmenu(false)}>
-            <div onClick={() => console.log(role)} className='avatar-container'>
-                <div className='avatar'><Image src={user?.photoURL || `/icons/hacker.png`} width={100} height={100} quality='50' alt={username}></Image></div>
-                {user && shoppingCart.length >= 1 && (
-                    <div className='cart-container'>
-                        <FaShoppingCart />
-                    </div>
-                )}
-            </div>
+            <Link href={`/user/${username}`}>
+                <div className='avatar-container'>
+                    <div className='avatar'><Image src={user?.photoURL || `/icons/hacker.png`} width={100} height={100} quality='50' alt={username}></Image></div>
+                    {user && shoppingCart.length >= 1 && (
+                        <div className='cart-container'>
+                            <FaShoppingCart />
+                        </div>
+                    )}
+                </div>
+            </Link>
             <div className={`user-sublinks ${submenu && 'display'}`}>
                 <ul>
                     <li>

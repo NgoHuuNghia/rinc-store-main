@@ -10,7 +10,7 @@ import Subsidiary from '@components/Home/Subsidiary'
 //todo import { useGlobalContext } from '../context'
 
 //? HARD limit on the post
-const LIMIT = 5
+const LIMIT = 7
 
 export async function getServerSideProps(){
     // allow us to just ref any sub groups no mater how nested
