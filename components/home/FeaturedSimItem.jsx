@@ -3,7 +3,9 @@ import Image from "next/image";
 
 import { toTop } from "@lib/commonFunctions";
 
-const FeaturedSimItem = ({mainImageUrl, slug}) => {
+const FeaturedSimItem = ({mainImageUrl, slug, basePrice, discount}) => {
+    const truePrice = basePrice - (basePrice * (discount/100))
+
     return (
         <Link passHref href={`/${slug}`} onClick={() => toTop()} className='speical-card-btn'>
             <a>
@@ -11,7 +13,7 @@ const FeaturedSimItem = ({mainImageUrl, slug}) => {
                     <Image src={mainImageUrl} alt={slug} width={300} height={300} quality="25" layout="responsive" objectPosition='center' objectFit="cover"/>
                 </div>
                 <div className="price">
-                    <p>220.000d</p>
+                    <p>${truePrice.toFixed(2)}</p>
                 </div>
             </a>
         </Link>

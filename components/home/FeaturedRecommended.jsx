@@ -1,8 +1,6 @@
 // import React, {useState, useEffect} from 'react'
 import { useSliderControl } from '@lib/hooks'
 import Link from 'next/link'
-import { useEffect, useRef } from 'react'
-//$ import parse from 'html-react-parser'
 
 import {FaChevronRight, FaChevronLeft} from 'react-icons/fa'
 import FeaturedRecommendedItem from './FeaturedRecommendedItem'

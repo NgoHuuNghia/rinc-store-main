@@ -73,95 +73,7 @@ export async function getStaticPaths() {
     };
 }
 
-// const index = ({
-//     game: {title, mainImageUrl, secondaryImageUrls, releasedAt, updatedAt, metacritic}
-// }) => {
-//     //! test
-//     console.log(mainImageUrl)
-    
-//     const fromL = useMediaQuery({ minWidth: 800})
-//     const fromS = useMediaQuery({ minWidth: 400})
-
-//     return (
-//         <div>
-//             {fromS && "ass"}
-//             {fromL && title}
-//         </div>
-//     );
-// }
-
-// export default index;
-
-//$ source
-
 const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
-    //!         const {
-    //!             name, description, metacritic, released, updated, background_image, background_image_additional, ratings,
-    //!             platforms, parent_platforms, stores, developers, genres, tags, publishers, esrb_rating
-    //!         } = detail
-    // const {windowWidth} = useWindowSize()
-    // const fromXl = useMediaQuery({ minWidth: 1000})
-    // const detailContainer = useRef(null)
-    
-    // const [ readMore, setReadMore ] = useState(false)
-    // const [primaryHeight, setPrimaryHeight] = useState(0)
-    // const [secondaryHeight, setSecondaryHeight] = useState(0)
-    // //? let primaryHeight = 0
-    // //? let secondaryHeight = 0
-    // let primaryContainer = null
-    // let primaryMask = null
-    // let primaryReadMore = null
-
-    // useEffect(() => {
-    //     setPrimaryHeight(detailContainer.current.children[0].clientHeight)
-    //     setSecondaryHeight(detailContainer.current.children[1].clientHeight)
-    //     //? primaryHeight = detailContainer.current.children[0].clientHeight
-    //     //? secondaryHeight = detailContainer.current.children[1].clientHeight
-    //     primaryContainer = detailContainer.current.children[0]
-    //     primaryMask = detailContainer.current.children[0]
-    //     primaryReadMore = detailContainer.current.children[2]
-
-    //     detailContainer.current.style.height = (primaryHeight > secondaryHeight ? `${secondaryHeight}px` : '')
-    //     primaryContainer.style.height = (primaryHeight > secondaryHeight ? `${secondaryHeight}px` : '')
-    //     primaryMask.style.maskImage = (primaryHeight > secondaryHeight ? `linear-gradient(to top, rgba(0, 0, 0, 0) 0%, #151515 30%)` : 'none')
-    //     primaryReadMore.style.color = 'white'
-    // }, [])
-    // useEffect(() => {
-    //     primaryContainer = detailContainer.current.children[0]
-    //     primaryMask = detailContainer.current.children[0]
-    //     primaryReadMore = detailContainer.current.children[2]
-
-    //     if(!readMore) {
-    //         detailContainer.current.style.height = (primaryHeight > secondaryHeight ? `${secondaryHeight}px` : '')
-    //         primaryContainer.style.height = (primaryHeight > secondaryHeight ? `${secondaryHeight}px` : '')
-    //         primaryMask.style.maskImage = (primaryHeight > secondaryHeight ? `linear-gradient(to top, rgba(0, 0, 0, 0) 0%, #151515 30%)` : 'none')
-    //         primaryReadMore.style.color = 'white'
-    //     }
-    //     else {
-    //         detailContainer.current.style.height = ''
-    //         primaryContainer.style.height = ''
-    //         primaryReadMore.style.color = '#9b0027'
-    //         primaryMask.style.maskImage = `none`
-    //     }
-    // }, [readMore])
-    // useEffect(() => {
-    //     primaryContainer = detailContainer.current.children[0]
-    //     primaryMask = detailContainer.current.children[0]
-    //     primaryReadMore = detailContainer.current.children[2]
-
-    //     if(!fromXl) {
-    //         setReadMore(false)
-    //         detailContainer.current.style.height = ``
-    //         primaryContainer.style.height = ``
-    //         primaryMask.style.maskImage = 'none'
-    //     } else {
-    //         setReadMore(false)
-    //         detailContainer.current.style.height = (primaryHeight > secondaryHeight ? `${secondaryHeight}px` : '')
-    //         primaryContainer.style.height = (primaryHeight > secondaryHeight ? `${secondaryHeight}px` : '')
-    //         primaryMask.style.maskImage = (primaryHeight > secondaryHeight ? `linear-gradient(to top, rgba(0, 0, 0, 0) 0%, #151515 30%)` : 'none')
-    //         primaryReadMore.style.color = 'white'
-    //     }
-    // }, [windowWidth])
     const router = useRouter()
     const { user, username, shoppingCart } = useContext(UserContext)
     const gameRef = doc(firestore, path)
@@ -206,9 +118,10 @@ const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
     
     const gameData = realTimeGame || game
     const {title, slug, mainImageUrl, secondaryImageUrls, releasedAt, updatedAt, 
-    metacritic, description, basePrice, discount, userRatings, genres, platforms} = gameData
+    metacritic, description, basePrice, discount, userRatings, genres, platforms, esrbRating} = gameData
 
     const reviews = realTimeReviews || staticReviews
+    const truePrice = basePrice - (basePrice * (discount/100))
 
     const addToCart = async() => {
         const cartRef = collection(firestore, 'users', user.uid, 'shoppingCart');
@@ -219,7 +132,7 @@ const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
             platforms: platforms,
             basePrice: basePrice,
             discount: discount,
-            truePrice: basePrice - (basePrice * (discount/100)),
+            truePrice: truePrice,
             mainImageUrl: mainImageUrl,
         }
     
@@ -234,27 +147,25 @@ const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
                 secondBackgroundUrl={secondaryImageUrls[secondaryImageUrls.length - 1]}
             />
             <div className='breadcrumbs'>
-                <div>
-                    {/*//$ <a href='/'>{genres[0].name}</a>
-                    {genres[1] && (
-                        <>
-                            <span>/</span>
-                            <a href='/'>{genres[1].name}</a>
-                        </>
-                    )} */}
-                    <Link href='/'><a>{`genres-name`}</a></Link>
-                </div>
-                <FaChevronRight />
+                {genres[1] && (
+                    <>
+                        <div>
+                            {/* //$ link to search genres */}
+                            <Link href="/"><a>{genres[1].value}</a></Link>
+                            {/* <Link href='/'><a>{`genres-name`}</a></Link> */}
+                        </div>
+                        <FaChevronRight />
+                    </>
+                )}
                 <div>
                     {/*//$ <a href="/">{developers[0].name}</a> */}
-                    <Link href="/"><a>{`dev-name`}</a></Link>
+                    <Link href="/"><a>{`ubisoft`}</a></Link>
                 </div>
                 <FaChevronRight />
                 <div>
-                    <p href="/">{title}</p>
+                    <p>{title}</p>
                 </div>
             </div>
-            {/*//$ <div className='detail' ref={detailContainer}> */}
             <div className='detail'>
                 <div className='detail-primary'>
                     <section className='trailer-mobile'>
@@ -262,8 +173,23 @@ const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
                             <div className='head-release'>{releasedAt}</div>
                             {/*//$ <ConsoleIcons parent_platforms={parent_platforms}/> */}
                             <div className='consoles'>
-                                <FaPlaystation />
-                                <FaXbox />
+                                {platforms.map(platform => {
+                                    if(platform.value.includes('Playstation')){
+                                        return (
+                                            <FaPlaystation key={platform.id} />
+                                        )
+                                    }
+                                    if(platform.value.includes('XBOX')){
+                                        return (
+                                            <FaXbox key={platform.id} />
+                                        )
+                                    }
+                                    if(platform.value.includes('Desktop')){
+                                        return (
+                                            <FaWindows key={platform.id} />
+                                        )
+                                    }
+                                })}
                             </div>
                         </div>
                         <a className="trailer-main">
@@ -287,31 +213,51 @@ const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
                             <div className='head-release'>{releasedAt}</div>
                             {/*//$ <ConsoleIcons parent_platforms={parent_platforms}/> */}
                             <div className='consoles'>
-                                <FaPlaystation />
-                                <FaXbox />
+                                {platforms.map(platform => {
+                                    if(platform.value.includes('Playstation')){
+                                        return (
+                                            <FaPlaystation key={platform.id} />
+                                        )
+                                    }
+                                    if(platform.value.includes('XBOX')){
+                                        return (
+                                            <FaXbox key={platform.id} />
+                                        )
+                                    }
+                                    if(platform.value.includes('Desktop')){
+                                        return (
+                                            <FaWindows key={platform.id} />
+                                        )
+                                    }
+                                })}
                             </div>
                         </div>
                         <h1>{title}</h1>
                         <div className='glance-info'>
                             <p>Developer:</p>
-                            {/* <a href="/">{developers[0].name}</a> */}
-                            <Link href="/"><a>{`dev-name`}</a></Link>
+                            {/*//$ <a href="/">{developers[0].name}</a> */}
+                            <Link href="/"><a>{`ubisoft`}</a></Link>
                             <p>Publisher:</p>
-                            {/* <a href="/">{publishers.length >= 1 ? publishers[0].name : developers[0].name}</a> */}
-                            <Link href="/"><a>{`publisher-name`}</a></Link>
+                            {/*//$ <a href="/">{publishers.length >= 1 ? publishers[0].name : developers[0].name}</a> */}
+                            <Link href="/"><a>{`fromsoft`}</a></Link>
                             <p>Released:</p>
                             <p>{releasedAt}</p>
                         </div>
                         <div className='tag-container'>
                             <p>Tags</p>
                             <div>{/* limit map by 4 */}
-                                {/* {tags
+                                {/*//$ {tags
                                     .slice(0, 3)
                                     .map((item) => {
                                         return <a href="/"><p>{item.name}</p></a>
                                     })
                                 } */}
-                                <Link href="/"><a><p>{`tags-name`}</p></a></Link>
+                                {genres
+                                    .slice(0, 3)
+                                    .map((item) => {
+                                        return <Link key={item.id} href="/"><a><p>{item.value}</p></a></Link>
+                                    })
+                                }
                                 <Link href="/"><a><p>+</p></a></Link>
                             </div>
                         </div>
@@ -357,7 +303,7 @@ const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
                             <div className="glance-age">
                                 <p>Age rating</p>
                                 {/*//$ <DetailAgeRating esrb_rating={esrb_rating}/> */}
-                                tempt adult +16
+                                {esrbRating.value}
                             </div>
                             <div className="glance-updated">
                                 <p>Last updated</p>
@@ -366,33 +312,27 @@ const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
                             <div className="glance-platforms linkables">
                                 <p>Last updated</p>
                                 <div>
-                                    {/*//$ {platforms.map((item, index) => {
-                                        return <><span>{item.platform.name}</span>
+                                    {platforms.map((item, index) => {
+                                        return <React.Fragment key={item.id}><span>{item.value}</span>
                                         {platforms.length - 1 > index
                                             ? <strong>, </strong>
                                             : null
                                         }
-                                        </>
-                                    })} */}
-                                    <span>{`platform-name`}</span>
-                                    <strong>, </strong>
-                                    <span>{`platform-name`}</span>
+                                        </React.Fragment>
+                                    })}
                                 </div>
                             </div>
                             <div className="glance-genres linkables">
                                 <p>Genres</p>
                                 <div>
-                                    {/* {genres.map((item, index) => {
-                                        return <><span>{item.name}</span>
+                                    {genres.map((item, index) => {
+                                        return <React.Fragment key={item.id}><span>{item.value}</span>
                                         {genres.length - 1 > index
                                             ? <strong>, </strong>
                                             : null
                                         }
-                                        </>
-                                    })} */}
-                                    <span>{`genres-name`}</span>
-                                    <strong>, </strong>
-                                    <span>{`genres-name`}</span>
+                                        </React.Fragment>
+                                    })}
                                 </div>
                             </div>
                             {/* {tags.length === 0
@@ -414,9 +354,9 @@ const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
                             <div className="glance-tags linkables">
                                 <p>Tags</p>
                                 <div>
-                                    <span>{`tags-name`}</span>
+                                    <span>{`hot`}</span>
                                     <strong>, </strong>
-                                    <span>{`tags-name`}</span>
+                                    <span>{`soul-games`}</span>
                                 </div>
                             </div>
                         </div>
@@ -530,8 +470,24 @@ const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
                                 <div className='action-play'>
                                     <div className="play-demo">
                                         <div>
-                                            <h5>Download {title} Demo On Steam App</h5>
-                                            <FaWindows />
+                                            <h5>Download the Rinc app to manage your games</h5>
+                                            {platforms.map(platform => {
+                                                if(platform.value.includes('Playstation')){
+                                                    return (
+                                                        <FaPlaystation key={platform.id} />
+                                                    )
+                                                }
+                                                if(platform.value.includes('XBOX')){
+                                                    return (
+                                                        <FaXbox key={platform.id} />
+                                                    )
+                                                }
+                                                if(platform.value.includes('Desktop')){
+                                                    return (
+                                                        <FaWindows key={platform.id} />
+                                                    )
+                                                }
+                                            })}
                                         </div>
                                         <div>
                                             <Link href='/'><a>Download</a></Link>
@@ -540,10 +496,27 @@ const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
                                     <div>
                                         <div>
                                             <h5>Buy {title ? title : "where the title..."}</h5>
-                                            <FaWindows />
+                                            {platforms.map(platform => {
+                                                if(platform.value.includes('Playstation')){
+                                                    return (
+                                                        <FaPlaystation key={platform.id} />
+                                                    )
+                                                }
+                                                if(platform.value.includes('XBOX')){
+                                                    return (
+                                                        <FaXbox key={platform.id} />
+                                                    )
+                                                }
+                                                if(platform.value.includes('Desktop')){
+                                                    return (
+                                                        <FaWindows key={platform.id} />
+                                                    )
+                                                }
+                                            })}
                                         </div>
                                         <div >
-                                            <p>{basePrice ? "$" + basePrice : "no pricing yet..."}</p>
+                                            {discount >= 1 && <p className='discount'>{discount}%</p>}
+                                            <p className='price'>{basePrice ? "$" + truePrice : "no pricing yet..."}</p>
                                             {/*//! also add case if game is already own or in cart */}
                                             {username
                                                 ? (

@@ -382,7 +382,7 @@ header nav > div.sublinks > ul > li > .mobile-submenu {
   position: absolute;
   top: 80%;
   left: -0.5em;
-  z-index: -10;
+  z-index: 100;
   opacity: 0;
   background-color: #8b0023;
   transition: all 0.1s linear;
@@ -469,12 +469,13 @@ header nav > div.sublinks > div.user-container > div.user-sublinks {
   position: absolute;
   top: 80%;
   left: -0.5em;
-  z-index: -10;
+  z-index: 100;
   opacity: 0;
   background-color: #8b0023;
   transition: all 0.1s linear;
   top: 100%;
-  left: -400%;
+  left: unset;
+  right: 0;
 }
 header nav > div.sublinks > div.user-container > div.user-sublinks.display {
   visibility: visible;
@@ -1897,7 +1898,7 @@ div.subsidiary-section div.subsidiary-container > section.tab-container > div.ta
   font-size: 0.8em;
   color: #6f6f6f;
 }
-div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-list > div:not(:first-child) > a.tab-item > div.item > div:nth-child(2) {
+div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-list > div:not(:first-child) > a.tab-item > div.item > div.prices {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1905,25 +1906,25 @@ div.subsidiary-section div.subsidiary-container > section.tab-container > div.ta
   gap: 0;
   width: 25%;
 }
-div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-list > div:not(:first-child) > a.tab-item > div.item > div:nth-child(2) > div:nth-child(1) {
+div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-list > div:not(:first-child) > a.tab-item > div.item > div.prices > div.discount-percent {
   background-color: #4c6b22;
   display: inline;
   padding: 0.1em 0.3em;
   color: #a4d007;
 }
-div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-list > div:not(:first-child) > a.tab-item > div.item > div:nth-child(2) > div:nth-child(2) {
+div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-list > div:not(:first-child) > a.tab-item > div.item > div.prices > div.price {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
   gap: 0;
 }
-div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-list > div:not(:first-child) > a.tab-item > div.item > div:nth-child(2) > div:nth-child(2) > p:nth-child(1) {
+div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-list > div:not(:first-child) > a.tab-item > div.item > div.prices > div.price > p.strikeout {
   text-decoration: line-through;
   color: #6f6f6f;
   font-size: 0.9em;
 }
-div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-list > div:not(:first-child) > a.tab-item > div.item > div:nth-child(2) > div:nth-child(2) > p:nth-child(2) {
+div.subsidiary-section div.subsidiary-container > section.tab-container > div.tab-list > div:not(:first-child) > a.tab-item > div.item > div.prices > div.price > p.true-price {
   color: #c6d4df;
   font-size: 1em;
 }
@@ -3121,7 +3122,15 @@ div.detail-container div.detail > div.detail-secondary > div.height-container > 
 div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > section.action > div.action-play > div > div:nth-child(2) > * {
   display: inline-block;
 }
-div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > section.action > div.action-play > div > div:nth-child(2) > p {
+div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > section.action > div.action-play > div > div:nth-child(2) > p.discount {
+  padding: 0.4em;
+  margin: 0.2em;
+  color: #a4d007;
+  background: #4c6b22;
+  font-weight: 600;
+  border-radius: 0.1em;
+}
+div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > section.action > div.action-play > div > div:nth-child(2) > p.price {
   padding: 0 0.5em;
 }
 div.detail-container div.detail > div.detail-secondary > div.height-container > div.interaction > section.action > div.action-play > div > div:nth-child(2) > button {
@@ -3324,19 +3333,19 @@ div.detail-container div.detail > div.recommendations > section.recommended > di
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 0.5em;
+  gap: 0;
   background: black;
-  padding-right: 0.2em;
   align-self: flex-end;
 }
-div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(2) > a > div:last-child > p:nth-child(1) {
+div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(2) > a > div:last-child > p.discount {
   background-color: #4c6b22;
   color: #a4d007;
   font-size: 1.1em;
-  padding: 0.2em;
+  padding: 0.3em;
 }
-div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(2) > a > div:last-child > p:nth-child(2) {
+div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(2) > a > div:last-child > p.price {
   padding-right: 0.5em;
+  padding: 0.3em;
 }
 div.detail-container div.detail > div.recommendations > section.recommended > div > div:nth-child(2) > a:nth-child(3) {
   display: none;

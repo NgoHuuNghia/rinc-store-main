@@ -1,12 +1,10 @@
 import { toTop, sliderControlClass } from "@lib/commonFunctions";
 import Link from "next/link";
-import parse from 'html-react-parser'
 import Image from "next/image";
-import { useRef, useEffect } from "react";
 
 const FeaturedRecommendedItem = ({
-    mainImageUrl, title, slug, description, secondaryImageUrls, description,
-    index, sliderIndex, length, getHeight
+    mainImageUrl, title, slug, description,
+    index, sliderIndex, length
 }) => {
     const position = sliderControlClass(index, sliderIndex, length)
 

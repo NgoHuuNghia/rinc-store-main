@@ -4,13 +4,11 @@ import { FaWindows } from 'react-icons/fa'
 import { toTop } from '@lib/commonFunctions'
 import Image from 'next/image'
 
-// const Tabs = ({toggle, name, background_image, genres, id}) => {
 const Tabs = ({
-    item: {slug, title, basePrice, mainImageUrl, genres}, item,
+    item: {slug, title, basePrice, discount, mainImageUrl, genres}, item,
     activeTabItem, setActiveTabItem, setActiveTabViewer
 }) => {
-    // const { hoverTabItem, tabActives } = useGlobalContext()
-    // const { tabCurrent } = tabActives
+    const truePrice = basePrice - (basePrice * (discount/100))
 
     return (
         <Link 
@@ -41,11 +39,15 @@ const Tabs = ({
                             })}
                         </small>
                     </div>
-                    <div>
-                        <div>-10%</div>
-                        <div>
-                            <p>${basePrice}</p>
-                            <p>${basePrice}</p>
+                    <div className="prices">
+                        {discount >= 1
+                            && <div className='discount-percent'>-{discount}%</div>
+                        }
+                        <div className='price'>
+                            {discount >= 1
+                                && <p className='strikeout'>{`$${basePrice.toFixed(2)}`}</p>
+                            }
+                            <p className='true-price'>{`$${truePrice.toFixed(2)}`}</p>
                         </div>
                     </div>
                 </div>

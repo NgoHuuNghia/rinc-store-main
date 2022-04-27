@@ -3,7 +3,8 @@ import { toTop } from '@lib/commonFunctions'
 import Link from 'next/link'
 import Image from 'next/image'
 
-const MoreLikeSeriesComponent = ({ title, slug, mainImageUrl, basePrice }) => {
+const MoreLikeSeriesComponent = ({ title, slug, mainImageUrl, basePrice, discount }) => {
+    const truePrice = basePrice - (basePrice * (discount/100))
 
     return (
         <Link passHref href={`/${slug}`} onClick={() => toTop()}>
@@ -16,8 +17,8 @@ const MoreLikeSeriesComponent = ({ title, slug, mainImageUrl, basePrice }) => {
                     <h4>{title}</h4>
                 </div>
                 <div>
-                    <p>-70%</p>
-                    <p>{basePrice ? basePrice + `$` : "no pricing yet..."}</p>
+                    {discount >= 1 && <p className='discount'>-{discount}%</p>}
+                    <p className='price'>{basePrice ? truePrice + `$` : "no pricing yet..."}</p>
                 </div>
             </a>
         </Link>

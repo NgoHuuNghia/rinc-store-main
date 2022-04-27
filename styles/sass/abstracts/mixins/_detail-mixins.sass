@@ -54,17 +54,17 @@
                             padding-left: .5em
                             
                     >div:last-child
-                        @include flex($justify: flex-start, $gap: .5em)
+                        @include flex($justify: flex-start)
                         background: $bgc-important
-                        padding-right: .2em
                         align-self: flex-end
-                        >p:nth-child(1)
+                        >p.discount
                             background-color: $bgc-discounted
                             color: $fc-discounted
                             font-size: 1.1em
-                            padding: .2em
-                        >p:nth-child(2)
+                            padding: .3em
+                        >p.price
                             padding-right: .5em
+                            padding: .3em
                     &:nth-child(3)
                         display: none
                         @include bs.from(m)

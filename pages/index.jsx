@@ -43,29 +43,6 @@ export async function getServerSideProps(){
 }
 
 const Home = ({gamesDesc, gamesAsc}) => {
-    //todo const { 
-    //todo     featuredList, 
-    //todo     featuredListRecent, 
-    //todo     featuredListRecommended, 
-    //todo     featuredListSim,
-    //todo     toggleIndex,
-    //todo     tabActives,
-    //todo     toggleTab,
-    //todo } = useGlobalContext()
-    //todo const { tabToggle } = tabActives
-
-    //? Types
-    //todo const sliderMain = 'sliderMain'
-    //todo const sliderRecomended = 'sliderRecomended'
-    
-    //? Tabs
-    //todo const tabList = featuredList.concat(featuredListRecent, featuredListRecommended, featuredListSim)
-    //todo const tabFilter = tabList.filter((thing, index, self) =>
-    //todo     index === self.findIndex((t) => (
-    //todo         t.id === thing.id && t.name === thing.name
-    //todo     ))
-    //todo )
-
     return (
         <section className='home-container'>
             <div className='hero'>

@@ -60,7 +60,7 @@ const Index = ({blogsDesc}) => {
     return (
         <div className={style.container}>
             <section className={style.community}>
-                <header>
+                <div>
                     <div className={style.community__header__title}>
                         <h1>Community Activity</h1>
                         <p>
@@ -197,7 +197,7 @@ const Index = ({blogsDesc}) => {
                             </div>
                         )
                     }
-                </header>
+                </div>
                 <div className={style.community__main}>
                     <div className={style.community__main__menu}>
                         <ul>

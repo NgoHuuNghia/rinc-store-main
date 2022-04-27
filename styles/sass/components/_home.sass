@@ -373,21 +373,21 @@ div.subsidiary-section
                                     width: 100%
                                     font-size: .8em
                                     color: $fc-subsidiary-unimportant
-                            >div:nth-child(2)
+                            >div.prices
                                 @include flex( $direction: column, $align: flex-end)
                                 width: 25%
-                                >div:nth-child(1)
+                                >div.discount-percent
                                     background-color: $bgc-discounted
                                     display: inline
                                     padding: .1em .3em
                                     color: $fc-discounted
-                                >div:nth-child(2)
+                                >div.price
                                     @include flex($direction: column, $align: flex-end )
-                                    >p:nth-child(1)
+                                    >p.strikeout
                                         text-decoration: line-through
                                         color: $fc-subsidiary-unimportant
                                         font-size: .9em
-                                    >p:nth-child(2)
+                                    >p.true-price
                                         color: $fc-default
                                         font-size: 1em
                         &.active
