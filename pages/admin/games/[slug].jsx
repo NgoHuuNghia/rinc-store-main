@@ -88,7 +88,7 @@ function GameManagerForm({gameRef, defaultValues, genresData, platformsData, sto
     const { register, handleSubmit, formState, reset, control } = useForm({ defaultValues, mode: 'onChange' });//? mode act like state
     const { isValid, isDirty, errors } = formState
 
-    const updateGame = async ({ title, esrbRating, published, genres, platforms, stores, description, basePrice, discount }) => {
+    const updateGame = async ({ title, esrbRating, published, genres, platforms, stores, description, basePrice, discount, metacritic }) => {
 
         await updateDoc(gameRef, {//? firestore function to update
             title: title.toLowerCase(), //? capitalized 1st letter
@@ -96,6 +96,7 @@ function GameManagerForm({gameRef, defaultValues, genresData, platformsData, sto
             description,
             basePrice,
             discount,
+            metacritic,
             published,
             genres,
             platforms,
@@ -103,7 +104,7 @@ function GameManagerForm({gameRef, defaultValues, genresData, platformsData, sto
             updatedAt: serverTimestamp(),
         })
     
-        reset({ title, esrbRating, published, genres, platforms, stores, description, basePrice, discount });//? reset the form
+        reset({ title, esrbRating, published, genres, platforms, stores, description, basePrice, discount, metacritic });//? reset the form
     
         toast.success('Game updated successfully!');
     };
@@ -201,13 +202,13 @@ function GameManagerForm({gameRef, defaultValues, genresData, platformsData, sto
             <div className='text col-1'>
                 <label htmlFor="metacritic">Metacritic: </label>
                 <input
-                    type='text'
+                    type='number'
                     name='metacritic'
                     {...register("metacritic", {
                         pattern: {value: /^[0-9]+$/, message: 'no strings'},
                         pattern: {value: /^[0-9][0-9]?$|^100$/, message: 'score 0-100 only'},
                         maxLength: { value: 3, message: 'score 0-100 only' },
-                        valueAsNumber: false,
+                        valueAsNumber: true,
                     })}
                 />
                 {errors.metacritic && <strong className="danger">{errors.metacritic.message}</strong>}
@@ -216,13 +217,13 @@ function GameManagerForm({gameRef, defaultValues, genresData, platformsData, sto
             <div className='text col-1'>
                 <label htmlFor="basePrice">Base price in dollars: </label>
                 <input
-                    type='text'
+                    type='number'
                     name='basePrice'
                     {...register("basePrice", {
                         pattern: {value: /^[0-9]+$/, message: 'no strings'},
                         pattern: {value: /^([1-9][0-9]{0,2}|1000)$/, message: 'score 0-1000 only'},
                         maxLength: { value: 4, message: 'score 0-100 only' },
-                        valueAsNumber: false,
+                        valueAsNumber: true,
                     })}
                 />
                 {errors.basePrice && <strong className="danger">{errors.basePrice.message}</strong>}
@@ -231,13 +232,13 @@ function GameManagerForm({gameRef, defaultValues, genresData, platformsData, sto
             <div className='text col-1'>
                 <label htmlFor="discount">Discount in percentage: </label>
                 <input
-                    type='text'
+                    type='number'
                     name='discount'
                     {...register("discount", {
                         pattern: {value: /^[0-9]+$/, message: 'no strings'},
                         pattern: {value: /^[0-9][0-9]?$|^100$/, message: 'score 0-100 only'},
                         maxLength: { value: 3, message: 'score 0-100 only' },
-                        valueAsNumber: false,
+                        valueAsNumber: true,
                     })}
                 />
                 {errors.discount && <strong className="danger">{errors.discount.message}</strong>}
