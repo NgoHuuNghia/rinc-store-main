@@ -1,6 +1,5 @@
-import { FaSearch, FaPlaystation, FaXbox,  } from 'react-icons/fa'
+import { FaSearch, FaPlaystation, FaXbox, FaWindows  } from 'react-icons/fa'
 import { TiCancel } from 'react-icons/ti'
-import { RiComputerLine } from 'react-icons/ri'
 
 import sublinks from '@public/publicData/sublinks'
 import { toTop } from '@lib/commonFunctions'
@@ -79,42 +78,46 @@ const Header = () => {
                         <ul>
                             {searchResults.length >= 1
                             && searchResults?.map(result => {
+                                const truePrice = result.basePrice - (result.basePrice * (result.discount/100))
                                 return (
-                                    <li key={result.slug}>
-                                        <div className='search-image'>
-                                            <Image src={result.mainImageUrl} 
-                                                alt={`title`} width={130} height={50} quality='50' objectPosition='center' objectFit="cover"
-                                            />
-                                        </div>
-                                        <div className='search-info'>
-                                            <div className='search-title-console'>
-                                                <p>{result.title}</p>
-                                                <div>
-                                                    {result.platforms.map(platform => {
-                                                        if(platform.value.includes('Playstation')){
-                                                            return (
-                                                                <FaPlaystation key={platform.id} />
-                                                            )
-                                                        }
-                                                        if(platform.value.includes('XBOX')){
-                                                            return (
-                                                                <FaXbox key={platform.id} />
-                                                            )
-                                                        }
-                                                        if(platform.value.includes('Desktop')){
-                                                            return (
-                                                                <RiComputerLine key={platform.id} />
-                                                            )
-                                                        }
-                                                    })}
+                                    <Link key={result.slug} passHref href={`/${result.slug}`}>
+                                        <li>
+                                            <div className='search-image'>
+                                                <Image src={result.mainImageUrl} 
+                                                    alt={`title`} width={130} height={50} quality='50' objectPosition='center' objectFit="cover"
+                                                />
+                                            </div>
+                                            <div className='search-info'>
+                                                <div className='search-title-console'>
+                                                    <p>{result.title}</p>
+                                                    <div>
+                                                        {result.platforms.map(platform => {
+                                                            if(platform.value.includes('Playstation')){
+                                                                return (
+                                                                    <FaPlaystation key={platform.id} />
+                                                                )
+                                                            }
+                                                            if(platform.value.includes('XBOX')){
+                                                                return (
+                                                                    <FaXbox key={platform.id} />
+                                                                )
+                                                            }
+                                                            if(platform.value.includes('Desktop')){
+                                                                return (
+                                                                    <FaWindows key={platform.id} />
+                                                                )
+                                                            }
+                                                        })}
+                                                    </div>
+                                                </div>
+                                                <div className='search-price-discount'>
+                                                    {result.discount >= 1 && <p className='base-price'>${result.basePrice}</p>}
+                                                    <p className='final-price'>${truePrice}</p>
+                                                    {result.discount >= 1 && <p className='discount'>-{result.discount}%</p>}
                                                 </div>
                                             </div>
-                                            <div className='search-price-discount'>
-                                                <p className='final-price'>${result.basePrice}</p>
-                                                <p className='discount'>-10%</p>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    </Link>
                                 )
                             })
                             }

@@ -117,6 +117,10 @@ header
                                 display: inline-flex
                                 font-size: .75em
                                 background: black
+                                >p.base-price
+                                    padding: .2em
+                                    text-decoration: line-through
+                                    color: $fc-subsidiary-unimportant
                                 >p.final-price
                                     padding: .2em
                                 >p.discount
@@ -177,10 +181,10 @@ header
                     >div.cart-container
                         position: absolute
                         top: -5%
-                        right: -5%
+                        right: -15%
                         width: 18px
                         height: 18px
-                        background: $bgc-subsidiary-hilight
+                        background: $bgc-discounted
                         border-radius: 50%
                         @include flex
                         >svg
@@ -190,4 +194,4 @@ header
                 >div.user-sublinks
                     @include sublinks
                     top: 100%
-                    left: -100%
+                    left: -400%

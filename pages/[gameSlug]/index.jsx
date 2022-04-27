@@ -205,7 +205,8 @@ const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
     }, [user, path])
     
     const gameData = realTimeGame || game
-    const {title, slug, mainImageUrl, secondaryImageUrls, releasedAt, updatedAt, metacritic, description, basePrice, userRatings} = gameData
+    const {title, slug, mainImageUrl, secondaryImageUrls, releasedAt, updatedAt, 
+    metacritic, description, basePrice, discount, userRatings, genres, platforms} = gameData
 
     const reviews = realTimeReviews || staticReviews
 
@@ -214,7 +215,11 @@ const GameDetail = ({ game, path, staticReviews, reviewsPath }) => {
         const data = {
             title: title,
             slug: slug,
+            genres: genres,
+            platforms: platforms,
             basePrice: basePrice,
+            discount: discount,
+            truePrice: basePrice - (basePrice * (discount/100)),
             mainImageUrl: mainImageUrl,
         }
     

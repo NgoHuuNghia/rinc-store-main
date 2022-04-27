@@ -2,8 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { toTop } from "@lib/commonFunctions";
 
-const FeaturedItem = ({index, mainImageUrl, slug, title}) => {
-    if(index === 5) console.log(slug)
+const FeaturedItem = ({ mainImageUrl, basePrice, discount, slug, title }) => {
+    const truePrice = basePrice - (basePrice * (discount/100))
 
     return (
         <div> 
@@ -13,10 +13,14 @@ const FeaturedItem = ({index, mainImageUrl, slug, title}) => {
             <h5>{title}</h5>
             <div>
                 <div className='price-container price-2col'>
-                    <div className='discount-percent'>-91%</div>
+                    {discount >= 1
+                        && <div className='discount-percent'>-{discount}%</div>
+                    }
                     <div className='price'>
-                        <span>588.000d</span>
-                        <p>134.000d</p>
+                        {discount >= 1
+                            && <span>${basePrice.toFixed(2)}</span>
+                        }
+                        <p>${truePrice.toFixed(2)}</p>
                     </div>
                 </div>
             </div>

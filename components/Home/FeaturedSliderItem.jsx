@@ -5,10 +5,11 @@ import { toTop, sliderControlClass } from "@lib/commonFunctions"
 import Image from "next/image"
 
 const FeaturedSliderItem = ({
-    mainImageUrl, title, slug, secondaryImageUrls,
+    mainImageUrl, title, slug, secondaryImageUrls, basePrice, discount,
     index, sliderIndex, length, getHeight,
 }) => {
     const position = sliderControlClass(index, sliderIndex, length)
+    const truePrice = basePrice - (basePrice * (discount/100))
 
     //$ const slide = useRef(null)
     //$ useEffect(() => {
@@ -39,10 +40,14 @@ const FeaturedSliderItem = ({
                     </div>
                     <div className='home-copomnent-main'>
                         <div className='price-container'>
-                            <div className='discount-percent'>-91%</div>
+                            {discount >= 1
+                                && <div className='discount-percent'>-{discount}%</div>
+                            }
                             <div className='price'>
-                                <span>588.000d</span>
-                                <p>134.000d</p>
+                                {discount >= 1
+                                    && <span>${basePrice.toFixed(2)}</span>
+                                }
+                                <p>${truePrice.toFixed(2)}</p>
                             </div>
                         </div>
                         {/*//$ <ConsoleIcons parent_platforms={parent_platforms}/> */}

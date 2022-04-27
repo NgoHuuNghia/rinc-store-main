@@ -86,6 +86,7 @@
                     flex: 0
                     font-size: .8em
                     text-align: right
+                    text-transform: capitalize
                     padding: 0 .5em
                     @include bs.from(m)
                         font-size: 1em
@@ -168,6 +169,10 @@
                         @include bs.from(l)
                             height: unset
                             @include gradient($type: mask-image, $deg-gradient: to top, $first-gradient: $bgc-transparent ,$first-percent: 0%, $second-gradient: $bgc-default, $second-percent: 30% )
+                        >h3
+                            text-transform: capitalize
+                            font-size: 1.2em
+                            margin-bottom: .5em
                         >p
                             @include card-text
                             max-width: 616px // paragraph expanding workaround

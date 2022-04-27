@@ -49,9 +49,11 @@ div.checkout-container
                         *
                             display: inline-block
                         >h4
+                            text-transform: capitalize
                             width: 100%
                             color: $fc-default
                         >i
+                            @include flex($gap: .3em, $justify: flex-start)
                             width: 100%
                             color: $fc-subsidiary-unimportant
                         >small
@@ -65,20 +67,20 @@ div.checkout-container
                         @include flex($direction: column, $align: stretch)
                         >div.prices
                             @include flex($align: stretch, $justify: center, $gap: .5em)
-                            >div:nth-child(1)
+                            >div.discount-percent
+                                @include flex
                                 background-color: $bgc-discounted
-                                display: inline
-                                padding: .1em .3em
+                                padding: .1em .2em
                                 color: $fc-discounted
-                            >div:nth-child(2)
+                            >div.price
                                 @include flex($direction: column, $align: flex-end )
-                                >p:nth-child(1)
+                                >p.strikeout
                                     text-decoration: line-through
-                                    color: $fc-subsidiary-unimportant
-                                    font-size: .7em
-                                >p:nth-child(2)
-                                    color: $fc-default
+                                    color: $fc-tag
                                     font-size: .8em
+                                >p.true-price
+                                    color: $fc-default
+                                    font-size: 1em
                         >div.remove
                             text-align: right
                             padding: .5em

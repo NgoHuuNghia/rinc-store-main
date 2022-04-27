@@ -14,6 +14,7 @@ const Enter = () => {
     const {user, username} = useContext(UserContext)
     const router = useRouter()
 
+    //? temp fix
     useEffect(() => {
         {username && router.push('/')}
     }, [username, router])

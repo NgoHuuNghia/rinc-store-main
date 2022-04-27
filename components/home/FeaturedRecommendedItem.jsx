@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRef, useEffect } from "react";
 
 const FeaturedRecommendedItem = ({
-    mainImageUrl, title, slug, secondaryImageUrls, description,
+    mainImageUrl, title, slug, description, secondaryImageUrls, description,
     index, sliderIndex, length, getHeight
 }) => {
     const position = sliderControlClass(index, sliderIndex, length)
@@ -14,6 +14,8 @@ const FeaturedRecommendedItem = ({
     //$ useEffect(() => {
     //$     if(index == 0) getHeight(slide.current.getBoundingClientRect().height)
     //$ }, [getHeight, index])
+    
+    //! missing reviews
 
     return (
         <Link passHref href={`/${slug}`} onClick={() => toTop()}>
@@ -23,8 +25,8 @@ const FeaturedRecommendedItem = ({
             >
                 <div className="top-review">
                     <div>
-                        {/* {description ? parse(description) : "loading description"} */}
-                        You are a prisoner trapped in a strange facility, filled with deadly traps and whispered secrets. At first the facility and its inhabitants all seem like a mystery to you, but soon you begin to understand: Your only chance to survive is to master the Magnet Gun and stay out of harms way. If you make yourself useful they will let you live a little longer, and sooner or later you will get your chance. As the Warden keeps on telling you: “There is always a way out…”
+                        <h3>{title}</h3>
+                        {description}
                     </div>
                     <div>
                         <div className="image-container">

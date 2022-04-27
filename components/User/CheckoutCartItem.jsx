@@ -1,16 +1,14 @@
+import { FaPlaystation, FaXbox, FaWindows  } from 'react-icons/fa'
+
 import { toTop } from "@lib/commonFunctions";
 import { firestore } from "@lib/firebase";
-import { UserContext } from "@lib/globalContext";
 import { deleteDoc, doc } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext } from "react";
 import toast from "react-hot-toast";
-import { FaWindows } from "react-icons/fa";
 
-const CheckoutCartItem = ({title, slug, mainImageUrl, basePrice, id}) => {
-    const { user } = useContext(UserContext)
-    const cartRef = doc(firestore, 'users', user.uid, 'shoppingCart', id )
+const CheckoutCartItem = ({title, slug, genres, platforms, mainImageUrl, basePrice, discount, truePrice, cartPath}) => {
+    const cartRef = doc(firestore, cartPath)
 
     return (
         <a className={`cart-item`}>
@@ -23,26 +21,47 @@ const CheckoutCartItem = ({title, slug, mainImageUrl, basePrice, id}) => {
                     <div>
                         {/*//$ <h4>{name}</h4> */}
                         <h4>{title}</h4>
-                        <i><FaWindows /></i>
+                        <i>
+                            {platforms.map(platform => {
+                                if(platform.value.includes('Playstation')){
+                                    return (
+                                        <FaPlaystation key={platform.id} />
+                                    )
+                                }
+                                if(platform.value.includes('XBOX')){
+                                    return (
+                                        <FaXbox key={platform.id} />
+                                    )
+                                }
+                                if(platform.value.includes('Desktop')){
+                                    return (
+                                        <FaWindows key={platform.id} />
+                                    )
+                                }
+                            })}
+                        </i>
                         <small>
-                            {/*//$ {genres
+                            {genres
                                 .slice(0, 3)
                                 .map((item, index, array) => {
                                     if( index === array.length - 1){
-                                        return item.name
-                                    } else return item.name + ', ' 
-                            })} */}
-                            genres name
+                                        return item.value
+                                    } else return item.value + ', ' 
+                            })}
                         </small>
                     </div>
                 </Link>
                 <div>
                     <Link passHref href={`/${slug}`} onClick={() => toTop()}>
                         <div className="prices">
-                            <div>-10%</div>
-                            <div>
-                                <p>{`$${basePrice}`}</p>
-                                <p>{`$${basePrice}`}</p>
+                            {discount >= 1
+                                && <div className='discount-percent'>-{discount}%</div>
+                            }
+                            <div className='price'>
+                                {discount >= 1
+                                    && <p className='strikeout'>{`$${basePrice.toFixed(2)}`}</p>
+                                }
+                                <p className='true-price'>{`$${truePrice.toFixed(2)}`}</p>
                             </div>
                         </div>
                     </Link>
