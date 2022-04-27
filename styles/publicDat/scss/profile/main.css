@@ -1,0 +1,742 @@
+.header__profile {
+  background-color: #1e070d;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 20px;
+  border: 5px solid #7d014c;
+}
+
+.header__profile .profile__img {
+  width: 160px;
+  height: 160px;
+}
+
+.header__profile .profile__img .image__avt {
+  width: 100%;
+}
+
+.header__profile .content__header {
+  margin: 0px 20px 0px 20px;
+}
+
+.header__profile .content__header .content__name {
+  color: white;
+  font-weight: 300;
+  margin: 5px 0 5px 0;
+}
+
+.header__profile .content__header .content__info {
+  font-size: 13px;
+}
+
+.header__profile .content__header .content__text {
+  font-size: 13px;
+  margin-top: 30px;
+  line-height: 20px;
+}
+
+.header__profile .exp__profile .level {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 24px;
+  color: white;
+  font-weight: 300;
+  padding-bottom: 15px;
+}
+
+.header__profile .exp__profile .level .number__level {
+  margin-left: 5px;
+}
+
+.header__profile .exp__profile .years {
+  padding: 5px;
+  width: 250px;
+  background-color: #202020;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.header__profile .exp__profile .years .years_text {
+  margin-left: 10px;
+  font-size: 14px;
+  line-height: 25px;
+}
+
+@media only screen and (max-width: 740px) {
+  .header__profile {
+    background-color: #1e070d;
+    display: block;
+    padding: 20px;
+    border: 5px solid #7d014c;
+  }
+  .header__profile .profile__img {
+    width: 160px;
+    height: 160px;
+    padding-left: 20%;
+  }
+  .header__profile .profile__img .image__avt {
+    width: 100%;
+  }
+  .header__profile .content__header {
+    margin: 0px 20px 0px 20px;
+  }
+  .header__profile .content__header .content__name {
+    color: white;
+    font-weight: 300;
+    margin: 5px 0 5px 0;
+    padding-left: 15%;
+  }
+  .header__profile .content__header .content__info {
+    font-size: 13px;
+    padding-left: 15%;
+  }
+  .header__profile .content__header .content__text {
+    font-size: 13px;
+    margin-top: 30px;
+    line-height: 20px;
+  }
+  .header__profile .exp__profile {
+    margin-top: 20px;
+  }
+  .header__profile .exp__profile .level {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 24px;
+    color: white;
+    font-weight: 300;
+    padding-bottom: 0px;
+    padding-left: 20px;
+  }
+  .header__profile .exp__profile .level .number__level {
+    margin-left: 5px;
+  }
+  .header__profile .exp__profile .years {
+    padding: 5px;
+    width: 90%;
+    margin: 10px;
+    background-color: #202020;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .header__profile .exp__profile .years .years_text {
+    margin-left: 10px;
+    font-size: 14px;
+    line-height: 25px;
+  }
+}
+
+.profile {
+  padding: 100px 260px 100px 260px;
+  font-family: 'Roboto', sans-serif;
+  background-color: #070b1e;
+  color: #969696;
+}
+
+@media only screen and (max-width: 740px) {
+  .profile {
+    padding: 50px 20px 50px 20px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #070b1e;
+    color: #969696;
+  }
+}
+
+@media only screen and (min-width: 740px) and (max-width: 1024px) {
+  .profile {
+    padding: 100px 60px 100px 60px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #070b1e;
+    color: #969696;
+  }
+}
+
+.profile__content {
+  background-color: #1e070d;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 20px;
+  border: 5px solid #7d014c;
+  margin-top: 10px;
+}
+
+.profile__content .profile__leftcol {
+  background-color: #0f0306;
+  width: 625px;
+  padding: 20px;
+  margin-right: 10px;
+}
+
+.profile__content .profile__leftcol .profile_title_showgame {
+  background: -webkit-gradient(linear, left top, right top, from(#00235a), color-stop(60%, #5a0048));
+  background: linear-gradient(to right, #00235a 0%, #5a0048 60%);
+  font-size: 14px;
+  font-weight: 200;
+  color: white;
+  padding: 10px;
+}
+
+.profile__content .profile__leftcol .profile__content__showcasegame {
+  margin-top: 30px;
+}
+
+.profile__content .profile__leftcol .profile__content__showcasegame .profile_header_showgame {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.profile__content .profile__leftcol .profile__content__showcasegame .profile_header_showgame .profile__game__image {
+  width: 184px;
+  height: 69px;
+}
+
+.profile__content .profile__leftcol .profile__content__showcasegame .profile_header_showgame .profile__game__image .image__showgame {
+  width: 100%;
+}
+
+.profile__content .profile__leftcol .profile__content__showcasegame .profile_header_showgame .profile__showgame__title {
+  color: #ebebeb;
+  cursor: pointer;
+  font-size: 24;
+  font-weight: 200;
+  margin-left: 20px;
+}
+
+.profile__content .profile__leftcol .profile__content__showcasegame .showcase_stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 20px;
+}
+
+.profile__content .profile__leftcol .profile__content__showcasegame .showcase_stats .showcase_left .value {
+  color: white;
+  font-size: 34px;
+  font-weight: 200;
+}
+
+.profile__content .profile__leftcol .profile__content__showcasegame .showcase_stats .showcase_left .label {
+  font-size: 17px;
+  line-height: 28px;
+}
+
+.profile__content .profile__leftcol .profile__content__showcasegame .showcase_stats .showcase_right {
+  margin-left: 50px;
+}
+
+.profile__content .profile__leftcol .profile__content__showcasegame .showcase_stats .showcase_right .value {
+  color: white;
+  font-size: 34px;
+  font-weight: 200;
+}
+
+.profile__content .profile__leftcol .profile__content__showcasegame .showcase_stats .showcase_right .label {
+  font-size: 17px;
+  line-height: 28px;
+}
+
+.profile__content .profile__leftcol .profile_title_showcase {
+  background: -webkit-gradient(linear, left top, right top, from(#00235a), color-stop(60%, #5a0048));
+  background: linear-gradient(to right, #00235a 0%, #5a0048 60%);
+  font-size: 14px;
+  font-weight: 200;
+  color: white;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.profile__content .profile__leftcol .profile_header_case {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.profile__content .profile__leftcol .profile_header_case .profile__showcase_img {
+  width: 184px;
+  height: 69px;
+}
+
+.profile__content .profile__leftcol .profile_header_case .profile__showcase_img .image__showcase {
+  width: 100%;
+}
+
+.profile__content .profile__leftcol .profile_header_case .profile__showcase__title {
+  color: #ebebeb;
+  cursor: pointer;
+  font-size: 24;
+  font-weight: 200;
+  margin-left: 20px;
+  margin: 0;
+}
+
+.profile__content .profile__leftcol .profile_header_case .profile__showcase__title .gameplay__time {
+  color: #9b9b9b;
+  font-size: 17px;
+  line-height: 25px;
+}
+
+.profile__content .profile__leftcol .follow__game {
+  color: #ebebeb;
+  font-size: 13px;
+  font-weight: 200;
+  margin-top: 40px;
+}
+
+.profile__content .profile__leftcol .follow__game .link__follow__game {
+  font-size: 10px;
+  text-decoration: none;
+  color: #ebebeb;
+  padding: 3px;
+  border: 2px solid #969696;
+}
+
+.profile__content .profile__leftcol .follow__game .follow__game__text {
+  color: #969696;
+  font-weight: 400;
+  padding: 15px 0 15px 0;
+  font-size: 13px;
+}
+
+.profile__content .profile__leftcol .showcase_notes .showcase_notes_story .showcase_notes_story_title {
+  font-size: 20px;
+  color: #5aa9d6;
+  padding: 10px 0 10px 0;
+}
+
+.profile__content .profile__leftcol .showcase_notes .showcase_notes_story .showcase_notes_story_text {
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.profile__content .profile__leftcol .profile_recentgame {
+  margin-top: 50px;
+  background-color: #2e0a0a;
+}
+
+.profile__content .profile__leftcol .profile_recentgame .profile_recentgame_title {
+  color: #969696;
+  background: -webkit-gradient(linear, left top, right top, from(#00235a), color-stop(60%, #5a0048));
+  background: linear-gradient(to right, #00235a 0%, #5a0048 60%);
+  font-size: 14px;
+  font-weight: 200;
+  color: white;
+  padding: 10px;
+}
+
+.profile__content .profile__leftcol .profile_recentgame .recentgame__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+  position: relative;
+}
+
+.profile__content .profile__leftcol .profile_recentgame .recentgame__content .image__recent {
+  width: 184px;
+}
+
+.profile__content .profile__leftcol .profile_recentgame .recentgame__content .image__recent .avatar__game {
+  width: 100%;
+}
+
+.profile__content .profile__leftcol .profile_recentgame .recentgame__content .title_game_name {
+  color: #ebebeb;
+  font-size: 13;
+  padding: 5px 20px 5px 20px;
+  font-weight: 400;
+}
+
+.profile__content .profile__leftcol .profile_recentgame .recentgame__content .time__game__recent {
+  right: 10px;
+  bottom: 10px;
+  position: absolute;
+  font-size: 13px;
+  color: #9b9b9b;
+}
+
+.profile__content .profile__rightcol {
+  background-color: #0f0306;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.profile__content .profile__rightcol .profile__sightcol_title {
+  padding: 20px;
+  color: #969696;
+  font-size: 24px;
+}
+
+.profile__content .profile__rightcol .profile__priview {
+  margin-top: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 50px;
+}
+
+.profile__content .profile__rightcol .profile__priview .image__priview {
+  width: 54px;
+  height: 54px;
+  margin: 5px;
+}
+
+.profile__content .profile__rightcol .profile__priview .image__priview .image__icon {
+  width: 100%;
+}
+
+.profile__content .profile__rightcol .list__link__area {
+  padding: 10px;
+}
+
+.profile__content .profile__rightcol .list__link__area .link__account__area {
+  margin: 15px 10px 15px 10px;
+}
+
+.profile__content .profile__rightcol .list__link__area .link__account__area .title_link {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+}
+
+.profile__content .profile__rightcol .list__link__area .link__account__area .number_area {
+  color: #9b9b9b;
+  font-size: 24px;
+  font-weight: 200;
+  padding-left: 5px;
+}
+
+.profile__content .profile__rightcol .list_friends {
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.profile__content .profile__rightcol .list_friends .list_friends_title {
+  color: white;
+  font-size: 14px;
+  padding-bottom: 10px;
+}
+
+.profile__content .profile__rightcol .list_friends .list_friends_title .number_list_friends {
+  color: #969696;
+  font-size: 24px;
+  font-weight: 200;
+  padding-left: 5px;
+}
+
+.profile__content .profile__rightcol .list_friends .friend__info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.profile__content .profile__rightcol .list_friends .friend__info .avatar__friend {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #4ecb00;
+  margin: 10px 0 10px 0;
+}
+
+.profile__content .profile__rightcol .list_friends .friend__info .avatar__friend .image__avatar {
+  width: 100%;
+}
+
+.profile__content .profile__rightcol .list_friends .friend__info .friend__des {
+  padding-left: 20px;
+  color: #4ecb00;
+}
+
+.profile__content .profile__rightcol .list_friends .friend__info .friend__des .name__friend {
+  font-weight: 200;
+  color: #57cbde;
+}
+
+.profile__content .profile__rightcol .list_friends .friend__info .friend__des .status__friend {
+  font-size: 13px;
+  font-weight: 200;
+  line-height: 20px;
+}
+
+.profile__content .profile__rightcol .list_friends .friend__info .friend__des .status__offline {
+  color: #9b9b9b;
+}
+
+@media only screen and (max-width: 740px) {
+  .profile__content {
+    background-color: #1e070d;
+    display: block;
+    padding: 20px;
+    border: 5px solid #7d014c;
+    margin-top: 10px;
+  }
+  .profile__content .profile__leftcol {
+    background-color: #0f0306;
+    width: 230px;
+    padding: 20px;
+    margin-right: 10px;
+    padding-bottom: 50px;
+  }
+  .profile__content .profile__leftcol .profile_title_showgame {
+    background: -webkit-gradient(linear, left top, right top, from(#00235a), color-stop(60%, #5a0048));
+    background: linear-gradient(to right, #00235a 0%, #5a0048 60%);
+    font-size: 14px;
+    font-weight: 200;
+    color: white;
+    padding: 10px;
+  }
+  .profile__content .profile__leftcol .profile__content__showcasegame {
+    margin-top: 30px;
+  }
+  .profile__content .profile__leftcol .profile__content__showcasegame .profile_header_showgame {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .profile__content .profile__leftcol .profile__content__showcasegame .profile_header_showgame .profile__game__image {
+    width: 184px;
+    height: 69px;
+  }
+  .profile__content .profile__leftcol .profile__content__showcasegame .profile_header_showgame .profile__game__image .image__showgame {
+    width: 100%;
+  }
+  .profile__content .profile__leftcol .profile__content__showcasegame .profile_header_showgame .profile__showgame__title {
+    color: #ebebeb;
+    cursor: pointer;
+    font-size: 24;
+    font-weight: 200;
+    margin-left: 20px;
+  }
+  .profile__content .profile__leftcol .profile__content__showcasegame .showcase_stats {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 20px;
+  }
+  .profile__content .profile__leftcol .profile__content__showcasegame .showcase_stats .showcase_left .value {
+    color: white;
+    font-size: 34px;
+    font-weight: 200;
+  }
+  .profile__content .profile__leftcol .profile__content__showcasegame .showcase_stats .showcase_left .label {
+    font-size: 17px;
+    line-height: 28px;
+  }
+  .profile__content .profile__leftcol .profile__content__showcasegame .showcase_stats .showcase_right {
+    margin-left: 50px;
+  }
+  .profile__content .profile__leftcol .profile__content__showcasegame .showcase_stats .showcase_right .value {
+    color: white;
+    font-size: 34px;
+    font-weight: 200;
+  }
+  .profile__content .profile__leftcol .profile__content__showcasegame .showcase_stats .showcase_right .label {
+    font-size: 17px;
+    line-height: 28px;
+  }
+  .profile__content .profile__leftcol .profile_title_showcase {
+    background: -webkit-gradient(linear, left top, right top, from(#00235a), color-stop(60%, #5a0048));
+    background: linear-gradient(to right, #00235a 0%, #5a0048 60%);
+    font-size: 14px;
+    font-weight: 200;
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  .profile__content .profile__leftcol .profile_header_case {
+    margin-top: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .profile__content .profile__leftcol .profile_header_case .profile__showcase_img {
+    width: 184px;
+    height: 69px;
+  }
+  .profile__content .profile__leftcol .profile_header_case .profile__showcase_img .image__showcase {
+    width: 100%;
+  }
+  .profile__content .profile__leftcol .profile_header_case .profile__showcase__title {
+    color: #ebebeb;
+    cursor: pointer;
+    font-size: 24;
+    font-weight: 200;
+    margin-left: 20px;
+    margin: 0;
+  }
+  .profile__content .profile__leftcol .profile_header_case .profile__showcase__title .gameplay__time {
+    color: #9b9b9b;
+    font-size: 17px;
+    line-height: 25px;
+  }
+  .profile__content .profile__leftcol .follow__game {
+    color: #ebebeb;
+    font-size: 13px;
+    font-weight: 200;
+    margin-top: 40px;
+    border: 2px solid #969696;
+  }
+  .profile__content .profile__leftcol .follow__game .link__follow__game {
+    text-decoration: none;
+    color: #ebebeb;
+    padding: 3px;
+    border: none;
+  }
+  .profile__content .profile__leftcol .follow__game .follow__game__text {
+    color: #969696;
+    font-weight: 400;
+    padding: 15px 0 15px 0;
+    font-size: 13px;
+    display: none;
+  }
+  .profile__content .profile__leftcol .showcase_notes .showcase_notes_story .showcase_notes_story_title {
+    font-size: 20px;
+    color: #5aa9d6;
+    padding: 10px 0 10px 0;
+  }
+  .profile__content .profile__leftcol .showcase_notes .showcase_notes_story .showcase_notes_story_text {
+    font-size: 13px;
+    line-height: 20px;
+  }
+  .profile__content .profile__leftcol .profile_recentgame {
+    margin-top: 50px;
+    background-color: #2e0a0a;
+  }
+  .profile__content .profile__leftcol .profile_recentgame .profile_recentgame_title {
+    color: #969696;
+    background: -webkit-gradient(linear, left top, right top, from(#00235a), color-stop(60%, #5a0048));
+    background: linear-gradient(to right, #00235a 0%, #5a0048 60%);
+    font-size: 14px;
+    font-weight: 200;
+    color: white;
+    padding: 10px;
+  }
+  .profile__content .profile__leftcol .profile_recentgame .recentgame__content {
+    display: block;
+    padding: 10px;
+    position: relative;
+    height: 150px;
+  }
+  .profile__content .profile__leftcol .profile_recentgame .recentgame__content .image__recent {
+    width: 184px;
+  }
+  .profile__content .profile__leftcol .profile_recentgame .recentgame__content .image__recent .avatar__game {
+    width: 100%;
+  }
+  .profile__content .profile__leftcol .profile_recentgame .recentgame__content .title_game_name {
+    color: #ebebeb;
+    font-size: 13;
+    padding: 5px 20px 5px 0px;
+    font-weight: 400;
+  }
+  .profile__content .profile__leftcol .profile_recentgame .recentgame__content .time__game__recent {
+    top: 130px;
+    left: 10px;
+    position: absolute;
+    font-size: 13px;
+    color: #9b9b9b;
+  }
+  .profile__content .profile__rightcol {
+    background-color: #0f0306;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    border-top: 1px solid #969696;
+    padding-top: 20px;
+  }
+  .profile__content .profile__rightcol .profile__sightcol_title {
+    padding: 20px;
+    color: #969696;
+    font-size: 24px;
+  }
+  .profile__content .profile__rightcol .profile__priview {
+    margin-top: 40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 50px;
+  }
+  .profile__content .profile__rightcol .profile__priview .image__priview {
+    width: 54px;
+    height: 54px;
+    margin: 5px;
+  }
+  .profile__content .profile__rightcol .profile__priview .image__priview .image__icon {
+    width: 100%;
+  }
+  .profile__content .profile__rightcol .list__link__area {
+    padding: 10px;
+  }
+  .profile__content .profile__rightcol .list__link__area .link__account__area {
+    margin: 15px 10px 15px 10px;
+  }
+  .profile__content .profile__rightcol .list__link__area .link__account__area .title_link {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+  }
+  .profile__content .profile__rightcol .list__link__area .link__account__area .number_area {
+    color: #9b9b9b;
+    font-size: 24px;
+    font-weight: 200;
+    padding-left: 5px;
+  }
+  .profile__content .profile__rightcol .list_friends {
+    margin-top: 40px;
+    padding: 20px;
+  }
+  .profile__content .profile__rightcol .list_friends .list_friends_title {
+    color: white;
+    font-size: 14px;
+    padding-bottom: 10px;
+  }
+  .profile__content .profile__rightcol .list_friends .list_friends_title .number_list_friends {
+    color: #969696;
+    font-size: 24px;
+    font-weight: 200;
+    padding-left: 5px;
+  }
+  .profile__content .profile__rightcol .list_friends .friend__info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .profile__content .profile__rightcol .list_friends .friend__info .avatar__friend {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #4ecb00;
+    margin: 10px 0 10px 0;
+  }
+  .profile__content .profile__rightcol .list_friends .friend__info .avatar__friend .image__avatar {
+    width: 100%;
+  }
+  .profile__content .profile__rightcol .list_friends .friend__info .friend__des {
+    padding-left: 20px;
+    color: #4ecb00;
+  }
+  .profile__content .profile__rightcol .list_friends .friend__info .friend__des .name__friend {
+    font-weight: 200;
+    color: #57cbde;
+  }
+  .profile__content .profile__rightcol .list_friends .friend__info .friend__des .status__friend {
+    font-size: 13px;
+    font-weight: 200;
+    line-height: 20px;
+  }
+  .profile__content .profile__rightcol .list_friends .friend__info .friend__des .status__offline {
+    color: #9b9b9b;
+  }
+}
+/*# sourceMappingURL=main.css.map */

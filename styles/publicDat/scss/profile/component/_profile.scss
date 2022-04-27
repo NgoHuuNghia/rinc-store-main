@@ -1,0 +1,23 @@
+.profile{
+    padding: 100px 260px 100px 260px;
+    font-family: 'Roboto', sans-serif;
+    color:#969696;
+}
+// mobile 
+@media only screen  and(max-width: 740px ){
+    .profile{
+        padding: 50px 20px 50px 20px;
+        font-family: 'Roboto', sans-serif;
+
+        color:#969696;
+    }
+}
+// tablet 
+@media only screen  and(min-width: 740px ) and (max-width : 1024px ){
+    .profile{
+        padding: 100px 60px 100px 60px;
+        font-family: 'Roboto', sans-serif;
+
+        color:#969696;
+    }
+}

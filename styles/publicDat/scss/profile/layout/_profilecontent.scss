@@ -1,0 +1,512 @@
+.profile__content{
+    background-color: #1e070d;
+    display: flex;
+    padding: 20px;
+    border: 5px solid rgb(125, 1, 76);
+    margin-top: 10px;
+    .profile__leftcol{
+        background-color: #0f0306;
+        width: 625px;
+        padding: 20px;
+        margin-right: 10px;
+        .profile_title_showgame{
+            background: linear-gradient(to right, #00235a 0%, #5a0048 60%);
+            font-size: 14px;
+            font-weight: 200;
+            color: white;
+            padding: 10px
+        }
+        .profile__content__showcasegame{
+            margin-top: 30px;
+            .profile_header_showgame{
+                display: flex;
+                .profile__game__image{
+                    width: 184px;
+                    height: 69px;
+                    .image__showgame{
+                        width: 100%;
+                    }
+                }
+                .profile__showgame__title{
+                    color : #ebebeb;
+                    cursor: pointer;
+                    font-size: 24;
+                    font-weight: 200;
+                    margin-left: 20px;
+                }
+            }
+            .showcase_stats{
+                display: flex;
+                margin-top: 20px;
+                .showcase_left{
+                   .value{
+                        color: white;
+                        font-size: 34px;
+                        font-weight: 200;
+                   } 
+                   .label{
+                        font-size: 17px;
+                        line-height: 28px;
+                   }
+                }
+                .showcase_right{
+                    margin-left: 50px;
+                    .value{
+                        color: white;
+                        font-size: 34px;
+                        font-weight: 200;
+                    } 
+                    .label{
+                        font-size: 17px;
+                        line-height: 28px;
+                    }
+                 }
+            }
+        }
+        .profile_title_showcase{
+            background: linear-gradient(to right, #00235a 0%, #5a0048 60%);
+            font-size: 14px;
+            font-weight: 200;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .profile_header_case{
+            margin-top: 20px;
+            display: flex;
+            .profile__showcase_img{
+                width: 184px;
+                height: 69px;
+                .image__showcase{
+                    width: 100%;
+                }
+            }
+            .profile__showcase__title{
+                color : #ebebeb;
+                cursor: pointer;
+                font-size: 24;
+                font-weight: 200;
+                margin-left: 20px;
+                margin: 0;
+                .gameplay__time{
+                    color: #9b9b9b;
+                    font-size: 17px;
+                    line-height: 25px;
+                }
+            }
+        }
+        .follow__game{
+            color: #ebebeb;
+            font-size: 13px;
+            font-weight: 200;
+            margin-top: 40px;
+            
+            .link__follow__game{
+                font-size: 10px;
+                text-decoration: none;
+                color:#ebebeb;
+                padding: 3px;
+                border: 2px solid #969696;
+            }
+            .follow__game__text{
+                color:#969696  ;
+                font-weight: 400;
+                padding: 15px 0 15px 0; 
+                font-size: 13px;
+                
+            }
+        }
+        .showcase_notes{
+            .showcase_notes_story{
+                .showcase_notes_story_title{
+                    font-size: 20px;
+                    color : #5aa9d6;
+                    padding: 10px 0 10px 0;
+                }
+                .showcase_notes_story_text{
+                    font-size: 13px;
+                    line-height: 20px;
+                }
+            }
+        }
+        .profile_recentgame{
+            margin-top: 50px;
+            background-color: rgb(46, 10, 10);
+            .profile_recentgame_title{
+                color: #969696;
+                background: linear-gradient(to right, #00235a 0%, #5a0048 60%);
+                font-size: 14px;
+                font-weight: 200;
+                color: white;
+                padding: 10px;
+            }
+            .recentgame__content{
+                display: flex;
+                padding: 10px;
+                position: relative;
+                .image__recent{
+                    width: 184px;
+                    .avatar__game{
+                        width: 100%;
+                    }
+                }
+                .title_game_name{
+                    color: #ebebeb;
+                    font-size: 13;
+                    padding: 5px 20px 5px 20px;
+                    font-weight: 400;
+                }
+                .time__game__recent{
+                    right: 10px;
+                    bottom: 10px;
+                    position: absolute;
+                    font-size: 13px;
+                    color: #9b9b9b;
+                }
+            }
+        }
+    }
+    .profile__rightcol{
+        background-color: #0f0306;
+        flex: 1;
+        .profile__sightcol_title{
+            padding :20px;
+            color: #969696;
+            font-size: 24px;
+        }
+        .profile__priview{
+            margin-top: 40px;
+            display: flex;
+            margin-bottom: 50px;
+            .image__priview{
+                width: 54px;
+                height: 54px;
+                margin: 5px;
+                .image__icon{
+                    width: 100%;
+                }
+            }
+        }
+        .list__link__area{
+            padding: 10px;
+            .link__account__area{
+                margin: 15px 10px 15px 10px;
+                .title_link{
+                    text-decoration: none;
+                    color: white;
+                    font-size: 14px;
+                }
+                .number_area{
+                    color: #9b9b9b;
+                    font-size: 24px;
+                    font-weight: 200;
+                    padding-left: 5px;
+                }
+            }
+        }
+        .list_friends{
+            margin-top: 40px;
+            padding: 20px;
+            .list_friends_title{
+                color: white;
+                font-size: 14px;
+                padding-bottom: 10px;
+                .number_list_friends{
+                    color:#969696 ;
+                    font-size: 24px;
+                    font-weight: 200;
+                    padding-left: 5px;
+                }
+            }
+            .friend__info{
+                display: flex;
+                align-items: center;
+                .avatar__friend{
+                    width: 40px;
+                    height: 40px;
+                    border: 1px solid rgb(78, 203, 0);
+                    margin: 10px 0 10px 0;
+                    
+                    .image__avatar{
+                        width: 100%;
+                    }
+                }
+                .friend__des{
+                    padding-left: 20px;
+                    color: rgb(78, 203, 0);
+                    .name__friend{
+                        font-weight: 200;
+                        color :#57cbde;
+                    }
+                    .status__friend{
+                        font-size: 13px;
+                        font-weight: 200;
+                        line-height: 20px;
+                    }
+                    .status__offline{
+                        color : #9b9b9b;
+                    }
+                }
+            }
+        }
+    }
+}
+// mobile 
+@media only screen  and(max-width: 740px ){
+    .profile__content{
+        background-color: #1e070d;
+        display: block;
+        padding: 20px;
+        border: 5px solid rgb(125, 1, 76);
+        margin-top: 10px;
+        .profile__leftcol{
+            background-color: #0f0306;
+            width: 230px;
+            padding: 20px;
+            margin-right: 10px;
+            padding-bottom: 50px;
+            .profile_title_showgame{
+                background: linear-gradient(to right, #00235a 0%, #5a0048 60%);
+                font-size: 14px;
+                font-weight: 200;
+                color: white;
+                padding: 10px
+            }
+            .profile__content__showcasegame{
+                margin-top: 30px;
+                .profile_header_showgame{
+                    display: flex;
+                    .profile__game__image{
+                        width: 184px;
+                        height: 69px;
+                        .image__showgame{
+                            width: 100%;
+                        }
+                    }
+                    .profile__showgame__title{
+                        color : #ebebeb;
+                        cursor: pointer;
+                        font-size: 24;
+                        font-weight: 200;
+                        margin-left: 20px;
+                    }
+                }
+                .showcase_stats{
+                    display: flex;
+                    margin-top: 20px;
+                    .showcase_left{
+                       .value{
+                            color: white;
+                            font-size: 34px;
+                            font-weight: 200;
+                       } 
+                       .label{
+                            font-size: 17px;
+                            line-height: 28px;
+                       }
+                    }
+                    .showcase_right{
+                        margin-left: 50px;
+                        .value{
+                            color: white;
+                            font-size: 34px;
+                            font-weight: 200;
+                        } 
+                        .label{
+                            font-size: 17px;
+                            line-height: 28px;
+                        }
+                     }
+                }
+            }
+            .profile_title_showcase{
+                background: linear-gradient(to right, #00235a 0%, #5a0048 60%);
+                font-size: 14px;
+                font-weight: 200;
+                color: white;
+                padding: 10px;
+                margin-top: 20px;
+            }
+            .profile_header_case{
+                margin-top: 20px;
+                display: flex;
+                .profile__showcase_img{
+                    width: 184px;
+                    height: 69px;
+                    .image__showcase{
+                        width: 100%;
+                    }
+                }
+                .profile__showcase__title{
+                    color : #ebebeb;
+                    cursor: pointer;
+                    font-size: 24;
+                    font-weight: 200;
+                    margin-left: 20px;
+                    margin: 0;
+                    .gameplay__time{
+                        color: #9b9b9b;
+                        font-size: 17px;
+                        line-height: 25px;
+                    }
+                }
+            }
+            .follow__game{
+                color: #ebebeb;
+                font-size: 13px;
+                font-weight: 200;
+                margin-top: 40px;
+                border: 2px solid #969696;
+                .link__follow__game{
+                    text-decoration: none;
+                    color:#ebebeb;
+                    padding: 3px;
+                    border: none;
+                }
+                .follow__game__text{
+                    color:#969696  ;
+                    font-weight: 400;
+                    padding: 15px 0 15px 0; 
+                    font-size: 13px;
+                    display: none;
+                }
+            }
+            .showcase_notes{
+                .showcase_notes_story{
+                    .showcase_notes_story_title{
+                        font-size: 20px;
+                        color : #5aa9d6;
+                        padding: 10px 0 10px 0;
+                    }
+                    .showcase_notes_story_text{
+                        font-size: 13px;
+                        line-height: 20px;
+                    }
+                }
+            }
+            .profile_recentgame{
+                margin-top: 50px;
+                background-color: rgb(46, 10, 10);
+                .profile_recentgame_title{
+                    color: #969696;
+                    background: linear-gradient(to right, #00235a 0%, #5a0048 60%);
+                    font-size: 14px;
+                    font-weight: 200;
+                    color: white;
+                    padding: 10px;
+                }
+                .recentgame__content{
+                    display: block;
+                    padding: 10px;
+                    position: relative;
+                    height: 150px;
+                    .image__recent{
+                        width: 184px;
+                        .avatar__game{
+                            width: 100%;
+                        }
+                    }
+                    .title_game_name{
+                        color: #ebebeb;
+                        font-size: 13;
+                        padding: 5px 20px 5px 0px;
+                        font-weight: 400;
+                    }
+                    .time__game__recent{
+                        top: 130px;
+                        left: 10px;
+                        position: absolute;
+                        font-size: 13px;
+                        color: #9b9b9b;
+                    }
+                }
+            }
+        }
+        .profile__rightcol{
+            background-color: #0f0306;
+            flex: 1;
+            border-top: 1px solid #969696;
+            padding-top: 20px;
+            .profile__sightcol_title{
+                padding :20px;
+                color: #969696;
+                font-size: 24px;
+            }
+            .profile__priview{
+                margin-top: 40px;
+                display: flex;
+                margin-bottom: 50px;
+                .image__priview{
+                    width: 54px;
+                    height: 54px;
+                    margin: 5px;
+                    .image__icon{
+                        width: 100%;
+                    }
+                }
+            }
+            .list__link__area{
+                padding: 10px;
+                .link__account__area{
+                    margin: 15px 10px 15px 10px;
+                    .title_link{
+                        text-decoration: none;
+                        color: white;
+                        font-size: 14px;
+                    }
+                    .number_area{
+                        color: #9b9b9b;
+                        font-size: 24px;
+                        font-weight: 200;
+                        padding-left: 5px;
+                    }
+                }
+            }
+            .list_friends{
+                margin-top: 40px;
+                padding: 20px;
+                .list_friends_title{
+                    color: white;
+                    font-size: 14px;
+                    padding-bottom: 10px;
+                    .number_list_friends{
+                        color:#969696 ;
+                        font-size: 24px;
+                        font-weight: 200;
+                        padding-left: 5px;
+                    }
+                }
+                .friend__info{
+                    display: flex;
+                    align-items: center;
+                    .avatar__friend{
+                        width: 40px;
+                        height: 40px;
+                        border: 1px solid rgb(78, 203, 0);
+                        margin: 10px 0 10px 0;
+                        
+                        .image__avatar{
+                            width: 100%;
+                        }
+                    }
+                    .friend__des{
+                        padding-left: 20px;
+                        color: rgb(78, 203, 0);
+                        .name__friend{
+                            font-weight: 200;
+                            color :#57cbde;
+                        }
+                        .status__friend{
+                            font-size: 13px;
+                            font-weight: 200;
+                            line-height: 20px;
+                        }
+                        .status__offline{
+                            color : #9b9b9b;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

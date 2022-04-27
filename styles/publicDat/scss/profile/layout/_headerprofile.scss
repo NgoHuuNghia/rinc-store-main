@@ -1,0 +1,116 @@
+.header__profile{
+    background-color: #1e070d;
+    display: flex;
+    padding: 20px;
+    border: 5px solid rgb(125, 1, 76);
+    .profile__img{
+        width: 160px;
+        height: 160px;
+        .image__avt{
+            width: 100%;
+        }
+    }
+    .content__header{
+        margin: 0px 20px 0px 20px;
+        .content__name{
+            color: white;
+            font-weight: 300;
+            margin: 5px 0 5px 0;
+        }
+        .content__info{
+            font-size: 13px;
+            
+        }
+        .content__text{
+            font-size: 13px;
+            margin-top: 30px;
+            line-height: 20px;
+        }
+    }
+    .exp__profile{
+        
+        .level{
+            display: flex;
+            font-size: 24px;
+            color: white;
+            font-weight: 300;
+            padding-bottom: 15px;
+            .number__level{
+                margin-left: 5px;
+            }
+        }
+        .years{
+            padding: 5px;
+            width: 250px;
+            
+            background-color: #202020;
+            display: flex;
+            .years_text{
+                margin-left: 10px;
+                font-size: 14px;
+                line-height: 25px;
+            }
+        }
+    }
+}
+// mobile 
+@media only screen  and(max-width: 740px ){
+    .header__profile{
+        background-color: #1e070d;
+        display: block;
+        padding: 20px;
+        border: 5px solid rgb(125, 1, 76);
+        .profile__img{
+            width: 160px;
+            height: 160px;
+            padding-left: 20%;
+            .image__avt{
+                width: 100%;
+            }
+        }
+        .content__header{
+            margin: 0px 20px 0px 20px;
+            .content__name{
+                color: white;
+                font-weight: 300;
+                margin: 5px 0 5px 0;
+                padding-left: 15%;
+            }
+            .content__info{
+                font-size: 13px;
+                padding-left: 15%;
+            }
+            .content__text{
+                font-size: 13px;
+                margin-top: 30px;
+                line-height: 20px;
+            }
+        }
+        .exp__profile{
+            margin-top: 20px;
+            .level{
+                display: flex;
+                font-size: 24px;
+                color: white;
+                font-weight: 300;
+                padding-bottom: 0px;
+                padding-left: 20px;
+                .number__level{
+                    margin-left: 5px;
+                }
+            }
+            .years{
+                padding: 5px;
+                width: 90%;
+                margin: 10px;
+                background-color: #202020;
+                display: flex;
+                .years_text{
+                    margin-left: 10px;
+                    font-size: 14px;
+                    line-height: 25px;
+                }
+            }
+        }
+    }
+}
