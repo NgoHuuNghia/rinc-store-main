@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import Aos from 'aos'
 import 'aos/dist/aos.css'
 import Image from 'next/image'
+import Link from 'next/link'
 const About = () => {
     useEffect(() => {
         Aos.init();
@@ -116,7 +117,9 @@ const About = () => {
                         Enjoy exclusive deals, automatic updates and more from over 30,000 games to choose from, AAA or indie.
                     </div>
                     <div className={styles.about_cta_btn}>
-                        <a className={styles.about_cta_btn_des}>BROWSE STORE</a>
+                        <Link href='/'>
+                            <a className={styles.about_cta_btn_des}>BROWSE STORE</a>
+                        </Link>
                     </div>
                 </div>
             </div>

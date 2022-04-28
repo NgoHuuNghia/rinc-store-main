@@ -1,5 +1,6 @@
 import { dateToJsonLocal, getUserWithUsername } from "@lib/firebase";
 import styles from '@styles/publicDat/scss/profile/profile.module.scss'
+import Link from "next/link";
 
 export async function getServerSideProps({ query: urlQuery }) {
     const { username } = urlQuery;
@@ -40,7 +41,9 @@ const index = ({user}) => {
                     <div className ={styles.content__text} >
                         Email: {email}
                     <br/>
-                    If you&rsquo;re a developer and want your game to be reviewed, don&rsquo;t hesitate to contact me.
+                        <Link href={`${username}/setting`}>
+                            Setting
+                        </Link>
                     </div>
                 </div>
                 <div className ={styles.exp__profile} >
@@ -214,7 +217,7 @@ const index = ({user}) => {
                         </div>
                         <div className ={styles.friend__info} >
                             <div className ={styles.avatar__friend} >
-                                <img className ={styles.image__avatar} src="/imageDat/img/avatar1.png" alt=""/>
+                                <img className ={styles.image__avatar} src="/imageDat/img/avatar2.png" alt=""/>
                             </div>
                             <div className ={styles.friend__des} >
                                 <div className ={styles.name__friend} >
@@ -227,7 +230,7 @@ const index = ({user}) => {
                         </div>
                         <div className ={styles.friend__info} >
                             <div className ={styles.avatar__friend} >
-                                <img className ={styles.image__avatar} src="/imageDat/img/avatar1.png" alt=""/>
+                                <img className ={styles.image__avatar} src="/imageDat/img/avatar3.jpg" alt=""/>
                             </div>
                             <div className ={styles.friend__des} >
                                 <div className ={styles.name__friend} >
@@ -240,7 +243,7 @@ const index = ({user}) => {
                         </div>
                         <div className ={styles.friend__info} >
                             <div className ={styles.avatar__friend} >
-                                <img className ={styles.image__avatar} src="/imageDat/img/avatar1.png" alt=""/>
+                                <img className ={styles.image__avatar} src="/imageDat/img/avatar4.jpg" alt=""/>
                             </div>
                             <div className ={styles.friend__des} >
                                 <div className ={styles.name__friend} >
@@ -253,7 +256,7 @@ const index = ({user}) => {
                         </div>
                         <div className ={styles.friend__info} >
                             <div className ={styles.avatar__friend} >
-                                <img className ={styles.image__avatar} src="/imageDat/img/avatar1.png" alt=""/>
+                                <img className ={styles.image__avatar} src="/imageDat/img/avatar5.png" alt=""/>
                             </div>
                             <div className ={styles.friend__des} >
                                 <div className ={styles.name__friend} >

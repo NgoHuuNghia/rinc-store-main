@@ -14,7 +14,6 @@ import { dateToJsonLocal, firestore } from '@lib/firebase'
 import { useCallback, useEffect, useState } from 'react'
 import debounce from 'lodash.debounce'
 
-//asss
 const Header = () => {
     const { overlay, setOverlay } = useGlobalContext()
     const router = useRouter()

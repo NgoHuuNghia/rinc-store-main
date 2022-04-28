@@ -180,15 +180,6 @@ const Index = ({blogsDesc}) => {
                                                 onChange={(e) => setBlogController({...blogController, content: e.target.value})}
                                             />
                                         </div>
-                                        {/* <div className={style.row}>
-                                            <div className={style.col_25}>
-                                                <select id=" category" name="category">
-                                                    <option value="australia">Screenshot</option>
-                                                    <option value="canada">Work at</option>
-                                                    <option value="usa">Guide</option>
-                                                </select>
-                                            </div>
-                                        </div>     */}
                                         <div className={style.row}>
                                             <input type="submit" value="Submit"/>
                                         </div>
