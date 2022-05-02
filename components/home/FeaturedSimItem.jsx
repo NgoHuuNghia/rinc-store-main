@@ -13,7 +13,7 @@ const FeaturedSimItem = ({mainImageUrl, slug, basePrice, discount}) => {
                     <Image src={mainImageUrl || '/nope-not-here.png'} alt={slug} width={300} height={300} quality="25" layout="responsive" objectPosition='center' objectFit="cover"/>
                 </div>
                 <div className="price">
-                    <p>${truePrice.toFixed(2)}</p>
+                    <p>{truePrice ? `$${truePrice.toFixed(2)}` : 'Free 2 Play'}</p>
                 </div>
             </a>
         </Link>

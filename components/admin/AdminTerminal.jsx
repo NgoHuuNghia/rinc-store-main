@@ -9,7 +9,7 @@ import { useSidebar } from '@lib/adminContext'
 import { terminalDashboardData, terminalMenuData } from './terminalMenuData'
 import { UserContext } from '@lib/globalContext'
 import { useRouter } from 'next/router'
-import { getCrumbList } from '@lib/commonFunctions'
+import { getCrumbList, truncateString } from '@lib/commonFunctions'
 
 //todo depend on the url to make a state for dashboard child links
 
@@ -33,9 +33,8 @@ const AdminTerminal = () => {
             <div className='admin'>
                 <Link href='/'>
                     <a>
-                        {/* <img src="https://media.rawg.io/media/resize/80/-/avatars/654/6549f85d93a1b4653d6030fe6bd407bf.jpg" alt="avatar" /> */}
                         <div><Image src={user?.photoURL || `icons/hacker.png`} width={100} height={100} quality='50' alt={username}></Image></div>
-                        <p>{username || "you not suppose to be here"}</p>    
+                        <p>{truncateString(username, 10) || "you not suppose to be here"}</p>    
                     </a>    
                 </Link>
             </div>

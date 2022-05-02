@@ -5279,6 +5279,9 @@ section.admin-container > div.controls > div.game-edit > div.image-preview > div
   place-items: unset;
   place-content: unset;
 }
+section.admin-container > div.controls > div.game-edit > div.image-preview > div.secondary > div > p {
+  grid-column: span 2;
+}
 section.admin-container > div.filter-controls {
   position: fixed;
   top: 0;

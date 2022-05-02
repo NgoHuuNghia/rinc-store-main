@@ -47,7 +47,7 @@ const FeaturedSliderItem = ({
                                 {discount >= 1
                                     && <span>${basePrice.toFixed(2)}</span>
                                 }
-                                <p>${truePrice.toFixed(2)}</p>
+                                <p>{truePrice ? `$${truePrice.toFixed(2)}` : 'Free 2 Play'}</p>
                             </div>
                         </div>
                         {/*//$ <ConsoleIcons parent_platforms={parent_platforms}/> */}

@@ -20,7 +20,7 @@ const FeaturedItem = ({ mainImageUrl, basePrice, discount, slug, title }) => {
                         {discount >= 1
                             && <span>${basePrice.toFixed(2)}</span>
                         }
-                        <p>${truePrice.toFixed(2)}</p>
+                        <p>{truePrice ? `$${truePrice.toFixed(2)}` : 'Free 2 Play'}</p>
                     </div>
                 </div>
             </div>

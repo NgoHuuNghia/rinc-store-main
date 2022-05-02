@@ -8,16 +8,18 @@ function SecondaryImages({ secondaryImageUrls, slug}) {
         <div className='secondary'>
             <strong>Secondary images</strong>
             <div>
-                {secondaryImageUrls.slice(0,4).map((image, index) => {
-                    if(image){
+                {secondaryImageUrls.length >= 1
+                    ? (
+                    secondaryImageUrls.slice(0,4).map((image, index) => {
                         return (
                             <div key={index}>
                                 <Image src={image} alt={slug}
                                 width={850} height={500}/>
                             </div>
                         )
-                    } else return <p>No image yet ⭕</p>
-                })}
+                    }))
+                    : <p>No images yet ⭕</p>
+                }
             </div>
         </div>
     );

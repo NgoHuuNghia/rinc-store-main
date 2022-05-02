@@ -4,7 +4,7 @@ const GameMainImage = ({mainUrl, slug}) => {
     return (
         <div>
             {mainUrl
-                ? <Image src={mainUrl} alt={slug} width={850} height={500}/>
+                ? <Image src={mainUrl || '/nope-not-here.png'} alt={slug} width={850} height={500}/>
                 : <p>No image yet ⭕</p>}
         </div>
     );

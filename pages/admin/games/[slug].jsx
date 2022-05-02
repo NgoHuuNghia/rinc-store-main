@@ -145,7 +145,7 @@ function GameManagerForm({gameRef, defaultValues, genresData, platformsData, sto
                 />
             </div>
 
-            <div onClick={() => console.log(defaultValues.genres)} className='col-2'>
+            <div className='col-2'>
                 <label htmlFor='genres'>Genres: </label>
                 <Controller
                     name="genres"

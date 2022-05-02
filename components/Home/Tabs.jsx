@@ -47,7 +47,7 @@ const Tabs = ({
                             {discount >= 1
                                 && <p className='strikeout'>{`$${basePrice.toFixed(2)}`}</p>
                             }
-                            <p className='true-price'>{`$${truePrice.toFixed(2)}`}</p>
+                            <p className='true-price'>{truePrice ? `$${truePrice.toFixed(2)}` : 'Free 2 Play'}</p>
                         </div>
                     </div>
                 </div>
