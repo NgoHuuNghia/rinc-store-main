@@ -16,7 +16,7 @@ function UploadMainImage({gameRef, slug}) {
 
         // Makes reference to the storage bucket location
         //$ const fileRef = ref(storage, `uploads/${auth.currentUser.uid}/${Date.now()}.${extension}`);//? with a unique date so it can't be overwritten
-        const fileRef = ref(storage, `uploads/images/games/${slug}/main-image/main-${slug}`);//? with a unique date so it can't be overwritten
+        const fileRef = ref(storage, `uploads/images/games/${slug}/main-image/main-${slug}`);
 
         setUploading(true);
 

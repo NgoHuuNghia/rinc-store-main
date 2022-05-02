@@ -24,7 +24,7 @@ const Tabs = ({
                     setActiveTabViewer(item)
                 }}
             >
-                <div className='item-image'><Image src={mainImageUrl} alt={title} width={800} height={500} quality='50' layout='responsive' objectPosition='center' objectFit="cover"/></div>
+                <div className='item-image'><Image src={mainImageUrl || '/nope-not-here.png'} alt={title} width={800} height={500} quality='50' layout='responsive' objectPosition='center' objectFit="cover"/></div>
                 <div className='item'>
                     <div>
                         <h4>{title}</h4>

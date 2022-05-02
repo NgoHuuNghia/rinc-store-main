@@ -24,7 +24,7 @@ const FeaturedSliderItem = ({
                 //$ref={slide}
             >
                 <div className="main-image-container">
-                    <Image src={mainImageUrl} alt={slug} width={800} height={500} quality='75' layout='responsive' objectPosition='center' objectFit="cover"/>
+                    <Image src={mainImageUrl || '/nope-not-here.png'} alt={slug} width={800} height={500} quality='75' layout='responsive' objectPosition='center' objectFit="cover"/>
                 </div>
                 <div>
                     <h4>{title}</h4>

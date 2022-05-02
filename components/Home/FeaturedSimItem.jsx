@@ -10,7 +10,7 @@ const FeaturedSimItem = ({mainImageUrl, slug, basePrice, discount}) => {
         <Link passHref href={`/${slug}`} onClick={() => toTop()} className='speical-card-btn'>
             <a>
                 <div className="image-container">
-                    <Image src={mainImageUrl} alt={slug} width={300} height={300} quality="25" layout="responsive" objectPosition='center' objectFit="cover"/>
+                    <Image src={mainImageUrl || '/nope-not-here.png'} alt={slug} width={300} height={300} quality="25" layout="responsive" objectPosition='center' objectFit="cover"/>
                 </div>
                 <div className="price">
                     <p>${truePrice.toFixed(2)}</p>

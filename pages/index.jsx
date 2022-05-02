@@ -27,12 +27,6 @@ export async function getServerSideProps(){
         orderBy('releasedAt', 'asc'),
         limit(LIMIT),
     )
-    // const gamesDescQuery = query(
-    //     ref,
-    //     where('published', '==', true),
-    //     orderBy('releasedAt', 'desc'),
-    //     limit(LIMIT),
-    // )
 
     const gamesDesc = (await getDocs(gamesDescQuery)).docs.map((doc) => dateToJsonLocal(doc));
     const gamesAsc = (await getDocs(gamesAscQuery)).docs.map((doc) => dateToJsonLocal(doc));

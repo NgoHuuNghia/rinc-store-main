@@ -8,7 +8,7 @@ const FeaturedItem = ({ mainImageUrl, basePrice, discount, slug, title }) => {
     return (
         <div> 
             <Link passHref href={`/${slug}`} onClick={() => toTop()}>
-                <a className="image-container"><Image src={mainImageUrl} alt={slug} quality='50' width={800} height={500} layout='responsive' objectPosition='center' objectFit="cover"/></a>
+                <a className="image-container"><Image src={mainImageUrl || '/nope-not-here.png'} alt={slug} quality='50' width={800} height={500} layout='responsive' objectPosition='center' objectFit="cover"/></a>
             </Link>
             <h5>{title}</h5>
             <div>

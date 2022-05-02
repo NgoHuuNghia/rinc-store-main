@@ -41,7 +41,7 @@ const FeaturedRecommendedItem = ({
                 </div>
                 {/*//$ <img src={background_image} alt="" /> */}
                 <div className="image-container">
-                    <Image src={mainImageUrl} alt={slug} width={800} height={500} layout="responsive" quality='75' objectPosition='center' objectFit="cover"/>
+                    <Image src={mainImageUrl || '/nope-not-here.png'} alt={slug} width={800} height={500} layout="responsive" quality='75' objectPosition='center' objectFit="cover"/>
                 </div>
             </a>
         </Link>

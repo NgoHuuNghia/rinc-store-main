@@ -3,11 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 
-// const TabViewer = ({name, short_screenshots, genres, id}) => {
 const TabViewer = ({title, slug, mainImageUrl, genres, secondaryImageUrls}) => {
-    // const { tabActives } = useGlobalContext()
-    // const { tabCurrent } = tabActives
-
     return (
         //$ <div className={ tabCurrent === id ? 'active' : ''}>
         <div className={`active`}>
@@ -22,7 +18,7 @@ const TabViewer = ({title, slug, mainImageUrl, genres, secondaryImageUrls}) => {
                     .map((item) => {
                         return <Link href={`/${slug}`} key={item.id}><a>{item.value}</a></Link>
                     }
-                )}
+                ) || <a>not working</a>}
             </div>
             {secondaryImageUrls
                 .slice(1, 4)
@@ -33,7 +29,7 @@ const TabViewer = ({title, slug, mainImageUrl, genres, secondaryImageUrls}) => {
                         </div>
                     )
             })}
-            <div className='image-container'><Image src={mainImageUrl} alt={title} width={800} height={500} quality='50' layout='responsive' objectPosition='center' objectFit="cover"/></div>
+            <div className='image-container'><Image src={mainImageUrl || '/nope-not-here.png'} alt={title} width={800} height={500} quality='50' layout='responsive' objectPosition='center' objectFit="cover"/></div>
         </div>
     )
 }
